@@ -5,16 +5,13 @@
 (function () {
     // Default theme settings
     const STORAGE_KEY = 'hrm_premium_theme';
-    const DEFAULT_THEME = 'light';
+    const DEFAULT_THEME = 'dark';
 
     // Retrieve active theme from localStorage or system preferences
     function getStoredTheme() {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) return stored;
-
-        // Fallback to system preference
-        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        return systemPrefersDark ? 'dark' : DEFAULT_THEME;
+        return DEFAULT_THEME;
     }
 
     // Apply selected theme to HTML tag
