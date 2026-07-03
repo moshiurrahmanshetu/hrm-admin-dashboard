@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Branches Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Hover highlight */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+
+      /* Search & filter panel style */
+      .filters-row {
+        gap: 1rem;
+      }
+      
+      /* Hover animation for table action triggers */
+      .table-action-trigger {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-md);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--primary-accent-rgb), 0.04);
+        color: var(--text-secondary);
+        border: 1px solid var(--card-border);
+        transition: all var(--transition-fast);
+        text-decoration: none;
+      }
+      .table-action-trigger:hover {
+        background: var(--primary-accent);
+        color: white;
+        transform: scale(1.08);
+        box-shadow: 0 2px 6px var(--shadow-accent-glow);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" id="globalSearchInput" placeholder="Search branches, directors, locales..." oninput="handleGlobalSearch(this.value)">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Administration Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Branches Administration</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#addBranchModal">
+                  <i class="fa-solid fa-circle-plus"></i>
+                  <span>Establish New Branch</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills flex-wrap">
+                <a href="settings.html" class="submodule-pill">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>General Settings</span>
+                </a>
+                <a href="company.html" class="submodule-pill">
+                  <i class="fa-solid fa-building"></i>
+                  <span>Company Profile</span>
+                </a>
+                <a href="branches.html" class="submodule-pill active">
+                  <i class="fa-solid fa-code-branch"></i>
+                  <span>Branches</span>
+                </a>
+                <a href="roles.html" class="submodule-pill">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span>Roles & Permissions</span>
+                </a>
+                <a href="users.html" class="submodule-pill">
+                  <i class="fa-solid fa-users"></i>
+                  <span>User Accounts</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Core Statistics Summary Counters -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.1); color: var(--primary-accent);">
+                      <i class="fa-solid fa-code-branch fs-5"></i>
+                    </div>
+                    <div>
+                      <span class="fs-9 text-secondary uppercase-spacing d-block mb-1">Total Branches</span>
+                      <span class="h4 fw-800 text-primary mb-0" id="totalBranchesCount">4 Locations</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                      <i class="fa-solid fa-user-check fs-5"></i>
+                    </div>
+                    <div>
+                      <span class="fs-9 text-secondary uppercase-spacing d-block mb-1">Active Branches</span>
+                      <span class="h4 fw-800 text-primary mb-0">3 Operational</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                      <i class="fa-solid fa-tools fs-5"></i>
+                    </div>
+                    <div>
+                      <span class="fs-9 text-secondary uppercase-spacing d-block mb-1">In Maintenance</span>
+                      <span class="h4 fw-800 text-primary mb-0">1 Office</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                      <i class="fa-solid fa-earth-asia fs-5"></i>
+                    </div>
+                    <div>
+                      <span class="fs-9 text-secondary uppercase-spacing d-block mb-1">Global Coverage</span>
+                      <span class="h4 fw-800 text-primary mb-0">3 Countries</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workspace Listing Card with Search/Filter panel -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="800">
+              
+              <!-- Search & Filter Area -->
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center filters-row mb-4">
+                <div class="d-flex flex-wrap gap-2 w-100 w-md-auto">
+                  <div class="search-input-group m-0" style="width: 280px;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="branchSearchBox" placeholder="Filter branches/managers..." onkeyup="filterBranchTable()">
+                  </div>
+                  
+                  <select class="form-control form-control-premium py-1" id="branchStatusFilter" style="width: 160px; height: 40px;" onchange="filterBranchTable()">
+                    <option value="all">All Statuses</option>
+                    <option value="active">Active</option>
+                    <option value="maintenance">Maintenance</option>
+                  </select>
+                </div>
+                <div class="text-secondary small">
+                  Showing <strong id="visibleBranchesCount">4</strong> branches of 4 total
+                </div>
+              </div>
+
+              <!-- Branches Table -->
+              <div class="table-premium-wrapper">
+                <table class="table-premium m-0" id="branchesTable">
+                  <thead>
+                    <tr>
+                      <th>Branch Name</th>
+                      <th>Location / City</th>
+                      <th>Manager / Director</th>
+                      <th class="text-center">Staff Capacity</th>
+                      <th>Phone Number</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="branchTableBody">
+                    <tr>
+                      <td><div class="fw-700 text-primary">San Francisco Headquarters</div></td>
+                      <td><i class="fa-solid fa-location-dot me-1 text-muted"></i> San Francisco, USA</td>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=64" alt="Mgr" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                          <span class="fw-600">Robert Vance</span>
+                        </div>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">28 Employees</span></td>
+                      <td>+1 (415) 555-0192</td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editBranch('San Francisco Headquarters', 'San Francisco, USA', 'Robert Vance', '28', '+1 (415) 555-0192', 'active')" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteBranch(this, 'San Francisco Headquarters')" title="Decommission"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div class="fw-700 text-primary">London Tech Hub</div></td>
+                      <td><i class="fa-solid fa-location-dot me-1 text-muted"></i> London, UK</td>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=64" alt="Mgr" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                          <span class="fw-600">Fiona Gallagher</span>
+                        </div>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">12 Employees</span></td>
+                      <td>+44 20 7946 0958</td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editBranch('London Tech Hub', 'London, UK', 'Fiona Gallagher', '12', '+44 20 7946 0958', 'active')" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteBranch(this, 'London Tech Hub')" title="Decommission"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div class="fw-700 text-primary">Singapore Regional Office</div></td>
+                      <td><i class="fa-solid fa-location-dot me-1 text-muted"></i> Singapore Central, SG</td>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=64" alt="Mgr" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                          <span class="fw-600">Chen Wei</span>
+                        </div>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">6 Employees</span></td>
+                      <td>+65 6789 0123</td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editBranch('Singapore Regional Office', 'Singapore Central, SG', 'Chen Wei', '6', '+65 6789 0123', 'active')" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteBranch(this, 'Singapore Regional Office')" title="Decommission"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div class="fw-700 text-primary">Munich Support Lab</div></td>
+                      <td><i class="fa-solid fa-location-dot me-1 text-muted"></i> Munich, Germany</td>
+                      <td>
+                        <div class="d-flex align-items-center gap-2">
+                          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=64" alt="Mgr" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+                          <span class="fw-600">Greta Schultz</span>
+                        </div>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">2 Employees</span></td>
+                      <td>+49 89 201940</td>
+                      <td><span class="premium-badge premium-badge-warning"><i class="fa-solid fa-triangle-exclamation"></i> Maintenance</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editBranch('Munich Support Lab', 'Munich, Germany', 'Greta Schultz', '2', '+49 89 201940', 'maintenance')" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteBranch(this, 'Munich Support Lab')" title="Decommission"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination Footer -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 gap-3">
+                <span class="small text-muted">Showing page <strong>1</strong> of 1 page</span>
+                <nav>
+                  <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" style="background: transparent; color: var(--text-muted); border-color: var(--card-border);">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#" style="background: var(--primary-accent); border-color: var(--primary-accent); color: white;">1</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#" style="background: transparent; color: var(--text-muted); border-color: var(--card-border);">Next</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </main>
+
+        <!-- Establishment Modal (Add Branch) -->
+        <div class="modal fade" id="addBranchModal" tabindex="-1" aria-labelledby="addBranchModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card p-0" style="border: 1px solid var(--card-border-focus); overflow: hidden; background: var(--bg-primary);">
+              <div class="modal-header border-bottom py-3 px-4" style="border-color: var(--card-border) !important;">
+                <h5 class="modal-title fw-800 text-primary" id="addBranchModalLabel"><i class="fa-solid fa-code-branch me-2 text-primary"></i>Establish Branch Office</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--theme-close-btn);"></button>
+              </div>
+              <form id="newBranchForm" class="needs-validation" onsubmit="handleNewBranchSubmit(event)" novalidate>
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="new_branch_name" class="form-label-premium">Branch Location Name</label>
+                      <input type="text" class="form-control form-control-premium w-100" id="new_branch_name" placeholder="e.g. Tokyo Innovation lab" required>
+                      <div class="invalid-feedback">Name is required.</div>
+                    </div>
+                    <div class="col-12">
+                      <label for="new_branch_location" class="form-label-premium">Address / City & Country</label>
+                      <input type="text" class="form-control form-control-premium w-100" id="new_branch_location" placeholder="e.g. Minato-ku, Tokyo, JP" required>
+                      <div class="invalid-feedback">Physical address is required.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="new_branch_manager" class="form-label-premium">Director Name</label>
+                      <input type="text" class="form-control form-control-premium w-100" id="new_branch_manager" placeholder="e.g. Kenji Tanaka" required>
+                      <div class="invalid-feedback">Mgr name is required.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="new_branch_staff" class="form-label-premium">Initial Staff Count</label>
+                      <input type="number" class="form-control form-control-premium w-100" id="new_branch_staff" value="1" min="0" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="new_branch_phone" class="form-label-premium">Office Hotline</label>
+                      <input type="tel" class="form-control form-control-premium w-100" id="new_branch_phone" placeholder="e.g. +81 3 1234 5678" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="new_branch_status" class="form-label-premium">Operational Status</label>
+                      <select class="form-control form-control-premium w-100" id="new_branch_status">
+                        <option value="active" selected>Active / Open</option>
+                        <option value="maintenance">Maintenance</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer border-top p-3 px-4 d-flex justify-content-end gap-2" style="border-color: var(--card-border) !important;">
+                  <button type="button" class="outline-btn py-2" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn py-2">Confirm Establishment</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="branchToast" class="toast align-items-center text-white border-0 bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Branch action executed.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      let branchesCount = 4;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ once: true });
+      });
+
+      // Filter branches in table in real-time
+      function filterBranchTable() {
+        const query = document.getElementById('branchSearchBox').value.toLowerCase().trim();
+        const statusFilter = document.getElementById('branchStatusFilter').value.toLowerCase();
+        const rows = document.querySelectorAll('#branchTableBody tr');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          const statusBadge = row.querySelector('.premium-badge').innerText.toLowerCase();
+          
+          const matchesSearch = text.includes(query);
+          const matchesStatus = (statusFilter === 'all') || 
+                                (statusFilter === 'active' && statusBadge.includes('active')) ||
+                                (statusFilter === 'maintenance' && statusBadge.includes('maintenance'));
+
+          if (matchesSearch && matchesStatus) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        document.getElementById('visibleBranchesCount').textContent = visibleCount;
+      }
+
+      function handleGlobalSearch(val) {
+        document.getElementById('branchSearchBox').value = val;
+        filterBranchTable();
+      }
+
+      function handleNewBranchSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          form.classList.add('was-validated');
+          showToast('Form invalid! Please provide all mandatory parameters for the new office.', 'danger');
+          return;
+        }
+
+        form.classList.remove('was-validated');
+
+        const bName = document.getElementById('new_branch_name').value;
+        const bLoc = document.getElementById('new_branch_location').value;
+        const bMgr = document.getElementById('new_branch_manager').value;
+        const bStaff = document.getElementById('new_branch_staff').value;
+        const bPhone = document.getElementById('new_branch_phone').value;
+        const bStatus = document.getElementById('new_branch_status').value;
+
+        // Add newly configured branch row dynamically to table
+        const tbody = document.getElementById('branchTableBody');
+        const tr = document.createElement('tr');
+        
+        const badgeHTML = bStatus === 'active' 
+          ? '<span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span>'
+          : '<span class="premium-badge premium-badge-warning"><i class="fa-solid fa-triangle-exclamation"></i> Maintenance</span>';
+
+        tr.innerHTML = `
+          <td><div class="fw-700 text-primary">${bName}</div></td>
+          <td><i class="fa-solid fa-location-dot me-1 text-muted"></i> ${bLoc}</td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
+              <span class="fw-600">${bMgr}</span>
+            </div>
+          </td>
+          <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">${bStaff} Employees</span></td>
+          <td>${bPhone}</td>
+          <td>${badgeHTML}</td>
+          <td class="text-end">
+            <div class="d-flex justify-content-end gap-1">
+              <button class="table-action-trigger" onclick="editBranch('${bName.replace(/'/g, "\\'")}', '${bLoc.replace(/'/g, "\\'")}', '${bMgr.replace(/'/g, "\\'")}', '${bStaff}', '${bPhone}', '${bStatus}')" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="table-action-trigger text-danger" onclick="deleteBranch(this, '${bName.replace(/'/g, "\\'")}')" title="Decommission"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+        branchesCount++;
+
+        // Update indicators
+        document.getElementById('totalBranchesCount').textContent = `${branchesCount} Locations`;
+        document.getElementById('visibleBranchesCount').textContent = branchesCount;
+
+        // Hide Modal and show Toast
+        const modalEl = document.getElementById('addBranchModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+        modalInstance.hide();
+        form.reset();
+
+        showToast(`Branch office '${bName}' established and dispatched successfully!`, 'success');
+        filterBranchTable();
+      }
+
+      function deleteBranch(buttonElement, branchName) {
+        if (confirm(`Are you sure you want to decommission and delete the '${branchName}' branch from the organization mapping?`)) {
+          const row = buttonElement.closest('tr');
+          row.style.opacity = '0';
+          setTimeout(() => {
+            row.remove();
+            branchesCount--;
+            document.getElementById('totalBranchesCount').textContent = `${branchesCount} Locations`;
+            filterBranchTable();
+            showToast(`Decommissioned and deleted branch '${branchName}' successfully.`, 'success');
+          }, 350);
+        }
+      }
+
+      function editBranch(name, loc, mgr, staff, phone, status) {
+        // Mock edit action - populates establishment modal with values to allow updating
+        document.getElementById('new_branch_name').value = name;
+        document.getElementById('new_branch_location').value = loc;
+        document.getElementById('new_branch_manager').value = mgr;
+        document.getElementById('new_branch_staff').value = staff;
+        document.getElementById('new_branch_phone').value = phone;
+        document.getElementById('new_branch_status').value = status;
+        
+        document.getElementById('addBranchModalLabel').innerHTML = `<i class="fa-solid fa-file-pen me-2 text-primary"></i>Modify Branch Configuration`;
+        
+        const modalEl = document.getElementById('addBranchModal');
+        const modalInstance = new bootstrap.Modal(modalEl);
+        modalInstance.show();
+      }
+
+      // Restore establishment modal label on close
+      document.getElementById('addBranchModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('addBranchModalLabel').innerHTML = `<i class="fa-solid fa-code-branch me-2 text-primary"></i>Establish Branch Office`;
+        document.getElementById('newBranchForm').reset();
+      });
+
+      function showToast(message, type) {
+        const toastEl = document.getElementById('branchToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        
+        toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+        
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

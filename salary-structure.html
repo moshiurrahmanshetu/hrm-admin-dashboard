@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Salary Structures</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-right-from-bracket me-2"></i> Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Workspace Body -->
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Salary Structures</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="payroll.html" class="text-decoration-none text-muted">Payroll</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Salary Structures</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Sub-Navigation Tabs -->
+            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2" data-aos="fade-right" data-aos-duration="600">
+              <a href="payroll.html" class="outline-btn py-2 px-3 fs-xs rounded-pill text-decoration-none text-secondary">
+                <i class="fa-solid fa-calculator me-1"></i> Current Payroll
+              </a>
+              <a href="salary-structure.html" class="gradient-btn py-2 px-3 fs-xs rounded-pill text-decoration-none">
+                <i class="fa-solid fa-sitemap me-1"></i> Salary Structure
+              </a>
+              <a href="payroll-history.html" class="outline-btn py-2 px-3 fs-xs rounded-pill text-decoration-none text-secondary">
+                <i class="fa-solid fa-clock-rotate-left me-1"></i> Payroll History
+              </a>
+            </div>
+
+            <!-- Table & Card Layout -->
+            <div class="glass-card mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="p-3 border-bottom d-flex flex-column flex-sm-row gap-3 justify-content-between align-items-sm-center">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <div class="search-input-group style-premium" style="max-width: 250px;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input text-secondary" id="searchStructure" placeholder="Search employee...">
+                  </div>
+                  <button class="outline-btn py-1 px-3 fs-xs rounded-pill text-secondary" id="btnResetFilters">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                  </button>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 text-secondary" style="min-width: 1100px;">
+                  <thead class="bg-light text-primary fw-700 fs-xs">
+                    <tr>
+                      <th class="ps-4 py-3">Employee</th>
+                      <th class="py-3">Basic Salary</th>
+                      <th class="py-3">House Allow.</th>
+                      <th class="py-3">Medical Allow.</th>
+                      <th class="py-3">Transport Allow.</th>
+                      <th class="py-3">Other Allow.</th>
+                      <th class="py-3">Tax</th>
+                      <th class="py-3">PF</th>
+                      <th class="py-3">Other Ded.</th>
+                      <th class="py-3">Gross Salary</th>
+                      <th class="py-3">Net Salary</th>
+                      <th class="pe-4 py-3 text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="structureTableBody">
+                    <!-- Dynamic Structure Rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination footer -->
+              <div class="p-3 border-top d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+                <div class="fs-xxs text-secondary" id="paginationText">Showing 1 to 5 of 10 entries</div>
+                <nav aria-label="Table navigation">
+                  <ul class="pagination pagination-sm mb-0 gap-1" id="paginationButtons">
+                    <!-- Dynamic buttons -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Edit Salary Structure Modal -->
+    <div class="modal fade" id="editStructureModal" tabindex="-1" aria-labelledby="editStructureModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow-lg" style="background: var(--card-bg-solid); border: 1px solid var(--card-border) !important;">
+          <div class="modal-header border-bottom p-4">
+            <h5 class="modal-title fw-800 text-primary" id="editStructureModalLabel">Edit Salary Structure</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="d-flex align-items-center gap-3 mb-4 p-3 rounded-3" style="background: rgba(var(--primary-accent-rgb), 0.03);">
+              <img src="" id="modalEmpAvatar" class="sidebar-user-avatar" style="width: 48px; height: 48px;">
+              <div>
+                <h6 class="fw-800 text-primary mb-0" id="modalEmpName">Employee Name</h6>
+                <p class="text-muted fs-xxs mb-0" id="modalEmpMeta">EMP-001 | Engineering</p>
+              </div>
+            </div>
+
+            <form id="editStructureForm" class="row g-3">
+              <input type="hidden" id="editEmpId">
+
+              <!-- Earnings Header -->
+              <div class="col-12 mt-2">
+                <div class="fs-xxs fw-700 text-uppercase text-primary tracking-wider border-bottom pb-1"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Earnings & Allowances</div>
+              </div>
+
+              <!-- Basic Salary -->
+              <div class="col-12 col-md-6">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Basic Salary ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editBasic" required min="0">
+              </div>
+
+              <!-- House Allowance -->
+              <div class="col-12 col-md-6">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">House Allowance ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editHouse" required min="0">
+              </div>
+
+              <!-- Medical Allowance -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Medical Allowance ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editMedical" required min="0">
+              </div>
+
+              <!-- Transport Allowance -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Transport Allowance ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editTransport" required min="0">
+              </div>
+
+              <!-- Other Allowance -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Other Allowances ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editOther" required min="0">
+              </div>
+
+              <!-- Deductions Header -->
+              <div class="col-12 mt-4">
+                <div class="fs-xxs fw-700 text-uppercase text-danger tracking-wider border-bottom pb-1"><i class="fa-solid fa-arrow-down-left-and-arrow-up-right-to-center me-1"></i> Deductions</div>
+              </div>
+
+              <!-- Tax -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Tax Deductions ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editTax" required min="0">
+              </div>
+
+              <!-- PF -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Provident Fund (PF) ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editPF" required min="0">
+              </div>
+
+              <!-- Other Deductions -->
+              <div class="col-12 col-md-4">
+                <label class="form-label fs-xxs fw-700 text-secondary text-uppercase mb-1">Other Deductions ($)</label>
+                <input type="number" class="form-control text-secondary py-2 rounded-3" id="editOtherDed" required min="0">
+              </div>
+
+              <!-- Summary Indicators -->
+              <div class="col-12 mt-4 p-3 rounded-3" style="background: rgba(var(--primary-accent-rgb), 0.02); border: 1px dashed var(--card-border);">
+                <div class="row text-center">
+                  <div class="col-4">
+                    <div class="text-muted fs-xxs fw-600 text-uppercase">Gross Earnings</div>
+                    <div class="fs-sm fw-700 text-success mt-1" id="liveGross">$0</div>
+                  </div>
+                  <div class="col-4">
+                    <div class="text-muted fs-xxs fw-600 text-uppercase">Total Deductions</div>
+                    <div class="fs-sm fw-700 text-danger mt-1" id="liveDeductions">$0</div>
+                  </div>
+                  <div class="col-4">
+                    <div class="text-muted fs-xxs fw-600 text-uppercase">Projected Net Pay</div>
+                    <div class="fs-sm fw-800 text-primary mt-1" id="liveNet">$0</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Form Buttons -->
+              <div class="col-12 mt-4 d-flex justify-content-end gap-2">
+                <button type="button" class="outline-btn py-2 px-4 rounded-pill text-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="gradient-btn py-2 px-4 rounded-pill border-0 text-white">Save Changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        // UI references
+        const tableBody = document.getElementById("structureTableBody");
+        const searchInput = document.getElementById("searchStructure");
+        const resetFiltersBtn = document.getElementById("btnResetFilters");
+        
+        const paginationText = document.getElementById("paginationText");
+        const paginationButtons = document.getElementById("paginationButtons");
+
+        // Modal elements
+        const editForm = document.getElementById("editStructureForm");
+        const modalEmpAvatar = document.getElementById("modalEmpAvatar");
+        const modalEmpName = document.getElementById("modalEmpName");
+        const modalEmpMeta = document.getElementById("modalEmpMeta");
+
+        const editEmpId = document.getElementById("editEmpId");
+        const editBasic = document.getElementById("editBasic");
+        const editHouse = document.getElementById("editHouse");
+        const editMedical = document.getElementById("editMedical");
+        const editTransport = document.getElementById("editTransport");
+        const editOther = document.getElementById("editOther");
+        const editTax = document.getElementById("editTax");
+        const editPF = document.getElementById("editPF");
+        const editOtherDed = document.getElementById("editOtherDed");
+
+        const liveGross = document.getElementById("liveGross");
+        const liveDeductions = document.getElementById("liveDeductions");
+        const liveNet = document.getElementById("liveNet");
+
+        const bootstrapModal = new bootstrap.Modal(document.getElementById("editStructureModal"));
+
+        function init() {
+          renderTable();
+
+          searchInput.addEventListener("input", () => {
+            currentPage = 1;
+            renderTable();
+          });
+
+          resetFiltersBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            currentPage = 1;
+            renderTable();
+            showToast("Filters reset successfully.", "info");
+          });
+
+          // Live calculations in modal inputs
+          const inputs = [editBasic, editHouse, editMedical, editTransport, editOther, editTax, editPF, editOtherDed];
+          inputs.forEach(input => {
+            input.addEventListener("input", updateLiveModalStats);
+          });
+
+          editForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const empId = editEmpId.value;
+            const updated = {
+              basic: parseFloat(editBasic.value) || 0,
+              houseAllowance: parseFloat(editHouse.value) || 0,
+              medicalAllowance: parseFloat(editMedical.value) || 0,
+              transportAllowance: parseFloat(editTransport.value) || 0,
+              otherAllowance: parseFloat(editOther.value) || 0,
+              tax: parseFloat(editTax.value) || 0,
+              pf: parseFloat(editPF.value) || 0,
+              otherDeduction: parseFloat(editOtherDed.value) || 0
+            };
+
+            window.AuraDB.updateSalaryStructure(empId, updated);
+            showToast("Salary structure updated successfully!", "success");
+            bootstrapModal.hide();
+            renderTable();
+          });
+        }
+
+        function updateLiveModalStats() {
+          const basic = parseFloat(editBasic.value) || 0;
+          const house = parseFloat(editHouse.value) || 0;
+          const medical = parseFloat(editMedical.value) || 0;
+          const transport = parseFloat(editTransport.value) || 0;
+          const other = parseFloat(editOther.value) || 0;
+
+          const tax = parseFloat(editTax.value) || 0;
+          const pf = parseFloat(editPF.value) || 0;
+          const otherDed = parseFloat(editOtherDed.value) || 0;
+
+          const gross = basic + house + medical + transport + other;
+          const deductions = tax + pf + otherDed;
+          const net = gross - deductions;
+
+          liveGross.textContent = "$" + gross.toLocaleString();
+          liveDeductions.textContent = "$" + deductions.toLocaleString();
+          liveNet.textContent = "$" + net.toLocaleString();
+        }
+
+        function renderTable() {
+          const employees = window.AuraDB.getEmployees();
+          const structures = window.AuraDB.getSalaryStructures();
+
+          const dataList = employees.map(emp => {
+            const struct = structures.find(s => s.employeeId === emp.id) || {
+              basic: 4000, houseAllowance: 800, medicalAllowance: 200, transportAllowance: 150, otherAllowance: 100, tax: 400, pf: 200, otherDeduction: 50
+            };
+            const gross = struct.basic + struct.houseAllowance + struct.medicalAllowance + struct.transportAllowance + struct.otherAllowance;
+            const deductions = struct.tax + struct.pf + struct.otherDeduction;
+            const net = gross - deductions;
+
+            return {
+              employee: emp,
+              struct: struct,
+              gross: gross,
+              deductions: deductions,
+              net: net
+            };
+          });
+
+          // Search filtering
+          const query = searchInput.value.trim().toLowerCase();
+          const filtered = dataList.filter(item => {
+            return item.employee.name.toLowerCase().includes(query) || item.employee.id.toLowerCase().includes(query);
+          });
+
+          // Pagination
+          const totalItems = filtered.length;
+          const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+          if (currentPage > totalPages) currentPage = totalPages;
+
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+          const paginated = filtered.slice(startIndex, endIndex);
+
+          if (totalItems === 0) {
+            paginationText.textContent = "Showing 0 to 0 of 0 entries";
+          } else {
+            paginationText.textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalItems} entries`;
+          }
+
+          tableBody.innerHTML = "";
+          if (paginated.length === 0) {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="12" class="text-center py-5 text-muted">
+                  <i class="fa-solid fa-folder-open fs-2 mb-3 text-muted opacity-50"></i>
+                  <div>No salary structure records found.</div>
+                </td>
+              </tr>
+            `;
+            paginationButtons.innerHTML = "";
+            return;
+          }
+
+          paginated.forEach(item => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="ps-4">
+                <div class="d-flex align-items-center gap-2">
+                  <img src="${item.employee.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128'}" alt="${item.employee.name}" class="sidebar-user-avatar" style="width: 32px; height: 32px;">
+                  <div>
+                    <div class="fw-700 text-primary fs-xs">${item.employee.name}</div>
+                    <div class="fs-xxs text-muted">${item.employee.id} | ${item.employee.department}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="fs-xs fw-600 text-secondary">$${item.struct.basic.toLocaleString()}</td>
+              <td class="fs-xs text-secondary">$${item.struct.houseAllowance.toLocaleString()}</td>
+              <td class="fs-xs text-secondary">$${item.struct.medicalAllowance.toLocaleString()}</td>
+              <td class="fs-xs text-secondary">$${item.struct.transportAllowance.toLocaleString()}</td>
+              <td class="fs-xs text-secondary">$${item.struct.otherAllowance.toLocaleString()}</td>
+              <td class="fs-xs text-danger fw-600">$${item.struct.tax.toLocaleString()}</td>
+              <td class="fs-xs text-danger">$${item.struct.pf.toLocaleString()}</td>
+              <td class="fs-xs text-danger">$${item.struct.otherDeduction.toLocaleString()}</td>
+              <td class="fs-xs text-success fw-600">$${item.gross.toLocaleString()}</td>
+              <td class="fs-xs fw-700 text-primary">$${item.net.toLocaleString()}</td>
+              <td class="pe-4 text-end">
+                <button class="outline-btn py-1 px-2.5 fs-xxs rounded-pill btn-edit-struct text-secondary" data-id="${item.employee.id}">
+                  <i class="fa-solid fa-edit me-1"></i> Edit
+                </button>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+
+          // Bind Edit button click
+          document.querySelectorAll(".btn-edit-struct").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const empId = this.getAttribute("data-id");
+              const target = dataList.find(d => d.employee.id === empId);
+              if (!target) return;
+
+              // Populate modal
+              modalEmpAvatar.src = target.employee.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128';
+              modalEmpName.textContent = target.employee.name;
+              modalEmpMeta.textContent = `${target.employee.id} | ${target.employee.department} | ${target.employee.designation}`;
+
+              editEmpId.value = target.employee.id;
+              editBasic.value = target.struct.basic;
+              editHouse.value = target.struct.houseAllowance;
+              editMedical.value = target.struct.medicalAllowance;
+              editTransport.value = target.struct.transportAllowance;
+              editOther.value = target.struct.otherAllowance;
+              editTax.value = target.struct.tax;
+              editPF.value = target.struct.pf;
+              editOtherDed.value = target.struct.otherDeduction;
+
+              updateLiveModalStats();
+              bootstrapModal.show();
+            });
+          });
+
+          renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+          paginationButtons.innerHTML = "";
+
+          // Previous Button
+          const prevLi = document.createElement("li");
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `
+            <a class="page-link" href="#" aria-label="Previous">
+              <i class="fa-solid fa-chevron-left fs-xxs"></i>
+            </a>
+          `;
+          if (currentPage > 1) {
+            prevLi.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage--;
+              renderTable();
+            });
+          }
+          paginationButtons.appendChild(prevLi);
+
+          // Numbers
+          for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement("li");
+            li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            li.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage = i;
+              renderTable();
+            });
+            paginationButtons.appendChild(li);
+          }
+
+          // Next Button
+          const nextLi = document.createElement("li");
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `
+            <a class="page-link" href="#" aria-label="Next">
+              <i class="fa-solid fa-chevron-right fs-xxs"></i>
+            </a>
+          `;
+          if (currentPage < totalPages) {
+            nextLi.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage++;
+              renderTable();
+            });
+          }
+          paginationButtons.appendChild(nextLi);
+        }
+
+        function showToast(message, type = "success") {
+          let container = document.getElementById("toastContainer");
+          if (!container) {
+            container = document.createElement("div");
+            container.id = "toastContainer";
+            container.style.position = "fixed";
+            container.style.bottom = "2rem";
+            container.style.right = "2rem";
+            container.style.zIndex = "9999";
+            container.style.display = "flex";
+            container.style.flexDirection = "column";
+            container.style.gap = "0.5rem";
+            document.body.appendChild(container);
+          }
+          
+          const toast = document.createElement("div");
+          toast.className = "glass-card p-3 d-flex align-items-center gap-3";
+          toast.style.width = "320px";
+          toast.style.background = "var(--card-bg-solid)";
+          toast.style.border = "1px solid var(--card-border)";
+          
+          let colorHex = "#10b881";
+          let icon = "fa-circle-check";
+          if (type === "danger") { colorHex = "#ef4444"; icon = "fa-circle-xmark"; }
+          else if (type === "warning") { colorHex = "#f59e0b"; icon = "fa-triangle-exclamation"; }
+          else if (type === "info") { colorHex = "#06b6d4"; icon = "fa-circle-info"; }
+
+          toast.style.borderLeft = `4px solid ${colorHex}`;
+          toast.style.boxShadow = "var(--shadow-soft-lg)";
+          toast.style.borderRadius = "var(--radius-md)";
+          toast.style.transition = "all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)";
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(20px)";
+
+          toast.innerHTML = `
+            <div class="brand-icon-wrapper" style="width: 28px; height: 28px; background: rgba(79, 70, 229, 0.05); color: ${colorHex}; box-shadow: none; flex-shrink: 0; border-radius: var(--radius-sm);">
+              <i class="fa-solid ${icon} fs-xs"></i>
+            </div>
+            <div class="flex-grow-1">
+              <div class="fw-700 fs-xs text-primary" style="text-transform: uppercase; letter-spacing: 0.5px;">${type === "danger" ? "error" : type}</div>
+              <div class="text-secondary fs-xxs" style="line-height: 1.3;">${message}</div>
+            </div>
+            <button class="border-0 bg-transparent text-muted fs-xs p-1" style="cursor: pointer;" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+          `;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.style.opacity = "1";
+            toast.style.transform = "translateY(0)";
+          }, 10);
+          
+          setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(10px)";
+            setTimeout(() => toast.remove(), 350);
+          }, 4000);
+        }
+
+        init();
+      });
+    </script>
+  </body>
+</html>

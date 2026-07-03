@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Page Not Found (404)</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 50% 50%, rgba(var(--primary-accent-rgb), 0.08) 0%, transparent 80%),
+                    var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+      }
+      .error-container {
+        width: 100%;
+        max-width: 520px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+      .error-card {
+        border-radius: var(--radius-xl);
+        background: var(--card-bg-solid);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-xl);
+        padding: 3.5rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .error-card::after {
+        content: '';
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: radial-gradient(circle, rgba(var(--primary-accent-rgb), 0.05) 0%, transparent 75%);
+        top: -10%;
+        right: -10%;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .error-badge-glow {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(var(--primary-accent-rgb), 0.08);
+        color: var(--primary-accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 40px rgba(var(--primary-accent-rgb), 0.15);
+        animation: pulse-glow 2.5s infinite ease-in-out;
+      }
+      @keyframes pulse-glow {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 40px rgba(var(--primary-accent-rgb), 0.15);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 60px rgba(var(--primary-accent-rgb), 0.25);
+        }
+      }
+      .floating-theme-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Theme Switcher -->
+    <div class="floating-theme-toggle">
+      <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+
+    <div class="error-container" data-aos="zoom-in" data-aos-duration="800">
+      <div class="error-card">
+        <div class="error-badge-glow">
+          <i class="fa-solid fa-route-interrupted fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h1 class="display-3 fw-800 text-primary mb-2" style="letter-spacing: -2px;">404</h1>
+        <h2 class="h5 fw-700 text-primary mb-3">Workspace Route Lost</h2>
+        <p class="text-secondary small mb-4" style="line-height: 1.6;">
+          The page or asset route you are attempting to query either doesn't exist, has been archived, or you lack the appropriate administrative scope clearance.
+        </p>
+
+        <!-- Back to Home -->
+        <a href="index.html" class="gradient-btn justify-content-center py-2.5 w-100" style="display: inline-flex;">
+          <i class="fa-solid fa-arrow-left me-2"></i>
+          <span>Return to Dashboard</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init();
+        }
+      });
+    </script>
+  </body>
+</html>

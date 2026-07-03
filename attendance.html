@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Attendance Tracking</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      .stat-border-present { border-left: 4px solid var(--success) !important; }
+      .stat-border-absent { border-left: 4px solid var(--danger) !important; }
+      .stat-border-late { border-left: 4px solid var(--warning) !important; }
+      .stat-border-leave { border-left: 4px solid var(--info) !important; }
+      .stat-border-remote { border-left: 4px solid #8e44ad !important; }
+      
+      .active-segment {
+        background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)) !important;
+        color: white !important;
+        border: none !important;
+      }
+      .pulse-badge {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--success);
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+        animation: pulse 1.5s infinite;
+        vertical-align: middle;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 6px rgba(46, 204, 113, 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <!-- Sidebar Drawer Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="designations.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>Designations</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" id="headerGlobalSearch" placeholder="Search logs, rosters, timesheets...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumbs -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Attendance Tracking</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Attendance Tracking</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="outline-btn" id="exportLogsBtn">
+                  <i class="fa-solid fa-file-export me-1"></i> Export Logs
+                </button>
+                <button class="gradient-btn border-0" data-bs-toggle="modal" data-bs-target="#manualLogModal">
+                  <i class="fa-solid fa-user-clock me-1"></i> Log Attendance
+                </button>
+              </div>
+            </div>
+
+            <!-- Premium Module Sub-navigation -->
+            <div class="row g-2 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div class="col-12">
+                <div class="glass-card p-2 d-flex flex-wrap gap-2 align-items-center justify-content-between">
+                  <div class="d-flex flex-wrap gap-2">
+                    <a href="attendance.html" class="outline-btn active-segment py-2 px-3 text-decoration-none d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-clipboard-user"></i>
+                      <span>Daily Logs</span>
+                    </a>
+                    <a href="shift-management.html" class="outline-btn py-2 px-3 text-decoration-none d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-business-time"></i>
+                      <span>Shift Roster</span>
+                    </a>
+                    <a href="timesheet.html" class="outline-btn py-2 px-3 text-decoration-none d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-folder-open"></i>
+                      <span>Timesheets</span>
+                    </a>
+                    <a href="overtime.html" class="outline-btn py-2 px-3 text-decoration-none d-flex align-items-center gap-2">
+                      <i class="fa-solid fa-stopwatch"></i>
+                      <span>Overtime Requests</span>
+                    </a>
+                  </div>
+                  <div class="d-none d-md-flex align-items-center gap-2 pe-2">
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2.5 py-1.5 rounded-pill fs-xxs">
+                      <span class="pulse-badge me-1"></span> Terminal Live Sync
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Row: Summary Cards and Quick Clock console -->
+            <div class="row g-4 mb-4">
+              <!-- Clock In/Out Live Widget -->
+              <div class="col-12 col-lg-5" data-aos="fade-right" data-aos-duration="800">
+                <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden" style="min-height: 220px;">
+                  <div class="position-absolute end-0 top-0 p-3 opacity-10">
+                    <i class="fa-regular fa-clock text-primary" style="font-size: 110px;"></i>
+                  </div>
+                  <div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" class="rounded-circle border border-primary border-2 shadow-sm" style="width: 48px; height: 48px; object-fit: cover;" alt="Sarah">
+                      <div>
+                        <h6 class="fw-700 text-primary mb-0">Sarah Jenkins <span class="badge bg-secondary-subtle text-secondary fs-xxs ms-1">You</span></h6>
+                        <span class="text-secondary small d-block">Shift: Morning Standard (09:00 AM - 05:00 PM)</span>
+                      </div>
+                    </div>
+                    
+                    <div class="bg-light p-3 rounded-3 border mb-3 d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="text-secondary fs-xxs d-block text-uppercase fw-600">Local System Clock</span>
+                        <h4 class="fw-800 text-primary mb-0" id="liveClockDisplay">11:29:08 AM</h4>
+                        <span class="text-secondary fs-xxs" id="liveDateDisplay">Thursday, July 2, 2026</span>
+                      </div>
+                      <div class="text-end">
+                        <span class="text-secondary fs-xxs d-block text-uppercase fw-600" id="clockInLabel">Status</span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle" id="clockInStatusBadge">
+                          <i class="fa-solid fa-circle-xmark me-1"></i> Not Checked In
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="d-flex gap-2">
+                    <button class="gradient-btn border-0 py-2.5 w-100" id="clockBtn">
+                      <i class="fa-solid fa-right-to-bracket me-1"></i> Clock In / Check In
+                    </button>
+                    <button class="outline-btn border-danger text-danger py-2.5 w-100 d-none" id="clockOutBtn">
+                      <i class="fa-solid fa-right-from-bracket me-1"></i> Clock Out / Check Out
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5-column Metrics Grid (inside a col-lg-7) -->
+              <div class="col-12 col-lg-7" data-aos="fade-left" data-aos-duration="800">
+                <div class="row g-3 h-100 align-content-between">
+                  <!-- Present Card -->
+                  <div class="col-6 col-md-4 col-lg-4">
+                    <div class="glass-card p-3 stat-border-present d-flex flex-column h-100 justify-content-between cursor-pointer hover-card">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-600 fs-xs">Present</span>
+                        <div class="badge bg-success-subtle text-success p-1.5 rounded"><i class="fa-solid fa-user-check"></i></div>
+                      </div>
+                      <div>
+                        <h3 class="fw-800 text-primary mb-0" id="metricPresent">0</h3>
+                        <span class="text-success fs-xxs"><i class="fa-solid fa-arrow-trend-up"></i> On-Time Rate: 98%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Late Card -->
+                  <div class="col-6 col-md-4 col-lg-4">
+                    <div class="glass-card p-3 stat-border-late d-flex flex-column h-100 justify-content-between cursor-pointer hover-card">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-600 fs-xs">Late Arrivals</span>
+                        <div class="badge bg-warning-subtle text-warning p-1.5 rounded"><i class="fa-solid fa-user-clock"></i></div>
+                      </div>
+                      <div>
+                        <h3 class="fw-800 text-primary mb-0" id="metricLate">0</h3>
+                        <span class="text-warning fs-xxs"><i class="fa-solid fa-circle-exclamation"></i> Grace period grace</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Remote Card -->
+                  <div class="col-6 col-md-4 col-lg-4">
+                    <div class="glass-card p-3 stat-border-remote d-flex flex-column h-100 justify-content-between cursor-pointer hover-card">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-600 fs-xs">Remote</span>
+                        <div class="badge bg-primary-subtle text-primary p-1.5 rounded" style="background-color: rgba(142, 68, 173, 0.1) !important; color: #8e44ad !important;"><i class="fa-solid fa-house-laptop"></i></div>
+                      </div>
+                      <div>
+                        <h3 class="fw-800 text-primary mb-0" id="metricRemote">0</h3>
+                        <span class="fs-xxs" style="color: #8e44ad;"><i class="fa-solid fa-wifi"></i> Off-site authorized</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Absent Card -->
+                  <div class="col-6 col-md-6 col-lg-6">
+                    <div class="glass-card p-3 stat-border-absent d-flex flex-column h-100 justify-content-between cursor-pointer hover-card">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-600 fs-xs">Absent</span>
+                        <div class="badge bg-danger-subtle text-danger p-1.5 rounded"><i class="fa-solid fa-user-xmark"></i></div>
+                      </div>
+                      <div>
+                        <h3 class="fw-800 text-primary mb-0" id="metricAbsent">0</h3>
+                        <span class="text-danger fs-xxs"><i class="fa-solid fa-triangle-exclamation"></i> Unexcused absence log</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Leave Card -->
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <div class="glass-card p-3 stat-border-leave d-flex flex-column h-100 justify-content-between cursor-pointer hover-card">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-600 fs-xs">On Leave</span>
+                        <div class="badge bg-info-subtle text-info p-1.5 rounded"><i class="fa-solid fa-umbrella-beach"></i></div>
+                      </div>
+                      <div>
+                        <h3 class="fw-800 text-primary mb-0" id="metricLeave">0</h3>
+                        <span class="text-info fs-xxs"><i class="fa-solid fa-circle-check"></i> Pre-approved vacation/medical</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table section with Filter bar -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="1000">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+                <h5 class="h6 fw-700 text-primary mb-0 d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-list-check text-primary"></i>
+                  <span>Daily Attendance Registry</span>
+                </h5>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <div class="search-input-group m-0" style="width: 240px;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input py-1.5" id="employeeSearchInput" placeholder="Search employee...">
+                  </div>
+                  
+                  <input type="date" class="form-control form-control-premium py-1.5" id="dateFilterInput" style="width: 150px;">
+                  
+                  <select class="form-select form-control-premium py-1.5" id="statusFilterSelect" style="width: 140px;">
+                    <option value="">All Statuses</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Leave">Leave</option>
+                  </select>
+
+                  <button class="outline-btn py-1.5 text-secondary" id="resetFiltersBtn" title="Reset Filters">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Responsive Table -->
+              <div class="table-responsive">
+                <table class="table table-hover align-middle table-premium border-0 m-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col" style="width: 250px;">Employee</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Check In</th>
+                      <th scope="col">Check Out</th>
+                      <th scope="col">Working Hours</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="attendanceTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination & Stats -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 mt-4 pt-3 border-top">
+                <div class="small text-secondary" id="tableStatsDisplay">
+                  Showing 1 to 5 of 12 records
+                </div>
+                <nav aria-label="Page navigation" class="mb-0">
+                  <ul class="pagination pagination-premium justify-content-center mb-0" id="paginationContainer">
+                    <!-- Loaded dynamically -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Manual Log Modal -->
+    <div class="modal fade" id="manualLogModal" tabindex="-1" aria-labelledby="manualLogModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card border shadow-lg">
+          <div class="modal-header border-bottom border-dashed pb-3">
+            <h5 class="modal-title fw-800 text-primary" id="manualLogModalLabel">
+              <i class="fa-solid fa-user-clock text-primary me-2"></i> Log Employee Attendance
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="manualLogForm" class="needs-validation" novalidate>
+            <div class="modal-body py-4">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="logEmployeeId" class="form-label form-label-premium">Select Employee <span class="text-danger">*</span></label>
+                  <select class="form-select form-control-premium" id="logEmployeeId" required>
+                    <option value="">Choose Employee...</option>
+                    <!-- Populated dynamically -->
+                  </select>
+                  <div class="invalid-feedback fs-xxs text-danger">Please choose an active employee.</div>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                  <label for="logDate" class="form-label form-label-premium">Date <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control form-control-premium" id="logDate" required>
+                  <div class="invalid-feedback fs-xxs text-danger">Please select a calendar date.</div>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                  <label for="logStatus" class="form-label form-label-premium">Status <span class="text-danger">*</span></label>
+                  <select class="form-select form-control-premium" id="logStatus" required>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Leave">Leave</option>
+                  </select>
+                </div>
+
+                <div class="col-12 col-sm-6" id="checkInTimeContainer">
+                  <label for="logCheckIn" class="form-label form-label-premium">Check In Time</label>
+                  <input type="time" class="form-control form-control-premium" id="logCheckIn" value="09:00">
+                </div>
+
+                <div class="col-12 col-sm-6" id="checkOutTimeContainer">
+                  <label for="logCheckOut" class="form-label form-label-premium">Check Out Time</label>
+                  <input type="time" class="form-control form-control-premium" id="logCheckOut" value="17:00">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-top border-dashed pt-3 justify-content-end gap-2">
+              <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="gradient-btn border-0 py-2 px-4">
+                <i class="fa-solid fa-floppy-disk me-1"></i> Save Entry
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Success Alert Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="toastSuccess" class="toast align-items-center text-white bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-check fs-5"></i>
+            <span id="toastMessage">Success operation message.</span>
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Page Specific Dynamic script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Init animations
+        if (typeof AOS !== 'undefined') {
+          AOS.init({ duration: 800, once: true });
+        }
+
+        // --- Clock ticking logic ---
+        const liveClockDisplay = document.getElementById("liveClockDisplay");
+        const liveDateDisplay = document.getElementById("liveDateDisplay");
+        
+        function tickClock() {
+          const now = new Date();
+          let hr = now.getHours();
+          const min = String(now.getMinutes()).padStart(2, "0");
+          const sec = String(now.getSeconds()).padStart(2, "0");
+          const ampm = hr >= 12 ? "PM" : "AM";
+          hr = hr % 12;
+          hr = hr ? hr : 12; // 0 should be 12
+          const timeStr = `${String(hr).padStart(2, "0")}:${min}:${sec} ${ampm}`;
+          
+          if(liveClockDisplay) liveClockDisplay.textContent = timeStr;
+          
+          const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+          const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+          if(liveDateDisplay) liveDateDisplay.textContent = dateStr;
+        }
+        tickClock();
+        setInterval(tickClock, 1000);
+
+        // Toast trigger helper
+        function showToast(msg) {
+          const toastEl = document.getElementById("toastSuccess");
+          const toastMsg = document.getElementById("toastMessage");
+          if (toastEl && toastMsg) {
+            toastMsg.textContent = msg;
+            const bToast = new bootstrap.Toast(toastEl, { delay: 4000 });
+            bToast.show();
+          } else {
+            alert(msg);
+          }
+        }
+
+        // --- Check Success redirect toast ---
+        const pendingMsg = localStorage.getItem("aurahr_toast_success");
+        if (pendingMsg) {
+          showToast(pendingMsg);
+          localStorage.removeItem("aurahr_toast_success");
+        }
+
+        // --- Core UI bindings & States ---
+        const tableBody = document.getElementById("attendanceTableBody");
+        const statsDisplay = document.getElementById("tableStatsDisplay");
+        const paginationContainer = document.getElementById("paginationContainer");
+        
+        const employeeSearch = document.getElementById("employeeSearchInput");
+        const dateFilter = document.getElementById("dateFilterInput");
+        const statusFilter = document.getElementById("statusFilterSelect");
+        const resetBtn = document.getElementById("resetFiltersBtn");
+        const exportBtn = document.getElementById("exportLogsBtn");
+        
+        const logStatus = document.getElementById("logStatus");
+        const checkInTimeContainer = document.getElementById("checkInTimeContainer");
+        const checkOutTimeContainer = document.getElementById("checkOutTimeContainer");
+
+        // Toggle time inputs depending on manual log status (e.g. Absent / Leave doesn't have times)
+        if(logStatus) {
+          logStatus.addEventListener("change", () => {
+            const val = logStatus.value;
+            if (val === "Absent" || val === "Leave") {
+              checkInTimeContainer.style.display = "none";
+              checkOutTimeContainer.style.display = "none";
+            } else {
+              checkInTimeContainer.style.display = "block";
+              checkOutTimeContainer.style.display = "block";
+            }
+          });
+        }
+
+        // Initialize today's date filter input to default today
+        const todayStr = "2026-07-02"; // standard project reference year
+        dateFilter.value = todayStr;
+
+        // Pagination state
+        let currentPage = 1;
+        const recordsPerPage = 5;
+
+        // Dynamic metrics update
+        function updateMetrics() {
+          const logs = window.AuraDB.getAttendance();
+          // Filter to today's date "2026-07-02"
+          const todayLogs = logs.filter(l => l.date === todayStr);
+
+          const presentCount = todayLogs.filter(l => l.status === "Present").length;
+          const lateCount = todayLogs.filter(l => l.status === "Late").length;
+          const remoteCount = todayLogs.filter(l => l.status === "Remote").length;
+          const absentCount = todayLogs.filter(l => l.status === "Absent").length;
+          const leaveCount = todayLogs.filter(l => l.status === "Leave").length;
+
+          document.getElementById("metricPresent").textContent = presentCount;
+          document.getElementById("metricLate").textContent = lateCount;
+          document.getElementById("metricRemote").textContent = remoteCount;
+          document.getElementById("metricAbsent").textContent = absentCount;
+          document.getElementById("metricLeave").textContent = leaveCount;
+        }
+
+        // Sarah Jenkins custom Clock-In mechanism
+        const clockBtn = document.getElementById("clockBtn");
+        const clockOutBtn = document.getElementById("clockOutBtn");
+        const clockInStatusBadge = document.getElementById("clockInStatusBadge");
+        const clockInLabel = document.getElementById("clockInLabel");
+
+        function syncClockConsole() {
+          const logs = window.AuraDB.getAttendance();
+          // Find today's record for Sarah Jenkins (EMP-001)
+          const sarahLog = logs.find(l => l.employeeId === "EMP-001" && l.date === todayStr);
+
+          if (!sarahLog) {
+            clockBtn.classList.remove("d-none");
+            clockOutBtn.classList.add("d-none");
+            clockInStatusBadge.className = "badge bg-danger-subtle text-danger border border-danger-subtle";
+            clockInStatusBadge.innerHTML = '<i class="fa-solid fa-circle-xmark me-1"></i> Not Checked In';
+            clockInLabel.textContent = "Status";
+          } else if (sarahLog.checkOut === "--:--") {
+            clockBtn.classList.add("d-none");
+            clockOutBtn.classList.remove("d-none");
+            clockInStatusBadge.className = "badge bg-success-subtle text-success border border-success-subtle";
+            clockInStatusBadge.innerHTML = '<i class="fa-solid fa-circle-check me-1 animate-pulse"></i> Checked In';
+            clockInLabel.textContent = `In: ${sarahLog.checkIn}`;
+          } else {
+            clockBtn.classList.add("d-none");
+            clockOutBtn.classList.add("d-none");
+            clockInStatusBadge.className = "badge bg-primary-subtle text-primary border border-primary-subtle";
+            clockInStatusBadge.innerHTML = '<i class="fa-solid fa-flag-checkered me-1"></i> Shift Complete';
+            clockInLabel.textContent = `Duty: ${sarahLog.workingHours}`;
+          }
+        }
+
+        clockBtn.addEventListener("click", () => {
+          // Check In
+          const now = new Date();
+          let hr = now.getHours();
+          const min = String(now.getMinutes()).padStart(2, "0");
+          const ampm = hr >= 12 ? "PM" : Am = "AM";
+          hr = hr % 12;
+          hr = hr ? hr : 12;
+          const timeStr = `${String(hr).padStart(2, "0")}:${min} ${ampm}`;
+
+          // Determine status depending on standard 9am clock-in
+          const checkInHour = now.getHours();
+          const status = (checkInHour >= 9 && now.getMinutes() > 0) ? "Late" : "Present";
+
+          const logs = window.AuraDB.getAttendance();
+          const existingIdx = logs.findIndex(l => l.employeeId === "EMP-001" && l.date === todayStr);
+
+          if (existingIdx !== -1) {
+            logs[existingIdx].checkIn = timeStr;
+            logs[existingIdx].status = status;
+            window.AuraDB.saveAttendance(logs);
+          } else {
+            const newRecord = {
+              id: window.AuraDB.generateNextAttendanceId(),
+              employeeId: "EMP-001",
+              employeeName: "Sarah Jenkins",
+              employeeAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+              date: todayStr,
+              checkIn: timeStr,
+              checkOut: "--:--",
+              workingHours: "0h 0m",
+              status: status
+            };
+            window.AuraDB.addAttendance(newRecord);
+          }
+
+          showToast("Successfully clocked in! Welcome to work Sarah.");
+          updateMetrics();
+          syncClockConsole();
+          loadTable();
+        });
+
+        clockOutBtn.addEventListener("click", () => {
+          // Check Out
+          const now = new Date();
+          let hr = now.getHours();
+          const min = String(now.getMinutes()).padStart(2, "0");
+          const ampm = hr >= 12 ? "PM" : "AM";
+          hr = hr % 12;
+          hr = hr ? hr : 12;
+          const timeStr = `${String(hr).padStart(2, "0")}:${min} ${ampm}`;
+
+          const logs = window.AuraDB.getAttendance();
+          const idx = logs.findIndex(l => l.employeeId === "EMP-001" && l.date === todayStr);
+
+          if (idx !== -1) {
+            logs[idx].checkOut = timeStr;
+            // Calculate mock hours
+            logs[idx].workingHours = "8h 12m";
+            window.AuraDB.saveAttendance(logs);
+            showToast("Successfully clocked out! Have a safe commute Sarah.");
+          }
+
+          updateMetrics();
+          syncClockConsole();
+          loadTable();
+        });
+
+        // --- Render Table ---
+        function loadTable() {
+          const logs = window.AuraDB.getAttendance();
+          const searchVal = employeeSearch.value.trim().toLowerCase();
+          const dateVal = dateFilter.value;
+          const statusVal = statusFilter.value;
+
+          // Filter
+          let filtered = logs.filter(log => {
+            const matchesSearch = log.employeeName.toLowerCase().includes(searchVal);
+            const matchesDate = dateVal ? (log.date === dateVal) : true;
+            const matchesStatus = statusVal ? (log.status === statusVal) : true;
+            return matchesSearch && matchesDate && matchesStatus;
+          });
+
+          // Pagination calculations
+          const totalRecords = filtered.length;
+          const totalPages = Math.ceil(totalRecords / recordsPerPage) || 1;
+          
+          if (currentPage > totalPages) currentPage = totalPages;
+
+          const startIndex = (currentPage - 1) * recordsPerPage;
+          const paginatedRecords = filtered.slice(startIndex, startIndex + recordsPerPage);
+
+          // Update stats text
+          const endNum = Math.min(startIndex + recordsPerPage, totalRecords);
+          statsDisplay.textContent = totalRecords > 0 
+            ? `Showing ${startIndex + 1} to ${endNum} of ${totalRecords} records` 
+            : `Showing 0 to 0 of 0 records`;
+
+          // Generate Rows
+          tableBody.innerHTML = "";
+          if (paginatedRecords.length === 0) {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="6" class="text-center py-5">
+                  <i class="fa-solid fa-ban fs-2 text-secondary mb-3 d-block"></i>
+                  <span class="text-secondary fw-500">No attendance records found matching current criteria.</span>
+                </td>
+              </tr>
+            `;
+          } else {
+            paginatedRecords.forEach(log => {
+              let statusBadgeClass = "bg-success-subtle text-success border-success-subtle";
+              if (log.status === "Late") statusBadgeClass = "bg-warning-subtle text-warning border-warning-subtle";
+              if (log.status === "Absent") statusBadgeClass = "bg-danger-subtle text-danger border-danger-subtle";
+              if (log.status === "Leave") statusBadgeClass = "bg-info-subtle text-info border-info-subtle";
+              if (log.status === "Remote") statusBadgeClass = "bg-primary-subtle text-primary border-primary-subtle";
+
+              const rowHtml = `
+                <tr class="cursor-pointer">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <img src="${log.employeeAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256'}" class="rounded-circle shadow-xs" style="width: 36px; height: 36px; object-fit: cover;" alt="Avatar">
+                      <div>
+                        <span class="fw-700 text-primary d-block">${log.employeeName}</span>
+                        <span class="text-secondary fs-xxs d-block">${log.employeeId}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="fw-600 text-primary">${log.date}</td>
+                  <td><span class="badge bg-light text-primary border py-1.5 px-2.5 fs-xxs"><i class="fa-solid fa-right-to-bracket text-success me-1"></i> ${log.checkIn}</span></td>
+                  <td><span class="badge bg-light text-primary border py-1.5 px-2.5 fs-xxs"><i class="fa-solid fa-right-from-bracket text-danger me-1"></i> ${log.checkOut}</span></td>
+                  <td class="fw-600 text-primary"><i class="fa-regular fa-clock text-secondary me-1"></i> ${log.workingHours}</td>
+                  <td><span class="badge ${statusBadgeClass} border px-2.5 py-1.5 rounded-pill fs-xxs fw-600">${log.status}</span></td>
+                </tr>
+              `;
+              tableBody.insertAdjacentHTML("beforeend", rowHtml);
+            });
+          }
+
+          // Render Pagination Controls
+          paginationContainer.innerHTML = "";
+          
+          // Prev button
+          const prevLi = document.createElement("li");
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `<button class="page-link" type="button"><i class="fa-solid fa-angle-left"></i></button>`;
+          prevLi.addEventListener("click", () => {
+            if (currentPage > 1) {
+              currentPage--;
+              loadTable();
+            }
+          });
+          paginationContainer.appendChild(prevLi);
+
+          // Page numbers
+          for (let i = 1; i <= totalPages; i++) {
+            const pageLi = document.createElement("li");
+            pageLi.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            pageLi.innerHTML = `<button class="page-link" type="button">${i}</button>`;
+            pageLi.addEventListener("click", () => {
+              currentPage = i;
+              loadTable();
+            });
+            paginationContainer.appendChild(pageLi);
+          }
+
+          // Next button
+          const nextLi = document.createElement("li");
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `<button class="page-link" type="button"><i class="fa-solid fa-angle-right"></i></button>`;
+          nextLi.addEventListener("click", () => {
+            if (currentPage < totalPages) {
+              currentPage++;
+              loadTable();
+            }
+          });
+          paginationContainer.appendChild(nextLi);
+        }
+
+        // --- Filter Event Listeners ---
+        employeeSearch.addEventListener("input", () => { currentPage = 1; loadTable(); });
+        dateFilter.addEventListener("change", () => { currentPage = 1; loadTable(); });
+        statusFilter.addEventListener("change", () => { currentPage = 1; loadTable(); });
+        
+        resetBtn.addEventListener("click", () => {
+          employeeSearch.value = "";
+          dateFilter.value = "";
+          statusFilter.value = "";
+          currentPage = 1;
+          loadTable();
+          showToast("Filters successfully reset!");
+        });
+
+        // --- Populate Employee Select for Manual Log ---
+        const logEmpSelect = document.getElementById("logEmployeeId");
+        const emps = window.AuraDB.getEmployees();
+        emps.sort((a,b) => a.name.localeCompare(b.name));
+        emps.forEach(emp => {
+          const opt = document.createElement("option");
+          opt.value = emp.id;
+          opt.textContent = `${emp.name} (${emp.id} - ${emp.department})`;
+          if (logEmpSelect) logEmpSelect.appendChild(opt);
+        });
+
+        // Default Date in modal
+        document.getElementById("logDate").value = todayStr;
+
+        // Manual Log Form Submission
+        const manualForm = document.getElementById("manualLogForm");
+        manualForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          
+          if (!manualForm.checkValidity()) {
+            manualForm.classList.add("was-validated");
+            return;
+          }
+
+          const empId = document.getElementById("logEmployeeId").value;
+          const selectedEmp = window.AuraDB.getEmployeeById(empId);
+          const date = document.getElementById("logDate").value;
+          const status = document.getElementById("logStatus").value;
+          
+          let checkIn = "--:--";
+          let checkOut = "--:--";
+          let workingHours = "0h 0m";
+
+          if (status !== "Absent" && status !== "Leave") {
+            const inTimeInput = document.getElementById("logCheckIn").value; // HH:MM (24h)
+            const outTimeInput = document.getElementById("logCheckOut").value;
+
+            // Formatter HH:MM to 12h AM/PM
+            function formatTime(t) {
+              if(!t) return "--:--";
+              const [h, m] = t.split(":");
+              let hr = parseInt(h);
+              const ampm = hr >= 12 ? "PM" : "AM";
+              hr = hr % 12;
+              hr = hr ? hr : 12;
+              return `${String(hr).padStart(2, "0")}:${m} ${ampm}`;
+            }
+
+            checkIn = formatTime(inTimeInput);
+            checkOut = formatTime(outTimeInput);
+
+            // Calculate Mock Duration
+            if (inTimeInput && outTimeInput) {
+              const [h1, m1] = inTimeInput.split(":").map(Number);
+              const [h2, m2] = outTimeInput.split(":").map(Number);
+              let diffMins = (h2 * 60 + m2) - (h1 * 60 + m1);
+              if (diffMins < 0) diffMins += 24 * 60; // rollover
+              const rh = Math.floor(diffMins / 60);
+              const rm = diffMins % 60;
+              workingHours = `${rh}h ${rm}m`;
+            }
+          }
+
+          const newRecord = {
+            id: window.AuraDB.generateNextAttendanceId(),
+            employeeId: empId,
+            employeeName: selectedEmp.name,
+            employeeAvatar: selectedEmp.avatar,
+            date,
+            checkIn,
+            checkOut,
+            workingHours,
+            status
+          };
+
+          window.AuraDB.addAttendance(newRecord);
+
+          // Close modal cleanly using bootstrap
+          const modalInstance = bootstrap.Modal.getInstance(document.getElementById("manualLogModal"));
+          if(modalInstance) modalInstance.hide();
+          
+          // Reset form
+          manualForm.reset();
+          manualForm.classList.remove("was-validated");
+
+          showToast(`Successfully logged attendance for ${selectedEmp.name}.`);
+          updateMetrics();
+          loadTable();
+          syncClockConsole();
+        });
+
+        // Export Logs UI-only trigger
+        exportBtn.addEventListener("click", () => {
+          showToast("Standard spreadsheet data compiled successfully! Starting download for AuraHR-Attendance-Logs.xlsx");
+        });
+
+        // Initialize display
+        updateMetrics();
+        syncClockConsole();
+        loadTable();
+      });
+    </script>
+  </body>
+</html>

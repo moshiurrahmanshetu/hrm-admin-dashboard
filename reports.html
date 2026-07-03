@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Reports Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Sticky filter container */
+      .search-filter-row {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem;
+        backdrop-filter: blur(20px);
+      }
+
+      /* Report selection cards */
+      .report-tab-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--card-border);
+      }
+      .report-tab-btn {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-secondary);
+        padding: 0.65rem 1.25rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .report-tab-btn:hover {
+        background: var(--sidebar-item-hover);
+        color: var(--text-primary);
+        border-color: var(--card-border-focus);
+      }
+      .report-tab-btn.active {
+        background: var(--primary-accent);
+        color: #ffffff;
+        border-color: var(--primary-accent);
+        box-shadow: 0 4px 12px var(--shadow-accent-glow);
+      }
+
+      /* Premium statuses */
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.65rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .status-pill.success {
+        background: rgba(16, 185, 129, 0.08);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.15);
+      }
+      .status-pill.danger {
+        background: rgba(239, 68, 68, 0.08);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.15);
+      }
+      .status-pill.warning {
+        background: rgba(245, 158, 11, 0.08);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.15);
+      }
+      .status-pill.info {
+        background: rgba(6, 182, 212, 0.08);
+        color: #06b6d4;
+        border: 1px solid rgba(6, 182, 212, 0.15);
+      }
+
+      /* Highlight card hover transition */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" id="globalSearch" placeholder="Search reports, metrics, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Reports Dashboard</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Staff & Payroll Reports</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="d-flex gap-2 w-100 w-md-auto">
+                <button class="outline-btn flex-grow-1 flex-md-grow-0 justify-content-center" onclick="triggerSystemExport('Excel')">
+                  <i class="fa-solid fa-file-excel text-success"></i><span>Export Excel</span>
+                </button>
+                <button class="outline-btn flex-grow-1 flex-md-grow-0 justify-content-center" onclick="triggerSystemExport('PDF')">
+                  <i class="fa-solid fa-file-pdf text-danger"></i><span>Export PDF</span>
+                </button>
+                <button class="gradient-btn flex-grow-1 flex-md-grow-0 justify-content-center" onclick="triggerPrint()">
+                  <i class="fa-solid fa-print"></i><span>Print Report</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills">
+                <a href="reports.html" class="submodule-pill active">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports Module</span>
+                </a>
+                <a href="analytics.html" class="submodule-pill">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Executive Analytics</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Summary cards (Row 1) -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="col-sm-6 col-xl-3">
+                <div class="glass-card highlight-hover-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.1); color: var(--primary-accent);">
+                    <i class="fa-solid fa-database fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="fs-8 text-secondary uppercase-spacing mb-0">Synced Records</h3>
+                    <div class="h4 fw-800 text-primary mb-0" id="totalRecordsText">41 Data Points</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3">
+                <div class="glass-card highlight-hover-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                    <i class="fa-solid fa-circle-check fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="fs-8 text-secondary uppercase-spacing mb-0">Reports Run Today</h3>
+                    <div class="h4 fw-800 text-primary mb-0">12 Queries</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3">
+                <div class="glass-card highlight-hover-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                    <i class="fa-solid fa-star fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="fs-8 text-secondary uppercase-spacing mb-0">Most Searched</h3>
+                    <div class="h4 fw-800 text-primary mb-0">Payroll Report</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xl-3">
+                <div class="glass-card highlight-hover-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                    <i class="fa-solid fa-arrows-rotate fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="fs-8 text-secondary uppercase-spacing mb-0">Auto-Refresh</h3>
+                    <div class="h4 fw-800 text-primary mb-0">Real-Time</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Sticky Filters Row -->
+            <div class="search-filter-row mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="row g-3 align-items-end">
+                <div class="col-xl-3 col-lg-6">
+                  <label class="form-label-premium fs-8 mb-1">Search Keywords</label>
+                  <div class="search-input-group m-0" style="width: 100%;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input py-2" id="reportSearch" placeholder="Search names, departments, status...">
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-6 col-md-4">
+                  <label class="form-label-premium fs-8 mb-1">Filter Department</label>
+                  <select class="form-select form-control-premium py-2 w-100" id="filterDept">
+                    <option value="all">All Departments</option>
+                    <option value="HR">Human Resources</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Product">Product & Design</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Executive">Executive Board</option>
+                  </select>
+                </div>
+                <div class="col-xl-2 col-lg-6 col-md-4">
+                  <label class="form-label-premium fs-8 mb-1">Filter Employee</label>
+                  <select class="form-select form-control-premium py-2 w-100" id="filterEmployee">
+                    <option value="all">All Employees</option>
+                    <option value="SJ">Sarah Jenkins</option>
+                    <option value="JD">John Doe</option>
+                    <option value="JS">Jane Smith</option>
+                    <option value="MB">Michael Brown</option>
+                    <option value="ED">Emily Davis</option>
+                    <option value="DW">David Wallace</option>
+                    <option value="CO">Clara Oswald</option>
+                    <option value="RC">Robert Chen</option>
+                  </select>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-4">
+                  <label class="form-label-premium fs-8 mb-1">Date Boundary</label>
+                  <div class="d-flex gap-2">
+                    <input type="date" class="form-control form-control-premium py-2 w-100" id="filterStartDate" value="2026-06-01">
+                    <input type="date" class="form-control form-control-premium py-2 w-100" id="filterEndDate" value="2026-07-31">
+                  </div>
+                </div>
+                <div class="col-xl-2 col-lg-12 col-md-12">
+                  <button class="outline-btn w-100 justify-content-center py-2" id="clearFiltersBtn">
+                    <i class="fa-solid fa-rotate-left"></i><span>Reset Filters</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Report Tab Selector Navigation -->
+            <div class="mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="report-tab-pills">
+                <button class="report-tab-btn active" onclick="switchReportTab('attendance')">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance Report</span>
+                </button>
+                <button class="report-tab-btn" onclick="switchReportTab('leave')">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Report</span>
+                </button>
+                <button class="report-tab-btn" onclick="switchReportTab('payroll')">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll Report</span>
+                </button>
+                <button class="report-tab-btn" onclick="switchReportTab('recruitment')">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment Report</span>
+                </button>
+                <button class="report-tab-btn" onclick="switchReportTab('performance')">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance Report</span>
+                </button>
+                <button class="report-tab-btn" onclick="switchReportTab('department')">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Department Report</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Card Container -->
+            <div class="glass-card p-0 overflow-hidden mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light dark-bg-glass">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-file-lines text-primary"></i>
+                  <span class="fw-800 text-primary text-uppercase fs-8" id="activeReportTitle">Attendance Tracking Log</span>
+                </div>
+                <div class="small text-muted" id="filteredCountText">Showing 9 rows</div>
+              </div>
+              <div class="table-premium-wrapper">
+                <table class="table-premium">
+                  <thead id="reportTableHead">
+                    <!-- Dynamic Headers -->
+                  </thead>
+                  <tbody id="reportTableBody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Export Sync Progress Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-0 overflow-hidden" style="border: 1px solid var(--card-border-focus);">
+          <div class="modal-header border-bottom-0 p-4 pb-2">
+            <h5 class="modal-title fw-800 text-primary" id="exportModalLabel">
+              <i class="fa-solid fa-file-export me-2 text-primary"></i>System Export Sync
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeExportBtn" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4 pt-0">
+            <div class="text-center py-3">
+              <div class="spinner-border text-primary mb-3" role="status" id="exportSpinner" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="export-success-icon text-success d-none mb-3" id="exportSuccessIcon">
+                <i class="fa-solid fa-circle-check fs-1"></i>
+              </div>
+              <h6 class="fw-800 text-primary mb-2" id="exportProgressTitle">Compiling Data Structure...</h6>
+              <p class="text-secondary small mb-4" id="exportProgressDesc">Querying filtered database tables and styling schemas...</p>
+              
+              <div class="progress mb-3" style="height: 6px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="exportProgressBar" role="progressbar" style="width: 0%"></div>
+              </div>
+              
+              <div class="text-muted fs-8 fw-600" id="exportStepText">Initializing Export...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Float Notification Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="reportToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Action completed successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      // Initial Datasets
+      const employees = [
+        { id: 'SJ', name: 'Sarah Jenkins', dept: 'HR', role: 'HR Director' },
+        { id: 'JD', name: 'John Doe', dept: 'Engineering', role: 'Lead Developer' },
+        { id: 'JS', name: 'Jane Smith', dept: 'Product', role: 'Senior Designer' },
+        { id: 'MB', name: 'Michael Brown', dept: 'Engineering', role: 'QA Engineer' },
+        { id: 'ED', name: 'Emily Davis', dept: 'Marketing', role: 'Marketing Specialist' },
+        { id: 'DW', name: 'David Wallace', dept: 'Executive', role: 'Managing Partner' },
+        { id: 'CO', name: 'Clara Oswald', dept: 'HR', role: 'Recruiter' },
+        { id: 'RC', name: 'Robert Chen', dept: 'Engineering', role: 'QA Lead' }
+      ];
+
+      const datasets = {
+        attendance: [
+          { id: 1, empId: 'JD', name: 'John Doe', dept: 'Engineering', date: '2026-06-30', present: 21, late: 1, absent: 0, workHours: 168, rate: '95%' },
+          { id: 2, empId: 'JS', name: 'Jane Smith', dept: 'Product', date: '2026-06-30', present: 20, late: 2, absent: 0, workHours: 160, rate: '90%' },
+          { id: 3, empId: 'MB', name: 'Michael Brown', dept: 'Engineering', date: '2026-06-30', present: 18, late: 3, absent: 1, workHours: 144, rate: '81%' },
+          { id: 4, empId: 'ED', name: 'Emily Davis', dept: 'Marketing', date: '2026-06-30', present: 19, late: 0, absent: 2, workHours: 152, rate: '86%' },
+          { id: 5, empId: 'CO', name: 'Clara Oswald', dept: 'HR', date: '2026-06-30', present: 21, late: 1, absent: 0, workHours: 168, rate: '95%' },
+          { id: 6, empId: 'RC', name: 'Robert Chen', dept: 'Engineering', date: '2026-06-30', present: 22, late: 0, absent: 0, workHours: 176, rate: '100%' },
+          { id: 7, empId: 'JD', name: 'John Doe', dept: 'Engineering', date: '2026-07-02', present: 2, late: 0, absent: 0, workHours: 16, rate: '100%' },
+          { id: 8, empId: 'JS', name: 'Jane Smith', dept: 'Product', date: '2026-07-02', present: 2, late: 0, absent: 0, workHours: 16, rate: '100%' },
+          { id: 9, empId: 'SJ', name: 'Sarah Jenkins', dept: 'HR', date: '2026-06-30', present: 20, late: 1, absent: 1, workHours: 160, rate: '90%' }
+        ],
+        leave: [
+          { id: 1, empId: 'JS', name: 'Jane Smith', dept: 'Product', type: 'Annual Leave', start: '2026-06-10', end: '2026-06-14', days: 5, status: 'Approved', balance: 15 },
+          { id: 2, empId: 'JD', name: 'John Doe', dept: 'Engineering', type: 'Sick Leave', start: '2026-06-22', end: '2026-06-22', days: 1, status: 'Approved', balance: 9 },
+          { id: 3, empId: 'MB', name: 'Michael Brown', dept: 'Engineering', type: 'Casual Leave', start: '2026-06-05', end: '2026-06-07', days: 3, status: 'Rejected', balance: 12 },
+          { id: 4, empId: 'ED', name: 'Emily Davis', dept: 'Marketing', type: 'Maternity Leave', start: '2026-07-10', end: '2026-08-10', days: 31, status: 'Pending', balance: 30 },
+          { id: 5, empId: 'CO', name: 'Clara Oswald', dept: 'HR', type: 'Casual Leave', start: '2026-06-18', end: '2026-06-19', days: 2, status: 'Approved', balance: 10 },
+          { id: 6, empId: 'SJ', name: 'Sarah Jenkins', dept: 'HR', type: 'Annual Leave', start: '2026-07-01', end: '2026-07-05', days: 5, status: 'Approved', balance: 18 }
+        ],
+        payroll: [
+          { id: 1, empId: 'SJ', name: 'Sarah Jenkins', dept: 'HR', basic: 8500, allowance: 1200, deductions: 600, net: 9100, date: '2026-06-30', status: 'Paid' },
+          { id: 2, empId: 'JD', name: 'John Doe', dept: 'Engineering', basic: 7000, allowance: 800, deductions: 450, net: 7350, date: '2026-06-30', status: 'Paid' },
+          { id: 3, empId: 'JS', name: 'Jane Smith', dept: 'Product', basic: 6500, allowance: 700, deductions: 350, net: 6850, date: '2026-06-30', status: 'Paid' },
+          { id: 4, empId: 'MB', name: 'Michael Brown', dept: 'Engineering', basic: 4500, allowance: 400, deductions: 300, net: 4600, date: '2026-06-30', status: 'Paid' },
+          { id: 5, empId: 'ED', name: 'Emily Davis', dept: 'Marketing', basic: 4800, allowance: 500, deductions: 320, net: 4980, date: '2026-06-30', status: 'Paid' },
+          { id: 6, empId: 'DW', name: 'David Wallace', dept: 'Executive', basic: 15000, allowance: 2500, deductions: 1500, net: 16000, date: '2026-06-30', status: 'Paid' },
+          { id: 7, empId: 'CO', name: 'Clara Oswald', dept: 'HR', basic: 4200, allowance: 400, deductions: 250, net: 4350, date: '2026-06-30', status: 'Paid' },
+          { id: 8, empId: 'RC', name: 'Robert Chen', dept: 'Engineering', basic: 5500, allowance: 600, deductions: 400, net: 5700, date: '2026-06-30', status: 'Paid' }
+        ],
+        recruitment: [
+          { id: 1, title: 'Senior React Developer', dept: 'Engineering', openDate: '2026-06-01', closeDate: '2026-06-25', candidates: 42, interviews: 14, status: 'Filled', budget: 95000 },
+          { id: 2, title: 'UI/UX Designer', dept: 'Product', openDate: '2026-06-10', closeDate: null, candidates: 29, interviews: 8, status: 'Interviewing', budget: 75000 },
+          { id: 3, title: 'DevOps Engineer', dept: 'Engineering', openDate: '2026-06-20', closeDate: null, candidates: 15, interviews: 3, status: 'Open', budget: 110000 },
+          { id: 4, title: 'Growth Marketer', dept: 'Marketing', openDate: '2026-06-15', closeDate: '2026-06-28', candidates: 34, interviews: 10, status: 'Filled', budget: 65000 },
+          { id: 5, title: 'HR Specialist', dept: 'HR', openDate: '2026-06-25', closeDate: null, candidates: 12, interviews: 2, status: 'Open', budget: 50000 }
+        ],
+        performance: [
+          { id: 1, empId: 'JD', name: 'John Doe', dept: 'Engineering', period: 'Q2 2026', goals: '94%', quality: '95%', reviewRating: 4.8, status: 'Outstanding' },
+          { id: 2, empId: 'JS', name: 'Jane Smith', dept: 'Product', period: 'Q2 2026', goals: '90%', quality: '92%', reviewRating: 4.5, status: 'Exceeds Expectations' },
+          { id: 3, empId: 'MB', name: 'Michael Brown', dept: 'Engineering', period: 'Q2 2026', goals: '82%', quality: '85%', reviewRating: 3.9, status: 'Meets Expectations' },
+          { id: 4, empId: 'ED', name: 'Emily Davis', dept: 'Marketing', period: 'Q2 2026', goals: '88%', quality: '86%', reviewRating: 4.2, status: 'Exceeds Expectations' },
+          { id: 5, empId: 'SJ', name: 'Sarah Jenkins', dept: 'HR', period: 'Q2 2026', goals: '95%', quality: '98%', reviewRating: 4.9, status: 'Outstanding' },
+          { id: 6, empId: 'RC', name: 'Robert Chen', dept: 'Engineering', period: 'Q2 2026', goals: '91%', quality: '90%', reviewRating: 4.4, status: 'Exceeds Expectations' }
+        ],
+        department: [
+          { id: 1, deptName: 'HR', headcount: 3, budget: 18000, expenses: 16500, avgPerformance: 4.6, pendingLeaves: 1, lateRate: '3.1%' },
+          { id: 2, deptName: 'Engineering', headcount: 15, budget: 125000, expenses: 118000, avgPerformance: 4.4, pendingLeaves: 2, lateRate: '2.5%' },
+          { id: 3, deptName: 'Product', headcount: 8, budget: 68000, expenses: 62000, avgPerformance: 4.3, pendingLeaves: 1, lateRate: '1.8%' },
+          { id: 4, deptName: 'Marketing', headcount: 5, budget: 45000, expenses: 43200, avgPerformance: 4.1, pendingLeaves: 1, lateRate: '4.2%' },
+          { id: 5, deptName: 'Executive', headcount: 2, budget: 85000, expenses: 78000, avgPerformance: 4.8, pendingLeaves: 0, lateRate: '0.0%' }
+        ]
+      };
+
+      // Configuration of headers for each report type
+      const tableHeaders = {
+        attendance: ['Employee ID', 'Name', 'Department', 'Tracking Date', 'Days Present', 'Late Arrivals', 'Absences', 'Hours Worked', 'Attendance Rate'],
+        leave: ['Employee Name', 'Department', 'Leave Type', 'Start Date', 'End Date', 'Total Days', 'Status', 'Approved Balance'],
+        payroll: ['Employee Name', 'Department', 'Basic Salary', 'Allowances', 'Deductions', 'Net Payroll', 'Payment Date', 'Status'],
+        recruitment: ['Position Title', 'Department', 'Opened On', 'Filled On', 'Candidates', 'Interviews Conducted', ' vacancy Status', 'Annual Budget'],
+        performance: ['Employee Name', 'Department', 'Review Cycle', 'Goal Achievement', 'Work Quality', 'Manager Evaluation', 'Performance Rating'],
+        department: ['Department Code', 'Headcount', 'Allocated Budget', 'Realized Expenses', 'Avg Appraisal Score', 'Leaves Pending Approval', 'Late Arrival Ratio']
+      };
+
+      // Handles
+      let activeTab = 'attendance';
+      const tableHead = document.getElementById('reportTableHead');
+      const tableBody = document.getElementById('reportTableBody');
+      const activeTitleText = document.getElementById('activeReportTitle');
+      const countText = document.getElementById('filteredCountText');
+      const totalRecordsEl = document.getElementById('totalRecordsText');
+
+      // Filter Handles
+      const searchInput = document.getElementById('reportSearch');
+      const deptSelect = document.getElementById('filterDept');
+      const empSelect = document.getElementById('filterEmployee');
+      const startDateInput = document.getElementById('filterStartDate');
+      const endDateInput = document.getElementById('filterEndDate');
+      const clearBtn = document.getElementById('clearFiltersBtn');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Init total records indicator
+        let totalRecordsCount = 0;
+        Object.keys(datasets).forEach(k => {
+          totalRecordsCount += datasets[k].length;
+        });
+        totalRecordsEl.textContent = `${totalRecordsCount} Data Points`;
+
+        // Load & Setup Page
+        renderActiveReport();
+
+        // Bind filter event listeners
+        searchInput.addEventListener('input', renderActiveReport);
+        deptSelect.addEventListener('change', renderActiveReport);
+        empSelect.addEventListener('change', renderActiveReport);
+        startDateInput.addEventListener('change', renderActiveReport);
+        endDateInput.addEventListener('change', renderActiveReport);
+
+        // Header search alignment
+        const globalSearch = document.getElementById('globalSearch');
+        if (globalSearch) {
+          globalSearch.addEventListener('input', (e) => {
+            searchInput.value = e.target.value;
+            renderActiveReport();
+          });
+        }
+
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          deptSelect.value = 'all';
+          empSelect.value = 'all';
+          startDateInput.value = '2026-06-01';
+          endDateInput.value = '2026-07-31';
+          renderActiveReport();
+          showToast('Filters have been reset to default boundaries.', 'success');
+        });
+
+        AOS.init({ once: true });
+      });
+
+      function switchReportTab(tabKey) {
+        activeTab = tabKey;
+        
+        // Update pills buttons visual state
+        const buttons = document.querySelectorAll('.report-tab-btn');
+        buttons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('onclick').includes(tabKey));
+        });
+
+        // Update Title Heading
+        const formattedTitle = tabKey.charAt(0).toUpperCase() + tabKey.slice(1) + " Analytical Record";
+        activeTitleText.textContent = formattedTitle;
+
+        renderActiveReport();
+      }
+
+      function renderActiveReport() {
+        const dataset = datasets[activeTab];
+        const headers = tableHeaders[activeTab];
+
+        // Apply filters
+        const filtered = applyFilters(dataset);
+
+        // Render Head
+        tableHead.innerHTML = '<tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
+
+        // Render Body
+        tableBody.innerHTML = '';
+        if (filtered.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="${headers.length}" class="text-center py-5">
+                <div class="text-muted mb-3"><i class="fa-solid fa-folder-open fs-2"></i></div>
+                <h5 class="fw-700 text-primary">No Matching Records Found</h5>
+                <p class="text-secondary small max-w-sm mx-auto" style="max-width: 380px;">
+                  Try adjusting your filters, query text, or expanding your date range parameters to find items.
+                </p>
+              </td>
+            </tr>
+          `;
+          countText.textContent = `Showing 0 rows`;
+          return;
+        }
+
+        countText.textContent = `Showing ${filtered.length} rows`;
+
+        filtered.forEach(row => {
+          let trContent = '';
+
+          if (activeTab === 'attendance') {
+            trContent = `
+              <td><span class="fw-700 fs-8 text-primary">EMP-${row.empId}</span></td>
+              <td><div class="fw-700 text-primary">${row.name}</div></td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${row.dept}</span></td>
+              <td><div class="small fw-600">${formatDateString(row.date)}</div></td>
+              <td><div class="small text-secondary text-center">${row.present} days</div></td>
+              <td><div class="small ${row.late > 1 ? 'text-danger fw-700' : 'text-secondary'} text-center">${row.late}</div></td>
+              <td><div class="small ${row.absent > 0 ? 'text-danger fw-700' : 'text-secondary'} text-center">${row.absent}</div></td>
+              <td><div class="small text-secondary text-center">${row.workHours} hrs</div></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="small fw-700">${row.rate}</span>
+                  <div class="progress" style="width: 60px; height: 5px;">
+                    <div class="progress-bar ${parseInt(row.rate) < 90 ? 'bg-warning' : 'bg-success'}" style="width: ${row.rate}"></div>
+                  </div>
+                </div>
+              </td>
+            `;
+          } else if (activeTab === 'leave') {
+            let statusClass = 'info';
+            if (row.status === 'Approved') statusClass = 'success';
+            if (row.status === 'Rejected') statusClass = 'danger';
+            if (row.status === 'Pending') statusClass = 'warning';
+
+            trContent = `
+              <td><div class="fw-700 text-primary">${row.name}</div></td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${row.dept}</span></td>
+              <td><span class="badge bg-white text-secondary border fs-8"><i class="fa-solid fa-umbrella me-1 text-primary"></i>${row.type}</span></td>
+              <td><div class="small">${formatDateString(row.start)}</div></td>
+              <td><div class="small">${formatDateString(row.end)}</div></td>
+              <td><div class="small text-secondary fw-700 text-center">${row.days} days</div></td>
+              <td><span class="status-pill ${statusClass}"><i class="fa-solid fa-circle fs-9 me-1"></i>${row.status}</span></td>
+              <td><div class="small text-secondary text-center">${row.balance} left</div></td>
+            `;
+          } else if (activeTab === 'payroll') {
+            trContent = `
+              <td><div class="fw-700 text-primary">${row.name}</div></td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${row.dept}</span></td>
+              <td><div class="fw-600 small text-end">$${row.basic.toLocaleString()}</div></td>
+              <td><div class="text-success small text-end">+$${row.allowance.toLocaleString()}</div></td>
+              <td><div class="text-danger small text-end">-$${row.deductions.toLocaleString()}</div></td>
+              <td><div class="fw-800 text-primary text-end">$${row.net.toLocaleString()}</div></td>
+              <td><div class="small text-muted">${formatDateString(row.date)}</div></td>
+              <td><span class="status-pill success"><i class="fa-solid fa-circle-check me-1"></i>${row.status}</span></td>
+            `;
+          } else if (activeTab === 'recruitment') {
+            let badgeStyle = 'info';
+            if (row.status === 'Filled') badgeStyle = 'success';
+            if (row.status === 'Open') badgeStyle = 'warning';
+
+            trContent = `
+              <td><div class="fw-700 text-primary">${row.title}</div></td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${row.dept}</span></td>
+              <td><div class="small">${formatDateString(row.openDate)}</div></td>
+              <td><div class="small text-muted">${row.closeDate ? formatDateString(row.closeDate) : 'Ongoing'}</div></td>
+              <td><div class="small text-secondary text-center fw-600">${row.candidates} apps</div></td>
+              <td><div class="small text-secondary text-center">${row.interviews}</div></td>
+              <td><span class="status-pill ${badgeStyle}">${row.status}</span></td>
+              <td><div class="small text-secondary fw-700">$${row.budget.toLocaleString()}</div></td>
+            `;
+          } else if (activeTab === 'performance') {
+            let performanceClass = 'success';
+            if (row.reviewRating < 4.0) performanceClass = 'warning';
+            if (row.reviewRating < 3.0) performanceClass = 'danger';
+
+            trContent = `
+              <td><div class="fw-700 text-primary">${row.name}</div></td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${row.dept}</span></td>
+              <td><span class="badge bg-white text-secondary border fs-8">${row.period}</span></td>
+              <td><div class="small text-center">${row.goals}</div></td>
+              <td><div class="small text-center">${row.quality}</div></td>
+              <td>
+                <div class="d-flex align-items-center gap-1 justify-content-center">
+                  <i class="fa-solid fa-star text-warning small"></i>
+                  <span class="fw-700 text-primary small">${row.reviewRating}</span>
+                </div>
+              </td>
+              <td><span class="status-pill ${performanceClass}">${row.status}</span></td>
+            `;
+          } else if (activeTab === 'department') {
+            trContent = `
+              <td><span class="fw-700 text-primary">${row.deptName}</span></td>
+              <td><div class="small fw-700 text-center">${row.headcount} Staff</div></td>
+              <td><div class="small fw-600 text-end">$${row.budget.toLocaleString()}</div></td>
+              <td><div class="small text-secondary text-end">$${row.expenses.toLocaleString()}</div></td>
+              <td>
+                <div class="d-flex align-items-center gap-1 justify-content-center">
+                  <i class="fa-solid fa-star text-warning small"></i>
+                  <span class="fw-700 text-primary small">${row.avgPerformance}</span>
+                </div>
+              </td>
+              <td><div class="small text-center ${row.pendingLeaves > 0 ? 'text-warning fw-700' : 'text-muted'}">${row.pendingLeaves} pending</div></td>
+              <td><div class="small text-secondary text-center">${row.lateRate}</div></td>
+            `;
+          }
+
+          tableBody.innerHTML += `<tr>${trContent}</tr>`;
+        });
+      }
+
+      function applyFilters(data) {
+        const query = searchInput.value.toLowerCase().trim();
+        const deptVal = deptSelect.value;
+        const empVal = empSelect.value;
+        const startVal = startDateInput.value;
+        const endVal = endDateInput.value;
+
+        return data.filter(row => {
+          // 1. Search Query
+          let matchQuery = true;
+          if (query) {
+            matchQuery = false;
+            // Scan properties
+            const fieldsToScan = [row.name, row.dept, row.deptName, row.title, row.status, row.type];
+            for (let f of fieldsToScan) {
+              if (f && f.toString().toLowerCase().includes(query)) {
+                matchQuery = true;
+                break;
+              }
+            }
+          }
+
+          // 2. Department filter
+          let matchDept = true;
+          if (deptVal !== 'all') {
+            const currentDept = row.dept || row.deptName;
+            matchDept = (currentDept && currentDept.toLowerCase() === deptVal.toLowerCase());
+          }
+
+          // 3. Employee filter
+          let matchEmp = true;
+          if (empVal !== 'all') {
+            matchEmp = (row.empId && row.empId === empVal);
+          }
+
+          // 4. Date filter bounds
+          let matchDate = true;
+          if (startVal && endVal) {
+            const rowDateStr = row.date || row.start || row.openDate;
+            if (rowDateStr) {
+              const rowDate = new Date(rowDateStr);
+              const startDate = new Date(startVal);
+              const endDate = new Date(endVal);
+              matchDate = (rowDate >= startDate && rowDate <= endDate);
+            }
+          }
+
+          return matchQuery && matchDept && matchEmp && matchDate;
+        });
+      }
+
+      function formatDateString(str) {
+        if (!str) return '';
+        const options = { month: 'short', day: 'numeric', year: 'numeric' };
+        return new Date(str + 'T00:00:00').toLocaleDateString('en-US', options);
+      }
+
+      function triggerSystemExport(formatType) {
+        const exportModalEl = document.getElementById('exportModal');
+        const exportModal = new bootstrap.Modal(exportModalEl);
+        
+        // Reset modal visual states
+        const progressBar = document.getElementById('exportProgressBar');
+        const progressTitle = document.getElementById('exportProgressTitle');
+        const progressDesc = document.getElementById('exportProgressDesc');
+        const stepText = document.getElementById('exportStepText');
+        const spinner = document.getElementById('exportSpinner');
+        const successIcon = document.getElementById('exportSuccessIcon');
+
+        progressBar.style.width = '0%';
+        progressTitle.textContent = `Compiling ${formatType} Schema...`;
+        progressDesc.textContent = "Querying filtered workforce ledger and formatting visual layouts...";
+        stepText.textContent = "Step 1 of 4: Initiating data sync...";
+        spinner.classList.remove('d-none');
+        successIcon.classList.add('d-none');
+
+        exportModal.show();
+
+        // Step simulation
+        setTimeout(() => {
+          progressBar.style.width = '30%';
+          progressTitle.textContent = `Mapping ${activeTab} columns...`;
+          stepText.textContent = "Step 2 of 4: Aligning columns & parameters";
+        }, 1200);
+
+        setTimeout(() => {
+          progressBar.style.width = '70%';
+          progressTitle.textContent = "Compressing stream structures...";
+          stepText.textContent = "Step 3 of 4: Injecting styles and headers";
+        }, 2400);
+
+        setTimeout(() => {
+          progressBar.style.width = '100%';
+          progressTitle.textContent = "Export Sync Complete!";
+          progressDesc.textContent = `Your Premium AuraHR_${activeTab}_Report_2026.${formatType === 'Excel' ? 'xlsx' : 'pdf'} has downloaded successfully.`;
+          stepText.textContent = "Step 4 of 4: Completed successfully!";
+          spinner.classList.add('d-none');
+          successIcon.classList.remove('d-none');
+
+          // Trigger actual local download of structured CSV/text to make it real!
+          triggerFileDownload(formatType);
+        }, 3600);
+      }
+
+      function triggerFileDownload(formatType) {
+        const dataset = datasets[activeTab];
+        const headers = tableHeaders[activeTab];
+        const filtered = applyFilters(dataset);
+
+        let fileContent = '';
+        let mimeType = 'text/plain';
+        let extension = 'txt';
+
+        if (formatType === 'Excel') {
+          // Create structured CSV
+          fileContent = headers.join(',') + '\n';
+          filtered.forEach(row => {
+            const values = Object.values(row).map(v => `"${v.toString().replace(/"/g, '""')}"`);
+            fileContent += values.join(',') + '\n';
+          });
+          mimeType = 'text/csv';
+          extension = 'csv';
+        } else {
+          // PDF Style plain-text report
+          fileContent = `==================================================\n`;
+          fileContent += `       AURAHR WORKFORCE REPORT - ${activeTab.toUpperCase()}\n`;
+          fileContent += `       Date Generated: ${new Date().toLocaleDateString()}\n`;
+          fileContent += `==================================================\n\n`;
+          fileContent += `Headers: ${headers.join(' | ')}\n`;
+          fileContent += `--------------------------------------------------\n`;
+          filtered.forEach((row, i) => {
+            fileContent += `[Record #${i+1}] ` + Object.entries(row).map(([k,v]) => `${k}: ${v}`).join(', ') + '\n';
+          });
+          fileContent += `\n==================================================\n`;
+        }
+
+        const blob = new Blob([fileContent], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `AuraHR_${activeTab}_Report_2026.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showToast(`Downloaded AuraHR_${activeTab}_Report_2026.${extension} to device.`, 'success');
+      }
+
+      function triggerPrint() {
+        // Prepare beautiful printable representation
+        const printableContent = document.querySelector('.table-premium-wrapper').innerHTML;
+        const originalContent = document.body.innerHTML;
+
+        showToast("Generating print layouts... Use system dialog to save or output.", "success");
+        setTimeout(() => {
+          window.print();
+        }, 800);
+      }
+
+      function showToast(message, type) {
+        const toastEl = document.getElementById('reportToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        
+        toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+        
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

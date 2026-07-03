@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Leave Balance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Management</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu">
+                <li class="sidebar-submenu-item"><a href="leave.html" class="sidebar-submenu-link">Leave Requests</a></li>
+                <li class="sidebar-submenu-item"><a href="apply-leave.html" class="sidebar-submenu-link">Apply Leave</a></li>
+                <li class="sidebar-submenu-item"><a href="leave-balance.html" class="sidebar-submenu-link">Leave Balance</a></li>
+                <li class="sidebar-submenu-item"><a href="holidays.html" class="sidebar-submenu-link">Holidays List</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Header section with actions -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Leave Balances</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="leave.html" class="text-decoration-none text-muted">Leave Management</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Leave Balance</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="fs-xs fw-700 text-primary text-nowrap d-none d-md-inline"><i class="fa-solid fa-user-tag me-1"></i> View Employee:</span>
+                <select class="form-select custom-select-premium py-2" id="employeeSelector" style="min-width: 220px;">
+                  <!-- Dynamically populated from AuraDB.getEmployees() -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Active Employee Profile Summary -->
+            <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row align-items-center g-3">
+                <div class="col-12 col-md-8 d-flex align-items-center gap-3">
+                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128" alt="Employee Photo" class="sidebar-user-avatar" id="empCardAvatar" style="width: 56px; height: 56px; border: 2px solid var(--primary-accent);">
+                  <div>
+                    <h3 class="h5 fw-800 text-primary mb-1" id="empCardName">Loading Employee</h3>
+                    <div class="d-flex flex-wrap align-items-center gap-2 gap-sm-3 text-secondary small">
+                      <span><i class="fa-solid fa-id-card me-1 fs-xxs"></i> ID: <strong class="text-primary" id="empCardId">EMP-XXX</strong></span>
+                      <span class="text-muted">|</span>
+                      <span><i class="fa-solid fa-briefcase me-1 fs-xxs"></i> <span id="empCardDesignation">Designation</span></span>
+                      <span class="text-muted">|</span>
+                      <span><i class="fa-solid fa-sitemap me-1 fs-xxs"></i> <span id="empCardDepartment">Department</span></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 text-md-end">
+                  <div class="badge bg-primary-bg text-primary px-3 py-2 fw-700">
+                    <i class="fa-solid fa-circle-info me-1"></i> Balance Accrual Active
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Balances Cards Layout Grid -->
+            <div class="row g-4 mb-4" id="balancesContainer" data-aos="fade-up" data-aos-duration="800">
+              <!-- Dynamically rendered leave balance progress cards -->
+            </div>
+
+            <!-- Company Leave Policy Information Panel -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="900">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <i class="fa-solid fa-circle-exclamation text-primary"></i>
+                <h4 class="h6 fw-700 text-primary mb-0">AuraHR Leave Accrual Policies</h4>
+              </div>
+              <div class="row g-3 fs-xxs text-secondary">
+                <div class="col-12 col-md-4">
+                  <div class="p-3 border rounded bg-light h-100" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                    <div class="fw-700 text-primary mb-1"><i class="fa-solid fa-scale-balanced me-1"></i> Accruals Cycle</div>
+                    Annual Leave credits accrue on the first calendar day of every month. Unused annual leaves roll over up to a maximum of 10 days.
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="p-3 border rounded bg-light h-100" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                    <div class="fw-700 text-primary mb-1"><i class="fa-solid fa-stethoscope me-1"></i> Medical Certification</div>
+                    Sick leave requests exceeding 2 consecutive working days require valid medical certification uploaded via attachments.
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="p-3 border rounded bg-light h-100" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                    <div class="fw-700 text-primary mb-1"><i class="fa-solid fa-umbrella-beach me-1"></i> Half-Day Request Limits</div>
+                    Employees can submit up to 6 half-day casual leave requests per calendar quarter. Emergency contacts must be provided.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const empSelector = document.getElementById("employeeSelector");
+        const balancesContainer = document.getElementById("balancesContainer");
+
+        // Profile card elements
+        const empCardAvatar = document.getElementById("empCardAvatar");
+        const empCardName = document.getElementById("empCardName");
+        const empCardId = document.getElementById("empCardId");
+        const empCardDesignation = document.getElementById("empCardDesignation");
+        const empCardDepartment = document.getElementById("empCardDepartment");
+
+        function init() {
+          // Populate Employee dropdown
+          const employees = window.AuraDB.getEmployees();
+          empSelector.innerHTML = "";
+          employees.forEach(emp => {
+            const option = document.createElement("option");
+            option.value = emp.id;
+            option.textContent = `${emp.name} (${emp.id})`;
+            empSelector.appendChild(option);
+          });
+
+          // Set default selected (EMP-001 - Sarah Jenkins)
+          empSelector.value = "EMP-001";
+          renderEmployeeBalances("EMP-001");
+
+          // Listener
+          empSelector.addEventListener("change", (e) => {
+            renderEmployeeBalances(e.target.value);
+          });
+        }
+
+        function renderEmployeeBalances(empId) {
+          const employees = window.AuraDB.getEmployees();
+          const currentEmployee = employees.find(e => e.id === empId);
+          if (!currentEmployee) return;
+
+          // Update profile summary card
+          empCardAvatar.src = currentEmployee.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128";
+          empCardName.textContent = currentEmployee.name;
+          empCardId.textContent = currentEmployee.id;
+          empCardDesignation.textContent = currentEmployee.designation || "Executive Officer";
+          empCardDepartment.textContent = currentEmployee.department || "Human Resources";
+
+          // Get balances
+          const balances = window.AuraDB.getLeaveBalances(empId);
+          balancesContainer.innerHTML = "";
+
+          balances.forEach(bal => {
+            const total = bal.total;
+            const used = bal.used;
+            const remaining = total - used;
+            const pending = bal.pending;
+
+            // Calculate progress percentage
+            const pct = Math.min(100, Math.round((used / total) * 100)) || 0;
+
+            // Set specific colors and icons
+            let accentClass = "primary";
+            let bgAccent = "bg-primary-bg text-primary";
+            let progressColor = "bg-primary";
+            let icon = "fa-calendar-days";
+
+            if (bal.type === "Annual Leave") {
+              accentClass = "indigo";
+              bgAccent = "style=\"background: rgba(79, 70, 229, 0.08); color: rgb(79, 70, 229);\"";
+              progressColor = "style=\"background: var(--primary-accent);\"";
+              icon = "fa-umbrella-beach";
+            } else if (bal.type === "Sick Leave") {
+              accentClass = "success";
+              bgAccent = "class=\"brand-icon-wrapper bg-success-bg text-success\"";
+              progressColor = "class=\"progress-bar bg-success\"";
+              icon = "fa-prescription-bottle-medical";
+            } else if (bal.type === "Casual Leave") {
+              accentClass = "warning";
+              bgAccent = "class=\"brand-icon-wrapper bg-warning-bg text-warning\"";
+              progressColor = "class=\"progress-bar bg-warning\"";
+              icon = "fa-mug-hot";
+            } else if (bal.type === "Maternity/Paternity Leave") {
+              accentClass = "info";
+              bgAccent = "class=\"brand-icon-wrapper bg-info-bg text-info\"";
+              progressColor = "class=\"progress-bar bg-info\"";
+              icon = "fa-baby-carriage";
+            } else if (bal.type === "Unpaid Leave") {
+              accentClass = "secondary";
+              bgAccent = "class=\"brand-icon-wrapper bg-secondary-bg text-secondary\"";
+              progressColor = "class=\"progress-bar bg-secondary\"";
+              icon = "fa-circle-dollar-to-slot";
+            }
+
+            const cardCol = document.createElement("div");
+            cardCol.className = "col-12 col-md-6 col-xl-4";
+            cardCol.innerHTML = `
+              <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden">
+                <!-- Sparkle hover glow effect -->
+                <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                  <i class="fa-solid ${icon} fs-1"></i>
+                </div>
+                
+                <div>
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <div ${bgAccent.includes('class') ? bgAccent : 'class="brand-icon-wrapper" ' + bgAccent} style="box-shadow: none; width: 40px; height: 40px; border-radius: var(--radius-md);">
+                      <i class="fa-solid ${icon} fs-6"></i>
+                    </div>
+                    <div>
+                      <h4 class="h6 fw-700 text-primary mb-0">${bal.type}</h4>
+                      <div class="fs-xxs text-muted">Leave Allowance metrics</div>
+                    </div>
+                  </div>
+
+                  <!-- Statistics Breakdown -->
+                  <div class="row g-2 mb-4 text-center">
+                    <div class="col-4">
+                      <div class="p-2 border rounded bg-light" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                        <div class="fs-xxs text-muted mb-0">Total</div>
+                        <div class="fw-800 text-primary fs-sm">${total} d</div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="p-2 border rounded bg-light" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                        <div class="fs-xxs text-success mb-0">Used</div>
+                        <div class="fw-800 text-success fs-sm">${used} d</div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="p-2 border rounded bg-light" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                        <div class="fs-xxs text-primary mb-0">Remaining</div>
+                        <div class="fw-800 text-primary fs-sm" style="color: var(--primary-accent) !important;">${remaining} d</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Custom progress bar bar representation -->
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fs-xxs text-secondary fw-600">Consumption Rate</span>
+                    <span class="fs-xxs fw-800 text-primary">${pct}%</span>
+                  </div>
+                  <div class="progress mb-2" style="height: 8px; border-radius: 4px; background: rgba(0,0,0,0.04);">
+                    <div ${progressColor.includes('class') ? progressColor : 'class="progress-bar" ' + progressColor} role="progressbar" style="${progressColor.includes('style') ? progressColor.split('style="')[1].split('"')[0] + '; ' : ''}width: 0%; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);" id="prog-${bal.type.replace(/\s+/g, '')}"></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2 fs-xxs">
+                    <span class="text-secondary"><i class="fa-solid fa-hourglass-half me-1"></i> Pending Requests:</span>
+                    <span class="badge ${pending > 0 ? 'bg-warning-bg text-warning' : 'bg-light text-muted border'} fw-700">${pending} ${pending === 1 ? 'day' : 'days'}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+            balancesContainer.appendChild(cardCol);
+
+            // Trigger progress bar filling animation on a tiny timeout
+            setTimeout(() => {
+              const el = document.getElementById(`prog-${bal.type.replace(/\s+/g, '')}`);
+              if (el) el.style.width = `${pct}%`;
+            }, 100);
+          });
+        }
+
+        init();
+      });
+    </script>
+  </body>
+</html>

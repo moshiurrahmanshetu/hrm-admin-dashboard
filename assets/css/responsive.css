@@ -1,0 +1,139 @@
+/* ==========================================================================
+   HRM Premium Admin Dashboard - Responsive Alignments (responsive.css)
+   ========================================================================== */
+
+/* Laptop & Medium Desktop (screens up to 1200px) */
+@media (max-width: 1200px) {
+    .sidebar-container {
+        width: 250px;
+    }
+    .main-content-wrapper {
+        margin-left: 250px;
+    }
+    .header-search-form {
+        width: 220px;
+    }
+    body.sidebar-collapsed .sidebar-container {
+        width: 80px;
+    }
+    body.sidebar-collapsed .main-content-wrapper {
+        margin-left: 80px;
+    }
+}
+
+/* Tablet Layout (screens up to 992px) */
+@media (max-width: 992px) {
+    /* Hide Sidebar by default & position as drawer */
+    .sidebar-container {
+        transform: translateX(-100%);
+        width: 280px !important; /* Fixed drawer width */
+        box-shadow: none;
+    }
+
+    .main-content-wrapper {
+        margin-left: 0 !important;
+    }
+
+    /* Show Sidebar drawer when toggled */
+    body.sidebar-open .sidebar-container {
+        transform: translateX(0);
+        box-shadow: var(--shadow-soft-lg);
+    }
+
+    /* Mobile Backdrop Overlay */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 1035;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-normal), visibility var(--transition-normal);
+    }
+
+    body.sidebar-open .sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Adjust header height and spacing */
+    .header-container {
+        padding: 0 1.25rem;
+    }
+
+    .content-body {
+        padding: 1.5rem 1.25rem;
+    }
+
+    /* Collapse search on header */
+    .header-search-form {
+        display: none; /* Can be revealed via mobile search trigger if required */
+    }
+}
+
+/* Mobile Portrait & Landscape (screens up to 768px) */
+@media (max-width: 768px) {
+    .header-nav-right {
+        gap: 0.5rem;
+    }
+
+    /* Hide text inside header dropdowns or buttons */
+    .profile-trigger-info {
+        display: none;
+    }
+
+    .profile-dropdown-trigger {
+        padding: 0.25rem;
+    }
+
+    /* Adjust cards padding */
+    .glass-card {
+        padding: 1.25rem;
+    }
+
+    /* Tables scrollability info */
+    .table-premium-wrapper::after {
+        content: 'Swipe left to view more →';
+        display: block;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-align: right;
+        padding: 0.5rem;
+        border-top: 1px solid var(--table-border);
+        font-weight: 500;
+    }
+
+    /* Form spacing adjustments */
+    .form-control-premium {
+        font-size: 0.85rem;
+        padding: 0.55rem 0.85rem;
+    }
+}
+
+/* Extra Small Devices (screens up to 480px) */
+@media (max-width: 480px) {
+    .header-container {
+        height: 60px;
+    }
+    
+    .brand-icon-wrapper {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brand-text {
+        font-size: 1.1rem;
+    }
+
+    .footer-container {
+        text-align: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+    }
+}

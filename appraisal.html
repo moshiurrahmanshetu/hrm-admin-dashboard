@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Performance Appraisals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Header section -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Performance Appraisals</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="performance.html" class="text-decoration-none text-muted">Performance</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Appraisals</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#newAppraisalModal">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>New Appraisal</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Performance Sub-Navigation Tabs -->
+            <div class="glass-card mb-4 p-2" data-aos="fade-down" data-aos-duration="500">
+              <div class="nav nav-pills d-flex flex-wrap gap-2 performance-tabs">
+                <a href="performance.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>KPIs & Ratings</span>
+                </a>
+                <a href="appraisal.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2 active">
+                  <i class="fa-solid fa-file-signature"></i>
+                  <span>Appraisals</span>
+                </a>
+                <a href="goals.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <span>Goals & OKRs</span>
+                </a>
+                <a href="training.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Training Programs</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Appraisal metrics summary -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-md-4">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-success" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.1); color: var(--success) !important;">
+                      <i class="fa-solid fa-circle-check fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Approved Evaluations</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statApproved">5 / 8</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-warning" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(251, 191, 36, 0.1); color: var(--warning) !important;">
+                      <i class="fa-solid fa-clock fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Under Review</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statReview">2 / 8</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-danger" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(239, 68, 68, 0.1); color: var(--danger) !important;">
+                      <i class="fa-solid fa-triangle-exclamation fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Pending Action</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statPending">1 / 8</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Appraisal Search and Filter panel -->
+            <div class="glass-card mb-4 p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row g-3">
+                <div class="col-12 col-md-5">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="appraisalSearch" placeholder="Search by Employee or Reviewer...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Under Review">Under Review</option>
+                    <option value="Draft">Draft</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="d-flex gap-2">
+                    <select class="form-select form-control-premium" id="filterPeriod">
+                      <option value="">All Review Periods</option>
+                      <option value="Q2 2026">Q2 2026</option>
+                      <option value="H1 2026">H1 2026</option>
+                      <option value="Annual 2025">Annual 2025</option>
+                    </select>
+                    <button class="outline-btn" id="btnReset" title="Reset Filters">
+                      <i class="fa-solid fa-arrow-rotate-left"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Appraisal List Table -->
+            <div class="glass-card p-0 mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h4 class="h5 fw-700 text-primary mb-0">Appraisal Registry</h4>
+                <span class="badge bg-light text-primary border px-3 py-2 rounded-pill small" id="recordCounter">8 Appraisal loaded</span>
+              </div>
+              <div class="table-premium-wrapper">
+                <table class="table-premium" id="appraisalTable">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Reviewer</th>
+                      <th>Review Period</th>
+                      <th>Rating</th>
+                      <th>Comments Preview</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="appraisalTableBody">
+                    <!-- Dynamic rendering -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- New Appraisal Modal -->
+        <div class="modal fade" id="newAppraisalModal" tabindex="-1" aria-labelledby="newAppraisalModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title fw-700 text-primary" id="newAppraisalModalLabel">Initiate New Appraisal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <form id="newAppraisalForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Employee Name</label>
+                      <select class="form-select form-control-premium" required id="formEmp">
+                        <option value="Sarah Jenkins">Sarah Jenkins (EMP-001)</option>
+                        <option value="Marcus Vance">Marcus Vance (EMP-002)</option>
+                        <option value="Emily Rose">Emily Rose (EMP-003)</option>
+                        <option value="Robert Chen">Robert Chen (EMP-004)</option>
+                        <option value="Jessica Taylor">Jessica Taylor (EMP-005)</option>
+                        <option value="David Kross">David Kross (EMP-006)</option>
+                        <option value="Chloe Bennett">Chloe Bennett (EMP-007)</option>
+                        <option value="Alan Turing">Alan Turing (EMP-008)</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Reviewer</label>
+                      <input type="text" class="form-control form-control-premium" id="formReviewer" value="Sarah Jenkins" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Review Period</label>
+                      <select class="form-select form-control-premium" required id="formPeriod">
+                        <option value="Q2 2026">Q2 2026</option>
+                        <option value="H1 2026">H1 2026</option>
+                        <option value="Annual 2025">Annual 2025</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Overall Rating</label>
+                      <select class="form-select form-control-premium" required id="formRating">
+                        <option value="5.0">5.0 - Outstanding</option>
+                        <option value="4.5">4.5 - Exceptional</option>
+                        <option value="4.0">4.0 - High Performer</option>
+                        <option value="3.5">3.5 - Good</option>
+                        <option value="3.0">3.0 - Meets Expectations</option>
+                        <option value="2.0">2.0 - Needs Improvement</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Overall Comments</label>
+                      <textarea class="form-control form-control-premium" rows="3" id="formComments" placeholder="Enter evaluation feedback and milestones achieved..." required></textarea>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Technical Competency Score</label>
+                      <input type="number" step="0.1" min="1" max="5" class="form-control form-control-premium" id="formTech" value="4.5" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Communication Competency Score</label>
+                      <input type="number" step="0.1" min="1" max="5" class="form-control form-control-premium" id="formComm" value="4.0" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Leadership Competency Score</label>
+                      <input type="number" step="0.1" min="1" max="5" class="form-control form-control-premium" id="formLead" value="4.0" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Initial Status</label>
+                      <select class="form-select form-control-premium" id="formStatus">
+                        <option value="Approved">Approved</option>
+                        <option value="Under Review" selected>Under Review</option>
+                        <option value="Draft">Draft</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 py-3 border-top">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn">Save Appraisal</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appraisal Details View Modal -->
+        <div class="modal fade" id="viewAppraisalModal" tabindex="-1" aria-labelledby="viewAppraisalModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-id-card text-primary"></i>
+                  <h5 class="modal-title fw-800 text-primary mb-0" id="viewAppraisalModalLabel">Detailed Appraisal Profile</h5>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <div class="modal-body p-4" id="viewAppraisalDetailBody">
+                <!-- Dynamically filled on View Details click -->
+              </div>
+              <div class="modal-footer px-4 py-3 border-top">
+                <button type="button" class="gradient-btn px-4" data-bs-dismiss="modal">Close Appraisal Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Style Helper -->
+    <style>
+      .performance-tabs .nav-link {
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: var(--radius-md) !important;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+      }
+      .performance-tabs .nav-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+      .performance-tabs .nav-link.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow);
+      }
+      .star-rating .fa-star {
+        color: #ffc107;
+      }
+      .star-rating .fa-star-half-stroke {
+        color: #ffc107;
+      }
+      .star-rating .fa-star.text-muted {
+        color: var(--text-muted) !important;
+        opacity: 0.3;
+      }
+      .competency-bar {
+        height: 8px;
+        background-color: var(--table-border);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+      }
+      .competency-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-accent), var(--primary-accent-hover));
+        border-radius: var(--radius-full);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+
+        // Detailed Appraisals Database
+        let APPRAISALS = [
+          {
+            id: "APR-201",
+            empName: "Sarah Jenkins",
+            empId: "EMP-001",
+            empAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Board of Directors",
+            period: "H1 2026",
+            rating: 4.9,
+            comments: "Outstanding corporate stewardship. Led the core organizational shift with supreme strategic execution. Exceptional communicator.",
+            status: "Approved",
+            competencies: { technical: 4.8, communication: 5.0, leadership: 5.0 }
+          },
+          {
+            id: "APR-202",
+            empName: "Marcus Vance",
+            empId: "EMP-002",
+            empAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Sarah Jenkins",
+            period: "Q2 2026",
+            rating: 4.8,
+            comments: "Outstanding lead performance. Rebuilt the system API framework ahead of milestones with full automated coverage.",
+            status: "Approved",
+            competencies: { technical: 5.0, communication: 4.5, leadership: 4.8 }
+          },
+          {
+            id: "APR-203",
+            empName: "Emily Rose",
+            empId: "EMP-003",
+            empAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Sarah Jenkins",
+            period: "Q2 2026",
+            rating: 4.2,
+            comments: "Highly creative brand campaign execution. Strengthened user engagement rates substantially. Keep up the high performance.",
+            status: "Under Review",
+            competencies: { technical: 3.8, communication: 4.5, leadership: 4.0 }
+          },
+          {
+            id: "APR-204",
+            empName: "Robert Chen",
+            empId: "EMP-004",
+            empAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Marcus Vance",
+            period: "Q2 2026",
+            rating: 4.7,
+            comments: "Brilliant technical architecture. Configured core services with 100% uptime and robust clustering support.",
+            status: "Approved",
+            competencies: { technical: 5.0, communication: 4.0, leadership: 4.2 }
+          },
+          {
+            id: "APR-205",
+            empName: "Jessica Taylor",
+            empId: "EMP-005",
+            empAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Marcus Vance",
+            period: "H1 2026",
+            rating: 4.5,
+            comments: "Excellent design system optimization. Championed design consistency and accessibility standard implementation.",
+            status: "Approved",
+            competencies: { technical: 4.6, communication: 4.4, leadership: 4.2 }
+          },
+          {
+            id: "APR-206",
+            empName: "David Kross",
+            empId: "EMP-006",
+            empAvatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Sarah Jenkins",
+            period: "Q2 2026",
+            rating: 3.8,
+            comments: "Solid sales accomplishments. Needs optimization in customer relationship pipeline documentation and timeliness.",
+            status: "Under Review",
+            competencies: { technical: 3.5, communication: 4.2, leadership: 3.0 }
+          },
+          {
+            id: "APR-207",
+            empName: "Chloe Bennett",
+            empId: "EMP-007",
+            empAvatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Sarah Jenkins",
+            period: "Annual 2025",
+            rating: 4.4,
+            comments: "Meticulous accounting precision and audit readiness coordination. Consistently delivers excellent and timely fiscal reports.",
+            status: "Approved",
+            competencies: { technical: 4.5, communication: 4.2, leadership: 4.0 }
+          },
+          {
+            id: "APR-208",
+            empName: "Alan Turing",
+            empId: "EMP-008",
+            empAvatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop",
+            reviewer: "Marcus Vance",
+            period: "Q2 2026",
+            rating: 5.0,
+            comments: "Flawless mathematical modelling and AI optimization systems. Pioneered secure offline-first core model integrations successfully.",
+            status: "Approved",
+            competencies: { technical: 5.0, communication: 4.8, leadership: 4.9 }
+          }
+        ];
+
+        // Core UI DOM elements
+        const appraisalTableBody = document.getElementById("appraisalTableBody");
+        const appraisalSearch = document.getElementById("appraisalSearch");
+        const filterStatus = document.getElementById("filterStatus");
+        const filterPeriod = document.getElementById("filterPeriod");
+        const recordCounter = document.getElementById("recordCounter");
+        const btnReset = document.getElementById("btnReset");
+
+        // Metrics elements
+        const statApproved = document.getElementById("statApproved");
+        const statReview = document.getElementById("statReview");
+        const statPending = document.getElementById("statPending");
+
+        function getStarHTML(rating) {
+          let html = "";
+          const fullStars = Math.floor(rating);
+          const hasHalf = rating % 1 >= 0.5;
+          for (let i = 1; i <= 5; i++) {
+            if (i <= fullStars) {
+              html += '<i class="fa-solid fa-star"></i>';
+            } else if (i === fullStars + 1 && hasHalf) {
+              html += '<i class="fa-solid fa-star-half-stroke"></i>';
+            } else {
+              html += '<i class="fa-solid fa-star text-muted"></i>';
+            }
+          }
+          return html;
+        }
+
+        function getStatusBadge(status) {
+          switch (status) {
+            case "Approved":
+              return "premium-badge-success";
+            case "Under Review":
+              return "premium-badge-warning";
+            case "Draft":
+              return "premium-badge-info";
+            default:
+              return "premium-badge-info";
+          }
+        }
+
+        function calculateMetrics(data) {
+          const approved = data.filter(a => a.status === "Approved").length;
+          const review = data.filter(a => a.status === "Under Review").length;
+          const total = data.length;
+          const draft = total - approved - review;
+
+          statApproved.textContent = `${approved} / ${total}`;
+          statReview.textContent = `${review} / ${total}`;
+          statPending.textContent = `${draft} / ${total}`;
+        }
+
+        function renderAppraisals(data) {
+          appraisalTableBody.innerHTML = "";
+          if (data.length === 0) {
+            appraisalTableBody.innerHTML = `
+              <tr>
+                <td colspan="7" class="text-center py-5 text-secondary">
+                  <i class="fa-solid fa-file-excel fs-2 mb-3 text-muted"></i>
+                  <p class="mb-0">No appraisal records found.</p>
+                </td>
+              </tr>
+            `;
+            recordCounter.textContent = "0 Appraisals loaded";
+            return;
+          }
+
+          recordCounter.textContent = `${data.length} Appraisal${data.length > 1 ? "s" : ""} loaded`;
+
+          data.forEach(apr => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <img src="${apr.empAvatar}" alt="${apr.empName}" class="sidebar-user-avatar" style="width: 38px; height: 38px;">
+                  <div>
+                    <div class="fw-700 text-primary">${apr.empName}</div>
+                    <div class="small text-muted">${apr.empId}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="fw-600 text-secondary">${apr.reviewer}</span>
+              </td>
+              <td>
+                <span class="text-secondary fw-500">${apr.period}</span>
+              </td>
+              <td>
+                <div class="d-flex flex-column">
+                  <span class="fw-700 text-primary mb-1">${apr.rating.toFixed(1)}</span>
+                  <div class="star-rating small">${getStarHTML(apr.rating)}</div>
+                </div>
+              </td>
+              <td>
+                <span class="text-secondary small d-inline-block text-truncate" style="max-width: 200px;" title="${apr.comments}">${apr.comments}</span>
+              </td>
+              <td>
+                <span class="premium-badge ${getStatusBadge(apr.status)}">${apr.status}</span>
+              </td>
+              <td class="text-end">
+                <button class="outline-btn py-1 px-3 btn-view-appraisal" data-id="${apr.id}">
+                  <i class="fa-solid fa-eye"></i>
+                  <span>View Details</span>
+                </button>
+              </td>
+            `;
+            appraisalTableBody.appendChild(tr);
+          });
+
+          // Bind details action click
+          document.querySelectorAll(".btn-view-appraisal").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const aprId = this.getAttribute("data-id");
+              const currentAppraisal = APPRAISALS.find(a => a.id === aprId);
+              if (currentAppraisal) {
+                openAppraisalDetailModal(currentAppraisal);
+              }
+            });
+          });
+        }
+
+        function openAppraisalDetailModal(apr) {
+          const detailBody = document.getElementById("viewAppraisalDetailBody");
+          detailBody.innerHTML = `
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4 p-3 rounded" style="background: rgba(var(--primary-accent-rgb), 0.04);">
+              <div class="d-flex align-items-center gap-3">
+                <img src="${apr.empAvatar}" alt="${apr.empName}" class="sidebar-user-avatar" style="width: 52px; height: 52px;">
+                <div>
+                  <h4 class="h5 fw-800 text-primary mb-1">${apr.empName}</h4>
+                  <p class="small text-muted mb-0">ID: ${apr.empId} &bull; Period: ${apr.period}</p>
+                </div>
+              </div>
+              <div class="text-sm-end">
+                <div class="star-rating fs-5">${getStarHTML(apr.rating)}</div>
+                <div class="fw-800 text-primary mt-1">Score: ${apr.rating.toFixed(2)} / 5.0</div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-12 col-md-6">
+                <h5 class="h6 fw-700 text-primary mb-3">Core Competencies Breakdowns</h5>
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small mb-1 fw-600">
+                    <span class="text-secondary">Technical Competence</span>
+                    <span class="text-primary">${apr.competencies.technical.toFixed(1)} / 5.0</span>
+                  </div>
+                  <div class="competency-bar">
+                    <div class="competency-fill" style="width: ${(apr.competencies.technical/5)*100}%;"></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small mb-1 fw-600">
+                    <span class="text-secondary">Communication Skills</span>
+                    <span class="text-primary">${apr.competencies.communication.toFixed(1)} / 5.0</span>
+                  </div>
+                  <div class="competency-bar">
+                    <div class="competency-fill" style="width: ${(apr.competencies.communication/5)*100}%;"></div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small mb-1 fw-600">
+                    <span class="text-secondary">Leadership & Initiative</span>
+                    <span class="text-primary">${apr.competencies.leadership.toFixed(1)} / 5.0</span>
+                  </div>
+                  <div class="competency-bar">
+                    <div class="competency-fill" style="width: ${(apr.competencies.leadership/5)*100}%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <h5 class="h6 fw-700 text-primary mb-3">Evaluation Profiles</h5>
+                <div class="p-3 border rounded bg-light" style="background: rgba(var(--primary-accent-rgb), 0.01) !important;">
+                  <div class="mb-2 small">
+                    <strong class="text-secondary d-block mb-1">Evaluator / Reviewer:</strong>
+                    <span class="text-primary fw-600">${apr.reviewer}</span>
+                  </div>
+                  <div class="mb-2 small">
+                    <strong class="text-secondary d-block mb-1">Review Framework:</strong>
+                    <span class="text-primary fw-600">360-Degree Leadership Assessment</span>
+                  </div>
+                  <div class="small">
+                    <strong class="text-secondary d-block mb-1">Status:</strong>
+                    <span class="premium-badge ${getStatusBadge(apr.status)}">${apr.status}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <h5 class="h6 fw-700 text-primary mb-2">Detailed Comments & Performance Milestones</h5>
+                <p class="text-secondary p-3 rounded border bg-light-subtle fs-7 mb-0 leading-relaxed" style="line-height: 1.6;">
+                  "${apr.comments}"
+                </p>
+              </div>
+            </div>
+          `;
+          const modal = new bootstrap.Modal(document.getElementById("viewAppraisalModal"));
+          modal.show();
+        }
+
+        function filterAndRender() {
+          const query = appraisalSearch.value.toLowerCase().trim();
+          const status = filterStatus.value;
+          const period = filterPeriod.value;
+
+          const filtered = APPRAISALS.filter(apr => {
+            const matchesSearch = apr.empName.toLowerCase().includes(query) || apr.reviewer.toLowerCase().includes(query) || apr.empId.toLowerCase().includes(query);
+            const matchesStatus = !status || apr.status === status;
+            const matchesPeriod = !period || apr.period === period;
+            return matchesSearch && matchesStatus && matchesPeriod;
+          });
+
+          renderAppraisals(filtered);
+          calculateMetrics(filtered);
+        }
+
+        // Search and filter events
+        appraisalSearch.addEventListener("input", filterAndRender);
+        filterStatus.addEventListener("change", filterAndRender);
+        filterPeriod.addEventListener("change", filterAndRender);
+
+        btnReset.addEventListener("click", function() {
+          appraisalSearch.value = "";
+          filterStatus.value = "";
+          filterPeriod.value = "";
+          renderAppraisals(APPRAISALS);
+          calculateMetrics(APPRAISALS);
+        });
+
+        // Add appraisal submit
+        document.getElementById("newAppraisalForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const empName = document.getElementById("formEmp").value;
+          const reviewer = document.getElementById("formReviewer").value;
+          const period = document.getElementById("formPeriod").value;
+          const rating = parseFloat(document.getElementById("formRating").value);
+          const comments = document.getElementById("formComments").value;
+          const status = document.getElementById("formStatus").value;
+
+          const techVal = parseFloat(document.getElementById("formTech").value);
+          const commVal = parseFloat(document.getElementById("formComm").value);
+          const leadVal = parseFloat(document.getElementById("formLead").value);
+
+          // Find avatar for selected employee
+          const avatarMap = {
+            "Sarah Jenkins": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            "Marcus Vance": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+            "Emily Rose": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+            "Robert Chen": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+            "Jessica Taylor": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+            "David Kross": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+            "Chloe Bennett": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+            "Alan Turing": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
+          };
+
+          const empIdMap = {
+            "Sarah Jenkins": "EMP-001",
+            "Marcus Vance": "EMP-002",
+            "Emily Rose": "EMP-003",
+            "Robert Chen": "EMP-004",
+            "Jessica Taylor": "EMP-005",
+            "David Kross": "EMP-006",
+            "Chloe Bennett": "EMP-007",
+            "Alan Turing": "EMP-008"
+          };
+
+          const newApr = {
+            id: `APR-${Math.floor(100 + Math.random() * 900)}`,
+            empName: empName,
+            empId: empIdMap[empName] || "EMP-999",
+            empAvatar: avatarMap[empName] || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            reviewer: reviewer,
+            period: period,
+            rating: rating,
+            comments: comments,
+            status: status,
+            competencies: { technical: techVal, communication: commVal, leadership: leadVal }
+          };
+
+          // Unshift so it appears on top
+          APPRAISALS.unshift(newApr);
+          renderAppraisals(APPRAISALS);
+          calculateMetrics(APPRAISALS);
+
+          // Close modal
+          const modalEl = document.getElementById("newAppraisalModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          modalInstance.hide();
+
+          // Reset form fields
+          document.getElementById("newAppraisalForm").reset();
+          document.getElementById("formReviewer").value = "Sarah Jenkins";
+        });
+
+        // Deep Link from Performance query string (empId)
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlEmpId = urlParams.get("empId");
+        if (urlEmpId) {
+          const directMatch = APPRAISALS.find(a => a.empId === urlEmpId);
+          if (directMatch) {
+            appraisalSearch.value = directMatch.empName;
+            filterAndRender();
+            setTimeout(() => {
+              openAppraisalDetailModal(directMatch);
+            }, 400);
+          }
+        } else {
+          // Default load
+          renderAppraisals(APPRAISALS);
+          calculateMetrics(APPRAISALS);
+        }
+      });
+    </script>
+  </body>
+</html>

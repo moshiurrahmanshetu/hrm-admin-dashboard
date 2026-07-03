@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR Portal - Secure Gateway</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+        overflow-x: hidden;
+      }
+      .split-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: stretch;
+      }
+      .brand-side {
+        background: radial-gradient(circle at 0% 0%, rgba(var(--primary-accent-rgb), 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                    var(--bg-surface);
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 3.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .brand-side::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(var(--primary-accent-rgb), 0.08) 0%, transparent 70%);
+        top: 25%;
+        right: -10%;
+        border-radius: 50%;
+        filter: blur(50px);
+        pointer-events: none;
+      }
+      .form-side {
+        background: var(--bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2rem;
+      }
+      .login-box {
+        width: 100%;
+        max-width: 440px;
+      }
+      .glow-card {
+        border-radius: var(--radius-xl);
+        background: var(--card-bg-solid);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-xl);
+        padding: 2.75rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .glow-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-soft-lg);
+        border-color: var(--card-border-focus);
+      }
+      .brand-hero-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        line-height: 1.15;
+        background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .floating-theme-toggle {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+      }
+      .form-floating-custom {
+        position: relative;
+      }
+      .password-toggle-btn {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.25rem;
+        z-index: 5;
+        transition: color 0.2s;
+      }
+      .password-toggle-btn:hover {
+        color: var(--text-primary);
+      }
+      .show-hide-password-input {
+        padding-right: 2.75rem !important;
+      }
+      .brand-visual-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-md);
+      }
+      @media (max-width: 991.98px) {
+        .brand-side {
+          display: none !important;
+        }
+        .form-side {
+          padding: 2rem 1.25rem;
+          min-height: 100vh;
+        }
+        .floating-theme-toggle {
+          top: 1.25rem;
+          right: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Theme Switcher -->
+    <div class="floating-theme-toggle">
+      <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme" id="themeToggleBtn">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+
+    <div class="container-fluid p-0">
+      <div class="split-container row g-0">
+        <!-- Left Side: Interactive Branding / Visual Showcase -->
+        <div class="brand-side col-lg-6 col-xl-7 d-flex flex-column justify-content-between">
+          <!-- Top Brand Identifier -->
+          <div class="d-flex align-items-center gap-2" data-aos="fade-down" data-aos-duration="600">
+            <div class="brand-icon-wrapper" style="width: 42px; height: 42px;">
+              <i class="fa-solid fa-users-gear fs-5"></i>
+            </div>
+            <span class="brand-text fs-4" style="background: linear-gradient(135deg, var(--text-primary), var(--primary-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AuraHR</span>
+          </div>
+
+          <!-- Mid Section: Premium Slogan & Stats Presentation -->
+          <div class="my-auto py-5">
+            <div class="max-w-xl" style="max-width: 580px;">
+              <h1 class="brand-hero-title mb-3" data-aos="fade-up" data-aos-duration="800">
+                Workplace Intelligence, <br>Crafted Beautifully.
+              </h1>
+              <p class="text-secondary fs-6 mb-5" style="line-height: 1.6;" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                AuraHR integrates your entire workforce lifecycle into a single, high-contrast, fully glassmorphic dashboard. Enjoy real-time presence logging, payroll calculations, and talent management with elegant speed.
+              </p>
+
+              <!-- Statistics Widgets -->
+              <div class="row g-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                <div class="col-sm-6">
+                  <div class="brand-visual-card">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="brand-icon-wrapper" style="width: 44px; height: 44px; background: var(--success-bg); color: var(--success); box-shadow: none;">
+                        <i class="fa-solid fa-calendar-check"></i>
+                      </div>
+                      <div>
+                        <div class="text-muted small fw-600">On-Time Presence</div>
+                        <div class="h5 fw-800 text-primary mb-0">98.4%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="brand-visual-card">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="brand-icon-wrapper" style="width: 44px; height: 44px; background: rgba(var(--primary-accent-rgb), 0.08); color: var(--primary-accent); box-shadow: none;">
+                        <i class="fa-solid fa-user-group"></i>
+                      </div>
+                      <div>
+                        <div class="text-muted small fw-600">Active Talent Pool</div>
+                        <div class="h5 fw-800 text-primary mb-0">1,248</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Information -->
+          <div class="text-muted small d-flex justify-content-between border-top pt-4" style="border-color: var(--border-color) !important;" data-aos="fade-up" data-aos-duration="600">
+            <span>&copy; 2026 AuraHR Technologies Inc.</span>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-decoration-none text-muted">Legal</a>
+              <span>&bull;</span>
+              <a href="#" class="text-decoration-none text-muted">Privacy</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Secure Authentication Form -->
+        <div class="form-side col-12 col-lg-6 col-xl-5">
+          <div class="login-box" data-aos="zoom-in" data-aos-duration="800">
+            <!-- Mobile Brand Header (shows up when left side is hidden) -->
+            <div class="text-center d-lg-none mb-4">
+              <div class="brand-icon-wrapper mx-auto mb-2" style="width: 48px; height: 48px;">
+                <i class="fa-solid fa-users-gear fs-4"></i>
+              </div>
+              <h2 class="h3 fw-800 text-primary mb-1">AuraHR</h2>
+              <p class="text-secondary small">Premium Human Resource Management Workspace</p>
+            </div>
+
+            <!-- Login Form Card -->
+            <div class="glow-card">
+              <div class="mb-4">
+                <h3 class="h4 fw-800 text-primary mb-1">Secure Workspace Access</h3>
+                <p class="text-secondary small mb-0">Provide valid workspace credentials to access the administrative panel.</p>
+              </div>
+
+              <!-- Main Login Form -->
+              <form action="index.html" method="GET" class="needs-validation" novalidate id="loginForm">
+                <!-- Email Input -->
+                <div class="mb-3">
+                  <label for="emailInput" class="form-label text-secondary small fw-600 mb-1">Work Email</label>
+                  <div class="input-group search-input-group border rounded" style="background: var(--bg-primary);">
+                    <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" class="form-control border-0 bg-transparent py-2.5 text-primary" id="emailInput" placeholder="sarah.jenkins@aurahr.com" required value="sarah.jenkins@aurahr.com" style="box-shadow: none; font-size: 0.9rem;">
+                    <div class="invalid-feedback px-3 pb-2 small">Please enter a valid work email address.</div>
+                  </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label for="passwordInput" class="form-label text-secondary small fw-600 mb-0">Password</label>
+                    <a href="forgot-password.html" class="text-decoration-none small text-primary fw-600" id="forgotPasswordLink">Forgot Password?</a>
+                  </div>
+                  <div class="form-side-custom form-floating-custom input-group search-input-group border rounded" style="background: var(--bg-primary);">
+                    <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control border-0 bg-transparent py-2.5 text-primary show-hide-password-input" id="passwordInput" placeholder="••••••••••••" required value="admin123" style="box-shadow: none; font-size: 0.9rem;">
+                    <button type="button" class="password-toggle-btn" id="passwordToggleBtn" aria-label="Toggle Password Visibility">
+                      <i class="fa-solid fa-eye" id="passwordToggleIcon"></i>
+                    </button>
+                    <div class="invalid-feedback px-3 pb-2 small">Password is required.</div>
+                  </div>
+                </div>
+
+                <!-- Remember Me Checkbox -->
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMeCheck" style="cursor: pointer; border-color: var(--input-border);">
+                    <label class="form-check-label text-secondary small fw-500" for="rememberMeCheck" style="cursor: pointer; user-select: none;">
+                      Remember this device
+                    </label>
+                  </div>
+                  <a href="lock-screen.html" class="text-decoration-none small text-secondary fw-500"><i class="fa-solid fa-shield-halved me-1"></i>Lock Screen</a>
+                </div>
+
+                <!-- Login Trigger Button -->
+                <button type="submit" class="gradient-btn w-full justify-content-center py-2.5" id="loginSubmitBtn" style="width: 100%;">
+                  <span>Sign In to Workspace</span>
+                  <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i>
+                </button>
+              </form>
+
+              <!-- Footer navigation linking -->
+              <div class="text-center mt-4 pt-2 border-top" style="border-color: var(--border-color) !important;">
+                <span class="text-secondary small">Don't have an account? <a href="register.html" class="text-decoration-none text-primary fw-600">Register Workspace</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Form Validation UI
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+          loginForm.addEventListener('submit', (e) => {
+            if (!loginForm.checkValidity()) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            loginForm.classList.add('was-validated');
+          });
+        }
+
+        // Show/Hide Password Toggle
+        const passwordInput = document.getElementById('passwordInput');
+        const toggleBtn = document.getElementById('passwordToggleBtn');
+        const toggleIcon = document.getElementById('passwordToggleIcon');
+
+        if (toggleBtn && passwordInput && toggleIcon) {
+          toggleBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            toggleIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

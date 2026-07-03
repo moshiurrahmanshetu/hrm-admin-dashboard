@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Job Offers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      .active-sub-nav {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow) !important;
+      }
+      .filter-input {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-primary);
+        border-radius: var(--radius-md);
+        padding: 0.5rem 1rem;
+        font-size: 0.88rem;
+        transition: all var(--transition-fast);
+      }
+      .filter-input:focus {
+        border-color: var(--primary-accent);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.1);
+      }
+      .form-label-premium {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
+      }
+      .offer-letter-box {
+        background: #ffffff !important;
+        color: #1e293b !important;
+        border: 1px solid #e2e8f0;
+        border-radius: var(--radius-md);
+        padding: 2.5rem;
+        box-shadow: var(--shadow-soft-md);
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+      }
+      [data-theme="dark"] .offer-letter-box {
+        /* Keep offer letter white paper background even in dark mode for printable layout! */
+        background: #ffffff !important;
+        color: #1e293b !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumbs -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Job Offers Manager</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="recruitment.html" class="text-decoration-none text-muted">Recruitment</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Offers</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" id="sendOfferBtn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Send New Offer</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Recruitment Module Nav Tabs -->
+            <div class="d-flex flex-wrap gap-2 mb-4" data-aos="fade-right" data-aos-duration="600">
+              <a href="recruitment.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-chart-pie me-2"></i>Overview
+              </a>
+              <a href="job-openings.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-briefcase me-2"></i>Job Openings
+              </a>
+              <a href="candidates.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-user-group me-2"></i>Candidates
+              </a>
+              <a href="interviews.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-calendar-days me-2"></i>Interviews
+              </a>
+              <a href="offers.html" class="outline-btn active-sub-nav text-decoration-none">
+                <i class="fa-solid fa-file-signature me-2"></i>Offers
+              </a>
+            </div>
+
+            <!-- Filter & Search Bar -->
+            <div class="glass-card mb-4 p-3" data-aos="fade-up" data-aos-duration="600">
+              <div class="row g-3 align-items-end">
+                <div class="col-lg-6 col-md-6">
+                  <label class="form-label-premium">Search Offers</label>
+                  <div class="search-input-group w-100">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="searchOffersInput" placeholder="Search by candidate name or position...">
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                  <label class="form-label-premium">Offer Status</label>
+                  <select class="filter-input w-100" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Sent">Sent</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Declined">Declined</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-12 text-md-end">
+                  <button class="outline-btn w-100 py-2 d-flex justify-content-center" id="resetFilters">
+                    <i class="fa-solid fa-filter-circle-xmark me-2"></i>Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Offers Table Card -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="table-premium-wrapper">
+                <table class="table-premium">
+                  <thead>
+                    <tr>
+                      <th>Offer ID</th>
+                      <th>Candidate</th>
+                      <th>Offered Position</th>
+                      <th>Offered Salary</th>
+                      <th>Expected Joining Date</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="offersTableBody">
+                    <!-- Dynamically populated -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination footer -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 gap-3">
+                <div class="text-secondary fs-xs" id="tableRecordsCount">
+                  Showing 0 to 0 of 0 offers
+                </div>
+                <nav aria-label="Table navigation">
+                  <ul class="pagination pagination-sm mb-0" id="tablePagination">
+                    <!-- Loaded dynamically -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <!-- Send New Offer Modal -->
+        <div class="modal fade" id="sendOfferModal" tabindex="-1" aria-labelledby="sendOfferModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0" style="background: var(--card-bg-solid); border: 1px solid var(--card-border); overflow: hidden;">
+              <div class="modal-header px-4 pt-4 pb-3 border-0 d-flex justify-content-between">
+                <h5 class="modal-title fw-800 text-primary" id="sendOfferModalLabel">Send New Job Offer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--close-filter);"></button>
+              </div>
+              <form id="sendOfferForm" novalidate>
+                <div class="modal-body px-4 py-2">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="offCandidateSelect" class="form-label-premium">Choose Candidate *</label>
+                      <select class="filter-input w-100" id="offCandidateSelect" required>
+                        <!-- Loaded dynamically -->
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="offPositionInput" class="form-label-premium">Position *</label>
+                      <input type="text" class="filter-input w-100" id="offPositionInput" required placeholder="Select a candidate to load their position" readonly style="background: rgba(var(--primary-accent-rgb), 0.01);">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="offSalaryInput" class="form-label-premium">Offered Annual Salary ($) *</label>
+                      <input type="number" class="filter-input w-100" id="offSalaryInput" required min="1" placeholder="e.g. 110000">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="offDateInput" class="form-label-premium">Expected Joining Date *</label>
+                      <input type="date" class="filter-input w-100" id="offDateInput" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 pt-3 pb-4 border-0 d-flex gap-2 justify-content-end">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn" id="sendOfferSubmitBtn">Send Offer Email</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- View Offer Letter Modal -->
+        <div class="modal fade" id="viewOfferModal" tabindex="-1" aria-labelledby="viewOfferModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content glass-card p-0" style="background: var(--card-bg-solid); border: 1px solid var(--card-border); overflow: hidden;">
+              <div class="modal-header px-4 pt-4 pb-3 border-0 d-flex justify-content-between">
+                <h5 class="modal-title fw-800 text-primary" id="viewOfferModalLabel">View Job Offer Letter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--close-filter);"></button>
+              </div>
+              <div class="modal-body px-4 py-2">
+                <div class="offer-letter-box" id="offerLetterContainer">
+                  <!-- Generated dynamically -->
+                </div>
+              </div>
+              <div class="modal-footer px-4 pt-3 pb-4 border-0 d-flex gap-2 justify-content-end">
+                <button type="button" class="outline-btn" id="printOfferBtn"><i class="fa-solid fa-print me-1"></i>Print</button>
+                <button type="button" class="outline-btn text-danger border-danger-hover" id="downloadOfferBtn"><i class="fa-solid fa-file-pdf me-1"></i>Download PDF (Sim)</button>
+                <button type="button" class="gradient-btn" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Init AOS
+        if (typeof AOS !== 'undefined') {
+          AOS.init();
+        }
+
+        const tableBody = document.getElementById('offersTableBody');
+        const searchInput = document.getElementById('searchOffersInput');
+        const filterStatus = document.getElementById('filterStatus');
+        const resetBtn = document.getElementById('resetFilters');
+
+        const sendModalEl = document.getElementById('sendOfferModal');
+        const sendModal = new bootstrap.Modal(sendModalEl);
+        const sendOfferForm = document.getElementById('sendOfferForm');
+        const sendOfferBtn = document.getElementById('sendOfferBtn');
+        const offCandidateSelect = document.getElementById('offCandidateSelect');
+        const offPositionInput = document.getElementById('offPositionInput');
+
+        const viewModalEl = document.getElementById('viewOfferModal');
+        const viewModal = new bootstrap.Modal(viewModalEl);
+        const offerLetterContainer = document.getElementById('offerLetterContainer');
+        const printOfferBtn = document.getElementById('printOfferBtn');
+        const downloadOfferBtn = document.getElementById('downloadOfferBtn');
+
+        let allOffers = [];
+        let filteredOffers = [];
+        let currentPage = 1;
+        const rowsPerPage = 5;
+
+        // Load Offers data
+        function loadOffers() {
+          allOffers = window.AuraDB.getOffers();
+
+          // Populate candidates selection (Shortlisted/Interviewing ones)
+          const candidates = window.AuraDB.getCandidates();
+          offCandidateSelect.innerHTML = '<option value="">Select Candidate</option>';
+          candidates.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = `${c.name} (${c.position} - ${c.status})`;
+            offCandidateSelect.appendChild(opt);
+          });
+
+          applyFilters();
+        }
+
+        // Fill position on candidate change
+        offCandidateSelect.addEventListener('change', () => {
+          const candId = offCandidateSelect.value;
+          const candidates = window.AuraDB.getCandidates();
+          const cand = candidates.find(c => c.id === candId);
+          if (cand) {
+            offPositionInput.value = cand.position;
+          } else {
+            offPositionInput.value = '';
+          }
+        });
+
+        // Apply filters
+        function applyFilters() {
+          const searchVal = searchInput.value.toLowerCase().trim();
+          const statusVal = filterStatus.value;
+
+          filteredOffers = allOffers.filter(o => {
+            const matchesSearch = o.candidateName.toLowerCase().includes(searchVal) ||
+                                  o.position.toLowerCase().includes(searchVal);
+            const matchesStatus = statusVal === "" || o.status === statusVal;
+
+            return matchesSearch && matchesStatus;
+          });
+
+          currentPage = 1;
+          renderTable();
+        }
+
+        // Render Offers table
+        function renderTable() {
+          tableBody.innerHTML = '';
+          const totalRecords = filteredOffers.length;
+
+          if (totalRecords === 0) {
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted">No job offers found.</td></tr>';
+            document.getElementById('tableRecordsCount').textContent = 'Showing 0 to 0 of 0 offers';
+            document.getElementById('tablePagination').innerHTML = '';
+            return;
+          }
+
+          const startIndex = (currentPage - 1) * rowsPerPage;
+          const endIndex = Math.min(startIndex + rowsPerPage, totalRecords);
+          const paginated = filteredOffers.slice(startIndex, endIndex);
+
+          paginated.forEach(off => {
+            const tr = document.createElement('tr');
+            tr.className = 'bg-card-glow-hover';
+
+            let badgeClass = 'bg-secondary-bg text-secondary';
+            if (off.status === 'Sent') badgeClass = 'bg-primary-bg text-primary';
+            else if (off.status === 'Accepted') badgeClass = 'bg-success-bg text-success';
+            else if (off.status === 'Declined') badgeClass = 'bg-danger-bg text-danger';
+
+            const salaryFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(off.offeredSalary);
+
+            tr.innerHTML = `
+              <td><span class="font-monospace fw-700 text-secondary">${off.id}</span></td>
+              <td><span class="fw-700 text-primary fs-xs">${off.candidateName}</span></td>
+              <td><span class="text-secondary fs-xs fw-600">${off.position}</span></td>
+              <td><span class="fw-700 text-success">${salaryFormatted}</span></td>
+              <td><span class="text-secondary fs-xs">${off.joiningDate}</span></td>
+              <td><span class="badge ${badgeClass} fw-600 fs-xxs">${off.status}</span></td>
+              <td class="text-end">
+                <div class="d-flex justify-content-end gap-1">
+                  <button class="outline-btn py-1 px-2.5 fs-xxs view-letter-btn" data-id="${off.id}">
+                    <i class="fa-solid fa-file-invoice me-1"></i>View Offer
+                  </button>
+                  <button class="outline-btn py-1 px-2 fs-xxs accept-offer-btn text-success border-success-hover" data-id="${off.id}" title="Mark Accepted" ${off.status !== 'Sent' ? 'disabled' : ''}>
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button class="outline-btn py-1 px-2 fs-xxs decline-offer-btn text-danger border-danger-hover" data-id="${off.id}" title="Mark Declined" ${off.status !== 'Sent' ? 'disabled' : ''}>
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+
+          document.getElementById('tableRecordsCount').textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalRecords} offers`;
+          renderPagination(totalRecords);
+        }
+
+        // Render Pagination
+        function renderPagination(totalRecords) {
+          const totalPages = Math.ceil(totalRecords / rowsPerPage);
+          const paginationEl = document.getElementById('tablePagination');
+          paginationEl.innerHTML = '';
+
+          if (totalPages <= 1) return;
+
+          // Prev
+          const prevLi = document.createElement('li');
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage - 1}"><i class="fa-solid fa-chevron-left"></i></a>`;
+          paginationEl.appendChild(prevLi);
+
+          // Pages
+          for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+            paginationEl.appendChild(li);
+          }
+
+          // Next
+          const nextLi = document.createElement('li');
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage + 1}"><i class="fa-solid fa-chevron-right"></i></a>`;
+          paginationEl.appendChild(nextLi);
+
+          paginationEl.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const page = parseInt(link.getAttribute('data-page'));
+              if (page > 0 && page <= totalPages) {
+                currentPage = page;
+                renderTable();
+              }
+            });
+          });
+        }
+
+        // Send Offer button click
+        sendOfferBtn.addEventListener('click', () => {
+          sendOfferForm.reset();
+          offPositionInput.value = '';
+          sendModal.show();
+        });
+
+        // Submit Offer form
+        sendOfferForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (!sendOfferForm.checkValidity()) {
+            sendOfferForm.classList.add('was-validated');
+            return;
+          }
+
+          const candId = offCandidateSelect.value;
+          const candidates = window.AuraDB.getCandidates();
+          const cand = candidates.find(c => c.id === candId);
+
+          const offerData = {
+            candidateId: candId,
+            candidateName: cand ? cand.name : 'Unknown Candidate',
+            position: offPositionInput.value,
+            offeredSalary: parseInt(document.getElementById('offSalaryInput').value),
+            joiningDate: document.getElementById('offDateInput').value,
+            status: 'Sent'
+          };
+
+          const nextId = window.AuraDB.generateNextOfferId();
+          const newOffer = { id: nextId, ...offerData };
+          
+          window.AuraDB.addOffer(newOffer);
+
+          // Update candidate status to "Offered"
+          if (cand) {
+            window.AuraDB.updateCandidate(cand.id, { status: 'Offered' });
+          }
+
+          sendModal.hide();
+          loadOffers();
+
+          if (typeof window.showToast === 'function') {
+            window.showToast(`Offer ${nextId} sent to ${offerData.candidateName} successfully. Candidate stage updated to Offered.`, 'success');
+          } else {
+            alert(`Offer sent successfully!`);
+          }
+        });
+
+        // Click actions on list (View, Accept, Decline)
+        tableBody.addEventListener('click', (e) => {
+          const viewBtn = e.target.closest('.view-letter-btn');
+          if (viewBtn) {
+            const id = viewBtn.getAttribute('data-id');
+            const off = allOffers.find(o => o.id === id);
+            if (off) {
+              generateOfferLetter(off);
+              viewModal.show();
+            }
+          }
+
+          const acceptBtn = e.target.closest('.accept-offer-btn');
+          if (acceptBtn) {
+            const id = acceptBtn.getAttribute('data-id');
+            const off = allOffers.find(o => o.id === id);
+            if (off && confirm(`Mark offer ${id} as Accepted by ${off.candidateName}?`)) {
+              window.AuraDB.updateOffer(id, { status: 'Accepted' });
+              
+              // Promote candidate status to "Hired"
+              const candidates = window.AuraDB.getCandidates();
+              const cand = candidates.find(c => c.name === off.candidateName);
+              if (cand) {
+                window.AuraDB.updateCandidate(cand.id, { status: 'Hired' });
+              }
+
+              loadOffers();
+              if (typeof window.showToast === 'function') {
+                window.showToast(`Offer ${id} Accepted. Candidate marked as Hired.`, 'success');
+              } else {
+                alert(`Offer marked as accepted.`);
+              }
+            }
+          }
+
+          const declineBtn = e.target.closest('.decline-offer-btn');
+          if (declineBtn) {
+            const id = declineBtn.getAttribute('data-id');
+            const off = allOffers.find(o => o.id === id);
+            if (off && confirm(`Mark offer ${id} as Declined?`)) {
+              window.AuraDB.updateOffer(id, { status: 'Declined' });
+              
+              // Update candidate status to "Rejected" (or kept as is)
+              const candidates = window.AuraDB.getCandidates();
+              const cand = candidates.find(c => c.name === off.candidateName);
+              if (cand) {
+                window.AuraDB.updateCandidate(cand.id, { status: 'Rejected' });
+              }
+
+              loadOffers();
+              if (typeof window.showToast === 'function') {
+                window.showToast(`Offer ${id} marked as Declined.`, 'danger');
+              } else {
+                alert(`Offer marked as declined.`);
+              }
+            }
+          }
+        });
+
+        // Generate printable letter HTML
+        function generateOfferLetter(off) {
+          const salaryFormatted = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(off.offeredSalary);
+          const formattedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          const joiningDateFormatted = new Date(off.joiningDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+          offerLetterContainer.innerHTML = `
+            <div style="text-align: right; margin-bottom: 2rem; font-size: 0.85rem; color: #475569;">
+              <strong>AuraHR Technologies Corp.</strong><br>
+              100 Infinity Loop, Cupertino, CA 95014<br>
+              hr@aurahr.example.com
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+              Date: ${formattedDate}<br><br>
+              To,<br>
+              <strong>${off.candidateName}</strong><br>
+              Applicant Ref: ${off.candidateId || 'N/A'}<br>
+            </div>
+            <h4 style="text-align: center; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2rem; font-size: 1.15rem;">
+              Subject: Formal Job Offer for ${off.position}
+            </h4>
+            <div style="margin-bottom: 1.5rem;">
+              Dear ${off.candidateName.split(' ')[0]},
+            </div>
+            <p style="margin-bottom: 1.25rem;">
+              We are absolutely thrilled to offer you the full-time position of <strong>${off.position}</strong> at AuraHR Technologies Corp. 
+              We were incredibly impressed by your qualifications, key technical expertise, and outstanding performance during our rigorous 
+              recruitment selection rounds. We are confident that your talents will contribute significantly to the progress of our engineering products.
+            </p>
+            <p style="margin-bottom: 1.25rem;">
+              As discussed, the core parameters and benefits of this job proposal include:
+            </p>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem;">
+              <tr>
+                <td style="padding: 0.4rem 0; width: 40%; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Job Title:</td>
+                <td style="padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9;">${off.position}</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.4rem 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Offered Gross Salary:</td>
+                <td style="padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9;"><strong>${salaryFormatted}</strong> per annum</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.4rem 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Expected Commencement Date:</td>
+                <td style="padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9;">${joiningDateFormatted}</td>
+              </tr>
+              <tr>
+                <td style="padding: 0.4rem 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Employment Terms:</td>
+                <td style="padding: 0.4rem 0; border-bottom: 1px solid #f1f5f9;">Full-Time, exempt status with full premium health perks</td>
+              </tr>
+            </table>
+            <p style="margin-bottom: 2.5rem;">
+              To accept this offer, please sign, date, and return a copy of this proposal. We look forward to welcome you to our growing product crew!
+            </p>
+            <div class="row pt-4" style="margin-top: 2rem;">
+              <div class="col-6">
+                <div style="border-top: 1px solid #cbd5e1; width: 80%; padding-top: 0.5rem; font-size: 0.8rem; color: #475569;">
+                  <strong>Sarah Jenkins</strong><br>
+                  HR Director, AuraHR
+                </div>
+              </div>
+              <div class="col-6">
+                <div style="border-top: 1px solid #cbd5e1; width: 80%; padding-top: 0.5rem; font-size: 0.8rem; color: #475569;">
+                  <strong>Candidate Signature</strong><br>
+                  Date: __________________
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // Print and Download click listeners (Simulated)
+        printOfferBtn.addEventListener('click', () => {
+          const printWindow = window.open('', '_blank');
+          printWindow.document.write('<html><head><title>Print Job Offer Letter</title>');
+          printWindow.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">');
+          printWindow.document.write('</head><body>');
+          printWindow.document.write('<div class="container py-5"><div class="p-5 border rounded" style="font-family: Georgia, serif; line-height: 1.6;">');
+          printWindow.document.write(offerLetterContainer.innerHTML);
+          printWindow.document.write('</div></div></body></html>');
+          printWindow.document.close();
+          printWindow.focus();
+          setTimeout(() => {
+            printWindow.print();
+            printWindow.close();
+          }, 500);
+        });
+
+        downloadOfferBtn.addEventListener('click', () => {
+          alert('Simulating PDF compilation: Offer_Letter.pdf generated and downloaded successfully.');
+        });
+
+        // Search and Filters
+        searchInput.addEventListener('input', applyFilters);
+        filterStatus.addEventListener('change', applyFilters);
+
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          filterStatus.value = '';
+          applyFilters();
+        });
+
+        // Initial Load
+        loadOffers();
+      });
+    </script>
+  </body>
+</html>

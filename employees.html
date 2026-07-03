@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Employees Module Foundation</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <!-- Sidebar Drawer Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="designations.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>Designations</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <!-- Sticky Header / Navbar -->
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+
+          <div class="header-nav-right">
+            <!-- Theme Trigger -->
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Message Dropdown -->
+            <div class="dropdown">
+              <button class="header-action-btn" type="button" id="msgDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-envelope"></i>
+                <span class="btn-badge"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="msgDropdown">
+                <div class="dropdown-header-premium">
+                  <h6>Recent Messages</h6>
+                  <span class="badge rounded-pill bg-primary">2 New</span>
+                </div>
+                <a href="#" class="dropdown-item-premium">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=128&auto=format&fit=crop" alt="Avatar" class="dropdown-item-avatar">
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">Marcus Vance</div>
+                    <div class="dropdown-item-desc">Could you review the updated payroll calculations for June?</div>
+                    <div class="dropdown-item-time">10 mins ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-item-premium">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=128&auto=format&fit=crop" alt="Avatar" class="dropdown-item-avatar">
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">Emily Rose</div>
+                    <div class="dropdown-item-desc">New leave request submitted. Needs approval.</div>
+                    <div class="dropdown-item-time">1 hour ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-footer-premium">View All Messages</a>
+              </div>
+            </div>
+
+            <!-- Alert Dropdown -->
+            <div class="dropdown">
+              <button class="header-action-btn" type="button" id="alertDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-bell"></i>
+                <span class="btn-badge"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="alertDropdown">
+                <div class="dropdown-header-premium">
+                  <h6>System Alerts</h6>
+                  <span class="badge rounded-pill bg-danger">2 Warning</span>
+                </div>
+                <a href="#" class="dropdown-item-premium">
+                  <div class="dropdown-item-icon-wrapper bg-danger text-white">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">System Update Required</div>
+                    <div class="dropdown-item-desc">The core recruitment module will undergo maintenance at midnight.</div>
+                    <div class="dropdown-item-time">2 hours ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-item-premium">
+                  <div class="dropdown-item-icon-wrapper bg-success text-white">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">Payroll Disbursed Successfully</div>
+                    <div class="dropdown-item-desc">All departments payroll completed with 100% confirmation.</div>
+                    <div class="dropdown-item-time">Yesterday</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-footer-premium">View All Alerts</a>
+              </div>
+            </div>
+
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Workspace Body -->
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Navigation Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Employees Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Employees Management</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="add-employee.html" class="gradient-btn text-decoration-none">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add Employee</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Stats Dashboard Row -->
+            <div class="row g-3 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-3 d-flex align-items-center justify-content-between h-100 mb-0">
+                  <div>
+                    <span class="text-muted fs-xxs fw-700 text-uppercase">Total Employees</span>
+                    <h4 class="fw-800 text-primary mb-0 mt-1" id="statTotal">--</h4>
+                  </div>
+                  <div class="brand-icon-wrapper bg-primary-bg animate-card-hover" style="width: 44px; height: 44px; background: rgba(79, 70, 229, 0.08); color: var(--primary-accent); box-shadow: none;">
+                    <i class="fa-solid fa-user-group fs-5"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-3 d-flex align-items-center justify-content-between h-100 mb-0">
+                  <div>
+                    <span class="text-muted fs-xxs fw-700 text-uppercase">Active Staff</span>
+                    <h4 class="fw-800 text-success mb-0 mt-1" id="statActive">--</h4>
+                  </div>
+                  <div class="brand-icon-wrapper bg-success-bg" style="width: 44px; height: 44px; color: var(--success); box-shadow: none;">
+                    <i class="fa-solid fa-user-check fs-5"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-3 d-flex align-items-center justify-content-between h-100 mb-0">
+                  <div>
+                    <span class="text-muted fs-xxs fw-700 text-uppercase">On Leave</span>
+                    <h4 class="fw-800 text-warning mb-0 mt-1" id="statOnLeave">--</h4>
+                  </div>
+                  <div class="brand-icon-wrapper bg-warning-bg" style="width: 44px; height: 44px; color: var(--warning); box-shadow: none;">
+                    <i class="fa-solid fa-plane-departure fs-5"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-3 d-flex align-items-center justify-content-between h-100 mb-0">
+                  <div>
+                    <span class="text-muted fs-xxs fw-700 text-uppercase">Suspended</span>
+                    <h4 class="fw-800 text-danger mb-0 mt-1" id="statSuspended">--</h4>
+                  </div>
+                  <div class="brand-icon-wrapper bg-danger-bg" style="width: 44px; height: 44px; color: var(--danger); box-shadow: none;">
+                    <i class="fa-solid fa-user-slash fs-5"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page Foundation Container -->
+            <div class="glass-card mb-4" data-aos="fade-up" data-aos-duration="800">
+              <!-- Toolbar / Search and Filters -->
+              <div class="row g-3 mb-4 align-items-center">
+                <div class="col-12 col-md-4">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" id="employeeSearch" class="search-input" placeholder="Search by name, email, ID...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-2">
+                  <select id="filterDept" class="form-select form-control-premium py-2 text-secondary fs-xs">
+                    <option value="">All Departments</option>
+                    <option value="HR">HR</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Design">Design</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-2">
+                  <select id="filterStatus" class="form-select form-control-premium py-2 text-secondary fs-xs">
+                    <option value="">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="On Leave">On Leave</option>
+                    <option value="Suspended">Suspended</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-2">
+                  <select id="filterType" class="form-select form-control-premium py-2 text-secondary fs-xs">
+                    <option value="">All Types</option>
+                    <option value="Full-Time">Full-Time</option>
+                    <option value="Part-Time">Part-Time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Intern">Intern</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-2 d-flex gap-2">
+                  <select id="sortBy" class="form-select form-control-premium py-2 text-secondary fs-xs">
+                    <option value="name">Sort: Name</option>
+                    <option value="id">Sort: ID</option>
+                    <option value="joiningDate">Sort: Joining Date</option>
+                  </select>
+                  <button id="resetFilters" class="outline-btn p-2" title="Reset Filters" style="height: 38px; width: 38px; justify-content: center;">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Employee Data Table -->
+              <div class="table-premium-wrapper">
+                <table class="table-premium">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>ID</th>
+                      <th>Department</th>
+                      <th>Designation</th>
+                      <th>Joining Date</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="employeeTableBody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination Footer -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 pt-3 border-top border-dashed text-secondary">
+                <div class="fs-xs mb-3 mb-sm-0 text-muted" id="paginationInfo">
+                  Showing 1 to 5 of 10 employees
+                </div>
+                <nav aria-label="Table pagination">
+                  <ul class="pagination pagination-sm mb-0 gap-1" id="paginationControls">
+                    <!-- Pagination buttons -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Professional Footer -->
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Page Specific Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        // Dom Elements
+        const searchInput = document.getElementById("employeeSearch");
+        const filterDept = document.getElementById("filterDept");
+        const filterStatus = document.getElementById("filterStatus");
+        const filterType = document.getElementById("filterType");
+        const sortBy = document.getElementById("sortBy");
+        const resetBtn = document.getElementById("resetFilters");
+        const tableBody = document.getElementById("employeeTableBody");
+        const paginationInfo = document.getElementById("paginationInfo");
+        const paginationControls = document.getElementById("paginationControls");
+
+        // KPI elements
+        const statTotal = document.getElementById("statTotal");
+        const statActive = document.getElementById("statActive");
+        const statOnLeave = document.getElementById("statOnLeave");
+        const statSuspended = document.getElementById("statSuspended");
+
+        function updateKPIs(employees) {
+          statTotal.textContent = employees.length;
+          statActive.textContent = employees.filter(e => e.status === "Active").length;
+          statOnLeave.textContent = employees.filter(e => e.status === "On Leave").length;
+          statSuspended.textContent = employees.filter(e => e.status === "Suspended").length;
+        }
+
+        function render() {
+          const allEmployees = window.AuraDB.getEmployees();
+          updateKPIs(allEmployees);
+
+          // Filtering
+          const query = searchInput.value.toLowerCase().trim();
+          const dept = filterDept.value;
+          const status = filterStatus.value;
+          const type = filterType.value;
+          const sortVal = sortBy.value;
+
+          let filtered = allEmployees.filter(e => {
+            const matchesQuery = !query || 
+              e.name.toLowerCase().includes(query) || 
+              e.id.toLowerCase().includes(query) || 
+              e.email.toLowerCase().includes(query) ||
+              e.designation.toLowerCase().includes(query);
+            
+            const matchesDept = !dept || e.department === dept;
+            const matchesStatus = !status || e.status === status;
+            const matchesType = !type || e.employmentType === type;
+
+            return matchesQuery && matchesDept && matchesStatus && matchesType;
+          });
+
+          // Sorting
+          filtered.sort((a, b) => {
+            if (sortVal === "name") {
+              return a.name.localeCompare(b.name);
+            } else if (sortVal === "id") {
+              return a.id.localeCompare(b.id);
+            } else if (sortVal === "joiningDate") {
+              return new Date(a.joiningDate) - new Date(b.joiningDate);
+            }
+            return 0;
+          });
+
+          // Pagination calculations
+          const totalItems = filtered.length;
+          const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+          
+          if (currentPage > totalPages) {
+            currentPage = totalPages;
+          }
+
+          const startIdx = (currentPage - 1) * itemsPerPage;
+          const endIdx = Math.min(startIdx + itemsPerPage, totalItems);
+          const paginated = filtered.slice(startIdx, endIdx);
+
+          // Update Info
+          if (totalItems === 0) {
+            paginationInfo.textContent = "No employees found";
+          } else {
+            paginationInfo.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalItems} employees`;
+          }
+
+          // Render Rows
+          tableBody.innerHTML = "";
+          if (paginated.length === 0) {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="7" class="text-center py-5 text-muted">
+                  <i class="fa-regular fa-folder-open d-block fs-2 mb-2 text-primary"></i>
+                  <div>No employees match your search criteria.</div>
+                </td>
+              </tr>
+            `;
+          } else {
+            paginated.forEach(emp => {
+              let statusBadgeClass = "premium-badge-success";
+              if (emp.status === "On Leave") statusBadgeClass = "premium-badge-warning";
+              else if (emp.status === "Suspended") statusBadgeClass = "premium-badge-danger";
+
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="${emp.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128&auto=format&fit=crop'}" alt="${emp.name}" class="rounded-circle border" style="width: 40px; height: 40px; object-fit: cover;">
+                    <div>
+                      <a href="employee-details.html?id=${emp.id}" class="fw-700 text-primary text-decoration-none hover-underline d-block fs-xs">${emp.name}</a>
+                      <span class="text-secondary fs-xxs d-block" style="opacity: 0.8;">${emp.email}</span>
+                    </div>
+                  </div>
+                </td>
+                <td><code class="fs-xxs text-secondary fw-500 font-mono">${emp.id}</code></td>
+                <td><span class="fs-xs text-primary fw-600">${emp.department}</span></td>
+                <td><span class="fs-xs text-secondary">${emp.designation}</span></td>
+                <td><span class="fs-xs text-muted font-mono">${emp.joiningDate}</span></td>
+                <td><span class="premium-badge ${statusBadgeClass} fs-xxs">${emp.status}</span></td>
+                <td class="text-end">
+                  <div class="dropdown">
+                    <button class="header-action-btn border-0 mx-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 32px; height: 32px;">
+                      <i class="fa-solid fa-ellipsis-vertical fs-xs"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" style="width: 160px; min-width: auto; padding: 4px 0;">
+                      <li>
+                        <a class="dropdown-item-premium py-2 fs-xs" href="employee-details.html?id=${emp.id}">
+                          <i class="fa-solid fa-eye me-2 text-info"></i> View Details
+                        </a>
+                      </li>
+                      <li>
+                        <button class="dropdown-item-premium py-2 fs-xs border-0 bg-transparent w-100 text-start text-danger btn-delete-emp" data-id="${emp.id}" data-name="${emp.name}">
+                          <i class="fa-solid fa-user-slash me-2 text-danger"></i> Terminate
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              `;
+              tableBody.appendChild(row);
+            });
+          }
+
+          // Render Pagination Controls
+          paginationControls.innerHTML = "";
+          
+          // Prev button
+          const prevLi = document.createElement("li");
+          prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+          prevLi.innerHTML = `<button class="page-link border-0 rounded bg-transparent fs-xxs py-1 px-2" style="color: var(--text-secondary);"><i class="fa-solid fa-chevron-left"></i></button>`;
+          if (currentPage > 1) {
+            prevLi.addEventListener("click", () => {
+              currentPage--;
+              render();
+            });
+          }
+          paginationControls.appendChild(prevLi);
+
+          // Page numbers
+          for (let i = 1; i <= totalPages; i++) {
+            const numLi = document.createElement("li");
+            numLi.className = `page-item ${currentPage === i ? "active" : ""}`;
+            numLi.innerHTML = `
+              <button class="page-link border-0 rounded fs-xxs py-1 px-2 fw-600" style="${currentPage === i ? 'background: var(--primary-accent) !important; color: white !important;' : 'background: transparent; color: var(--text-secondary);'}">
+                ${i}
+              </button>
+            `;
+            numLi.addEventListener("click", () => {
+              currentPage = i;
+              render();
+            });
+            paginationControls.appendChild(numLi);
+          }
+
+          // Next button
+          const nextLi = document.createElement("li");
+          nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+          nextLi.innerHTML = `<button class="page-link border-0 rounded bg-transparent fs-xxs py-1 px-2" style="color: var(--text-secondary);"><i class="fa-solid fa-chevron-right"></i></button>`;
+          if (currentPage < totalPages) {
+            nextLi.addEventListener("click", () => {
+              currentPage++;
+              render();
+            });
+          }
+          paginationControls.appendChild(nextLi);
+        }
+
+        // Event Listeners
+        searchInput.addEventListener("input", () => {
+          currentPage = 1;
+          render();
+        });
+        filterDept.addEventListener("change", () => {
+          currentPage = 1;
+          render();
+        });
+        filterStatus.addEventListener("change", () => {
+          currentPage = 1;
+          render();
+        });
+        filterType.addEventListener("change", () => {
+          currentPage = 1;
+          render();
+        });
+        sortBy.addEventListener("change", () => {
+          currentPage = 1;
+          render();
+        });
+
+        resetBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          filterDept.value = "";
+          filterStatus.value = "";
+          filterType.value = "";
+          sortBy.value = "name";
+          currentPage = 1;
+          render();
+          showPageToast("Filters reset successfully.", "info");
+        });
+
+        // Delete confirmation
+        tableBody.addEventListener("click", (e) => {
+          const deleteBtn = e.target.closest(".btn-delete-emp");
+          if (!deleteBtn) return;
+
+          const empId = deleteBtn.getAttribute("data-id");
+          const empName = deleteBtn.getAttribute("data-name");
+
+          if (confirm(`Are you absolutely sure you want to terminate employment of ${empName} (${empId})? This action cannot be undone.`)) {
+            window.AuraDB.deleteEmployee(empId);
+            showPageToast(`Employment of ${empName} terminated successfully.`, "danger");
+            render();
+          }
+        });
+
+        // Initialize view
+        render();
+
+        // Helper Page Toast Engine
+        function showPageToast(message, type = 'success') {
+          let container = document.getElementById('toastContainer');
+          if (!container) {
+            container = document.createElement('div');
+            container.id = 'toastContainer';
+            container.style.position = 'fixed';
+            container.style.bottom = '2rem';
+            container.style.right = '2rem';
+            container.style.zIndex = '9999';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '0.5rem';
+            document.body.appendChild(container);
+          }
+          
+          const toast = document.createElement('div');
+          toast.className = 'glass-card p-3 d-flex align-items-center gap-3';
+          toast.style.width = '320px';
+          toast.style.background = 'var(--card-bg-solid)';
+          toast.style.border = '1px solid var(--card-border)';
+          
+          let colorHex = '#10b881';
+          let icon = 'fa-circle-check';
+          if (type === 'danger') { colorHex = '#ef4444'; icon = 'fa-circle-xmark'; }
+          else if (type === 'warning') { colorHex = '#f59e0b'; icon = 'fa-triangle-exclamation'; }
+          else if (type === 'info') { colorHex = '#06b6d4'; icon = 'fa-circle-info'; }
+
+          toast.style.borderLeft = `4px solid ${colorHex}`;
+          toast.style.boxShadow = 'var(--shadow-soft-lg)';
+          toast.style.borderRadius = 'var(--radius-md)';
+          toast.style.transition = 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(20px)';
+
+          toast.innerHTML = `
+              <div class="brand-icon-wrapper" style="width: 28px; height: 28px; background: rgba(79, 70, 229, 0.05); color: ${colorHex}; box-shadow: none; flex-shrink: 0; border-radius: var(--radius-sm);">
+                  <i class="fa-solid ${icon} fs-xs"></i>
+              </div>
+              <div class="flex-grow-1">
+                  <div class="fw-700 fs-xs text-primary" style="text-transform: uppercase; letter-spacing: 0.5px;">${type === 'danger' ? 'error' : type}</div>
+                  <div class="text-secondary fs-xxs" style="line-height: 1.3;">${message}</div>
+              </div>
+              <button class="border-0 bg-transparent text-muted fs-xs p-1" style="cursor: pointer;" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+          `;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+              toast.style.opacity = '1';
+              toast.style.transform = 'translateY(0)';
+          }, 10);
+          
+          setTimeout(() => {
+              toast.style.opacity = '0';
+              toast.style.transform = 'translateY(10px)';
+              setTimeout(() => toast.remove(), 350);
+          }, 4000);
+        }
+      });
+    </script>
+  </body>
+</html>

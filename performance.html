@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Performance KPIs & Ratings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Performance</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Performance Appraisal</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="appraisal.html" class="gradient-btn text-decoration-none">
+                  <i class="fa-solid fa-star"></i>
+                  <span>Initiate Appraisal</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Performance Sub-Navigation Tabs -->
+            <div class="glass-card mb-4 p-2" data-aos="fade-down" data-aos-duration="500">
+              <div class="nav nav-pills d-flex flex-wrap gap-2 performance-tabs">
+                <a href="performance.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2 active">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>KPIs & Ratings</span>
+                </a>
+                <a href="appraisal.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-file-signature"></i>
+                  <span>Appraisals</span>
+                </a>
+                <a href="goals.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <span>Goals & OKRs</span>
+                </a>
+                <a href="training.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Training Programs</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- KPI Summary Cards -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card h-100 p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <span class="text-secondary small fw-600">Average Rating</span>
+                      <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="avgRatingVal">4.54</h3>
+                    </div>
+                    <div class="brand-icon-wrapper bg-primary text-white" style="width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(79, 70, 229, 0.1) !important; color: var(--primary-accent) !important;">
+                      <i class="fa-solid fa-star fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="text-success small fw-700 d-flex align-items-center gap-1">
+                      <i class="fa-solid fa-arrow-trend-up"></i> +0.12
+                    </span>
+                    <span class="text-muted small">vs last quarter</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card h-100 p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <span class="text-secondary small fw-600">Avg Goals Completed</span>
+                      <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="avgGoalsVal">85.6%</h3>
+                    </div>
+                    <div class="brand-icon-wrapper bg-success text-white" style="width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.1) !important; color: var(--success) !important;">
+                      <i class="fa-solid fa-bullseye fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="progress mb-1" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 85.6%" aria-valuenow="85.6" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <span class="text-muted small">Target threshold: 80%</span>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card h-100 p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <span class="text-secondary small fw-600">Attendance Score</span>
+                      <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="avgAttendanceVal">96.2%</h3>
+                    </div>
+                    <div class="brand-icon-wrapper bg-info text-white" style="width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(34, 211, 238, 0.1) !important; color: var(--info) !important;">
+                      <i class="fa-solid fa-clock fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="text-success small fw-700 d-flex align-items-center gap-1">
+                      <i class="fa-solid fa-circle-check"></i> Excellent
+                    </span>
+                    <span class="text-muted small">consistent promptness</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card h-100 p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <span class="text-secondary small fw-600">Evaluation Progress</span>
+                      <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="evalProgressVal">8/8 Active</h3>
+                    </div>
+                    <div class="brand-icon-wrapper bg-warning text-white" style="width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(251, 191, 36, 0.1) !important; color: var(--warning) !important;">
+                      <i class="fa-solid fa-shield-halved fs-5"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="text-warning small fw-700 d-flex align-items-center gap-1">
+                      <i class="fa-solid fa-spinner fa-spin"></i> 100%
+                    </span>
+                    <span class="text-muted small">evaluations loaded</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search and Filter panel -->
+            <div class="glass-card mb-4 p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row g-3">
+                <div class="col-12 col-md-4">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="tableSearch" placeholder="Search employee name or designation...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterDept">
+                    <option value="">All Departments</option>
+                    <option value="HR">HR</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Design">Design</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Exceptional">Exceptional (4.5 - 5.0)</option>
+                    <option value="High Performer">High Performer (4.0 - 4.4)</option>
+                    <option value="Good Performer">Good Performer (3.0 - 3.9)</option>
+                    <option value="Needs Improvement">Needs Improvement (&lt; 3.0)</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-2">
+                  <button class="outline-btn w-100 justify-content-center" id="btnResetFilters">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Employee Performance Table -->
+            <div class="glass-card mb-4 p-0" data-aos="fade-up" data-aos-duration="800">
+              <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h4 class="h5 fw-700 text-primary mb-0">Employee Performance Metrics</h4>
+                <span class="badge bg-light text-primary border px-3 py-2 rounded-pill small" id="totalRecords">8 Records found</span>
+              </div>
+              <div class="table-premium-wrapper">
+                <table class="table-premium" id="performanceTable">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Department</th>
+                      <th>Designation</th>
+                      <th>Average Rating</th>
+                      <th>Goals Completed</th>
+                      <th>Attendance Score</th>
+                      <th>Performance Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="performanceTableBody">
+                    <!-- Loaded dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- CSS style helper specifically for stars and buttons -->
+            <style>
+              .performance-tabs .nav-link {
+                color: var(--text-secondary);
+                font-weight: 600;
+                font-size: 0.9rem;
+                border-radius: var(--radius-md) !important;
+                transition: all var(--transition-fast);
+                border: 1px solid transparent;
+              }
+              .performance-tabs .nav-link:hover {
+                background-color: var(--sidebar-item-hover);
+                color: var(--text-primary);
+              }
+              .performance-tabs .nav-link.active {
+                background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+                color: white !important;
+                box-shadow: 0 4px 12px var(--shadow-accent-glow);
+              }
+              .star-rating .fa-star {
+                color: #ffc107;
+              }
+              .star-rating .fa-star-half-stroke {
+                color: #ffc107;
+              }
+              .star-rating .fa-star.text-muted {
+                color: var(--text-muted) !important;
+                opacity: 0.3;
+              }
+            </style>
+
+            <!-- Dynamic Scripts for Searching, Filtering, and Rendering -->
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                // Initialize AOS
+                AOS.init({
+                  duration: 800,
+                  once: true
+                });
+
+                const EMPLOYEES_PERFORMANCE = [
+                  {
+                    id: "EMP-001",
+                    name: "Sarah Jenkins",
+                    department: "HR",
+                    designation: "HR Director",
+                    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.9,
+                    goalsCompleted: 95,
+                    attendance: 99.1,
+                    status: "Exceptional"
+                  },
+                  {
+                    id: "EMP-002",
+                    name: "Marcus Vance",
+                    department: "Engineering",
+                    designation: "Engineering Lead",
+                    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.8,
+                    goalsCompleted: 92,
+                    attendance: 98.4,
+                    status: "Exceptional"
+                  },
+                  {
+                    id: "EMP-003",
+                    name: "Emily Rose",
+                    department: "Marketing",
+                    designation: "Marketing Specialist",
+                    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.2,
+                    goalsCompleted: 78,
+                    attendance: 92.5,
+                    status: "High Performer"
+                  },
+                  {
+                    id: "EMP-004",
+                    name: "Robert Chen",
+                    department: "Engineering",
+                    designation: "System Architect",
+                    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.7,
+                    goalsCompleted: 88,
+                    attendance: 96.8,
+                    status: "Exceptional"
+                  },
+                  {
+                    id: "EMP-005",
+                    name: "Jessica Taylor",
+                    department: "Design",
+                    designation: "Senior UI/UX Designer",
+                    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.5,
+                    goalsCompleted: 85,
+                    attendance: 95.2,
+                    status: "Exceptional"
+                  },
+                  {
+                    id: "EMP-006",
+                    name: "David Kross",
+                    department: "Sales",
+                    designation: "Account Executive",
+                    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+                    rating: 3.8,
+                    goalsCompleted: 65,
+                    attendance: 89.4,
+                    status: "Good Performer"
+                  },
+                  {
+                    id: "EMP-007",
+                    name: "Chloe Bennett",
+                    department: "Finance",
+                    designation: "Senior Accountant",
+                    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+                    rating: 4.4,
+                    goalsCompleted: 82,
+                    attendance: 97.5,
+                    status: "High Performer"
+                  },
+                  {
+                    id: "EMP-008",
+                    name: "Alan Turing",
+                    department: "Engineering",
+                    designation: "AI Research Engineer",
+                    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop",
+                    rating: 5.0,
+                    goalsCompleted: 100,
+                    attendance: 98.9,
+                    status: "Exceptional"
+                  }
+                ];
+
+                const searchInput = document.getElementById("tableSearch");
+                const filterDept = document.getElementById("filterDept");
+                const filterStatus = document.getElementById("filterStatus");
+                const tableBody = document.getElementById("performanceTableBody");
+                const resetBtn = document.getElementById("btnResetFilters");
+                const totalRecords = document.getElementById("totalRecords");
+
+                // Metric fields
+                const avgRatingVal = document.getElementById("avgRatingVal");
+                const avgGoalsVal = document.getElementById("avgGoalsVal");
+                const avgAttendanceVal = document.getElementById("avgAttendanceVal");
+                const evalProgressVal = document.getElementById("evalProgressVal");
+
+                function getStarHTML(rating) {
+                  let html = "";
+                  const fullStars = Math.floor(rating);
+                  const hasHalf = rating % 1 >= 0.5;
+                  for (let i = 1; i <= 5; i++) {
+                    if (i <= fullStars) {
+                      html += '<i class="fa-solid fa-star"></i>';
+                    } else if (i === fullStars + 1 && hasHalf) {
+                      html += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    } else {
+                      html += '<i class="fa-solid fa-star text-muted"></i>';
+                    }
+                  }
+                  return html;
+                }
+
+                function getBadgeClass(status) {
+                  switch (status) {
+                    case "Exceptional":
+                      return "premium-badge-success";
+                    case "High Performer":
+                      return "premium-badge-info";
+                    case "Good Performer":
+                      return "premium-badge-warning";
+                    case "Needs Improvement":
+                      return "premium-badge-danger";
+                    default:
+                      return "premium-badge-info";
+                  }
+                }
+
+                function renderTable(data) {
+                  tableBody.innerHTML = "";
+                  if (data.length === 0) {
+                    tableBody.innerHTML = `
+                      <tr>
+                        <td colspan="8" class="text-center py-5 text-secondary">
+                          <i class="fa-solid fa-filter-circle-xmark fs-2 mb-3 text-muted"></i>
+                          <p class="mb-0">No performance records matches the selected criteria.</p>
+                        </td>
+                      </tr>
+                    `;
+                    totalRecords.textContent = "0 Records found";
+                    return;
+                  }
+
+                  totalRecords.textContent = `${data.length} Record${data.length > 1 ? "s" : ""} found`;
+
+                  data.forEach((emp) => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                      <td>
+                        <div class="d-flex align-items-center gap-3">
+                          <img src="${emp.avatar}" alt="${emp.name}" class="sidebar-user-avatar" style="width: 38px; height: 38px;">
+                          <div>
+                            <div class="fw-700 text-primary">${emp.name}</div>
+                            <div class="small text-muted">${emp.id}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="fw-600 text-secondary">${emp.department}</span>
+                      </td>
+                      <td>
+                        <span class="text-secondary">${emp.designation}</span>
+                      </td>
+                      <td>
+                        <div class="d-flex flex-column">
+                          <span class="fw-700 text-primary mb-1">${emp.rating.toFixed(2)}</span>
+                          <div class="star-rating small">${getStarHTML(emp.rating)}</div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex flex-column" style="width: 120px;">
+                          <div class="d-flex justify-content-between small mb-1">
+                            <span class="fw-600 text-primary">${emp.goalsCompleted}%</span>
+                          </div>
+                          <div class="progress" style="height: 6px;">
+                            <div class="progress-bar" style="width: ${emp.goalsCompleted}%; background: var(--primary-accent);"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="fw-700 text-success">${emp.attendance}%</span>
+                      </td>
+                      <td>
+                        <span class="premium-badge ${getBadgeClass(emp.status)}">${emp.status}</span>
+                      </td>
+                      <td class="text-end">
+                        <a href="appraisal.html?empId=${emp.id}" class="outline-btn py-1 px-2 text-decoration-none">
+                          <i class="fa-solid fa-file-invoice"></i>
+                          <span class="small">Appraisal</span>
+                        </a>
+                      </td>
+                    `;
+                    tableBody.appendChild(tr);
+                  });
+                }
+
+                function calculateMetrics(data) {
+                  if (data.length === 0) {
+                    avgRatingVal.textContent = "0.00";
+                    avgGoalsVal.textContent = "0%";
+                    avgAttendanceVal.textContent = "0%";
+                    evalProgressVal.textContent = "0 Active";
+                    return;
+                  }
+
+                  const totalRating = data.reduce((acc, emp) => acc + emp.rating, 0);
+                  const totalGoals = data.reduce((acc, emp) => acc + emp.goalsCompleted, 0);
+                  const totalAttendance = data.reduce((acc, emp) => acc + emp.attendance, 0);
+
+                  const avgRating = (totalRating / data.length).toFixed(2);
+                  const avgGoals = Math.round(totalGoals / data.length);
+                  const avgAttendance = (totalAttendance / data.length).toFixed(1);
+
+                  avgRatingVal.textContent = avgRating;
+                  avgGoalsVal.textContent = avgGoals + "%";
+                  avgGoalsVal.parentElement.nextElementSibling.style.width = avgGoals + "%";
+                  avgGoalsVal.parentElement.nextElementSibling.setAttribute("aria-valuenow", avgGoals);
+                  avgAttendanceVal.textContent = avgAttendance + "%";
+                  evalProgressVal.textContent = `${data.length}/8 Active`;
+                }
+
+                function applyFilters() {
+                  const query = searchInput.value.toLowerCase().trim();
+                  const dept = filterDept.value;
+                  const status = filterStatus.value;
+
+                  const filtered = EMPLOYEES_PERFORMANCE.filter((emp) => {
+                    const matchesSearch = emp.name.toLowerCase().includes(query) || emp.designation.toLowerCase().includes(query) || emp.id.toLowerCase().includes(query);
+                    const matchesDept = !dept || emp.department === dept;
+                    const matchesStatus = !status || emp.status === status;
+                    return matchesSearch && matchesDept && matchesStatus;
+                  });
+
+                  renderTable(filtered);
+                  calculateMetrics(filtered);
+                }
+
+                searchInput.addEventListener("input", applyFilters);
+                filterDept.addEventListener("change", applyFilters);
+                filterStatus.addEventListener("change", applyFilters);
+
+                resetBtn.addEventListener("click", function () {
+                  searchInput.value = "";
+                  filterDept.value = "";
+                  filterStatus.value = "";
+                  renderTable(EMPLOYEES_PERFORMANCE);
+                  calculateMetrics(EMPLOYEES_PERFORMANCE);
+                });
+
+                // Initial load
+                renderTable(EMPLOYEES_PERFORMANCE);
+                calculateMetrics(EMPLOYEES_PERFORMANCE);
+              });
+            </script>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+  </body>
+</html>

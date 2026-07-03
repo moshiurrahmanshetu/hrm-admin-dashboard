@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Company Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Header navigation pills for submodules */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* View Toggle buttons */
+      .view-toggle-btn {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--card-border);
+        background: var(--card-bg);
+        color: var(--text-secondary);
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+        cursor: pointer;
+      }
+      .view-toggle-btn.active {
+        background: var(--primary-accent);
+        color: white;
+        border-color: var(--primary-accent);
+        box-shadow: 0 2px 8px var(--shadow-accent-glow);
+      }
+      .view-toggle-btn:hover:not(.active) {
+        background: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+
+      /* Event specific card design */
+      .event-card {
+        border-top: 4px solid var(--primary-accent);
+      }
+      .event-card.holiday { border-top-color: #ef4444; }
+      .event-card.birthday { border-top-color: #f59e0b; }
+      .event-card.meeting { border-top-color: #3b82f6; }
+      .event-card.leave { border-top-color: #10b981; }
+      .event-card.company-event { border-top-color: #ec4899; }
+
+      .event-icon-circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+      }
+      .event-icon-circle.holiday { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+      .event-icon-circle.birthday { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+      .event-icon-circle.meeting { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+      .event-icon-circle.leave { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+      .event-icon-circle.company-event { background: rgba(236, 72, 153, 0.1); color: #ec4899; }
+
+      .search-filter-row {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu active open">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: flex;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item active">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" id="globalHeaderSearch" placeholder="Search events, schedules, logs...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Company Events</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Operational Sprints</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#scheduleEventModal">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Add Event</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills">
+                <a href="calendar.html" class="submodule-pill">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Monthly Calendar</span>
+                </a>
+                <a href="events.html" class="submodule-pill active">
+                  <i class="fa-solid fa-star"></i>
+                  <span>Company Events</span>
+                </a>
+                <a href="meetings.html" class="submodule-pill">
+                  <i class="fa-solid fa-video"></i>
+                  <span>Meeting Schedule</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="search-filter-row mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-4 col-md-6">
+                  <div class="search-input-group m-0" style="width: 100%;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input py-2" id="eventSearchInput" placeholder="Search event name, location or lead...">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                  <select class="form-select form-control-premium py-2 w-100" id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="company-event">Company Events</option>
+                    <option value="holiday">Holidays</option>
+                    <option value="birthday">Birthdays</option>
+                    <option value="meeting">Meetings</option>
+                    <option value="leave">Leave Days</option>
+                  </select>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                  <select class="form-select form-control-premium py-2 w-100" id="statusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Tentative">Tentative</option>
+                    <option value="Scheduled">Scheduled</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-12 d-flex justify-content-lg-end gap-2">
+                  <button class="view-toggle-btn active" id="gridViewToggleBtn" title="Grid View">
+                    <i class="fa-solid fa-grip"></i>
+                  </button>
+                  <button class="view-toggle-btn" id="tableViewToggleBtn" title="Table View">
+                    <i class="fa-solid fa-list"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Content Output (Cards or Table Grid) -->
+            <div id="eventsContentArea" data-aos="fade-up" data-aos-duration="800">
+              <!-- Content gets injected dynamically by javascript -->
+            </div>
+
+            <!-- Pagination Row -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 mt-4" data-aos="fade-up">
+              <div class="small text-secondary" id="paginationSummary">
+                Showing 1 to 6 of 8 entries
+              </div>
+              <div class="d-flex gap-2">
+                <button class="outline-btn py-1 px-3 fs-8" id="prevPageBtn" disabled>
+                  <i class="fa-solid fa-chevron-left me-1"></i><span>Previous</span>
+                </button>
+                <button class="outline-btn py-1 px-3 fs-8" id="nextPageBtn">
+                  <span>Next</span><i class="fa-solid fa-chevron-right ms-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Add Event Modal (UI Only) -->
+    <div class="modal fade" id="scheduleEventModal" tabindex="-1" aria-labelledby="scheduleEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-0 overflow-hidden" style="border: 1px solid var(--card-border-focus);">
+          <div class="modal-header border-bottom-0 p-4">
+            <h5 class="modal-title fw-800 text-primary" id="scheduleEventModalLabel">
+              <i class="fa-solid fa-calendar-plus me-2 text-primary"></i>Schedule New Event
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 pb-4 pt-0">
+            <form id="newEventForm" onsubmit="event.preventDefault(); handleNewEventSubmit();">
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label-premium">Event Name</label>
+                <input type="text" class="form-control form-control-premium w-100" id="eventTitle" placeholder="e.g. AuraHR Annual Summit" required>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="eventCategory" class="form-label-premium">Category</label>
+                  <select class="form-select form-control-premium w-100" id="eventCategory" required>
+                    <option value="company-event">Company Event 🎪</option>
+                    <option value="holiday">Company Holiday 🏖️</option>
+                    <option value="birthday">Birthday Celebration 🎂</option>
+                    <option value="meeting">Business Meeting 👥</option>
+                    <option value="leave">Leave Request ✈️</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label for="eventDate" class="form-label-premium">Date</label>
+                  <input type="date" class="form-control form-control-premium w-100" id="eventDate" value="2026-07-15" required>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="eventTime" class="form-label-premium">Time</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="eventTime" value="10:00 AM - 12:30 PM" placeholder="e.g. 10:00 AM - 12:00 PM">
+                </div>
+                <div class="col-sm-6">
+                  <label for="eventOrganizer" class="form-label-premium">Organizer / Lead</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="eventOrganizer" value="Sarah Jenkins" required>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="eventLocation" class="form-label-premium">Location</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="eventLocation" value="Grand Ballroom A" placeholder="e.g. Remote Zoom or Office Hub" required>
+                </div>
+                <div class="col-sm-6">
+                  <label for="eventStatus" class="form-label-premium">Initial Status</label>
+                  <select class="form-select form-control-premium w-100" id="eventStatus" required>
+                    <option value="Active">Active</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Tentative">Tentative</option>
+                    <option value="Scheduled">Scheduled</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex gap-2 justify-content-end mt-4">
+                <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="gradient-btn">
+                  <i class="fa-solid fa-check"></i>
+                  <span>Add to List</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Toast Notification (Floating) -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="eventToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Event added successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Events Controller JS -->
+    <script>
+      // Seeds
+      let eventDataset = [
+        { id: 1, name: 'AuraHR Summer Picnic 🎪', category: 'company-event', date: 'July 17, 2026', rawDate: '2026-07-17', time: '11:00 AM - 05:00 PM', location: 'Central Meadows Park', organizer: 'Sarah Jenkins', status: 'Active' },
+        { id: 2, name: 'Interactive Product Demo 🚀', category: 'company-event', date: 'July 30, 2026', rawDate: '2026-07-30', time: '03:00 PM - 04:30 PM', location: 'Main Town Hall', organizer: 'Product Team', status: 'Approved' },
+        { id: 3, name: 'Independence Day Holiday 🇺🇸', category: 'holiday', date: 'July 4, 2026', rawDate: '2026-07-04', time: 'All Day Break', location: 'National Holiday', organizer: 'AuraHR', status: 'Approved' },
+        { id: 4, name: 'Hackathon v2 Sprints 💻', category: 'company-event', date: 'August 15, 2026', rawDate: '2026-08-15', time: '09:00 AM - 09:00 PM', location: 'Floor 3 Dev Hub', organizer: 'John Doe', status: 'Tentative' },
+        { id: 5, name: 'Sarah Jenkins Birthday 🎂', category: 'birthday', date: 'July 8, 2026', rawDate: '2026-07-08', time: '03:00 PM Celebration', location: 'Pantry Lounge', organizer: 'Office Admin', status: 'Active' },
+        { id: 6, name: 'Pioneer Day State Holiday', category: 'holiday', date: 'July 24, 2026', rawDate: '2026-07-24', time: 'All Day Break', location: 'Utah Regional Office', organizer: 'AuraHR', status: 'Approved' },
+        { id: 7, name: 'Annual Team Building Gala 👔', category: 'company-event', date: 'September 12, 2026', rawDate: '2026-09-12', time: '06:00 PM - 10:00 PM', location: 'Grand Plaza Ballroom', organizer: 'HR Department', status: 'Scheduled' },
+        { id: 8, name: 'UX Design Sprint & Testing', category: 'meeting', date: 'July 22, 2026', rawDate: '2026-07-22', time: '01:00 PM - 04:00 PM', location: 'Creative Lounge C', organizer: 'Robert Chen', status: 'Scheduled' }
+      ];
+
+      // Configuration state
+      let activeView = 'grid'; // grid or table
+      let currentPage = 1;
+      const itemsPerPage = 6;
+      let filteredData = [...eventDataset];
+
+      // DOM Handles
+      const eventsContentArea = document.getElementById('eventsContentArea');
+      const searchInput = document.getElementById('eventSearchInput');
+      const categoryFilter = document.getElementById('categoryFilter');
+      const statusFilter = document.getElementById('statusFilter');
+      const gridViewBtn = document.getElementById('gridViewToggleBtn');
+      const tableViewBtn = document.getElementById('tableViewToggleBtn');
+      const prevPageBtn = document.getElementById('prevPageBtn');
+      const nextPageBtn = document.getElementById('nextPageBtn');
+      const paginationSummary = document.getElementById('paginationSummary');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Init Filters
+        applyFiltersAndRender();
+
+        // Listeners
+        searchInput.addEventListener('input', applyFiltersAndRender);
+        categoryFilter.addEventListener('change', applyFiltersAndRender);
+        statusFilter.addEventListener('change', applyFiltersAndRender);
+
+        gridViewBtn.addEventListener('click', () => {
+          if (activeView !== 'grid') {
+            activeView = 'grid';
+            gridViewBtn.classList.add('active');
+            tableViewBtn.classList.remove('active');
+            renderActiveView();
+          }
+        });
+
+        tableViewBtn.addEventListener('click', () => {
+          if (activeView !== 'table') {
+            activeView = 'table';
+            tableViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+            renderActiveView();
+          }
+        });
+
+        prevPageBtn.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderActiveView();
+          }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+          const maxPage = Math.ceil(filteredData.length / itemsPerPage);
+          if (currentPage < maxPage) {
+            currentPage++;
+            renderActiveView();
+          }
+        });
+
+        AOS.init({ once: true });
+      });
+
+      function applyFiltersAndRender() {
+        const query = searchInput.value.toLowerCase().trim();
+        const categoryVal = categoryFilter.value;
+        const statusVal = statusFilter.value;
+
+        // Reset page to 1 on filter trigger
+        currentPage = 1;
+
+        filteredData = eventDataset.filter(ev => {
+          const matchQuery = ev.name.toLowerCase().includes(query) || 
+                             ev.location.toLowerCase().includes(query) || 
+                             ev.organizer.toLowerCase().includes(query);
+          
+          const matchCategory = categoryVal === 'all' || ev.category === categoryVal;
+          const matchStatus = statusVal === 'all' || ev.status === statusVal;
+
+          return matchQuery && matchCategory && matchStatus;
+        });
+
+        renderActiveView();
+      }
+
+      function renderActiveView() {
+        // Calculate page slices
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageData = filteredData.slice(startIndex, endIndex);
+
+        // Update pagination buttons
+        const maxPage = Math.ceil(filteredData.length / itemsPerPage) || 1;
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === maxPage;
+
+        // Update Pagination Info Summary
+        const realEndIndex = Math.min(endIndex, filteredData.length);
+        if (filteredData.length === 0) {
+          paginationSummary.textContent = 'Showing 0 to 0 of 0 entries';
+        } else {
+          paginationSummary.textContent = `Showing ${startIndex + 1} to ${realEndIndex} of ${filteredData.length} entries`;
+        }
+
+        if (filteredData.length === 0) {
+          eventsContentArea.innerHTML = `
+            <div class="glass-card text-center py-5">
+              <div class="text-muted mb-3"><i class="fa-solid fa-magnifying-glass-slash fs-1"></i></div>
+              <h4 class="h5 fw-700 text-primary">No Events Found</h4>
+              <p class="text-secondary max-w-md mx-auto small" style="max-width: 400px;">
+                No company records matched your current query or category selection. Try refining your filters.
+              </p>
+            </div>
+          `;
+          return;
+        }
+
+        if (activeView === 'grid') {
+          renderGridView(pageData);
+        } else {
+          renderTableView(pageData);
+        }
+      }
+
+      function renderGridView(data) {
+        let html = '<div class="row g-4">';
+        
+        data.forEach(ev => {
+          let categoryLabel = 'Event';
+          let statusBadgeClass = 'premium-badge-info';
+          let categoryIcon = 'fa-masks-theater';
+          
+          if (ev.category === 'holiday') { categoryLabel = 'Company Holiday'; categoryIcon = 'fa-umbrella-beach'; }
+          if (ev.category === 'birthday') { categoryLabel = 'Birthday Party'; categoryIcon = 'fa-cake-candles'; }
+          if (ev.category === 'meeting') { categoryLabel = 'Business Meeting'; categoryIcon = 'fa-video'; }
+          if (ev.category === 'leave') { categoryLabel = 'Leave Day'; categoryIcon = 'fa-plane-departure'; }
+
+          if (ev.status === 'Active' || ev.status === 'Approved') statusBadgeClass = 'premium-badge-success';
+          if (ev.status === 'Tentative') statusBadgeClass = 'premium-badge-warning';
+          if (ev.status === 'Scheduled') statusBadgeClass = 'premium-badge-info';
+
+          html += `
+            <div class="col-xl-4 col-md-6">
+              <div class="glass-card h-100 event-card ${ev.category}">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="event-icon-circle ${ev.category}">
+                    <i class="fa-solid ${categoryIcon}"></i>
+                  </div>
+                  <span class="premium-badge ${statusBadgeClass}">${ev.status}</span>
+                </div>
+                <h4 class="h6 fw-800 text-primary mb-2 line-clamp-2">${ev.name}</h4>
+                <div class="small text-muted mb-2">${categoryLabel}</div>
+                
+                <div class="border-top pt-3 mt-3">
+                  <div class="d-flex align-items-center gap-2 mb-2 fs-8 text-secondary">
+                    <i class="fa-solid fa-calendar text-primary" style="width: 14px;"></i>
+                    <span>${ev.date}</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 mb-2 fs-8 text-secondary">
+                    <i class="fa-solid fa-clock text-primary" style="width: 14px;"></i>
+                    <span>${ev.time}</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-2 mb-3 fs-8 text-secondary">
+                    <i class="fa-solid fa-location-dot text-primary" style="width: 14px;"></i>
+                    <span class="text-truncate">${ev.location}</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="brand-icon-wrapper rounded-circle" style="width: 24px; height: 24px; font-size: 0.65rem;">
+                      ${ev.organizer.charAt(0)}
+                    </div>
+                    <span class="fs-8 fw-600 text-secondary">${ev.organizer}</span>
+                  </div>
+                  <button class="outline-btn py-1 px-2 fs-8" onclick="handleToastAlert('${ev.name}')">
+                    <span>Manage</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        html += '</div>';
+        eventsContentArea.innerHTML = html;
+      }
+
+      function renderTableView(data) {
+        let html = `
+          <div class="glass-card p-0 overflow-hidden">
+            <div class="table-premium-wrapper">
+              <table class="table-premium">
+                <thead>
+                  <tr>
+                    <th>Event Details</th>
+                    <th>Category</th>
+                    <th>Date & Time</th>
+                    <th>Location</th>
+                    <th>Lead Organizer</th>
+                    <th>Status</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+        `;
+
+        data.forEach(ev => {
+          let categoryLabel = 'Event';
+          let statusBadgeClass = 'premium-badge-info';
+          let categoryIcon = 'fa-masks-theater';
+          
+          if (ev.category === 'holiday') { categoryLabel = 'Holiday'; categoryIcon = 'fa-umbrella-beach'; }
+          if (ev.category === 'birthday') { categoryLabel = 'Birthday'; categoryIcon = 'fa-cake-candles'; }
+          if (ev.category === 'meeting') { categoryLabel = 'Meeting'; categoryIcon = 'fa-video'; }
+          if (ev.category === 'leave') { categoryLabel = 'Leave'; categoryIcon = 'fa-plane-departure'; }
+
+          if (ev.status === 'Active' || ev.status === 'Approved') statusBadgeClass = 'premium-badge-success';
+          if (ev.status === 'Tentative') statusBadgeClass = 'premium-badge-warning';
+          if (ev.status === 'Scheduled') statusBadgeClass = 'premium-badge-info';
+
+          html += `
+            <tr>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="event-icon-circle ${ev.category}" style="width: 32px; height: 32px; font-size: 0.82rem;">
+                    <i class="fa-solid ${categoryIcon}"></i>
+                  </div>
+                  <div>
+                    <div class="fw-700 text-primary">${ev.name}</div>
+                    <div class="fs-8 text-muted">${categoryLabel}</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${categoryLabel}</span></td>
+              <td>
+                <div class="fw-600 fs-8">${ev.date}</div>
+                <div class="text-muted fs-8">${ev.time}</div>
+              </td>
+              <td><span class="text-truncate fs-8" style="max-width: 150px;"><i class="fa-solid fa-location-dot me-1 text-primary"></i>${ev.location}</span></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 20px; height: 20px; font-size: 0.6rem;">${ev.organizer.charAt(0)}</span>
+                  <span class="fs-8 fw-600">${ev.organizer}</span>
+                </div>
+              </td>
+              <td><span class="premium-badge ${statusBadgeClass}">${ev.status}</span></td>
+              <td class="text-end">
+                <button class="outline-btn py-1 px-2 fs-8" onclick="handleToastAlert('${ev.name}')">
+                  <i class="fa-solid fa-sliders"></i>
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+        
+        eventsContentArea.innerHTML = html;
+      }
+
+      function handleNewEventSubmit() {
+        const name = document.getElementById('eventTitle').value;
+        const category = document.getElementById('eventCategory').value;
+        const dateInput = document.getElementById('eventDate').value;
+        const time = document.getElementById('eventTime').value;
+        const organizer = document.getElementById('eventOrganizer').value;
+        const location = document.getElementById('eventLocation').value;
+        const status = document.getElementById('eventStatus').value;
+
+        // Parse date for visual format: "July 17, 2026"
+        const dateObj = new Date(dateInput + 'T00:00:00');
+        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        const newEvent = {
+          id: eventDataset.length + 1,
+          name,
+          category,
+          date: formattedDate,
+          rawDate: dateInput,
+          time,
+          organizer,
+          location,
+          status
+        };
+
+        eventDataset.unshift(newEvent); // Add to beginning of dataset
+
+        // Close modal
+        const modalEl = document.getElementById('scheduleEventModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        // Reset Form
+        document.getElementById('newEventForm').reset();
+
+        // Re-filter and render
+        applyFiltersAndRender();
+
+        // Show Toast alert
+        const toastEl = document.getElementById('eventToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = `Event "${name}" scheduled successfully!`;
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+
+      function handleToastAlert(eventName) {
+        const toastEl = document.getElementById('eventToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = `Editing privileges active for: ${eventName}`;
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

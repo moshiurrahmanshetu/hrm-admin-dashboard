@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Candidates</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      .active-sub-nav {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow) !important;
+      }
+      .filter-input {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-primary);
+        border-radius: var(--radius-md);
+        padding: 0.5rem 1rem;
+        font-size: 0.88rem;
+        transition: all var(--transition-fast);
+      }
+      .filter-input:focus {
+        border-color: var(--primary-accent);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.1);
+      }
+      .form-label-premium {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
+      }
+      .skill-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.45rem;
+        background: rgba(var(--primary-accent-rgb), 0.05);
+        color: var(--primary-accent);
+        border: 1px solid rgba(var(--primary-accent-rgb), 0.1);
+        border-radius: var(--radius-sm);
+        margin-right: 0.2rem;
+        margin-bottom: 0.2rem;
+        font-weight: 600;
+      }
+      .rating-star {
+        color: var(--warning);
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumbs -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Candidates Panel</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="recruitment.html" class="text-decoration-none text-muted">Recruitment</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Candidates</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" id="addCandidateBtn">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Add Candidate</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Recruitment Module Nav Tabs -->
+            <div class="d-flex flex-wrap gap-2 mb-4" data-aos="fade-right" data-aos-duration="600">
+              <a href="recruitment.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-chart-pie me-2"></i>Overview
+              </a>
+              <a href="job-openings.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-briefcase me-2"></i>Job Openings
+              </a>
+              <a href="candidates.html" class="outline-btn active-sub-nav text-decoration-none">
+                <i class="fa-solid fa-user-group me-2"></i>Candidates
+              </a>
+              <a href="interviews.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-calendar-days me-2"></i>Interviews
+              </a>
+              <a href="offers.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-file-signature me-2"></i>Offers
+              </a>
+            </div>
+
+            <!-- Filter & Search Bar -->
+            <div class="glass-card mb-4 p-3" data-aos="fade-up" data-aos-duration="600">
+              <div class="row g-3 align-items-end">
+                <div class="col-lg-4 col-md-6">
+                  <label class="form-label-premium">Search Candidates</label>
+                  <div class="search-input-group w-100">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="searchCandidatesInput" placeholder="Search by name, skills, position...">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                  <label class="form-label-premium">Pipeline Status</label>
+                  <select class="filter-input w-100" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Interviewing">Interviewing</option>
+                    <option value="Offered">Offered</option>
+                    <option value="Hired">Hired</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                  <label class="form-label-premium">Source</label>
+                  <select class="filter-input w-100" id="filterSource">
+                    <option value="">All Sources</option>
+                    <option value="LinkedIn">LinkedIn</option>
+                    <option value="Indeed">Indeed</option>
+                    <option value="Careers Portal">Careers Portal</option>
+                    <option value="Referral">Referral</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-12 text-md-end">
+                  <button class="outline-btn w-100 py-2 d-flex justify-content-center" id="resetFilters">
+                    <i class="fa-solid fa-filter-circle-xmark me-2"></i>Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidates Table Card -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="table-premium-wrapper">
+                <table class="table-premium">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Applied Position</th>
+                      <th>Experience</th>
+                      <th>Key Skills</th>
+                      <th>Applied Date</th>
+                      <th>Rating</th>
+                      <th>Status</th>
+                      <th>Resume</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="candidatesTableBody">
+                    <!-- Dynamically populated -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination & Row Count Footer -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 gap-3">
+                <div class="text-secondary fs-xs" id="tableRecordsCount">
+                  Showing 0 to 0 of 0 candidates
+                </div>
+                <nav aria-label="Table navigation">
+                  <ul class="pagination pagination-sm mb-0" id="tablePagination">
+                    <!-- Loaded dynamically -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <!-- Candidate Detail & Status Update Modal -->
+        <div class="modal fade" id="candidateModal" tabindex="-1" aria-labelledby="candidateModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0" style="background: var(--card-bg-solid); border: 1px solid var(--card-border); overflow: hidden;">
+              <div class="modal-header px-4 pt-4 pb-3 border-0 d-flex justify-content-between">
+                <h5 class="modal-title fw-800 text-primary" id="candidateModalLabel">Candidate Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--close-filter);"></button>
+              </div>
+              <form id="candidateForm" novalidate>
+                <input type="hidden" id="candidateIdField">
+                <div class="modal-body px-4 py-2">
+                  <div class="row g-4">
+                    <div class="col-md-4 text-center border-end">
+                      <div class="mb-3">
+                        <img id="candAvatarPreview" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128" alt="" class="rounded-circle shadow-sm border" style="width: 100px; height: 100px; object-fit: cover;">
+                      </div>
+                      <h4 class="h6 fw-800 text-primary mb-1" id="candNameTitle"> Amanda Ross </h4>
+                      <p class="text-muted fs-xxs mb-2" id="candEmailTitle"> amanda@example.com </p>
+                      
+                      <!-- Form Inputs for Adding/Editing basic profile details -->
+                      <div class="mt-4 text-start">
+                        <label for="candAvatarInput" class="form-label-premium">Avatar Image URL</label>
+                        <input type="text" class="filter-input w-100 fs-xs p-1.5 mb-2" id="candAvatarInput" placeholder="URL to photo">
+                        
+                        <label for="candSourceSelect" class="form-label-premium">Application Source</label>
+                        <select class="filter-input w-100 fs-xs p-1.5" id="candSourceSelect">
+                          <option value="LinkedIn">LinkedIn</option>
+                          <option value="Indeed">Indeed</option>
+                          <option value="Careers Portal">Careers Portal</option>
+                          <option value="Referral">Referral</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label for="candNameInput" class="form-label-premium">Full Name *</label>
+                          <input type="text" class="filter-input w-100" id="candNameInput" required placeholder="e.g. John Doe">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="candEmailInput" class="form-label-premium">Email Address *</label>
+                          <input type="email" class="filter-input w-100" id="candEmailInput" required placeholder="e.g. john@example.com">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="candPhoneInput" class="form-label-premium">Phone Number *</label>
+                          <input type="text" class="filter-input w-100" id="candPhoneInput" required placeholder="e.g. +1 555-0192">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="candPositionSelect" class="form-label-premium">Applied Position *</label>
+                          <select class="filter-input w-100" id="candPositionSelect" required>
+                            <!-- Populated with jobs dynamically -->
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="candExpInput" class="form-label-premium">Experience *</label>
+                          <input type="text" class="filter-input w-100" id="candExpInput" required placeholder="e.g. 5 Years">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="candRatingInput" class="form-label-premium">Rating (1.0 to 5.0)</label>
+                          <input type="number" class="filter-input w-100" id="candRatingInput" step="0.1" min="1" max="5" value="4.0">
+                        </div>
+                        <div class="col-12">
+                          <label for="candSkillsInput" class="form-label-premium">Skills * (comma separated)</label>
+                          <input type="text" class="filter-input w-100" id="candSkillsInput" required placeholder="e.g. React, TypeScript, Node.js">
+                        </div>
+                        <div class="col-12 mt-4 pt-3 border-top">
+                          <label for="candStatusSelect" class="form-label-premium fw-800 text-primary">Pipeline Progression Stage</label>
+                          <select class="filter-input w-100" id="candStatusSelect" required style="border-color: var(--primary-accent); background: rgba(var(--primary-accent-rgb), 0.02);">
+                            <option value="Applied">Applied</option>
+                            <option value="Shortlisted">Shortlisted</option>
+                            <option value="Interviewing">Interviewing</option>
+                            <option value="Offered">Offered</option>
+                            <option value="Hired">Hired</option>
+                            <option value="Rejected">Rejected</option>
+                          </select>
+                          <div class="text-muted fs-xxs mt-1">
+                            Updating this stage moves the candidate automatically along the pipeline workflow on the Overview page.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 pt-3 pb-4 border-0 d-flex gap-2 justify-content-end">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn" id="saveCandSubmitBtn">Save Candidate</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Init AOS
+        if (typeof AOS !== 'undefined') {
+          AOS.init();
+        }
+
+        const tableBody = document.getElementById('candidatesTableBody');
+        const searchInput = document.getElementById('searchCandidatesInput');
+        const filterStatus = document.getElementById('filterStatus');
+        const filterSource = document.getElementById('filterSource');
+        const resetBtn = document.getElementById('resetFilters');
+
+        const candModalEl = document.getElementById('candidateModal');
+        const candModal = new bootstrap.Modal(candModalEl);
+        const candForm = document.getElementById('candidateForm');
+        const addCandidateBtn = document.getElementById('addCandidateBtn');
+        const candPositionSelect = document.getElementById('candPositionSelect');
+
+        let allCandidates = [];
+        let filteredCandidates = [];
+        let currentPage = 1;
+        const rowsPerPage = 5;
+
+        // Load candidates and populate positions dropdown
+        function loadCandidates() {
+          allCandidates = window.AuraDB.getCandidates();
+          
+          // Populate position select dropdown from active jobs
+          const jobs = window.AuraDB.getJobs();
+          candPositionSelect.innerHTML = '<option value="">Select Position</option>';
+          jobs.forEach(j => {
+            const opt = document.createElement('option');
+            opt.value = j.title;
+            opt.textContent = `${j.title} (${j.id})`;
+            candPositionSelect.appendChild(opt);
+          });
+
+          // Check if search query param is present
+          const urlParams = new URLSearchParams(window.location.search);
+          const initialSearch = urlParams.get('search');
+          if (initialSearch) {
+            searchInput.value = initialSearch;
+          }
+
+          applyFilters();
+        }
+
+        // Apply filters
+        function applyFilters() {
+          const searchVal = searchInput.value.toLowerCase().trim();
+          const statusVal = filterStatus.value;
+          const sourceVal = filterSource.value;
+
+          filteredCandidates = allCandidates.filter(c => {
+            const matchesSearch = c.name.toLowerCase().includes(searchVal) ||
+                                  c.position.toLowerCase().includes(searchVal) ||
+                                  c.skills.some(s => s.toLowerCase().includes(searchVal));
+            const matchesStatus = statusVal === "" || c.status === statusVal;
+            const matchesSource = sourceVal === "" || c.source === sourceVal;
+
+            return matchesSearch && matchesStatus && matchesSource;
+          });
+
+          currentPage = 1;
+          renderTable();
+        }
+
+        // Render Candidates table
+        function renderTable() {
+          tableBody.innerHTML = '';
+          const totalRecords = filteredCandidates.length;
+
+          if (totalRecords === 0) {
+            tableBody.innerHTML = '<tr><td colspan="9" class="text-center py-5 text-muted">No candidates found.</td></tr>';
+            document.getElementById('tableRecordsCount').textContent = 'Showing 0 to 0 of 0 candidates';
+            document.getElementById('tablePagination').innerHTML = '';
+            return;
+          }
+
+          const startIndex = (currentPage - 1) * rowsPerPage;
+          const endIndex = Math.min(startIndex + rowsPerPage, totalRecords);
+          const paginated = filteredCandidates.slice(startIndex, endIndex);
+
+          paginated.forEach(cand => {
+            const tr = document.createElement('tr');
+            tr.className = 'bg-card-glow-hover';
+
+            // Status style
+            let badgeClass = 'bg-secondary-bg text-secondary';
+            if (cand.status === 'Shortlisted') badgeClass = 'bg-info-bg text-info';
+            else if (cand.status === 'Interviewing') badgeClass = 'bg-primary-bg text-primary';
+            else if (cand.status === 'Offered') badgeClass = 'bg-warning-bg text-warning';
+            else if (cand.status === 'Hired') badgeClass = 'bg-success-bg text-success';
+            else if (cand.status === 'Rejected') badgeClass = 'bg-danger-bg text-danger';
+
+            // Star ratings
+            let stars = '';
+            const ratingVal = cand.rating || 4.0;
+            const fullStars = Math.floor(ratingVal);
+            for (let s = 1; s <= 5; s++) {
+              if (s <= fullStars) {
+                stars += '<i class="fa-solid fa-star rating-star"></i>';
+              } else if (s - 0.5 <= ratingVal) {
+                stars += '<i class="fa-solid fa-star-half-stroke rating-star"></i>';
+              } else {
+                stars += '<i class="fa-regular fa-star rating-star" style="opacity: 0.3;"></i>';
+              }
+            }
+
+            // Skills tags
+            const skillsHtml = cand.skills.map(s => `<span class="skill-tag">${s}</span>`).join('');
+
+            tr.innerHTML = `
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <img src="${cand.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128'}" alt="" class="rounded-circle shadow-sm" style="width: 32px; height: 32px; object-fit: cover;">
+                  <div>
+                    <div class="fw-700 fs-xs text-primary">${cand.name}</div>
+                    <div class="text-muted fs-xxs">${cand.email}</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="fs-xs text-primary fw-600">${cand.position}</span></td>
+              <td><span class="text-secondary fs-xs">${cand.experience}</span></td>
+              <td><div class="d-flex flex-wrap" style="max-width: 250px;">${skillsHtml}</div></td>
+              <td><span class="text-secondary fs-xs">${cand.appliedDate}</span></td>
+              <td><div class="d-flex gap-0.5 align-items-center">${stars} <span class="fs-xxs text-secondary ms-1">(${ratingVal})</span></div></td>
+              <td><span class="badge ${badgeClass} fw-600 fs-xxs">${cand.status}</span></td>
+              <td>
+                <button class="outline-btn py-1 px-2.5 fs-xxs download-resume-btn" data-name="${cand.name}">
+                  <i class="fa-solid fa-file-pdf text-danger me-1"></i>Resume
+                </button>
+              </td>
+              <td class="text-end">
+                <div class="d-flex justify-content-end gap-1">
+                  <button class="outline-btn py-1 px-2 fs-xxs view-cand-btn" data-id="${cand.id}" title="Manage Profile">
+                    <i class="fa-solid fa-id-card"></i>
+                  </button>
+                  <button class="outline-btn py-1 px-2 fs-xxs delete-cand-btn text-danger border-danger-hover" data-id="${cand.id}" title="Delete Candidate">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+
+          document.getElementById('tableRecordsCount').textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalRecords} candidates`;
+          renderPagination(totalRecords);
+        }
+
+        // Pagination rendering
+        function renderPagination(totalRecords) {
+          const totalPages = Math.ceil(totalRecords / rowsPerPage);
+          const paginationEl = document.getElementById('tablePagination');
+          paginationEl.innerHTML = '';
+
+          if (totalPages <= 1) return;
+
+          // Prev
+          const prevLi = document.createElement('li');
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage - 1}"><i class="fa-solid fa-chevron-left"></i></a>`;
+          paginationEl.appendChild(prevLi);
+
+          // Pages
+          for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+            paginationEl.appendChild(li);
+          }
+
+          // Next
+          const nextLi = document.createElement('li');
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage + 1}"><i class="fa-solid fa-chevron-right"></i></a>`;
+          paginationEl.appendChild(nextLi);
+
+          paginationEl.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const page = parseInt(link.getAttribute('data-page'));
+              if (page > 0 && page <= totalPages) {
+                currentPage = page;
+                renderTable();
+              }
+            });
+          });
+        }
+
+        // Add Candidate Click
+        addCandidateBtn.addEventListener('click', () => {
+          document.getElementById('candidateModalLabel').textContent = 'Add Candidate Profile';
+          candForm.reset();
+          document.getElementById('candidateIdField').value = '';
+          document.getElementById('candAvatarPreview').src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128';
+          document.getElementById('candNameTitle').textContent = 'New Candidate';
+          document.getElementById('candEmailTitle').textContent = 'Create a new applicant profile';
+          document.getElementById('candStatusSelect').value = 'Applied';
+          candModal.show();
+        });
+
+        // View/Manage Candidate Click (delegated)
+        tableBody.addEventListener('click', (e) => {
+          const viewBtn = e.target.closest('.view-cand-btn');
+          if (viewBtn) {
+            const id = viewBtn.getAttribute('data-id');
+            const cand = allCandidates.find(c => c.id === id);
+            if (cand) {
+              document.getElementById('candidateModalLabel').textContent = 'Manage Candidate Profile';
+              document.getElementById('candidateIdField').value = cand.id;
+              document.getElementById('candAvatarPreview').src = cand.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128';
+              document.getElementById('candAvatarInput').value = cand.avatar || '';
+              document.getElementById('candNameTitle').textContent = cand.name;
+              document.getElementById('candEmailTitle').textContent = cand.email;
+              document.getElementById('candNameInput').value = cand.name;
+              document.getElementById('candEmailInput').value = cand.email;
+              document.getElementById('candPhoneInput').value = cand.phone || '';
+              document.getElementById('candPositionSelect').value = cand.position;
+              document.getElementById('candExpInput').value = cand.experience;
+              document.getElementById('candRatingInput').value = cand.rating || 4.0;
+              document.getElementById('candSkillsInput').value = cand.skills.join(', ');
+              document.getElementById('candStatusSelect').value = cand.status;
+              document.getElementById('candSourceSelect').value = cand.source || 'LinkedIn';
+              candModal.show();
+            }
+          }
+
+          // Handle Resume download simulation
+          const resumeBtn = e.target.closest('.download-resume-btn');
+          if (resumeBtn) {
+            const name = resumeBtn.getAttribute('data-name');
+            alert(`Simulating Resume Download: resume_${name.toLowerCase().replace(' ', '_')}.pdf has been generated successfully.`);
+          }
+        });
+
+        // Delete Candidate Click (delegated)
+        tableBody.addEventListener('click', (e) => {
+          const deleteBtn = e.target.closest('.delete-cand-btn');
+          if (deleteBtn) {
+            const id = deleteBtn.getAttribute('data-id');
+            if (confirm(`Are you sure you want to delete candidate ${id}?`)) {
+              const list = allCandidates.filter(c => c.id !== id);
+              window.AuraDB.saveCandidates(list);
+              loadCandidates();
+              if (typeof window.showToast === 'function') {
+                window.showToast(`Deleted candidate ${id} successfully.`, 'danger');
+              } else {
+                alert(`Deleted candidate ${id}.`);
+              }
+            }
+          }
+        });
+
+        // Submit Form
+        candForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (!candForm.checkValidity()) {
+            candForm.classList.add('was-validated');
+            return;
+          }
+
+          const candId = document.getElementById('candidateIdField').value;
+          const skillsArr = document.getElementById('candSkillsInput').value.split(',').map(s => s.trim()).filter(s => s !== '');
+          const candData = {
+            name: document.getElementById('candNameInput').value,
+            avatar: document.getElementById('candAvatarInput').value || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128',
+            email: document.getElementById('candEmailInput').value,
+            phone: document.getElementById('candPhoneInput').value,
+            position: document.getElementById('candPositionSelect').value,
+            experience: document.getElementById('candExpInput').value,
+            skills: skillsArr,
+            rating: parseFloat(document.getElementById('candRatingInput').value) || 4.0,
+            status: document.getElementById('candStatusSelect').value,
+            source: document.getElementById('candSourceSelect').value,
+            appliedDate: candId ? (allCandidates.find(c => c.id === candId).appliedDate) : new Date().toISOString().split('T')[0]
+          };
+
+          if (candId) {
+            window.AuraDB.updateCandidate(candId, candData);
+            if (typeof window.showToast === 'function') {
+              window.showToast(`Candidate ${candId} profile updated successfully.`, 'success');
+            }
+          } else {
+            const nextId = window.AuraDB.generateNextCandidateId();
+            const newCand = { id: nextId, ...candData, resumeUrl: '#' };
+            window.AuraDB.addCandidate(newCand);
+            if (typeof window.showToast === 'function') {
+              window.showToast(`Candidate ${nextId} added successfully.`, 'success');
+            }
+          }
+
+          candModal.hide();
+          loadCandidates();
+        });
+
+        // Search and Filters
+        searchInput.addEventListener('input', applyFilters);
+        filterStatus.addEventListener('change', applyFilters);
+        filterSource.addEventListener('change', applyFilters);
+
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          filterStatus.value = '';
+          filterSource.value = '';
+          applyFilters();
+        });
+
+        // Initial Load
+        loadCandidates();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Meetings Schedule</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Header navigation pills for submodules */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Avatars pile stack */
+      .avatar-pile {
+        display: flex;
+        align-items: center;
+      }
+      .avatar-pile-item {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid var(--card-bg);
+        background-color: var(--primary-accent);
+        color: white;
+        font-size: 0.65rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -8px;
+        transition: transform var(--transition-fast);
+        position: relative;
+        cursor: pointer;
+      }
+      .avatar-pile-item:first-child {
+        margin-left: 0;
+      }
+      .avatar-pile-item:hover {
+        transform: translateY(-4px) scale(1.1);
+        z-index: 10;
+      }
+
+      /* Conference UI indicators */
+      .type-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.65rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+      .type-badge.online {
+        background: rgba(59, 130, 246, 0.08);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.15);
+      }
+      .type-badge.offline {
+        background: rgba(16, 185, 129, 0.08);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.15);
+      }
+
+      .search-filter-row {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-lg);
+        padding: 1.25rem;
+      }
+
+      /* Joining conference video simulator style */
+      .video-preview-box {
+        width: 100%;
+        height: 180px;
+        background: #111827;
+        border-radius: var(--radius-md);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .pulse-camera-dot {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 8px;
+        height: 8px;
+        background: #ef4444;
+        border-radius: 50%;
+        animation: pulseCamera 1.5s infinite;
+      }
+      @keyframes pulseCamera {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 1; }
+      }
+      .video-controls-overlay {
+        position: absolute;
+        bottom: 12px;
+        display: flex;
+        gap: 10px;
+        z-index: 3;
+      }
+      .video-control-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-fast);
+      }
+      .video-control-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+      .video-control-btn.muted {
+        background: #ef4444 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu active open">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: flex;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item active">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search events, schedules, logs...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Meeting Schedule</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Video & Boardrooms</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#scheduleMeetingModal">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Schedule Meeting</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills">
+                <a href="calendar.html" class="submodule-pill">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Monthly Calendar</span>
+                </a>
+                <a href="events.html" class="submodule-pill">
+                  <i class="fa-solid fa-star"></i>
+                  <span>Company Events</span>
+                </a>
+                <a href="meetings.html" class="submodule-pill active">
+                  <i class="fa-solid fa-video"></i>
+                  <span>Meeting Schedule</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Advanced Stats Cards Row -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="col-md-4">
+                <div class="glass-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+                    <i class="fa-solid fa-video fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-secondary mb-0">Online Synced</h3>
+                    <div class="h4 fw-800 text-primary mb-0" id="statOnlineCount">4 Meetings</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="glass-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                    <i class="fa-solid fa-building-user fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-secondary mb-0">In-Office Board</h3>
+                    <div class="h4 fw-800 text-primary mb-0" id="statOfflineCount">3 Reserved</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="glass-card d-flex align-items-center gap-3 py-3 px-4">
+                  <div class="brand-icon-wrapper" style="width: 48px; height: 48px; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                    <i class="fa-solid fa-clock-rotate-left fs-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 text-secondary mb-0">Today's Sessions</h3>
+                    <div class="h4 fw-800 text-primary mb-0" id="statTodayCount">2 Active</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Row -->
+            <div class="search-filter-row mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="row g-3 align-items-center">
+                <div class="col-lg-4 col-md-12">
+                  <div class="search-input-group m-0" style="width: 100%;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input py-2" id="meetSearchInput" placeholder="Search meeting title, host or keyword...">
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <select class="form-select form-control-premium py-2 w-100" id="departmentFilter">
+                    <option value="all">All Departments</option>
+                    <option value="HR">Human Resources</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Product">Product & Design</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Executive">Executive Board</option>
+                  </select>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <select class="form-select form-control-premium py-2 w-100" id="typeFilter">
+                    <option value="all">All Meeting Types</option>
+                    <option value="Online">Online Sessions</option>
+                    <option value="Offline">In-Person/Offline</option>
+                  </select>
+                </div>
+                <div class="col-lg-2 col-md-12">
+                  <button class="outline-btn w-100 justify-content-center py-2" id="resetFiltersBtn">
+                    <i class="fa-solid fa-rotate-left"></i><span>Reset Filters</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule list container (Premium Table) -->
+            <div class="glass-card p-0 overflow-hidden mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="table-premium-wrapper">
+                <table class="table-premium">
+                  <thead>
+                    <tr>
+                      <th>Meeting Title</th>
+                      <th>Department</th>
+                      <th>Lead Host</th>
+                      <th>Participants</th>
+                      <th>Date & Time</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="meetingsTableBody">
+                    <!-- Dynamic meetings injected here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Join Online Workspace Modal -->
+    <div class="modal fade" id="joinOnlineModal" tabindex="-1" aria-labelledby="joinOnlineModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-0 overflow-hidden" style="border: 1px solid var(--card-border-focus);">
+          <div class="modal-header border-bottom-0 p-4">
+            <h5 class="modal-title fw-800 text-primary" id="joinOnlineModalLabel">
+              <i class="fa-solid fa-camera-web me-2 text-primary"></i>Online Meeting Room Setup
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 pb-4 pt-0">
+            <div class="video-preview-box mb-3">
+              <div class="pulse-camera-dot"></div>
+              <div class="fw-700 small text-center" id="cameraStatusText"><i class="fa-solid fa-user-circle me-1"></i>Camera Feed Active (SARAH JENKINS)</div>
+              
+              <div class="video-controls-overlay">
+                <button class="video-control-btn" id="toggleCamBtn" title="Toggle Camera"><i class="fa-solid fa-video"></i></button>
+                <button class="video-control-btn" id="toggleMicBtn" title="Toggle Microphone"><i class="fa-solid fa-microphone"></i></button>
+              </div>
+            </div>
+
+            <div class="p-3 border rounded bg-light dark-bg-glass mb-3">
+              <h6 class="fw-800 text-primary mb-1 text-truncate" id="joinMeetingTitle">Weekly HR Alignment Sync</h6>
+              <div class="text-secondary small mb-2" id="joinMeetingHost">Host: Sarah Jenkins (HR Director)</div>
+              <div class="small d-flex gap-2">
+                <span class="badge bg-white text-secondary border"><i class="fa-solid fa-clock me-1 text-primary"></i>10:00 AM</span>
+                <span class="badge bg-white text-secondary border"><i class="fa-solid fa-globe me-1 text-primary"></i>UTC-7 Denver</span>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button class="gradient-btn w-100 justify-content-center py-3" onclick="handleMockConnect()">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span>Enter Meeting Hub Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room Reserved Detail Modal (Offline) -->
+    <div class="modal fade" id="roomReservedModal" tabindex="-1" aria-labelledby="roomReservedModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-0 overflow-hidden" style="border: 1px solid var(--card-border-focus);">
+          <div class="modal-header border-bottom-0 p-4">
+            <h5 class="modal-title fw-800 text-primary" id="roomReservedModalLabel">
+              <i class="fa-solid fa-building-circle-check me-2 text-primary"></i>Boardroom Reservation Logs
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 pb-4 pt-0 text-start">
+            <div class="p-3 border rounded bg-light dark-bg-glass mb-4 text-center">
+              <div class="brand-icon-wrapper mx-auto mb-3" style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                <i class="fa-solid fa-door-closed fs-4"></i>
+              </div>
+              <h6 class="fw-800 text-primary mb-1" id="reservedRoomName">Conference Room Alpha</h6>
+              <div class="text-secondary small" id="reservedRoomLoc">Floor 2, South Wing Wing</div>
+            </div>
+
+            <table class="table table-bordered table-sm small mb-3">
+              <tbody>
+                <tr>
+                  <th class="bg-light fw-700 px-3 py-2 text-secondary" style="width: 35%;">Agenda</th>
+                  <td class="px-3 py-2" id="reservedAgenda">Weekly HR Alignment Sync</td>
+                </tr>
+                <tr>
+                  <th class="bg-light fw-700 px-3 py-2 text-secondary">Host Lead</th>
+                  <td class="px-3 py-2" id="reservedHost">Sarah Jenkins</td>
+                </tr>
+                <tr>
+                  <th class="bg-light fw-700 px-3 py-2 text-secondary">Timings</th>
+                  <td class="px-3 py-2" id="reservedTimes">10:00 AM - 11:00 AM</td>
+                </tr>
+                <tr>
+                  <th class="bg-light fw-700 px-3 py-2 text-secondary">Integrations</th>
+                  <td class="px-3 py-2"><i class="fa-solid fa-envelope-open-text text-primary me-1"></i> Mail Invitations Sent</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="d-flex gap-2 mt-4">
+              <button class="outline-btn w-100 justify-content-center" data-bs-dismiss="modal">Close Logs</button>
+              <button class="gradient-btn w-100 justify-content-center" onclick="handlePrintLogs()">
+                <i class="fa-solid fa-print"></i><span>Print Calendar Pass</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule Meeting Modal (New Entry Form) -->
+    <div class="modal fade" id="scheduleMeetingModal" tabindex="-1" aria-labelledby="scheduleMeetingModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card p-0 overflow-hidden" style="border: 1px solid var(--card-border-focus);">
+          <div class="modal-header border-bottom-0 p-4">
+            <h5 class="modal-title fw-800 text-primary" id="scheduleMeetingModalLabel">
+              <i class="fa-solid fa-calendar-plus me-2 text-primary"></i>Schedule New Meeting
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 pb-4 pt-0">
+            <form id="newMeetingForm" onsubmit="event.preventDefault(); handleNewMeetingSubmit();">
+              <div class="mb-3">
+                <label for="meetTitle" class="form-label-premium">Meeting Topic / Agenda</label>
+                <input type="text" class="form-control form-control-premium w-100" id="meetTitle" placeholder="e.g. Design System Review" required>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="meetDept" class="form-label-premium">Department</label>
+                  <select class="form-select form-control-premium w-100" id="meetDept" required>
+                    <option value="HR">Human Resources</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Product">Product & Design</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Executive">Executive Board</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label for="meetType" class="form-label-premium">Meeting Type</label>
+                  <select class="form-select form-control-premium w-100" id="meetType" required>
+                    <option value="Online">Online Session (Video URL)</option>
+                    <option value="Offline">In-Person (Conference Room)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="meetHost" class="form-label-premium">Lead Host</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="meetHost" value="Sarah Jenkins" required>
+                </div>
+                <div class="col-sm-6">
+                  <label for="meetDate" class="form-label-premium">Date</label>
+                  <input type="date" class="form-control form-control-premium w-100" id="meetDate" value="2026-07-02" required>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label for="meetTime" class="form-label-premium">Time Duration</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="meetTime" value="02:00 PM - 03:00 PM" required>
+                </div>
+                <div class="col-sm-6">
+                  <label for="meetLoc" class="form-label-premium">Location / Link</label>
+                  <input type="text" class="form-control form-control-premium w-100" id="meetLoc" value="Zoom Link: aurahr.zoom/review" required>
+                </div>
+              </div>
+              <div class="d-flex gap-2 justify-content-end mt-4">
+                <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="gradient-btn">
+                  <i class="fa-solid fa-check"></i>
+                  <span>Add to Schedule</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Toast Notification (Floating) -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="meetToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Meeting added successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Meetings Controller JS -->
+    <script>
+      let meetingDataset = [
+        { id: 1, title: 'Weekly HR Alignment Sync 👥', department: 'HR', host: 'Sarah Jenkins', role: 'HR Director', participants: ['SJ', 'DS', 'CO'], date: '2026-07-06', rawTime: '10:00 AM - 11:00 AM', type: 'Offline', location: 'Conference Room Alpha, Floor 2', status: 'Scheduled' },
+        { id: 2, title: 'Sprint Retrospective & Demo 💻', department: 'Engineering', host: 'John Doe', role: 'Lead Developer', participants: ['JD', 'SJ', 'RC', 'MV'], date: '2026-07-02', rawTime: '02:00 PM - 03:00 PM', type: 'Online', location: 'Zoom: meet.aurahr.com/retro', status: 'Active' },
+        { id: 3, title: 'Q3 Strategic Alignment Sync', department: 'Product', host: 'Marcus Vance', role: 'Product Lead', participants: ['MV', 'SJ', 'RC', 'CO', 'JD'], date: '2026-07-20', rawTime: '09:00 AM - 10:30 AM', type: 'Online', location: 'Google Meet: meet.google.com/q3sync', status: 'Scheduled' },
+        { id: 4, title: 'Candidate Final Panel Interview', department: 'HR', host: 'Clara Oswald', role: 'Recruiter', participants: ['CO', 'SJ', 'C'], date: '2026-07-02', rawTime: '11:00 AM - 12:00 PM', type: 'Online', location: 'MS Teams Meet', status: 'Active' },
+        { id: 5, title: 'Marketing Campaigns Launch', department: 'Marketing', host: 'Mary Jane', role: 'Marketing Head', participants: ['MJ', 'RC', 'JD'], date: '2026-06-30', rawTime: '04:00 PM - 05:00 PM', type: 'Offline', location: 'Creative Lounge Floor 1', status: 'Completed' },
+        { id: 6, title: 'Executive Board Review', department: 'Executive', host: 'David Wallace', role: 'Managing Partner', participants: ['DW', 'MV', 'SJ'], date: '2026-06-28', rawTime: '09:00 AM - 11:00 AM', type: 'Offline', location: 'Executive Boardroom 3', status: 'Completed' },
+        { id: 7, title: 'Ad-hoc Bug Triaging Sprints', department: 'Engineering', host: 'Robert Chen', role: 'QA Lead', participants: ['RC', 'JD', 'MV'], date: '2026-07-22', rawTime: '01:00 PM - 02:30 PM', type: 'Online', location: 'Discord Sprints Channel', status: 'Scheduled' }
+      ];
+
+      // Handles
+      const tableBody = document.getElementById('meetingsTableBody');
+      const searchInput = document.getElementById('meetSearchInput');
+      const deptFilter = document.getElementById('departmentFilter');
+      const typeFilter = document.getElementById('typeFilter');
+      const resetBtn = document.getElementById('resetFiltersBtn');
+      
+      const statOnline = document.getElementById('statOnlineCount');
+      const statOffline = document.getElementById('statOfflineCount');
+      const statToday = document.getElementById('statTodayCount');
+
+      // Camera state for join preview
+      let isCamOn = true;
+      let isMicOn = true;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        applyFiltersAndRender();
+
+        searchInput.addEventListener('input', applyFiltersAndRender);
+        deptFilter.addEventListener('change', applyFiltersAndRender);
+        typeFilter.addEventListener('change', applyFiltersAndRender);
+        
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          deptFilter.value = 'all';
+          typeFilter.value = 'all';
+          applyFiltersAndRender();
+        });
+
+        // Toggle cam/mic
+        document.getElementById('toggleCamBtn').addEventListener('click', function() {
+          isCamOn = !isCamOn;
+          this.classList.toggle('muted', !isCamOn);
+          this.innerHTML = isCamOn ? '<i class="fa-solid fa-video"></i>' : '<i class="fa-solid fa-video-slash"></i>';
+          document.getElementById('cameraStatusText').innerHTML = isCamOn ? 
+            '<i class="fa-solid fa-user-circle me-1"></i>Camera Feed Active (SARAH JENKINS)' : 
+            '<i class="fa-solid fa-circle-xmark me-1 text-danger"></i>Camera Feed Blocked';
+        });
+
+        document.getElementById('toggleMicBtn').addEventListener('click', function() {
+          isMicOn = !isMicOn;
+          this.classList.toggle('muted', !isMicOn);
+          this.innerHTML = isMicOn ? '<i class="fa-solid fa-microphone"></i>' : '<i class="fa-solid fa-microphone-slash"></i>';
+        });
+
+        AOS.init({ once: true });
+      });
+
+      function applyFiltersAndRender() {
+        const query = searchInput.value.toLowerCase().trim();
+        const deptVal = deptFilter.value;
+        const typeVal = typeFilter.value;
+
+        const filtered = meetingDataset.filter(meet => {
+          const matchQuery = meet.title.toLowerCase().includes(query) || 
+                             meet.host.toLowerCase().includes(query) || 
+                             meet.location.toLowerCase().includes(query);
+          
+          const matchDept = deptVal === 'all' || meet.department === deptVal;
+          const matchType = typeVal === 'all' || meet.type === typeVal;
+
+          return matchQuery && matchDept && matchType;
+        });
+
+        renderTable(filtered);
+        updateHeaderStats();
+      }
+
+      function updateHeaderStats() {
+        const onlineCount = meetingDataset.filter(m => m.type === 'Online').length;
+        const offlineCount = meetingDataset.filter(m => m.type === 'Offline').length;
+        const todayCount = meetingDataset.filter(m => m.status === 'Active').length;
+
+        statOnline.textContent = `${onlineCount} Meetings`;
+        statOffline.textContent = `${offlineCount} Reserved`;
+        statToday.textContent = `${todayCount} Active`;
+      }
+
+      function renderTable(data) {
+        tableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="8" class="text-center py-5">
+                <div class="text-muted mb-3"><i class="fa-solid fa-video-slash fs-1"></i></div>
+                <h5 class="fw-700 text-primary">No Scheduled Meetings</h5>
+                <p class="text-secondary small max-w-sm mx-auto" style="max-width: 380px;">
+                  We couldn't locate any synced calendar slots. Clear filters to restore defaults.
+                </p>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        data.forEach(meet => {
+          let statusBadgeClass = 'premium-badge-info';
+          if (meet.status === 'Active') statusBadgeClass = 'premium-badge-success';
+          if (meet.status === 'Completed') statusBadgeClass = 'premium-badge-info';
+          if (meet.status === 'Scheduled') statusBadgeClass = 'premium-badge-warning';
+
+          // Render avatars stack
+          let avatarsHtml = '<div class="avatar-pile">';
+          meet.participants.forEach((initials, index) => {
+            if (index < 3) {
+              const hue = (index * 137) % 360;
+              avatarsHtml += `<div class="avatar-pile-item" style="background-color: hsl(${hue}, 70%, 45%)" title="${initials}">${initials}</div>`;
+            }
+          });
+          if (meet.participants.length > 3) {
+            avatarsHtml += `<div class="avatar-pile-item bg-dark" title="and ${meet.participants.length - 3} others">+${meet.participants.length - 3}</div>`;
+          }
+          avatarsHtml += '</div>';
+
+          // Date format readable
+          const formattedDate = new Date(meet.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+          // Join action button
+          let actionBtn = '';
+          if (meet.status === 'Completed') {
+            actionBtn = `<button class="outline-btn py-1 px-2 fs-8" disabled style="opacity: 0.6;"><i class="fa-solid fa-lock me-1"></i>Archived</button>`;
+          } else if (meet.type === 'Online') {
+            actionBtn = `<button class="gradient-btn py-1 px-3 fs-8" onclick="triggerJoinOnline('${meet.title}', '${meet.host}', '${meet.role}')"><i class="fa-solid fa-video me-1"></i>Join Meet</button>`;
+          } else {
+            actionBtn = `<button class="outline-btn py-1 px-3 fs-8" onclick="triggerReserveLogs('${meet.title}', '${meet.host}', '${meet.location}')"><i class="fa-solid fa-building me-1"></i>View Logs</button>`;
+          }
+
+          tableBody.innerHTML += `
+            <tr>
+              <td>
+                <div class="fw-700 text-primary">${meet.title}</div>
+                <div class="fs-8 text-muted"><i class="fa-solid fa-hashtag me-1"></i>ID: SYNC-020${meet.id}</div>
+              </td>
+              <td><span class="badge bg-light text-secondary border uppercase-spacing fs-8">${meet.department}</span></td>
+              <td>
+                <div class="fw-700 fs-8">${meet.host}</div>
+                <div class="text-muted fs-8">${meet.role || 'Coordinator'}</div>
+              </td>
+              <td>${avatarsHtml}</td>
+              <td>
+                <div class="fw-600 fs-8">${formattedDate}</div>
+                <div class="text-muted fs-8">${meet.rawTime}</div>
+              </td>
+              <td><span class="type-badge ${meet.type === 'Online' ? 'online' : 'offline'}"><i class="fa-solid ${meet.type === 'Online' ? 'fa-globe' : 'fa-door-closed'}"></i> ${meet.type}</span></td>
+              <td><span class="premium-badge ${statusBadgeClass}">${meet.status}</span></td>
+              <td class="text-end">${actionBtn}</td>
+            </tr>
+          `;
+        });
+      }
+
+      function triggerJoinOnline(title, host, role) {
+        document.getElementById('joinMeetingTitle').textContent = title;
+        document.getElementById('joinMeetingHost').textContent = `Host: ${host} (${role})`;
+        
+        // Reset cam/mic states
+        isCamOn = true;
+        isMicOn = true;
+        const camBtn = document.getElementById('toggleCamBtn');
+        const micBtn = document.getElementById('toggleMicBtn');
+        camBtn.className = 'video-control-btn';
+        camBtn.innerHTML = '<i class="fa-solid fa-video"></i>';
+        micBtn.className = 'video-control-btn';
+        micBtn.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+        document.getElementById('cameraStatusText').innerHTML = '<i class="fa-solid fa-user-circle me-1"></i>Camera Feed Active (SARAH JENKINS)';
+
+        const joinModal = new bootstrap.Modal(document.getElementById('joinOnlineModal'));
+        joinModal.show();
+      }
+
+      function triggerReserveLogs(title, host, loc) {
+        document.getElementById('reservedRoomName').textContent = loc.split(',')[0];
+        document.getElementById('reservedRoomLoc').textContent = loc.split(',')[1] || 'Floor 2, Main Complex';
+        document.getElementById('reservedAgenda').textContent = title;
+        document.getElementById('reservedHost').textContent = host;
+
+        const reservedModal = new bootstrap.Modal(document.getElementById('roomReservedModal'));
+        reservedModal.show();
+      }
+
+      function handleNewMeetingSubmit() {
+        const title = document.getElementById('meetTitle').value;
+        const department = document.getElementById('meetDept').value;
+        const type = document.getElementById('meetType').value;
+        const host = document.getElementById('meetHost').value;
+        const date = document.getElementById('meetDate').value;
+        const rawTime = document.getElementById('meetTime').value;
+        const location = document.getElementById('meetLoc').value;
+
+        const newMeet = {
+          id: meetingDataset.length + 1,
+          title,
+          department,
+          host,
+          role: 'Meeting Lead',
+          participants: ['SJ', 'CO', 'JD'],
+          date,
+          rawTime,
+          type,
+          location,
+          status: 'Scheduled'
+        };
+
+        meetingDataset.unshift(newMeet); // Add to head of stack
+
+        // Close modal
+        const modalEl = document.getElementById('scheduleMeetingModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        // Reset form
+        document.getElementById('newMeetingForm').reset();
+
+        // Re-render
+        applyFiltersAndRender();
+
+        // Toast Success Notification
+        const toastEl = document.getElementById('meetToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = `Meeting "${title}" successfully scheduled!`;
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+
+      function handleMockConnect() {
+        // Mock connect and close modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('joinOnlineModal'));
+        modal.hide();
+
+        const toastEl = document.getElementById('meetToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = "Connecting to Secure Video Streams... Access Granted!";
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+
+      function handlePrintLogs() {
+        const toastEl = document.getElementById('meetToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = "Downloading Calendar Reservation Pass...";
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

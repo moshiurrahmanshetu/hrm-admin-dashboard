@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Task Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumb Navigation -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <a href="tasks.html" class="outline-btn py-1 px-2 border-0" style="background: transparent;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                  </a>
+                  <h2 class="h4 fw-800 text-primary mb-1">Task Specification</h2>
+                </div>
+                <nav aria-label="breadcrumb" class="ms-4 ps-2">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="tasks.html" class="text-decoration-none text-muted">Tasks</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page" id="taskBreadcrumbID">TSK-XXX</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="d-flex gap-2">
+                <a id="lnkAssociatedProject" href="projects.html" class="outline-btn text-decoration-none">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Associated Project</span>
+                </a>
+                <button class="gradient-btn" onclick="history.back()">
+                  <span>Back to Kanban</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Main Layout Details -->
+            <div class="row g-4">
+              <!-- Left Column: Info, Checklist, Discussion -->
+              <div class="col-12 col-lg-8">
+                <!-- Task Overview Card -->
+                <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+                  <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                    <div>
+                      <span class="badge bg-light text-primary border px-3 py-1 rounded-pill small mb-2" id="taskIDBadge">TSK-501</span>
+                      <h3 class="h4 fw-800 text-primary mb-1" id="taskFullTitle">Loading Task...</h3>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <span class="premium-badge fs-8 px-3 py-1" id="taskPriorityBadge">Priority</span>
+                      <span class="premium-badge fs-8 px-3 py-1" id="taskStatusBadge">Status</span>
+                    </div>
+                  </div>
+
+                  <p class="text-secondary leading-relaxed mb-4" id="taskDesc">
+                    No description specified.
+                  </p>
+
+                  <div class="row g-3 pt-3 border-top">
+                    <div class="col-12 col-sm-6">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="text-secondary small fw-600">Project Reference:</span>
+                        <a href="projects.html" class="text-primary small fw-700 text-decoration-none" id="taskProjectName">AuraHR Mobile App Core</a>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <div class="d-flex align-items-center gap-2">
+                        <span class="text-secondary small fw-600">Target Deadline:</span>
+                        <span class="text-secondary small fw-700" id="taskDueDate"><i class="fa-regular fa-clock me-1 text-primary"></i> 2026-08-01</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Checklist Card -->
+                <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="h5 fw-700 text-primary mb-0">Deliverables Checklist</h4>
+                    <span class="badge bg-light text-primary border small" id="checklistProgressInfo">0/4 Completed</span>
+                  </div>
+                  
+                  <div class="project-progress-track mb-4" style="height: 6px;">
+                    <div class="project-progress-fill" id="checklistProgressFill" style="width: 0%; background: var(--success);"></div>
+                  </div>
+
+                  <div class="d-flex flex-column gap-3" id="checklistContainer">
+                    <!-- Loaded dynamically, interactive -->
+                  </div>
+                </div>
+
+                <!-- Discussion & Comments -->
+                <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="800">
+                  <h4 class="h5 fw-700 text-primary mb-4">Task Discussion Board</h4>
+                  
+                  <!-- Post Comment Form -->
+                  <form id="commentForm" class="mb-4">
+                    <div class="d-flex gap-3 align-items-start">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="Sarah Jenkins" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                      <div class="flex-grow-1">
+                        <textarea class="form-control form-control-premium" rows="3" id="commentInput" placeholder="Join the discussion, document blockers or update deliverables..." required></textarea>
+                        <div class="d-flex justify-content-end mt-2">
+                          <button type="submit" class="gradient-btn py-1 px-3">
+                            <i class="fa-regular fa-paper-plane me-2"></i>Post Comment
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <!-- Comments Feed -->
+                  <div class="d-flex flex-column gap-4 border-top pt-4" id="commentsFeed">
+                    <!-- Rendered dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Lead Assignee & Attachments & Activity -->
+              <div class="col-12 col-lg-4">
+                <!-- Lead Owner Card -->
+                <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+                  <h4 class="h5 fw-700 text-primary mb-3">Task Owner Resource</h4>
+                  <div class="d-flex align-items-center gap-3 pb-3 border-bottom mb-3">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" id="assigneeAvatar" alt="Sarah Jenkins" class="rounded-circle" style="width: 52px; height: 52px; object-fit: cover; border: 2px solid var(--primary-accent);">
+                    <div>
+                      <h5 class="h6 fw-800 text-primary mb-0" id="assigneeName">Sarah Jenkins</h5>
+                      <span class="text-secondary small d-block" id="assigneeRole">HR Director</span>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column gap-2 small">
+                    <div class="d-flex justify-content-between">
+                      <span class="text-secondary fw-500">Contact Email:</span>
+                      <a href="#" class="text-primary text-decoration-none fw-600" id="assigneeEmail">s.jenkins@aurahr.co</a>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="text-secondary fw-500">Allocation:</span>
+                      <span class="text-secondary fw-600">100% Dedicated</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Documentation / Attachment list -->
+                <div class="glass-card p-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+                  <h4 class="h5 fw-700 text-primary mb-3">Attachments (UI Only)</h4>
+                  <div class="d-flex flex-column gap-2">
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded border hover-bg">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-file-pdf text-danger fs-5"></i>
+                        <div>
+                          <span class="fw-700 text-primary small d-block" style="font-size: 0.8rem;">Specification_V1.pdf</span>
+                          <span class="text-secondary small" style="font-size: 0.7rem;">2.1 MB • Requirement Details</span>
+                        </div>
+                      </div>
+                      <button class="outline-btn p-1 px-2" title="Download Specification_V1.pdf">
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between p-2 rounded border hover-bg">
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-file-image text-info fs-5"></i>
+                        <div>
+                          <span class="fw-700 text-primary small d-block" style="font-size: 0.8rem;">Task_Flowchart_Core.png</span>
+                          <span class="text-secondary small" style="font-size: 0.7rem;">942 KB • Architecture Wireframe</span>
+                        </div>
+                      </div>
+                      <button class="outline-btn p-1 px-2" title="Download Task_Flowchart_Core.png">
+                        <i class="fa-solid fa-download"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Task Activity History -->
+                <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="800">
+                  <h4 class="h5 fw-700 text-primary mb-3">Task Activity Log</h4>
+                  
+                  <div class="timeline-premium-wrapper position-relative py-2">
+                    <div class="position-absolute start-0 h-100 border-start ms-2 border-2" style="top: 0; opacity: 0.1;"></div>
+                    
+                    <div class="d-flex flex-column gap-3" id="taskActivityFeed">
+                      <!-- Loaded dynamically in JS -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Page Styles -->
+    <style>
+      .hover-bg {
+        transition: background-color var(--transition-fast);
+      }
+      .hover-bg:hover {
+        background-color: var(--sidebar-item-hover) !important;
+      }
+      .project-progress-track {
+        height: 6px;
+        background-color: var(--table-border);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+      }
+      .project-progress-fill {
+        height: 100%;
+        transition: width 0.4s ease-in-out;
+      }
+      .checklist-item {
+        transition: background-color var(--transition-fast);
+      }
+      .checklist-item.checked .form-check-label {
+        text-decoration: line-through;
+        color: var(--text-secondary);
+        opacity: 0.65;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+
+        // Team info map
+        const TEAM_POOL = [
+          { name: "Sarah Jenkins", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop", role: "HR Director", email: "s.jenkins@aurahr.co" },
+          { name: "Marcus Vance", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop", role: "Engineering Lead", email: "m.vance@aurahr.co" },
+          { name: "Emily Rose", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop", role: "Marketing Lead", email: "e.rose@aurahr.co" },
+          { name: "Robert Chen", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop", role: "Sys Architect", email: "r.chen@aurahr.co" },
+          { name: "Jessica Taylor", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop", role: "Senior UX Designer", email: "j.taylor@aurahr.co" },
+          { name: "David Kross", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop", role: "Account Executive", email: "d.kross@aurahr.co" },
+          { name: "Chloe Bennett", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop", role: "Senior Accountant", email: "c.bennett@aurahr.co" },
+          { name: "Alan Turing", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop", role: "AI Specialist", email: "a.turing@aurahr.co" }
+        ];
+
+        // Retrieve Projects from storage
+        const PROJECTS = JSON.parse(localStorage.getItem("aura_projects")) || [];
+
+        // Load Task from storage
+        let TASKS = JSON.parse(localStorage.getItem("aura_tasks")) || [];
+        
+        // Get URL ID
+        const urlParams = new URLSearchParams(window.location.search);
+        let taskID = urlParams.get("id") || "TSK-501";
+
+        // Find current Task
+        let task = TASKS.find(t => t.id === taskID);
+        if (!task) {
+          task = TASKS[0]; // fallback
+          taskID = task.id;
+        }
+
+        // Helper badges
+        function getPriorityBadgeClass(prio) {
+          switch (prio) {
+            case "High": return "premium-badge-danger";
+            case "Medium": return "premium-badge-warning";
+            case "Low": return "premium-badge-secondary";
+            default: return "premium-badge-info";
+          }
+        }
+
+        function getStatusBadgeClass(status) {
+          switch (status) {
+            case "Completed": return "premium-badge-success";
+            case "In Progress": return "premium-badge-warning";
+            case "Review": return "premium-badge-info";
+            case "To Do": return "premium-badge-danger";
+            default: return "premium-badge-secondary";
+          }
+        }
+
+        // Populate basic text fields
+        document.getElementById("taskBreadcrumbID").textContent = task.id;
+        document.getElementById("taskIDBadge").textContent = task.id;
+        document.getElementById("taskFullTitle").textContent = task.title;
+        document.getElementById("taskDesc").textContent = task.desc;
+        document.getElementById("taskDueDate").innerHTML = `<i class="fa-regular fa-clock me-1 text-primary"></i> ${task.dueDate}`;
+
+        // Priority / Status Badges
+        const priorityB = document.getElementById("taskPriorityBadge");
+        priorityB.className = `premium-badge fs-8 px-3 py-1 ${getPriorityBadgeClass(task.priority)}`;
+        priorityB.textContent = `${task.priority} Priority`;
+
+        const statusB = document.getElementById("taskStatusBadge");
+        statusB.className = `premium-badge fs-8 px-3 py-1 ${getStatusBadgeClass(task.status)}`;
+        statusB.textContent = task.status;
+
+        // Load Associated Project Name & details
+        const matchedPrj = PROJECTS.find(p => p.id === task.projectID);
+        const lnkAssociatedProject = document.getElementById("lnkAssociatedProject");
+        const taskProjectName = document.getElementById("taskProjectName");
+        
+        if (matchedPrj) {
+          lnkAssociatedProject.href = `project-details.html?id=${matchedPrj.id}`;
+          taskProjectName.textContent = matchedPrj.name;
+          taskProjectName.href = `project-details.html?id=${matchedPrj.id}`;
+        } else {
+          lnkAssociatedProject.href = "projects.html";
+          taskProjectName.textContent = "General Operations";
+          taskProjectName.href = "projects.html";
+        }
+
+        // Assignee Details
+        const matchedOwner = TEAM_POOL.find(m => m.name === task.assignee) || TEAM_POOL[0];
+        document.getElementById("assigneeAvatar").src = matchedOwner.avatar;
+        document.getElementById("assigneeAvatar").alt = matchedOwner.name;
+        document.getElementById("assigneeName").textContent = matchedOwner.name;
+        document.getElementById("assigneeRole").textContent = matchedOwner.role;
+        document.getElementById("assigneeEmail").textContent = matchedOwner.email;
+        document.getElementById("assigneeEmail").href = `mailto:${matchedOwner.email}`;
+
+        // Interactive Checklist Setup
+        // Check if there are checklist items saved for this task, otherwise generate default ones
+        const checklistKey = `aura_checklist_${task.id}`;
+        let checklistData = JSON.parse(localStorage.getItem(checklistKey)) || [
+          { id: 1, text: "Assemble reference documents and source targets", done: true },
+          { id: 2, text: "Execute preliminary system wireframe outlines", done: task.status !== "To Do" },
+          { id: 3, text: "Complete core programming and local verification passes", done: task.status === "Review" || task.status === "Completed" },
+          { id: 4, text: "Conduct user feedback sessions and obtain manager sign-off", done: task.status === "Completed" }
+        ];
+
+        const checklistContainer = document.getElementById("checklistContainer");
+        
+        function renderChecklist() {
+          checklistContainer.innerHTML = "";
+          let completedCount = 0;
+
+          checklistData.forEach(item => {
+            if (item.done) completedCount++;
+
+            const div = document.createElement("div");
+            div.className = `checklist-item d-flex align-items-center gap-3 p-2 rounded border hover-bg ${item.done ? 'checked' : ''}`;
+            div.innerHTML = `
+              <div class="form-check mb-0">
+                <input class="form-check-input" type="checkbox" id="checkItem_${item.id}" ${item.done ? 'checked' : ''} style="cursor: pointer; width: 1.2rem; height: 1.2rem;">
+              </div>
+              <label class="form-check-label small fw-600 text-primary flex-grow-1" for="checkItem_${item.id}" style="cursor: pointer; user-select: none;">
+                ${item.text}
+              </label>
+            `;
+
+            // checkbox event listener
+            div.querySelector("input").addEventListener("change", function() {
+              item.done = this.checked;
+              localStorage.setItem(checklistKey, JSON.stringify(checklistData));
+              renderChecklist();
+            });
+
+            checklistContainer.appendChild(div);
+          });
+
+          // Update Progress Bar
+          const pct = Math.round((completedCount / checklistData.length) * 100) || 0;
+          document.getElementById("checklistProgressInfo").textContent = `${completedCount}/${checklistData.length} Completed`;
+          document.getElementById("checklistProgressFill").style.width = `${pct}%`;
+        }
+
+        renderChecklist();
+
+        // Comments System
+        const commentsKey = `aura_comments_${task.id}`;
+        let commentsData = JSON.parse(localStorage.getItem(commentsKey)) || [
+          {
+            author: "Sarah Jenkins",
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            text: `This matches our critical workspace targets. Let's make sure that ${task.assignee.split(' ')[0]} gets direct review guidelines.`,
+            time: "2 days ago"
+          },
+          {
+            author: task.assignee,
+            avatar: matchedOwner.avatar,
+            text: "Initial outlines are aligned. Proceeding with detailed core verification targets today.",
+            time: "1 day ago"
+          }
+        ];
+
+        const commentsFeed = document.getElementById("commentsFeed");
+        const commentForm = document.getElementById("commentForm");
+        const commentInput = document.getElementById("commentInput");
+
+        function renderComments() {
+          commentsFeed.innerHTML = "";
+          commentsData.forEach(c => {
+            const div = document.createElement("div");
+            div.className = "d-flex gap-3 align-items-start";
+            div.innerHTML = `
+              <img src="${c.avatar}" alt="${c.author}" class="rounded-circle" style="width: 36px; height: 36px; object-fit: cover; border: 1px solid var(--table-border);">
+              <div class="flex-grow-1 p-3 rounded" style="background: rgba(var(--primary-accent-rgb), 0.015); border: 1px solid var(--table-border);">
+                <div class="d-flex justify-content-between align-items-center mb-1 flex-wrap">
+                  <span class="fw-700 text-primary small">${c.author}</span>
+                  <span class="text-secondary small" style="font-size: 0.75rem;">${c.time}</span>
+                </div>
+                <p class="text-secondary small mb-0 leading-relaxed">${c.text}</p>
+              </div>
+            `;
+            commentsFeed.appendChild(div);
+          });
+        }
+
+        commentForm.addEventListener("submit", function(e) {
+          e.preventDefault();
+          const val = commentInput.value.trim();
+          if (!val) return;
+
+          const newC = {
+            author: "Sarah Jenkins", // Sarah Jenkins is the active logged-in user in other dashboards
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            text: val,
+            time: "Just now"
+          };
+
+          commentsData.push(newC);
+          localStorage.setItem(commentsKey, JSON.stringify(commentsData));
+          renderComments();
+          commentInput.value = "";
+        });
+
+        renderComments();
+
+        // Dynamic Activities list
+        const taskActivityFeed = document.getElementById("taskActivityFeed");
+        taskActivityFeed.innerHTML = "";
+
+        const activities = [
+          { user: task.assignee, text: `marked checklist element 2 as complete`, time: "1 day ago" },
+          { user: "Sarah Jenkins", text: "assigned task to " + task.assignee, time: "3 days ago" },
+          { user: "Sarah Jenkins", text: "initialized task scope definitions", time: "3 days ago" }
+        ];
+
+        activities.forEach(act => {
+          const m = TEAM_POOL.find(t => t.name === act.user) || TEAM_POOL[0];
+          
+          const node = document.createElement("div");
+          node.className = "d-flex gap-3 align-items-start position-relative mb-2";
+          node.innerHTML = `
+            <img src="${m.avatar}" alt="${act.user}" class="rounded-circle" style="width: 20px; height: 20px; object-fit: cover; border: 1px solid var(--table-border); z-index: 2;">
+            <div>
+              <p class="text-primary small mb-0" style="font-size: 0.8rem; line-height: 1.3;">
+                <strong>${act.user}</strong> ${act.text}
+              </p>
+              <span class="text-secondary small" style="font-size: 0.7rem;">${act.time}</span>
+            </div>
+          `;
+          taskActivityFeed.appendChild(node);
+        });
+      });
+    </script>
+  </body>
+</html>

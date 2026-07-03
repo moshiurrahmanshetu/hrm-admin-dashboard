@@ -1,0 +1,464 @@
+/* ==========================================================================
+   HRM Premium Admin Dashboard - Theme System Variables (theme.css)
+   ========================================================================== */
+
+:root {
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms ease;
+
+    /* Border Radii */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* Base Theme Variables - LIGHT MODE (Default) */
+    --bg-primary: #f8fafc;
+    --bg-surface: #ffffff;
+    --border-color: rgba(226, 232, 240, 0.8);
+    
+    /* Sidebar Specifics */
+    --sidebar-bg: rgba(255, 255, 255, 0.9);
+    --sidebar-border: rgba(226, 232, 240, 0.8);
+    --sidebar-text: #475569;
+    --sidebar-text-active: #4f46e5;
+    --sidebar-item-hover: rgba(241, 245, 249, 0.9);
+    --sidebar-item-active: rgba(79, 70, 229, 0.08);
+
+    /* Header & Navbar Specifics */
+    --navbar-bg: rgba(255, 255, 255, 0.85);
+    --navbar-border: rgba(226, 232, 240, 0.8);
+
+    /* Typography & Core Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+
+    /* Brand Accents */
+    --primary-accent: #4f46e5;
+    --primary-accent-hover: #4338ca;
+    --primary-accent-rgb: 79, 70, 229;
+    --shadow-accent-glow: rgba(79, 70, 229, 0.25);
+
+    /* Forms & Inputs */
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --input-focus-border: #6366f1;
+    --input-focus-shadow: rgba(99, 102, 241, 0.15);
+
+    /* Interactive Cards */
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-bg-solid: #ffffff;
+    --card-border: rgba(226, 232, 240, 0.8);
+    --card-border-focus: rgba(79, 70, 229, 0.4);
+    --card-backdrop-blur: 20px;
+    --glass-shimmer: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+
+    /* Tables */
+    --table-border: rgba(226, 232, 240, 0.8);
+    --table-header-bg: #f8fafc;
+    --table-row-hover: rgba(241, 245, 249, 0.5);
+
+    /* Statuses */
+    --danger: #ef4444;
+    --danger-bg: rgba(239, 68, 68, 0.08);
+    --danger-rgb: 239, 68, 68;
+
+    --success: #10b981;
+    --success-bg: rgba(16, 185, 129, 0.08);
+    --success-rgb: 16, 185, 129;
+
+    --warning: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.08);
+    --warning-rgb: 245, 158, 11;
+
+    --info: #06b6d4;
+    --info-bg: rgba(6, 182, 212, 0.08);
+    --info-rgb: 6, 182, 212;
+
+    /* Shadows & Radii */
+    --radius-xl: 24px;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-soft-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 3px -1px rgba(15, 23, 42, 0.03);
+    --shadow-soft-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+}
+
+/* Base Theme Variables - DARK MODE */
+[data-theme="dark"] {
+    --bg-primary: #0b0f19;
+    --bg-surface: #151e34;
+    --border-color: rgba(255, 255, 255, 0.06);
+    
+    /* Sidebar Specifics */
+    --sidebar-bg: rgba(15, 23, 42, 0.85);
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --sidebar-text: #94a3b8;
+    --sidebar-text-active: #818cf8;
+    --sidebar-item-hover: rgba(255, 255, 255, 0.04);
+    --sidebar-item-active: rgba(129, 140, 248, 0.12);
+
+    /* Header & Navbar Specifics */
+    --navbar-bg: rgba(15, 23, 42, 0.8);
+    --navbar-border: rgba(255, 255, 255, 0.06);
+
+    /* Typography & Core Colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+
+    /* Brand Accents */
+    --primary-accent: #6366f1;
+    --primary-accent-hover: #4f46e5;
+    --primary-accent-rgb: 99, 102, 241;
+    --shadow-accent-glow: rgba(99, 102, 241, 0.15);
+
+    /* Forms & Inputs */
+    --input-bg: #151e34;
+    --input-border: rgba(255, 255, 255, 0.08);
+    --input-focus-border: #818cf8;
+    --input-focus-shadow: rgba(129, 140, 248, 0.15);
+
+    /* Interactive Cards */
+    --card-bg: rgba(21, 30, 52, 0.7);
+    --card-bg-solid: #151e34;
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-border-focus: rgba(99, 102, 241, 0.3);
+    --card-backdrop-blur: 20px;
+    --glass-shimmer: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+
+    /* Tables */
+    --table-border: rgba(255, 255, 255, 0.06);
+    --table-header-bg: rgba(255, 255, 255, 0.02);
+    --table-row-hover: rgba(255, 255, 255, 0.02);
+
+    /* Statuses */
+    --danger: #f87171;
+    --danger-bg: rgba(248, 113, 113, 0.1);
+    --danger-rgb: 248, 113, 113;
+
+    --success: #34d399;
+    --success-bg: rgba(52, 211, 153, 0.1);
+    --success-rgb: 52, 211, 153;
+
+    --warning: #fbbf24;
+    --warning-bg: rgba(251, 191, 36, 0.1);
+    --warning-rgb: 251, 191, 36;
+
+    --info: #22d3ee;
+    --info-bg: rgba(34, 211, 238, 0.1);
+    --info-rgb: 34, 211, 238;
+
+    /* Shadows & Radii */
+    --radius-xl: 24px;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    --shadow-soft-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.2);
+    --shadow-soft-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Smooth Theme Transition Controller
+   ========================================================================== */
+body, 
+.sidebar-container, 
+.main-content-wrapper, 
+.header-container, 
+.footer-container, 
+.glass-card, 
+.dropdown-menu-premium, 
+.dropdown-item-premium, 
+.table-premium-wrapper, 
+.table-premium,
+.table-premium th, 
+.table-premium td, 
+.form-control-premium, 
+.shortcut-item, 
+.online-dot, 
+.calendar-day,
+.sidebar-nav-link,
+.sidebar-submenu-link,
+.sidebar-user-card,
+.profile-dropdown-trigger,
+.header-action-btn,
+.sidebar-toggle-btn,
+.brand-link,
+.brand-text,
+.search-input {
+    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, box-shadow 300ms ease, transform 300ms ease, opacity 300ms ease !important;
+}
+
+/* Fix any default Bootstrap text colors and elements to follow variables */
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+.text-primary {
+    color: var(--primary-accent) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Card overrides for light/dark mode */
+.card {
+    background-color: var(--card-bg-solid);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+/* Custom Scrollbars to match dark/light theme */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Modal styling for theme */
+.modal-content {
+    background-color: var(--card-bg-solid);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--card-border);
+}
+
+/* Dropdown override */
+.dropdown-menu {
+    background-color: var(--card-bg-solid);
+    border-color: var(--card-border);
+    color: var(--text-primary);
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+    background-color: var(--table-row-hover);
+    color: var(--text-primary);
+}
+
+/* Form selects, textareas, inputs, search */
+select, select.form-control-premium {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    appearance: none;
+}
+
+[data-theme="dark"] select, [data-theme="dark"] select.form-control-premium {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23cbd5e1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Breadcrumb Styling */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--text-muted);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-secondary);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-accent);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination Overrides */
+.pagination .page-link {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-secondary);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--sidebar-item-hover);
+    border-color: var(--input-focus-border);
+    color: var(--text-primary);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: #ffffff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    opacity: 0.5;
+    color: var(--text-muted);
+}
+
+/* Badges and tags */
+.badge {
+    font-weight: 600;
+}
+
+/* Progress Bar colors */
+.progress {
+    background-color: var(--table-border);
+    border-radius: var(--radius-full);
+}
+
+.progress-bar {
+    background-color: var(--primary-accent);
+}
+
+/* Charts overlay text and grid */
+.chart-axis-text {
+    fill: var(--text-secondary);
+}
+
+/* Calendar Month View Styling */
+.calendar-view-header {
+    border-bottom: 1px solid var(--table-border);
+}
+
+.calendar-grid-cell {
+    border: 1px solid var(--table-border);
+    background-color: var(--card-bg-solid);
+}
+
+.calendar-grid-cell:hover {
+    background-color: var(--table-row-hover);
+}
+
+/* Printable payslip styling - ensuring perfect contrast in light print mode and dark view mode */
+@media print {
+    body, .payslip-container {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+}
+
+/* ==========================================================================
+   Bootstrap Utility Class Overrides for Dark Mode Support
+   ========================================================================== */
+[data-theme="dark"] .bg-white {
+    background-color: var(--card-bg-solid) !important;
+}
+
+[data-theme="dark"] .bg-light {
+    background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-black {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .border {
+    border-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .border-bottom {
+    border-bottom-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .border-top {
+    border-top-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .border-end {
+    border-right-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .border-start {
+    border-left-color: var(--card-border) !important;
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: var(--card-bg-solid) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .table {
+    --bs-table-bg: var(--card-bg-solid) !important;
+    --bs-table-hover-bg: var(--table-row-hover) !important;
+    --bs-table-color: var(--text-primary) !important;
+    --bs-table-border-color: var(--table-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .table-light {
+    --bs-table-bg: var(--table-header-bg) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .form-select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .input-group-text {
+    background-color: var(--table-header-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    background-color: var(--card-bg-solid) !important;
+    border-color: var(--card-border) var(--card-border) transparent !important;
+    color: var(--primary-accent) !important;
+}
+
+[data-theme="dark"] .nav-tabs {
+    border-bottom-color: var(--card-border) !important;
+}
+

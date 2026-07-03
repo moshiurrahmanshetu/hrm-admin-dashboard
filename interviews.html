@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Interviews Schedule</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      .active-sub-nav {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow) !important;
+      }
+      .filter-input {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-primary);
+        border-radius: var(--radius-md);
+        padding: 0.5rem 1rem;
+        font-size: 0.88rem;
+        transition: all var(--transition-fast);
+      }
+      .filter-input:focus {
+        border-color: var(--primary-accent);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(var(--primary-accent-rgb), 0.1);
+      }
+      .form-label-premium {
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
+      }
+      .view-btn-group .btn {
+        border: 1px solid var(--card-border);
+        background: var(--card-bg);
+        color: var(--text-secondary);
+        transition: all var(--transition-fast);
+      }
+      .view-btn-group .btn.active {
+        background: var(--primary-accent);
+        color: white;
+        border-color: var(--primary-accent);
+      }
+      .calendar-ui-day {
+        min-height: 110px;
+        border: 1px solid var(--card-border);
+        background: var(--card-bg);
+        border-radius: var(--radius-sm);
+        padding: 0.5rem;
+        transition: all var(--transition-fast);
+      }
+      .calendar-ui-day:hover {
+        border-color: var(--primary-accent);
+        box-shadow: var(--shadow-soft-sm);
+      }
+      .calendar-ui-day.today {
+        border: 1px solid var(--primary-accent);
+        background: rgba(var(--primary-accent-rgb), 0.02);
+      }
+      .calendar-ui-day.muted {
+        opacity: 0.4;
+      }
+      .calendar-event {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 0.15rem 0.35rem;
+        border-radius: var(--radius-sm);
+        margin-bottom: 0.2rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumbs -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Interviews Schedule</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="recruitment.html" class="text-decoration-none text-muted">Recruitment</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Interviews</li>
+                  </ol>
+                </nav>
+              </div>
+              <div class="d-flex gap-2">
+                <!-- List / Calendar switcher (UI only) -->
+                <div class="btn-group view-btn-group" role="group" id="viewToggleGroup">
+                  <button type="button" class="btn active btn-sm py-2 px-3 fw-700" id="listViewBtn">
+                    <i class="fa-solid fa-list me-1"></i>List
+                  </button>
+                  <button type="button" class="btn btn-sm py-2 px-3 fw-700" id="calendarViewBtn">
+                    <i class="fa-solid fa-calendar-days me-1"></i>Calendar
+                  </button>
+                </div>
+                <button class="gradient-btn" id="scheduleInterviewBtn">
+                  <i class="fa-solid fa-calendar-plus"></i>
+                  <span>Schedule Interview</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Recruitment Module Nav Tabs -->
+            <div class="d-flex flex-wrap gap-2 mb-4" data-aos="fade-right" data-aos-duration="600">
+              <a href="recruitment.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-chart-pie me-2"></i>Overview
+              </a>
+              <a href="job-openings.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-briefcase me-2"></i>Job Openings
+              </a>
+              <a href="candidates.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-user-group me-2"></i>Candidates
+              </a>
+              <a href="interviews.html" class="outline-btn active-sub-nav text-decoration-none">
+                <i class="fa-solid fa-calendar-days me-2"></i>Interviews
+              </a>
+              <a href="offers.html" class="outline-btn text-decoration-none">
+                <i class="fa-solid fa-file-signature me-2"></i>Offers
+              </a>
+            </div>
+
+            <!-- List View Wrapper -->
+            <div id="listViewWrapper" class="animate-fade-in-up">
+              <!-- Filters -->
+              <div class="glass-card mb-4 p-3" data-aos="fade-up" data-aos-duration="600">
+                <div class="row g-3 align-items-end">
+                  <div class="col-lg-4 col-md-6">
+                    <label class="form-label-premium">Search Interviews</label>
+                    <div class="search-input-group w-100">
+                      <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                      <input type="text" class="search-input" id="searchInterviewsInput" placeholder="Search candidate, interviewer...">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6">
+                    <label class="form-label-premium">Interview Type</label>
+                    <select class="filter-input w-100" id="filterType">
+                      <option value="">All Types</option>
+                      <option value="Technical Round">Technical Round</option>
+                      <option value="HR Round">HR Round</option>
+                      <option value="System Design">System Design</option>
+                      <option value="Portfolio Review">Portfolio Review</option>
+                      <option value="Cultural Fit">Cultural Fit</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6">
+                    <label class="form-label-premium">Status</label>
+                    <select class="filter-input w-100" id="filterStatus">
+                      <option value="">All Statuses</option>
+                      <option value="Scheduled">Scheduled</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2 col-md-12 text-md-end">
+                    <button class="outline-btn w-100 py-2 d-flex justify-content-center" id="resetFilters">
+                      <i class="fa-solid fa-filter-circle-xmark me-2"></i>Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interviews Table Card -->
+              <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="700">
+                <div class="table-premium-wrapper">
+                  <table class="table-premium">
+                    <thead>
+                      <tr>
+                        <th>Interview ID</th>
+                        <th>Candidate</th>
+                        <th>Position</th>
+                        <th>Interviewer</th>
+                        <th>Date & Time</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="interviewsTableBody">
+                      <!-- Dynamically populated -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Pagination footer -->
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-4 gap-3">
+                  <div class="text-secondary fs-xs" id="tableRecordsCount">
+                    Showing 0 to 0 of 0 interviews
+                  </div>
+                  <nav aria-label="Table navigation">
+                    <ul class="pagination pagination-sm mb-0" id="tablePagination">
+                      <!-- Loaded dynamically -->
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
+            <!-- Calendar View Wrapper (UI Only) -->
+            <div id="calendarViewWrapper" class="d-none animate-fade-in-up">
+              <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="600">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <h4 class="h6 fw-800 text-primary mb-0">July 2026</h4>
+                  <div class="d-flex gap-1">
+                    <button class="outline-btn py-1 px-2.5 fs-xxs"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="outline-btn py-1 px-2.5 fs-xxs">Today</button>
+                    <button class="outline-btn py-1 px-2.5 fs-xxs"><i class="fa-solid fa-chevron-right"></i></button>
+                  </div>
+                </div>
+                <div class="row g-1 fw-700 text-uppercase text-center text-muted fs-xxs mb-2" style="letter-spacing: 0.5px;">
+                  <div class="col" style="width: 14.28%;">Sun</div>
+                  <div class="col" style="width: 14.28%;">Mon</div>
+                  <div class="col" style="width: 14.28%;">Tue</div>
+                  <div class="col" style="width: 14.28%;">Wed</div>
+                  <div class="col" style="width: 14.28%;">Thu</div>
+                  <div class="col" style="width: 14.28%;">Fri</div>
+                  <div class="col" style="width: 14.28%;">Sat</div>
+                </div>
+                <div class="row row-cols-7 g-1 text-start" id="calendarDaysGrid">
+                  <!-- Generated dynamically -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <!-- Schedule / Edit Interview Modal -->
+        <div class="modal fade" id="interviewModal" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0" style="background: var(--card-bg-solid); border: 1px solid var(--card-border); overflow: hidden;">
+              <div class="modal-header px-4 pt-4 pb-3 border-0 d-flex justify-content-between">
+                <h5 class="modal-title fw-800 text-primary" id="interviewModalLabel">Schedule Interview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--close-filter);"></button>
+              </div>
+              <form id="interviewForm" novalidate>
+                <input type="hidden" id="interviewIdField">
+                <div class="modal-body px-4 py-2">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="intCandidateSelect" class="form-label-premium">Candidate *</label>
+                      <select class="filter-input w-100" id="intCandidateSelect" required>
+                        <!-- Loaded dynamically -->
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="intPositionInput" class="form-label-premium">Position *</label>
+                      <input type="text" class="filter-input w-100" id="intPositionInput" required placeholder="e.g. Senior Frontend Engineer" readonly style="background: rgba(var(--primary-accent-rgb), 0.01);">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="intInterviewerSelect" class="form-label-premium">Interviewer (HR Director / Staff) *</label>
+                      <select class="filter-input w-100" id="intInterviewerSelect" required>
+                        <option value="Sarah Jenkins">Sarah Jenkins (HR Director)</option>
+                        <option value="Marcus Vance">Marcus Vance (Engineering Manager)</option>
+                        <option value="Robert Chen">Robert Chen (System Architect)</option>
+                        <option value="David Kim">David Kim (Design Lead)</option>
+                        <option value="Sophia Martinez">Sophia Martinez (Product Owner)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="intTypeSelect" class="form-label-premium">Interview Type *</label>
+                      <select class="filter-input w-100" id="intTypeSelect" required>
+                        <option value="Technical Round">Technical Round</option>
+                        <option value="HR Round">HR Round</option>
+                        <option value="System Design">System Design</option>
+                        <option value="Portfolio Review">Portfolio Review</option>
+                        <option value="Cultural Fit">Cultural Fit</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="intDateInput" class="form-label-premium">Date *</label>
+                      <input type="date" class="filter-input w-100" id="intDateInput" required>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="intTimeInput" class="form-label-premium">Time (e.g., 10:00 AM) *</label>
+                      <input type="text" class="filter-input w-100" id="intTimeInput" required placeholder="e.g. 10:00 AM">
+                    </div>
+                    <div class="col-md-4">
+                      <label for="intStatusSelect" class="form-label-premium">Status *</label>
+                      <select class="filter-input w-100" id="intStatusSelect" required>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="intFeedbackInput" class="form-label-premium">Interviewer Feedback / Notes</label>
+                      <textarea class="filter-input w-100" id="intFeedbackInput" rows="3" placeholder="Enter session review notes once completed..."></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 pt-3 pb-4 border-0 d-flex gap-2 justify-content-end">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn" id="saveInterviewSubmitBtn">Save Schedule</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Init AOS
+        if (typeof AOS !== 'undefined') {
+          AOS.init();
+        }
+
+        const tableBody = document.getElementById('interviewsTableBody');
+        const searchInput = document.getElementById('searchInterviewsInput');
+        const filterType = document.getElementById('filterType');
+        const filterStatus = document.getElementById('filterStatus');
+        const resetBtn = document.getElementById('resetFilters');
+
+        const intModalEl = document.getElementById('interviewModal');
+        const intModal = new bootstrap.Modal(intModalEl);
+        const intForm = document.getElementById('interviewForm');
+        const scheduleBtn = document.getElementById('scheduleInterviewBtn');
+        const intCandidateSelect = document.getElementById('intCandidateSelect');
+        const intPositionInput = document.getElementById('intPositionInput');
+
+        const viewToggleGroup = document.getElementById('viewToggleGroup');
+        const listViewBtn = document.getElementById('listViewBtn');
+        const calendarViewBtn = document.getElementById('calendarViewBtn');
+        const listViewWrapper = document.getElementById('listViewWrapper');
+        const calendarViewWrapper = document.getElementById('calendarViewWrapper');
+        const calendarDaysGrid = document.getElementById('calendarDaysGrid');
+
+        let allInterviews = [];
+        let filteredInterviews = [];
+        let currentPage = 1;
+        const rowsPerPage = 5;
+
+        // View toggle logic
+        listViewBtn.addEventListener('click', () => {
+          listViewBtn.classList.add('active');
+          calendarViewBtn.classList.remove('active');
+          listViewWrapper.classList.remove('d-none');
+          calendarViewWrapper.classList.add('d-none');
+        });
+
+        calendarViewBtn.addEventListener('click', () => {
+          calendarViewBtn.classList.add('active');
+          listViewBtn.classList.remove('active');
+          listViewWrapper.classList.add('d-none');
+          calendarViewWrapper.classList.remove('d-none');
+          renderCalendar();
+        });
+
+        // Load data
+        function loadInterviews() {
+          allInterviews = window.AuraDB.getInterviews();
+          
+          // Populate candidates selection
+          const candidates = window.AuraDB.getCandidates();
+          intCandidateSelect.innerHTML = '<option value="">Select Candidate</option>';
+          candidates.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = `${c.name} (${c.position})`;
+            intCandidateSelect.appendChild(opt);
+          });
+
+          applyFilters();
+        }
+
+        // Change position input when candidate selected
+        intCandidateSelect.addEventListener('change', () => {
+          const candId = intCandidateSelect.value;
+          const candidates = window.AuraDB.getCandidates();
+          const cand = candidates.find(c => c.id === candId);
+          if (cand) {
+            intPositionInput.value = cand.position;
+          } else {
+            intPositionInput.value = '';
+          }
+        });
+
+        // Apply filters
+        function applyFilters() {
+          const searchVal = searchInput.value.toLowerCase().trim();
+          const typeVal = filterType.value;
+          const statusVal = filterStatus.value;
+
+          filteredInterviews = allInterviews.filter(i => {
+            const matchesSearch = i.candidateName.toLowerCase().includes(searchVal) ||
+                                  i.interviewer.toLowerCase().includes(searchVal) ||
+                                  i.position.toLowerCase().includes(searchVal);
+            const matchesType = typeVal === "" || i.type === typeVal;
+            const matchesStatus = statusVal === "" || i.status === statusVal;
+
+            return matchesSearch && matchesType && matchesStatus;
+          });
+
+          currentPage = 1;
+          renderTable();
+        }
+
+        // Render Table list view
+        function renderTable() {
+          tableBody.innerHTML = '';
+          const totalRecords = filteredInterviews.length;
+
+          if (totalRecords === 0) {
+            tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-5 text-muted">No interviews scheduled.</td></tr>';
+            document.getElementById('tableRecordsCount').textContent = 'Showing 0 to 0 of 0 interviews';
+            document.getElementById('tablePagination').innerHTML = '';
+            return;
+          }
+
+          const startIndex = (currentPage - 1) * rowsPerPage;
+          const endIndex = Math.min(startIndex + rowsPerPage, totalRecords);
+          const paginated = filteredInterviews.slice(startIndex, endIndex);
+
+          paginated.forEach(inter => {
+            const tr = document.createElement('tr');
+            tr.className = 'bg-card-glow-hover';
+
+            let statusBadge = 'bg-secondary-bg text-secondary';
+            if (inter.status === 'Scheduled') statusBadge = 'bg-primary-bg text-primary';
+            else if (inter.status === 'Completed') statusBadge = 'bg-success-bg text-success';
+            else if (inter.status === 'Cancelled') statusBadge = 'bg-danger-bg text-danger';
+
+            tr.innerHTML = `
+              <td><span class="font-monospace fw-700 text-secondary">${inter.id}</span></td>
+              <td><span class="fw-700 text-primary fs-xs">${inter.candidateName}</span></td>
+              <td><span class="text-secondary fs-xs fw-600">${inter.position}</span></td>
+              <td><span class="text-secondary"><i class="fa-solid fa-user-tie me-1 text-muted"></i>${inter.interviewer}</span></td>
+              <td>
+                <div class="fw-700 text-primary fs-xs">${inter.date}</div>
+                <div class="text-muted fs-xxs"><i class="fa-regular fa-clock me-1"></i>${inter.time}</div>
+              </td>
+              <td><span class="badge bg-secondary-bg text-secondary fw-600 fs-xxs">${inter.type}</span></td>
+              <td><span class="badge ${statusBadge} fw-600 fs-xxs">${inter.status}</span></td>
+              <td class="text-end">
+                <div class="d-flex justify-content-end gap-1">
+                  <button class="outline-btn py-1 px-2 fs-xxs edit-int-btn" data-id="${inter.id}" title="Edit Schedule / Feedback">
+                    <i class="fa-solid fa-pencil"></i>
+                  </button>
+                  <button class="outline-btn py-1 px-2 fs-xxs complete-int-btn text-success border-success-hover" data-id="${inter.id}" title="Mark Completed">
+                    <i class="fa-solid fa-calendar-check"></i>
+                  </button>
+                  <button class="outline-btn py-1 px-2 fs-xxs cancel-int-btn text-danger border-danger-hover" data-id="${inter.id}" title="Cancel Interview">
+                    <i class="fa-solid fa-calendar-xmark"></i>
+                  </button>
+                </div>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+
+          document.getElementById('tableRecordsCount').textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalRecords} interviews`;
+          renderPagination(totalRecords);
+        }
+
+        // Render Pagination
+        function renderPagination(totalRecords) {
+          const totalPages = Math.ceil(totalRecords / rowsPerPage);
+          const paginationEl = document.getElementById('tablePagination');
+          paginationEl.innerHTML = '';
+
+          if (totalPages <= 1) return;
+
+          // Prev
+          const prevLi = document.createElement('li');
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage - 1}"><i class="fa-solid fa-chevron-left"></i></a>`;
+          paginationEl.appendChild(prevLi);
+
+          // Pages
+          for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+            paginationEl.appendChild(li);
+          }
+
+          // Next
+          const nextLi = document.createElement('li');
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `<a class="page-link" href="#" data-page="${currentPage + 1}"><i class="fa-solid fa-chevron-right"></i></a>`;
+          paginationEl.appendChild(nextLi);
+
+          paginationEl.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const page = parseInt(link.getAttribute('data-page'));
+              if (page > 0 && page <= totalPages) {
+                currentPage = page;
+                renderTable();
+              }
+            });
+          });
+        }
+
+        // Add Interview Click
+        scheduleBtn.addEventListener('click', () => {
+          document.getElementById('interviewModalLabel').textContent = 'Schedule New Interview';
+          intForm.reset();
+          document.getElementById('interviewIdField').value = '';
+          intPositionInput.value = '';
+          document.getElementById('intStatusSelect').value = 'Scheduled';
+          intModal.show();
+        });
+
+        // Edit Interview click
+        tableBody.addEventListener('click', (e) => {
+          const editBtn = e.target.closest('.edit-int-btn');
+          if (editBtn) {
+            const id = editBtn.getAttribute('data-id');
+            const inter = allInterviews.find(i => i.id === id);
+            if (inter) {
+              document.getElementById('interviewModalLabel').textContent = 'Modify Interview Schedule';
+              document.getElementById('interviewIdField').value = inter.id;
+              document.getElementById('intCandidateSelect').value = inter.candidateId || '';
+              intPositionInput.value = inter.position;
+              document.getElementById('intInterviewerSelect').value = inter.interviewer;
+              document.getElementById('intTypeSelect').value = inter.type;
+              document.getElementById('intDateInput').value = inter.date;
+              document.getElementById('intTimeInput').value = inter.time;
+              document.getElementById('intStatusSelect').value = inter.status;
+              document.getElementById('intFeedbackInput').value = inter.feedback || '';
+              intModal.show();
+            }
+          }
+
+          // Complete click
+          const completeBtn = e.target.closest('.complete-int-btn');
+          if (completeBtn) {
+            const id = completeBtn.getAttribute('data-id');
+            const inter = allInterviews.find(i => i.id === id);
+            if (inter) {
+              if (confirm(`Mark interview ${id} for ${inter.candidateName} as Completed?`)) {
+                window.AuraDB.updateInterview(id, { status: 'Completed' });
+                
+                // Automatically move candidate status to Interviewing if they were shortlisted
+                const candidates = window.AuraDB.getCandidates();
+                const cand = candidates.find(c => c.name === inter.candidateName);
+                if (cand && (cand.status === 'Applied' || cand.status === 'Shortlisted')) {
+                  window.AuraDB.updateCandidate(cand.id, { status: 'Interviewing' });
+                }
+
+                loadInterviews();
+                if (typeof window.showToast === 'function') {
+                  window.showToast(`Marked interview ${id} as Completed. Candidate stage promoted.`, 'success');
+                } else {
+                  alert(`Interview marked completed.`);
+                }
+              }
+            }
+          }
+
+          // Cancel click
+          const cancelBtn = e.target.closest('.cancel-int-btn');
+          if (cancelBtn) {
+            const id = cancelBtn.getAttribute('data-id');
+            if (confirm(`Are you sure you want to cancel the interview ${id}?`)) {
+              window.AuraDB.updateInterview(id, { status: 'Cancelled' });
+              loadInterviews();
+              if (typeof window.showToast === 'function') {
+                window.showToast(`Interview ${id} cancelled.`, 'danger');
+              } else {
+                alert(`Interview cancelled.`);
+              }
+            }
+          }
+        });
+
+        // Submit form
+        intForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (!intForm.checkValidity()) {
+            intForm.classList.add('was-validated');
+            return;
+          }
+
+          const intId = document.getElementById('interviewIdField').value;
+          const candId = document.getElementById('intCandidateSelect').value;
+          const candidates = window.AuraDB.getCandidates();
+          const cand = candidates.find(c => c.id === candId);
+
+          const interviewData = {
+            candidateId: candId,
+            candidateName: cand ? cand.name : 'Unknown Candidate',
+            position: intPositionInput.value,
+            interviewer: document.getElementById('intInterviewerSelect').value,
+            type: document.getElementById('intTypeSelect').value,
+            date: document.getElementById('intDateInput').value,
+            time: document.getElementById('intTimeInput').value,
+            status: document.getElementById('intStatusSelect').value,
+            feedback: document.getElementById('intFeedbackInput').value
+          };
+
+          if (intId) {
+            window.AuraDB.updateInterview(intId, interviewData);
+            if (typeof window.showToast === 'function') {
+              window.showToast(`Interview schedule ${intId} updated.`, 'success');
+            }
+          } else {
+            const nextId = window.AuraDB.generateNextInterviewId();
+            const newInt = { id: nextId, ...interviewData };
+            window.AuraDB.addInterview(newInt);
+            if (typeof window.showToast === 'function') {
+              window.showToast(`Interview ${nextId} scheduled successfully.`, 'success');
+            }
+          }
+
+          intModal.hide();
+          loadInterviews();
+        });
+
+        // Search and Filters
+        searchInput.addEventListener('input', applyFilters);
+        filterType.addEventListener('change', applyFilters);
+        filterStatus.addEventListener('change', applyFilters);
+
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          filterType.value = '';
+          filterStatus.value = '';
+          applyFilters();
+        });
+
+        // Render Calendar view
+        function renderCalendar() {
+          calendarDaysGrid.innerHTML = '';
+          
+          // Generate simulated grid for July 2026
+          // July 1st, 2026 is a Wednesday. Total days = 31.
+          const startDayOfWeek = 3; // 0=Sun, 1=Mon, 2=Tue, 3=Wed
+          const totalDays = 31;
+
+          // Days in previous month (June - 30 days)
+          for (let prev = startDayOfWeek - 1; prev >= 0; prev--) {
+            const col = document.createElement('div');
+            col.className = 'col calendar-ui-day muted';
+            col.style.width = '14.28%';
+            col.innerHTML = `<span class="fs-xxs text-secondary font-monospace">${30 - prev}</span>`;
+            calendarDaysGrid.appendChild(col);
+          }
+
+          // Days in July
+          for (let d = 1; d <= totalDays; d++) {
+            const dateStr = `2026-07-${String(d).padStart(2, '0')}`;
+            const dayInterviews = allInterviews.filter(i => i.date === dateStr);
+
+            const col = document.createElement('div');
+            col.className = 'col calendar-ui-day' + (d === 5 ? ' today' : '');
+            col.style.width = '14.28%';
+
+            let eventsHtml = '';
+            dayInterviews.forEach(i => {
+              let bg = 'rgba(79, 70, 229, 0.1)';
+              let textColor = 'var(--primary-accent)';
+              if (i.status === 'Completed') {
+                bg = 'rgba(16, 185, 129, 0.1)';
+                textColor = '#10b881';
+              } else if (i.status === 'Cancelled') {
+                bg = 'rgba(239, 68, 68, 0.1)';
+                textColor = '#ef4444';
+              }
+              eventsHtml += `
+                <div class="calendar-event" style="background: ${bg}; color: ${textColor};" title="${i.candidateName} - ${i.type}">
+                  ${i.time}: ${i.candidateName}
+                </div>
+              `;
+            });
+
+            col.innerHTML = `
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fs-xxs fw-700 text-primary font-monospace">${d}</span>
+                ${dayInterviews.length > 0 ? `<span class="badge rounded-circle bg-primary-bg text-primary p-1 fs-xxs" style="line-height:1; width:14px; height:14px; display:inline-flex; align-items:center; justify-content:center;">${dayInterviews.length}</span>` : ''}
+              </div>
+              <div class="d-flex flex-column">${eventsHtml}</div>
+            `;
+            calendarDaysGrid.appendChild(col);
+          }
+
+          // Next month padding (Aug)
+          const totalGridCells = Math.ceil((startDayOfWeek + totalDays) / 7) * 7;
+          const paddingCells = totalGridCells - (startDayOfWeek + totalDays);
+          for (let next = 1; next <= paddingCells; next++) {
+            const col = document.createElement('div');
+            col.className = 'col calendar-ui-day muted';
+            col.style.width = '14.28%';
+            col.innerHTML = `<span class="fs-xxs text-secondary font-monospace">${next}</span>`;
+            calendarDaysGrid.appendChild(col);
+          }
+        }
+
+        // Init Load
+        loadInterviews();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Register Workspace</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+      }
+      .register-container {
+        width: 100%;
+        max-width: 520px;
+        padding: 2.5rem 1.5rem;
+      }
+      .glow-card {
+        border-radius: var(--radius-xl);
+        background: var(--card-bg-solid);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-xl);
+        padding: 2.75rem;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .glow-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-soft-lg);
+        border-color: var(--card-border-focus);
+      }
+      .floating-theme-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+      }
+      .form-floating-custom {
+        position: relative;
+      }
+      .password-toggle-btn {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.25rem;
+        z-index: 5;
+        transition: color 0.2s;
+      }
+      .password-toggle-btn:hover {
+        color: var(--text-primary);
+      }
+      .show-hide-password-input {
+        padding-right: 2.75rem !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Theme Switcher -->
+    <div class="floating-theme-toggle">
+      <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+
+    <!-- Main Registration Container -->
+    <div class="register-container" data-aos="zoom-in" data-aos-duration="800">
+      <!-- AuraHR Branding logo/header -->
+      <div class="text-center mb-4">
+        <div class="brand-icon-wrapper mx-auto mb-2" style="width: 48px; height: 48px;">
+          <i class="fa-solid fa-users-gear fs-4"></i>
+        </div>
+        <h2 class="h4 fw-800 text-primary mb-1">AuraHR</h2>
+        <p class="text-secondary small">Register a New Professional Workspace Account</p>
+      </div>
+
+      <!-- Registration Form Card -->
+      <div class="glow-card">
+        <div class="mb-4">
+          <h3 class="h5 fw-800 text-primary mb-1">Get Started Instantly</h3>
+          <p class="text-secondary small mb-0">Create your admin account to manage departments and payroll workflows.</p>
+        </div>
+
+        <form action="login.html" method="GET" class="needs-validation" novalidate id="registerForm">
+          <!-- Full Name -->
+          <div class="mb-3">
+            <label for="fullNameInput" class="form-label text-secondary small fw-600 mb-1">Full Name</label>
+            <div class="input-group search-input-group border rounded" style="background: var(--bg-primary);">
+              <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-user"></i></span>
+              <input type="text" class="form-control border-0 bg-transparent py-2.5 text-primary" id="fullNameInput" placeholder="Sarah Jenkins" required style="box-shadow: none; font-size: 0.9rem;">
+              <div class="invalid-feedback px-3 pb-2 small">Full name is required.</div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="emailInput" class="form-label text-secondary small fw-600 mb-1">Work Email</label>
+            <div class="input-group search-input-group border rounded" style="background: var(--bg-primary);">
+              <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-envelope"></i></span>
+              <input type="email" class="form-control border-0 bg-transparent py-2.5 text-primary" id="emailInput" placeholder="sarah.jenkins@aurahr.com" required style="box-shadow: none; font-size: 0.9rem;">
+              <div class="invalid-feedback px-3 pb-2 small">Please enter a valid work email address.</div>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="mb-3">
+            <label for="phoneInput" class="form-label text-secondary small fw-600 mb-1">Phone Number</label>
+            <div class="input-group search-input-group border rounded" style="background: var(--bg-primary);">
+              <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-phone"></i></span>
+              <input type="tel" class="form-control border-0 bg-transparent py-2.5 text-primary" id="phoneInput" placeholder="+1 (555) 019-2834" required style="box-shadow: none; font-size: 0.9rem;">
+              <div class="invalid-feedback px-3 pb-2 small">Please enter a valid phone number.</div>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label text-secondary small fw-600 mb-1">Password</label>
+            <div class="form-floating-custom input-group search-input-group border rounded" style="background: var(--bg-primary);">
+              <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-lock"></i></span>
+              <input type="password" class="form-control border-0 bg-transparent py-2.5 text-primary show-hide-password-input" id="passwordInput" placeholder="Create strong password" required minlength="8" style="box-shadow: none; font-size: 0.9rem;">
+              <button type="button" class="password-toggle-btn" id="passwordToggleBtn" aria-label="Toggle Password Visibility">
+                <i class="fa-solid fa-eye" id="passwordToggleIcon"></i>
+              </button>
+              <div class="invalid-feedback px-3 pb-2 small">Password must be at least 8 characters long.</div>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="mb-4">
+            <label for="confirmPasswordInput" class="form-label text-secondary small fw-600 mb-1">Confirm Password</label>
+            <div class="form-floating-custom input-group search-input-group border rounded" style="background: var(--bg-primary);">
+              <span class="search-icon px-3 text-muted" style="position: static; transform: none; display: flex; align-items: center; pointer-events: none;"><i class="fa-solid fa-shield-check"></i></span>
+              <input type="password" class="form-control border-0 bg-transparent py-2.5 text-primary show-hide-password-input" id="confirmPasswordInput" placeholder="Repeat password" required style="box-shadow: none; font-size: 0.9rem;">
+              <button type="button" class="password-toggle-btn" id="confirmPasswordToggleBtn" aria-label="Toggle Password Visibility">
+                <i class="fa-solid fa-eye" id="confirmPasswordToggleIcon"></i>
+              </button>
+              <div class="invalid-feedback px-3 pb-2 small" id="confirmInvalidFeedback">Passwords must match.</div>
+            </div>
+          </div>
+
+          <!-- Submit Register Button -->
+          <button type="submit" class="gradient-btn w-full justify-content-center py-2.5" id="registerSubmitBtn" style="width: 100%;">
+            <span>Create Free Account</span>
+            <i class="fa-solid fa-user-plus ms-1"></i>
+          </button>
+        </form>
+
+        <div class="text-center mt-4 pt-2 border-top" style="border-color: var(--border-color) !important;">
+          <span class="text-secondary small">Already have an account? <a href="login.html" class="text-decoration-none text-primary fw-600">Sign In</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const registerForm = document.getElementById('registerForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+        const confirmInvalidFeedback = document.getElementById('confirmInvalidFeedback');
+
+        // Form validation on submit
+        if (registerForm) {
+          registerForm.addEventListener('submit', (e) => {
+            let isValid = true;
+
+            // Confirm password matching check
+            if (passwordInput.value !== confirmPasswordInput.value) {
+              isValid = false;
+              confirmPasswordInput.setCustomValidity('Passwords must match.');
+              confirmInvalidFeedback.textContent = 'Passwords must match.';
+            } else {
+              confirmPasswordInput.setCustomValidity('');
+            }
+
+            if (!registerForm.checkValidity() || !isValid) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+
+            registerForm.classList.add('was-validated');
+          });
+
+          // Confirm password matching check as user types
+          confirmPasswordInput.addEventListener('input', () => {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+              confirmPasswordInput.setCustomValidity('Passwords must match.');
+            } else {
+              confirmPasswordInput.setCustomValidity('');
+            }
+          });
+        }
+
+        // Show/Hide Password Toggle for password
+        const toggleBtn = document.getElementById('passwordToggleBtn');
+        const toggleIcon = document.getElementById('passwordToggleIcon');
+        if (toggleBtn && passwordInput && toggleIcon) {
+          toggleBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            toggleIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+          });
+        }
+
+        // Show/Hide Password Toggle for confirm password
+        const confirmToggleBtn = document.getElementById('confirmPasswordToggleBtn');
+        const confirmToggleIcon = document.getElementById('confirmPasswordToggleIcon');
+        if (confirmToggleBtn && confirmPasswordInput && confirmToggleIcon) {
+          confirmToggleBtn.addEventListener('click', () => {
+            const isPassword = confirmPasswordInput.getAttribute('type') === 'password';
+            confirmPasswordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            confirmToggleIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

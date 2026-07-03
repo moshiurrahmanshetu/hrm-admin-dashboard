@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Company Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Hover highlight */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+
+      /* Logo upload container styling */
+      .logo-dropzone {
+        border: 2px dashed var(--input-border);
+        border-radius: var(--radius-lg);
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        background: rgba(var(--primary-accent-rgb), 0.01);
+        cursor: pointer;
+        transition: all var(--transition-fast);
+        position: relative;
+        overflow: hidden;
+      }
+      .logo-dropzone:hover, .logo-dropzone.dragover {
+        border-color: var(--primary-accent);
+        background: rgba(var(--primary-accent-rgb), 0.03);
+      }
+      .logo-preview-img {
+        max-width: 150px;
+        max-height: 80px;
+        object-fit: contain;
+        display: none;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-soft-sm);
+        margin: 0 auto 1rem auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search parameters, legal logs...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Administration Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Company Profile</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills flex-wrap">
+                <a href="settings.html" class="submodule-pill">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>General Settings</span>
+                </a>
+                <a href="company.html" class="submodule-pill active">
+                  <i class="fa-solid fa-building"></i>
+                  <span>Company Profile</span>
+                </a>
+                <a href="branches.html" class="submodule-pill">
+                  <i class="fa-solid fa-code-branch"></i>
+                  <span>Branches</span>
+                </a>
+                <a href="roles.html" class="submodule-pill">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span>Roles & Permissions</span>
+                </a>
+                <a href="users.html" class="submodule-pill">
+                  <i class="fa-solid fa-users"></i>
+                  <span>User Accounts</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Company Profile Workspace -->
+            <div class="row g-4" data-aos="fade-up" data-aos-duration="700">
+              
+              <!-- Left side column: Logo Upload & Visual branding -->
+              <div class="col-lg-4">
+                <div class="glass-card p-4 text-center h-100">
+                  <h4 class="h6 fw-800 text-primary mb-3">Enterprise Branding</h4>
+                  <p class="text-secondary small mb-4">Upload your primary company logo here. This logo will display on payslips, reports, and headers.</p>
+                  
+                  <!-- Logo Interactive Upload Dropzone -->
+                  <div class="logo-dropzone mb-4" id="logoDropzone" onclick="document.getElementById('logoFileInput').click()">
+                    <input type="file" id="logoFileInput" accept="image/*" class="d-none" onchange="previewLogo(event)">
+                    <img id="logoPreview" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=256&auto=format&fit=crop" class="logo-preview-img" alt="Logo Preview" style="display: block;">
+                    <div id="dropzonePlaceholder" style="display: none;">
+                      <i class="fa-solid fa-cloud-arrow-up fs-2 text-muted mb-2 d-block"></i>
+                      <span class="fw-700 text-primary small d-block mb-1">Drag and drop logo file</span>
+                      <span class="text-muted fs-9 d-block">Supports PNG, JPG (Max 2MB)</span>
+                    </div>
+                  </div>
+                  
+                  <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="outline-btn py-1 px-3 fs-9" onclick="document.getElementById('logoFileInput').click()">
+                      <i class="fa-solid fa-file-pen"></i> Select File
+                    </button>
+                    <button type="button" class="outline-btn py-1 px-3 fs-9 text-danger border-danger-subtle" onclick="resetLogo()">
+                      <i class="fa-solid fa-trash-can"></i> Clear
+                    </button>
+                  </div>
+
+                  <hr class="my-4" style="opacity: 0.1;">
+
+                  <div class="text-start">
+                    <h5 class="fs-8 text-secondary uppercase-spacing mb-3">Workspace Status</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="small text-muted">Billing Tier:</span>
+                      <span class="small fw-700 text-primary">Enterprise Premium</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                      <span class="small text-muted">License Limit:</span>
+                      <span class="small fw-700 text-success">48 / 100 Seats</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <span class="small text-muted">Region Gateway:</span>
+                      <span class="small fw-700 text-secondary">AWS Oregon (us-west-2)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right side column: Profile Fields Form -->
+              <div class="col-lg-8">
+                <div class="glass-card p-4 h-100">
+                  <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(79, 70, 229, 0.1); color: var(--primary-accent);">
+                      <i class="fa-solid fa-building fs-5"></i>
+                    </div>
+                    <div>
+                      <h4 class="h5 fw-800 text-primary mb-1">Company Profile Credentials</h4>
+                      <p class="text-secondary small mb-0">Legal identifiers, contacts, and registration statistics of your organization.</p>
+                    </div>
+                  </div>
+
+                  <form id="companyCredentialsForm" class="needs-validation" onsubmit="handleCompanySave(event)" novalidate>
+                    <div class="row g-4">
+                      
+                      <!-- Row 1: Company Name -->
+                      <div class="col-md-12">
+                        <label for="company_name" class="form-label-premium">Legal Company Name</label>
+                        <input type="text" class="form-control form-control-premium w-100" id="company_name" value="AuraHR Solutions Inc." required>
+                        <div class="invalid-feedback">Company Name is required.</div>
+                      </div>
+
+                      <!-- Row 2: Address -->
+                      <div class="col-md-12">
+                        <label for="company_address" class="form-label-premium">Corporate Headquarters Address</label>
+                        <input type="text" class="form-control form-control-premium w-100" id="company_address" value="500 Oracle Way, Suite 300, San Francisco, CA 94107" required>
+                        <div class="invalid-feedback">Headquarters Address is required.</div>
+                      </div>
+
+                      <!-- Row 3: Phone & Email -->
+                      <div class="col-md-6">
+                        <label for="company_phone" class="form-label-premium">Official Phone Number</label>
+                        <input type="tel" class="form-control form-control-premium w-100" id="company_phone" value="+1 (415) 555-8902" required>
+                        <div class="invalid-feedback">A valid telephone number is required.</div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="company_email" class="form-label-premium">Primary Corporate Email</label>
+                        <input type="email" class="form-control form-control-premium w-100" id="company_email" value="contact@aurahrsolutions.com" required>
+                        <div class="invalid-feedback">A valid corporate email is required.</div>
+                      </div>
+
+                      <!-- Row 4: Website -->
+                      <div class="col-md-12">
+                        <label for="company_website" class="form-label-premium">Corporate Website URL</label>
+                        <div class="input-group">
+                          <span class="input-group-text border-end-0 bg-transparent text-muted" style="border-color: var(--input-border); border-top-left-radius: var(--radius-md); border-bottom-left-radius: var(--radius-md);"><i class="fa-solid fa-globe"></i></span>
+                          <input type="url" class="form-control form-control-premium rounded-start-0" id="company_website" value="https://www.aurahrsolutions.com" required>
+                        </div>
+                        <div class="invalid-feedback">A valid website URL is required.</div>
+                      </div>
+
+                      <div class="col-12">
+                        <hr class="my-2" style="opacity: 0.1;">
+                      </div>
+
+                      <!-- Row 5: Tax ID & Reg No -->
+                      <div class="col-md-6">
+                        <label for="company_tax_id" class="form-label-premium">Federal Tax Identification Number (TIN / EIN)</label>
+                        <input type="text" class="form-control form-control-premium w-100" id="company_tax_id" value="US-89-2041928" placeholder="e.g. US-XX-XXXXXXX" required>
+                        <div class="invalid-feedback">Tax ID is required for reporting compliance.</div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="company_reg_number" class="form-label-premium">Corporate Registration / Charter Number</label>
+                        <input type="text" class="form-control form-control-premium w-100" id="company_reg_number" value="C-382904-SF" placeholder="e.g. C-XXXXXX" required>
+                        <div class="invalid-feedback">Registration number is required.</div>
+                      </div>
+
+                    </div>
+
+                    <!-- CTA Actions -->
+                    <div class="d-flex justify-content-end gap-2 mt-4 pt-3">
+                      <button type="reset" class="outline-btn py-2">Reset Fields</button>
+                      <button type="submit" class="gradient-btn py-2">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Save Profile Changes</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast Alerts -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="companyToast" class="toast align-items-center text-white border-0 bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Profile changes saved.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ once: true });
+
+        // Wire drag and drop features for logo upload
+        const dropzone = document.getElementById('logoDropzone');
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+          dropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+          }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          dropzone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+          }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          if (files.length > 0) {
+            document.getElementById('logoFileInput').files = files;
+            const mockEvent = { target: { files: files } };
+            previewLogo(mockEvent);
+          }
+        });
+      });
+
+      function previewLogo(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.getElementById('logoPreview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+            document.getElementById('dropzonePlaceholder').style.display = 'none';
+            showToast('Logo file selected successfully! Preview generated.', 'success');
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function resetLogo() {
+        const img = document.getElementById('logoPreview');
+        img.src = '';
+        img.style.display = 'none';
+        document.getElementById('dropzonePlaceholder').style.display = 'block';
+        document.getElementById('logoFileInput').value = '';
+        showToast('Logo file cleared. Placeholder restored.', 'success');
+      }
+
+      function handleCompanySave(event) {
+        event.preventDefault();
+        const form = event.target;
+        
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          form.classList.add('was-validated');
+          showToast('Form invalid! Please ensure all mandatory parameters are completed.', 'danger');
+          return;
+        }
+
+        form.classList.remove('was-validated');
+        showToast('Updating enterprise credentials ledger in cloud database...', 'success');
+
+        setTimeout(() => {
+          showToast('Company legal credentials updated and synchronized successfully!', 'success');
+        }, 1200);
+      }
+
+      function showToast(message, type) {
+        const toastEl = document.getElementById('companyToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        
+        toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+        
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

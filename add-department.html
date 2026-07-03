@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">AuraHR - Add Department</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <!-- Sidebar Drawer Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="designations.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>Designations</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <!-- Sticky Header / Navbar -->
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+
+          <div class="header-nav-right">
+            <!-- Theme Trigger -->
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Message Dropdown -->
+            <div class="dropdown">
+              <button class="header-action-btn" type="button" id="msgDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-envelope"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="msgDropdown">
+                <div class="dropdown-header-premium">
+                  <h6>Recent Messages</h6>
+                </div>
+                <a href="#" class="dropdown-item-premium">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=128&auto=format&fit=crop" alt="Avatar" class="dropdown-item-avatar">
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">Marcus Vance</div>
+                    <div class="dropdown-item-desc">Could you review the updated payroll calculations for June?</div>
+                    <div class="dropdown-item-time">10 mins ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-footer-premium">View All Messages</a>
+              </div>
+            </div>
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Workspace Body -->
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Navigation Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1" id="formHeaderTitle">Add New Department</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="departments.html" class="text-decoration-none text-muted">Departments</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page" id="breadcrumbActive">Add Department</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="departments.html" class="outline-btn text-decoration-none">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span>Back to List</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Form Wrapper -->
+            <form id="addDeptForm" class="needs-validation" novalidate data-aos="fade-up" data-aos-duration="800">
+              <div class="glass-card p-4 mb-4">
+                <div class="row g-4">
+                  <!-- visual decorative left column -->
+                  <div class="col-12 col-md-3 text-center border-end border-dashed pe-md-4">
+                    <div class="brand-icon-wrapper mx-auto mb-3 text-white" style="width: 80px; height: 80px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--primary-accent), var(--success)); shadow: none;">
+                      <i class="fa-solid fa-sitemap fs-2"></i>
+                    </div>
+                    <h5 class="h6 fw-700 text-primary mb-1">Division Details</h5>
+                    <p class="text-secondary fs-xxs" style="line-height: 1.4;">Establish a clear divisional segment, specify administrative leaders, assign annual funding allocations, and define operational coordinates.</p>
+                    
+                    <div class="alert alert-info py-2 px-3 text-start mt-4 border-0 rounded fs-xxs" style="background: rgba(var(--primary-accent-rgb), 0.04); color: var(--primary-accent);">
+                      <i class="fa-solid fa-circle-info me-1"></i> Ensure that codes are unique (e.g. ENG, HRD) and that budgets align with fiscal projections.
+                    </div>
+                  </div>
+
+                  <!-- Form fields area -->
+                  <div class="col-12 col-md-9 ps-md-4">
+                    <!-- Core Info -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-folder-tree fs-xs text-primary"></i>
+                        <span>Core Identification</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-8">
+                          <label for="deptName" class="form-label form-label-premium">Department Name <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium w-100" id="deptName" placeholder="e.g. Product Engineering" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter a unique department name.</div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                          <label for="deptCode" class="form-label form-label-premium">Department Code <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium w-100" id="deptCode" placeholder="e.g. ENG" style="text-transform: uppercase;" maxlength="6" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter a unique code (e.g. RND).</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Leadership & Logistics -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-user-tie fs-xs text-primary"></i>
+                        <span>Leadership & Fiscal Allocation</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="deptHead" class="form-label form-label-premium">Department Head <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="deptHead" required>
+                            <!-- Will be filled dynamically from employees list -->
+                            <option value="">Select Department Head</option>
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select a division head.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="deptBudget" class="form-label form-label-premium">Annual Budget (USD) <span class="text-danger">*</span></label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-light border" style="border-radius: var(--radius-sm) 0 0 var(--radius-sm); border-right: none;">$</span>
+                            <input type="number" class="form-control form-control-premium rounded-start-0" id="deptBudget" placeholder="e.g. 500000" min="0" required>
+                            <div class="invalid-feedback fs-xxs text-danger">Please enter a valid positive annual budget.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Communication -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-envelope fs-xs text-primary"></i>
+                        <span>Contact Channels & Status</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="deptEmail" class="form-label form-label-premium">Official Email <span class="text-danger">*</span></label>
+                          <input type="email" class="form-control form-control-premium" id="deptEmail" placeholder="e.g. engineering@aurahr.com" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide a valid departmental email.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="deptPhone" class="form-label form-label-premium">Phone Extension <span class="text-danger">*</span></label>
+                          <input type="tel" class="form-control form-control-premium" id="deptPhone" placeholder="e.g. +1 (555) 014-9982" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide a valid telephone extension.</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="deptStatus" class="form-label form-label-premium">Status <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="deptStatus" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Narrative Description -->
+                    <div class="mb-4">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-file-invoice fs-xs text-primary"></i>
+                        <span>Narrative Description</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="deptDesc" class="form-label form-label-premium">Description & Mission statement</label>
+                          <textarea class="form-control form-control-premium" id="deptDesc" rows="4" placeholder="Briefly detail what this department does, its main focus, and corporate deliverables..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="d-flex justify-content-end gap-3 pt-4 border-top border-dashed">
+                      <a href="departments.html" class="outline-btn text-decoration-none">
+                        <span>Cancel</span>
+                      </a>
+                      <button type="submit" class="gradient-btn border-0" id="submitBtn">
+                        <i class="fa-solid fa-floppy-disk me-2"></i> <span id="submitBtnText">Save Department</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <!-- Professional Footer -->
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Page Specific Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({ duration: 800, once: true });
+        }
+
+        const form = document.getElementById("addDeptForm");
+        const deptHeadSelect = document.getElementById("deptHead");
+        const deptNameInput = document.getElementById("deptName");
+        const deptCodeInput = document.getElementById("deptCode");
+        const deptBudgetInput = document.getElementById("deptBudget");
+        const deptEmailInput = document.getElementById("deptEmail");
+        const deptPhoneInput = document.getElementById("deptPhone");
+        const deptStatusInput = document.getElementById("deptStatus");
+        const deptDescInput = document.getElementById("deptDesc");
+
+        const formHeaderTitle = document.getElementById("formHeaderTitle");
+        const breadcrumbActive = document.getElementById("breadcrumbActive");
+        const submitBtnText = document.getElementById("submitBtnText");
+        const pageTitle = document.getElementById("pageTitle");
+
+        // 1. Load employees to populate Department Head dropdown
+        const employees = window.AuraDB.getEmployees();
+        employees.sort((a,b) => a.name.localeCompare(b.name));
+        employees.forEach(emp => {
+          const option = document.createElement("option");
+          option.value = emp.name;
+          option.textContent = `${emp.name} (${emp.designation})`;
+          deptHeadSelect.appendChild(option);
+        });
+
+        // 2. Detect Edit mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const deptId = urlParams.get("id");
+        let isEditMode = false;
+        let existingDept = null;
+
+        if (deptId) {
+          existingDept = window.AuraDB.getDepartmentById(deptId);
+          if (existingDept) {
+            isEditMode = true;
+            
+            // Adjust visual labels
+            pageTitle.textContent = "AuraHR - Edit Department";
+            formHeaderTitle.textContent = `Edit Department: ${existingDept.name}`;
+            breadcrumbActive.textContent = "Edit Department";
+            submitBtnText.textContent = "Update Department";
+
+            // Populate form fields
+            deptNameInput.value = existingDept.name;
+            deptCodeInput.value = existingDept.code;
+            deptCodeInput.disabled = true; // Protect key business code during edits
+            deptHeadSelect.value = existingDept.head;
+            deptBudgetInput.value = existingDept.budget;
+            deptEmailInput.value = existingDept.email || "";
+            deptPhoneInput.value = existingDept.phone || "";
+            deptStatusInput.value = existingDept.status || "Active";
+            deptDescInput.value = existingDept.description || "";
+          }
+        }
+
+        // 3. Handle Submit
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          form.classList.add("was-validated");
+
+          if (!form.checkValidity()) {
+            return;
+          }
+
+          const name = deptNameInput.value.trim();
+          const code = deptCodeInput.value.trim().toUpperCase();
+          const head = deptHeadSelect.value;
+          const budget = parseFloat(deptBudgetInput.value) || 0;
+          const email = deptEmailInput.value.trim();
+          const phone = deptPhoneInput.value.trim();
+          const status = deptStatusInput.value;
+          const description = deptDescInput.value.trim();
+
+          // Uniqueness checking for NEW additions
+          const allDepts = window.AuraDB.getDepartments();
+          
+          if (!isEditMode) {
+            const codeDup = allDepts.find(d => d.code.toUpperCase() === code);
+            if (codeDup) {
+              alert(`Department Code "${code}" is already in use by another department. Please choose a different code.`);
+              deptCodeInput.classList.add("is-invalid");
+              return;
+            }
+
+            const nameDup = allDepts.find(d => d.name.toLowerCase() === name.toLowerCase());
+            if (nameDup) {
+              alert(`Department name "${name}" is already in use. Please specify a unique name.`);
+              deptNameInput.classList.add("is-invalid");
+              return;
+            }
+
+            // Create new record
+            const newDept = {
+              id: window.AuraDB.generateNextDeptId(),
+              name,
+              code,
+              head,
+              email,
+              phone,
+              budget,
+              description,
+              status,
+              createdDate: new Date().toISOString().split("T")[0] // YYYY-MM-DD
+            };
+
+            window.AuraDB.addDepartment(newDept);
+            
+            // Set success toast flag in localStorage so it triggers upon redirection
+            localStorage.setItem("aurahr_toast_success", `Department "${name}" successfully created.`);
+            window.location.href = "departments.html";
+
+          } else {
+            // Update existing record
+            const updatedData = {
+              name,
+              head,
+              email,
+              phone,
+              budget,
+              description,
+              status
+            };
+
+            window.AuraDB.updateDepartment(deptId, updatedData);
+
+            localStorage.setItem("aurahr_toast_success", `Department "${name}" successfully updated.`);
+            window.location.href = "departments.html";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

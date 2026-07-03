@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Payroll Module Foundation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Payroll Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Payroll Operations</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" id="btnRunPayroll">
+                  <i class="fa-solid fa-calculator"></i>
+                  <span>Run Payroll</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Sub-Navigation Tabs -->
+            <div class="d-flex gap-2 mb-4 overflow-x-auto pb-2" data-aos="fade-right" data-aos-duration="600">
+              <a href="payroll.html" class="gradient-btn py-2 px-3 fs-xs rounded-pill text-decoration-none">
+                <i class="fa-solid fa-calculator me-1"></i> Current Payroll
+              </a>
+              <a href="salary-structure.html" class="outline-btn py-2 px-3 fs-xs rounded-pill text-decoration-none text-secondary">
+                <i class="fa-solid fa-sitemap me-1"></i> Salary Structure
+              </a>
+              <a href="payroll-history.html" class="outline-btn py-2 px-3 fs-xs rounded-pill text-decoration-none text-secondary">
+                <i class="fa-solid fa-clock-rotate-left me-1"></i> Payroll History
+              </a>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <!-- Total Payroll -->
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-3 h-100 d-flex align-items-center gap-3">
+                  <div class="brand-icon-wrapper bg-primary-bg text-primary" style="box-shadow: none; width: 48px; height: 48px;">
+                    <i class="fa-solid fa-money-bill-wave fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted fs-xxs fw-600 text-uppercase tracking-wider">Total Gross Payroll</div>
+                    <h3 class="h4 fw-800 text-primary mb-0" id="totalPayroll">$0</h3>
+                  </div>
+                </div>
+              </div>
+              <!-- Net Salary -->
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-3 h-100 d-flex align-items-center gap-3">
+                  <div class="brand-icon-wrapper bg-success-bg text-success" style="box-shadow: none; width: 48px; height: 48px;">
+                    <i class="fa-solid fa-hand-holding-dollar fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted fs-xxs fw-600 text-uppercase tracking-wider">Total Net Salary</div>
+                    <h3 class="h4 fw-800 text-primary mb-0" id="totalNetSalary">$0</h3>
+                  </div>
+                </div>
+              </div>
+              <!-- Allowances -->
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-3 h-100 d-flex align-items-center gap-3">
+                  <div class="brand-icon-wrapper bg-info-bg text-info" style="box-shadow: none; width: 48px; height: 48px;">
+                    <i class="fa-solid fa-gift fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted fs-xxs fw-600 text-uppercase tracking-wider">Total Allowances</div>
+                    <h3 class="h4 fw-800 text-primary mb-0" id="totalAllowances">$0</h3>
+                  </div>
+                </div>
+              </div>
+              <!-- Deductions -->
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-3 h-100 d-flex align-items-center gap-3">
+                  <div class="brand-icon-wrapper bg-danger-bg text-danger" style="box-shadow: none; width: 48px; height: 48px;">
+                    <i class="fa-solid fa-percent fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-muted fs-xxs fw-600 text-uppercase tracking-wider">Total Deductions</div>
+                    <h3 class="h4 fw-800 text-primary mb-0" id="totalDeductions">$0</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filters & Search panel -->
+            <div class="glass-card mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="p-3 border-bottom d-flex flex-column flex-md-row gap-3 justify-content-between align-items-md-center">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <div class="search-input-group style-premium" style="max-width: 250px;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input text-secondary" id="searchPayroll" placeholder="Search employee...">
+                  </div>
+                  <select class="form-select fs-xs border-0 bg-light rounded-pill px-3 py-2 text-secondary" id="filterDept" style="width: 160px; height: 38px;">
+                    <option value="All">All Departments</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="HR">HR</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Design">Design</option>
+                  </select>
+                  <select class="form-select fs-xs border-0 bg-light rounded-pill px-3 py-2 text-secondary" id="filterStatus" style="width: 140px; height: 38px;">
+                    <option value="All">All Statuses</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Pending">Pending</option>
+                  </select>
+                  <button class="outline-btn py-1 px-3 fs-xs rounded-pill text-secondary" id="btnResetFilters">
+                    <i class="fa-solid fa-rotate-left me-1"></i> Reset
+                  </button>
+                </div>
+                <div>
+                  <button class="outline-btn py-1 px-3 fs-xs rounded-pill text-secondary" id="btnExportPayroll">
+                    <i class="fa-solid fa-file-export me-1"></i> Export UI Only
+                  </button>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0 text-secondary">
+                  <thead class="bg-light text-primary fw-700 fs-xs">
+                    <tr>
+                      <th class="ps-4 py-3">Employee</th>
+                      <th class="py-3">Employee ID</th>
+                      <th class="py-3">Department</th>
+                      <th class="py-3">Basic Salary</th>
+                      <th class="py-3">Allowances</th>
+                      <th class="py-3">Deductions</th>
+                      <th class="py-3">Net Salary</th>
+                      <th class="py-3">Payment Status</th>
+                      <th class="pe-4 py-3 text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="payrollTableBody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination footer -->
+              <div class="p-3 border-top d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+                <div class="fs-xxs text-secondary" id="paginationText">Showing 1 to 5 of 10 entries</div>
+                <nav aria-label="Table navigation">
+                  <ul class="pagination pagination-sm mb-0 gap-1" id="paginationButtons">
+                    <!-- Dynamic buttons -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentPage = 1;
+        const itemsPerPage = 5;
+
+        // UI components
+        const tableBody = document.getElementById("payrollTableBody");
+        const searchInput = document.getElementById("searchPayroll");
+        const filterDept = document.getElementById("filterDept");
+        const filterStatus = document.getElementById("filterStatus");
+        const resetFiltersBtn = document.getElementById("btnResetFilters");
+        const runPayrollBtn = document.getElementById("btnRunPayroll");
+        const exportBtn = document.getElementById("btnExportPayroll");
+
+        const totalPayrollEl = document.getElementById("totalPayroll");
+        const totalNetSalaryEl = document.getElementById("totalNetSalary");
+        const totalAllowancesEl = document.getElementById("totalAllowances");
+        const totalDeductionsEl = document.getElementById("totalDeductions");
+
+        const paginationText = document.getElementById("paginationText");
+        const paginationButtons = document.getElementById("paginationButtons");
+
+        let prevStats = { total: 0, net: 0, allowances: 0, deductions: 0 };
+
+        function init() {
+          renderPayroll();
+
+          searchInput.addEventListener("input", () => {
+            currentPage = 1;
+            renderPayroll();
+          });
+
+          filterDept.addEventListener("change", () => {
+            currentPage = 1;
+            renderPayroll();
+          });
+
+          filterStatus.addEventListener("change", () => {
+            currentPage = 1;
+            renderPayroll();
+          });
+
+          resetFiltersBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            filterDept.value = "All";
+            filterStatus.value = "All";
+            currentPage = 1;
+            renderPayroll();
+            showToast("Filters reset successfully.", "info");
+          });
+
+          exportBtn.addEventListener("click", () => {
+            showToast("Payroll report downloaded successfully (UI simulator).", "success");
+          });
+
+          runPayrollBtn.addEventListener("click", () => {
+            const records = window.AuraDB.getPayrollRecords();
+            const pendingRecords = records.filter(r => r.status === "Pending");
+            
+            if (pendingRecords.length === 0) {
+              showToast("All payroll operations are fully paid for July 2026!", "info");
+              return;
+            }
+
+            pendingRecords.forEach(r => {
+              window.AuraDB.updatePayrollRecordStatus(r.employeeId, "Paid", "2026-07-31");
+              // Add to payroll history
+              const emp = window.AuraDB.getEmployeeById(r.employeeId);
+              const struct = window.AuraDB.getSalaryStructureByEmpId(r.employeeId);
+              if (emp && struct) {
+                const allow = struct.houseAllowance + struct.medicalAllowance + struct.transportAllowance + struct.otherAllowance;
+                const ded = struct.tax + struct.pf + struct.otherDeduction;
+                const net = struct.basic + allow - ded;
+                window.AuraDB.addPayrollHistoryRecord({
+                  id: window.AuraDB.generateNextHistoryId(),
+                  month: "July 2026",
+                  employeeId: emp.id,
+                  employeeName: emp.name,
+                  netSalary: net,
+                  paymentDate: "2026-07-31",
+                  status: "Paid"
+                });
+              }
+            });
+
+            showToast(`Successfully processed payroll for ${pendingRecords.length} employees!`, "success");
+            renderPayroll();
+          });
+        }
+
+        function animateValue(id, start, end, prefix = "$") {
+          const obj = document.getElementById(id);
+          if (!obj) return;
+          const duration = 800;
+          const startTime = performance.now();
+
+          function step(timestamp) {
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = progress * (2 - progress);
+            const val = start + ease * (end - start);
+            obj.textContent = prefix + Math.floor(val).toLocaleString();
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              obj.textContent = prefix + Math.floor(end).toLocaleString();
+            }
+          }
+          requestAnimationFrame(step);
+        }
+
+        function renderPayroll() {
+          const employees = window.AuraDB.getEmployees();
+          const structures = window.AuraDB.getSalaryStructures();
+          const records = window.AuraDB.getPayrollRecords();
+
+          // Build a composite model
+          const payrollData = employees.map(emp => {
+            const struct = structures.find(s => s.employeeId === emp.id) || {
+              basic: 4000, houseAllowance: 800, medicalAllowance: 200, transportAllowance: 150, otherAllowance: 100, tax: 400, pf: 200, otherDeduction: 50
+            };
+            const rec = records.find(r => r.employeeId === emp.id) || { status: "Pending", paymentDate: "" };
+
+            const allowances = struct.houseAllowance + struct.medicalAllowance + struct.transportAllowance + struct.otherAllowance;
+            const deductions = struct.tax + struct.pf + struct.otherDeduction;
+            const netSalary = struct.basic + allowances - deductions;
+
+            return {
+              employee: emp,
+              struct: struct,
+              record: rec,
+              allowances: allowances,
+              deductions: deductions,
+              netSalary: netSalary
+            };
+          });
+
+          // Compute summary cards totals (for all active employees or filtered?)
+          // Let's compute based on all current records
+          let totalPayroll = 0;
+          let totalNetSalary = 0;
+          let totalAllowances = 0;
+          let totalDeductions = 0;
+
+          payrollData.forEach(item => {
+            totalPayroll += item.struct.basic + item.allowances;
+            totalNetSalary += item.netSalary;
+            totalAllowances += item.allowances;
+            totalDeductions += item.deductions;
+          });
+
+          animateValue("totalPayroll", prevStats.total, totalPayroll);
+          animateValue("totalNetSalary", prevStats.net, totalNetSalary);
+          animateValue("totalAllowances", prevStats.allowances, totalAllowances);
+          animateValue("totalDeductions", prevStats.deductions, totalDeductions);
+
+          prevStats = { total: totalPayroll, net: totalNetSalary, allowances: totalAllowances, deductions: totalDeductions };
+
+          // Apply filters
+          const searchQuery = searchInput.value.trim().toLowerCase();
+          const selectedDept = filterDept.value;
+          const selectedStatus = filterStatus.value;
+
+          const filteredData = payrollData.filter(item => {
+            const matchesSearch = item.employee.name.toLowerCase().includes(searchQuery) || 
+                                  item.employee.id.toLowerCase().includes(searchQuery);
+            const matchesDept = selectedDept === "All" || item.employee.department === selectedDept;
+            const matchesStatus = selectedStatus === "All" || item.record.status === selectedStatus;
+
+            return matchesSearch && matchesDept && matchesStatus;
+          });
+
+          // Pagination logic
+          const totalItems = filteredData.length;
+          const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+
+          if (currentPage > totalPages) currentPage = totalPages;
+
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+          const paginatedData = filteredData.slice(startIndex, endIndex);
+
+          if (totalItems === 0) {
+            paginationText.textContent = "Showing 0 to 0 of 0 entries";
+          } else {
+            paginationText.textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalItems} entries`;
+          }
+
+          // Render Table Rows
+          tableBody.innerHTML = "";
+          if (paginatedData.length === 0) {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="9" class="text-center py-5 text-muted">
+                  <i class="fa-solid fa-folder-open fs-2 mb-3 text-muted opacity-50"></i>
+                  <div>No matching payroll records found.</div>
+                </td>
+              </tr>
+            `;
+            paginationButtons.innerHTML = "";
+            return;
+          }
+
+          paginatedData.forEach(item => {
+            const statusBadge = item.record.status === "Paid" 
+              ? `<span class="badge bg-success-bg text-success px-2.5 py-1 fw-700 rounded-pill"><i class="fa-solid fa-circle-check me-1 fs-xxs"></i> Paid</span>`
+              : `<span class="badge bg-warning-bg text-warning px-2.5 py-1 fw-700 rounded-pill"><i class="fa-solid fa-clock me-1 fs-xxs"></i> Pending</span>`;
+
+            const actionButtons = item.record.status === "Pending"
+              ? `
+                <button class="gradient-btn py-1 px-2.5 fs-xxs rounded-pill btn-pay-now" data-id="${item.employee.id}">
+                  <i class="fa-solid fa-circle-dollar-to-slot me-1"></i> Pay Now
+                </button>
+                <a href="payslip.html?empId=${item.employee.id}" class="outline-btn py-1 px-2.5 fs-xxs rounded-pill text-secondary text-decoration-none">
+                  <i class="fa-solid fa-file-invoice me-1"></i> Slip
+                </a>
+              `
+              : `
+                <a href="payslip.html?empId=${item.employee.id}" class="outline-btn py-1 px-2.5 fs-xxs rounded-pill text-secondary text-decoration-none">
+                  <i class="fa-solid fa-file-invoice me-1"></i> View Slip
+                </a>
+              `;
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="ps-4">
+                <div class="d-flex align-items-center gap-2">
+                  <img src="${item.employee.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128'}" alt="${item.employee.name}" class="sidebar-user-avatar" style="width: 32px; height: 32px;">
+                  <div>
+                    <div class="fw-700 text-primary fs-xs">${item.employee.name}</div>
+                    <div class="fs-xxs text-muted">${item.employee.designation}</div>
+                  </div>
+                </div>
+              </td>
+              <td class="fs-xs text-secondary fw-600">${item.employee.id}</td>
+              <td class="fs-xs text-secondary">${item.employee.department}</td>
+              <td class="fs-xs fw-600 text-primary">$${item.struct.basic.toLocaleString()}</td>
+              <td class="fs-xs text-success fw-600">+$${item.allowances.toLocaleString()}</td>
+              <td class="fs-xs text-danger fw-600">-$${item.deductions.toLocaleString()}</td>
+              <td class="fs-xs fw-700 text-primary">$${item.netSalary.toLocaleString()}</td>
+              <td>${statusBadge}</td>
+              <td class="pe-4 text-end">${actionButtons}</td>
+            `;
+            tableBody.appendChild(tr);
+          });
+
+          // Bind Actions
+          document.querySelectorAll(".btn-pay-now").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const empId = this.getAttribute("data-id");
+              const emp = window.AuraDB.getEmployeeById(empId);
+              const struct = window.AuraDB.getSalaryStructureByEmpId(empId);
+              if (!emp || !struct) return;
+
+              // Pay employee
+              window.AuraDB.updatePayrollRecordStatus(empId, "Paid", "2026-07-31");
+              
+              const allow = struct.houseAllowance + struct.medicalAllowance + struct.transportAllowance + struct.otherAllowance;
+              const ded = struct.tax + struct.pf + struct.otherDeduction;
+              const net = struct.basic + allow - ded;
+
+              // Add to history
+              window.AuraDB.addPayrollHistoryRecord({
+                id: window.AuraDB.generateNextHistoryId(),
+                month: "July 2026",
+                employeeId: emp.id,
+                employeeName: emp.name,
+                netSalary: net,
+                paymentDate: "2026-07-31",
+                status: "Paid"
+              });
+
+              showToast(`Processed salary payment of $${net.toLocaleString()} for ${emp.name} successfully!`, "success");
+              renderPayroll();
+            });
+          });
+
+          renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+          paginationButtons.innerHTML = "";
+
+          // Previous Button
+          const prevLi = document.createElement("li");
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `
+            <a class="page-link" href="#" aria-label="Previous">
+              <i class="fa-solid fa-chevron-left fs-xxs"></i>
+            </a>
+          `;
+          if (currentPage > 1) {
+            prevLi.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage--;
+              renderPayroll();
+            });
+          }
+          paginationButtons.appendChild(prevLi);
+
+          // Numbers
+          for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement("li");
+            li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            li.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage = i;
+              renderPayroll();
+            });
+            paginationButtons.appendChild(li);
+          }
+
+          // Next Button
+          const nextLi = document.createElement("li");
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `
+            <a class="page-link" href="#" aria-label="Next">
+              <i class="fa-solid fa-chevron-right fs-xxs"></i>
+            </a>
+          `;
+          if (currentPage < totalPages) {
+            nextLi.querySelector("a").addEventListener("click", (e) => {
+              e.preventDefault();
+              currentPage++;
+              renderPayroll();
+            });
+          }
+          paginationButtons.appendChild(nextLi);
+        }
+
+        function showToast(message, type = "success") {
+          let container = document.getElementById("toastContainer");
+          if (!container) {
+            container = document.createElement("div");
+            container.id = "toastContainer";
+            container.style.position = "fixed";
+            container.style.bottom = "2rem";
+            container.style.right = "2rem";
+            container.style.zIndex = "9999";
+            container.style.display = "flex";
+            container.style.flexDirection = "column";
+            container.style.gap = "0.5rem";
+            document.body.appendChild(container);
+          }
+          
+          const toast = document.createElement("div");
+          toast.className = "glass-card p-3 d-flex align-items-center gap-3";
+          toast.style.width = "320px";
+          toast.style.background = "var(--card-bg-solid)";
+          toast.style.border = "1px solid var(--card-border)";
+          
+          let colorHex = "#10b881";
+          let icon = "fa-circle-check";
+          if (type === "danger") { colorHex = "#ef4444"; icon = "fa-circle-xmark"; }
+          else if (type === "warning") { colorHex = "#f59e0b"; icon = "fa-triangle-exclamation"; }
+          else if (type === "info") { colorHex = "#06b6d4"; icon = "fa-circle-info"; }
+
+          toast.style.borderLeft = `4px solid ${colorHex}`;
+          toast.style.boxShadow = "var(--shadow-soft-lg)";
+          toast.style.borderRadius = "var(--radius-md)";
+          toast.style.transition = "all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)";
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(20px)";
+
+          toast.innerHTML = `
+            <div class="brand-icon-wrapper" style="width: 28px; height: 28px; background: rgba(79, 70, 229, 0.05); color: ${colorHex}; box-shadow: none; flex-shrink: 0; border-radius: var(--radius-sm);">
+              <i class="fa-solid ${icon} fs-xs"></i>
+            </div>
+            <div class="flex-grow-1">
+              <div class="fw-700 fs-xs text-primary" style="text-transform: uppercase; letter-spacing: 0.5px;">${type === "danger" ? "error" : type}</div>
+              <div class="text-secondary fs-xxs" style="line-height: 1.3;">${message}</div>
+            </div>
+            <button class="border-0 bg-transparent text-muted fs-xs p-1" style="cursor: pointer;" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+          `;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.style.opacity = "1";
+            toast.style.transform = "translateY(0)";
+          }, 10);
+          
+          setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateY(10px)";
+            setTimeout(() => toast.remove(), 350);
+          }, 4000);
+        }
+
+        init();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - My Profile</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      .profile-header-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+        background: var(--card-bg-solid);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-soft-sm);
+        margin-bottom: 2rem;
+      }
+      .profile-cover-banner {
+        height: 180px;
+        background: linear-gradient(135deg, var(--primary-accent), var(--info), var(--primary-accent-hover));
+        position: relative;
+      }
+      .profile-cover-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 60%);
+      }
+      .profile-avatar-row {
+        padding: 0 2rem 1.5rem;
+        margin-top: -55px;
+        position: relative;
+        z-index: 5;
+      }
+      .profile-avatar-wrapper {
+        width: 120px;
+        height: 120px;
+        position: relative;
+        border-radius: 50%;
+        box-shadow: var(--shadow-xl);
+      }
+      .profile-avatar-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--card-bg-solid);
+        background: var(--card-bg-solid);
+      }
+      .profile-header-meta {
+        padding-top: 65px;
+      }
+      .form-control-premium[readonly] {
+        background-color: transparent !important;
+        border-color: transparent !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        font-weight: 600;
+        color: var(--text-primary);
+        pointer-events: none;
+        box-shadow: none !important;
+      }
+      .editable-active .form-control-premium[readonly] {
+        background-color: var(--input-bg) !important;
+        border-color: var(--input-border) !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        font-weight: 500;
+        pointer-events: auto;
+      }
+      .editable-active .form-control-premium:focus {
+        border-color: var(--input-focus-border) !important;
+        box-shadow: 0 0 0 3px var(--input-focus-shadow) !important;
+      }
+      .edit-actions-panel {
+        display: none;
+      }
+      .editable-active .edit-actions-panel {
+        display: flex;
+      }
+      .timeline-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px !important;
+        height: 22px !important;
+        left: -2.2rem !important;
+        color: var(--primary-accent);
+        background: var(--bg-surface) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Breadcrumb Navigation Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">My Profile</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">User Profile</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Profile Cover, Avatar, and Main Header Meta -->
+            <div class="profile-header-container" data-aos="fade-up" data-aos-duration="800">
+              <div class="profile-cover-banner"></div>
+              <div class="profile-avatar-row">
+                <div class="row align-items-start g-4">
+                  <div class="col-auto">
+                    <div class="profile-avatar-wrapper">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="Sarah Jenkins" class="profile-avatar-img">
+                    </div>
+                  </div>
+                  <div class="col profile-header-meta">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                      <div>
+                        <h3 class="h4 fw-800 text-primary mb-1" id="profileHeaderName">Sarah Jenkins</h3>
+                        <p class="text-secondary small fw-600 mb-2">HR Director &bull; Human Resources Department</p>
+                        <div class="d-flex flex-wrap gap-2">
+                          <span class="premium-badge premium-badge-info"><i class="fa-solid fa-id-badge"></i> EMP-2026-0042</span>
+                          <span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Permanent / Full-Time</span>
+                          <span class="premium-badge premium-badge-warning"><i class="fa-solid fa-shield-halved"></i> Administrator</span>
+                        </div>
+                      </div>
+                      <div>
+                        <button class="gradient-btn" id="editProfileToggleBtn">
+                          <i class="fa-solid fa-user-pen"></i>
+                          <span id="editBtnText">Edit Profile Details</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Sections Grid -->
+            <div class="row g-4">
+              <!-- Left Column: Personal, Contact & Job Details -->
+              <div class="col-lg-8" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <form id="profileDetailsForm" novalidate>
+                  <!-- Personal & Contact Information Card -->
+                  <div class="glass-card mb-4" id="detailsCard">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom" style="border-color: var(--border-color) !important;">
+                      <h4 class="h6 fw-800 text-primary mb-0"><i class="fa-solid fa-user-tie me-2 text-primary"></i>Personal & Contact Information</h4>
+                      <div class="edit-actions-panel gap-2">
+                        <button type="button" class="outline-btn py-1.5 px-3 fs-xs" id="cancelEditBtn">Cancel</button>
+                        <button type="submit" class="gradient-btn py-1.5 px-3 fs-xs">Save Changes</button>
+                      </div>
+                    </div>
+
+                    <!-- Personal Information Sub-Section -->
+                    <div class="mb-4">
+                      <h5 class="text-muted small fw-700 text-uppercase mb-3" style="letter-spacing: 0.8px;">Personal Information</h5>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Full Name</label>
+                          <input type="text" class="form-control form-control-premium" id="fullNameVal" value="Sarah Jenkins" readonly required>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Date of Birth</label>
+                          <input type="date" class="form-control form-control-premium" id="dobVal" value="1991-04-14" readonly required>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Gender</label>
+                          <select class="form-control form-control-premium" id="genderVal" readonly disabled>
+                            <option value="Female" selected>Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Non-binary">Non-binary</option>
+                            <option value="Other">Prefer not to say</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Nationality</label>
+                          <input type="text" class="form-control form-control-premium" id="nationalityVal" value="United States" readonly required>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Marital Status</label>
+                          <select class="form-control form-control-premium" id="maritalVal" readonly disabled>
+                            <option value="Single">Single</option>
+                            <option value="Married" selected>Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Contact Information Sub-Section -->
+                    <div>
+                      <h5 class="text-muted small fw-700 text-uppercase mb-3" style="letter-spacing: 0.8px;">Contact Information</h5>
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Work Email</label>
+                          <input type="email" class="form-control form-control-premium" id="emailVal" value="sarah.j@aurahr.com" readonly required>
+                        </div>
+                        <div class="col-md-6">
+                          <label class="form-label text-muted small fw-600 mb-1">Phone Number</label>
+                          <input type="tel" class="form-control form-control-premium" id="phoneVal" value="+1 (555) 019-2834" readonly required>
+                        </div>
+                        <div class="col-md-12">
+                          <label class="form-label text-muted small fw-600 mb-1">Emergency Contact</label>
+                          <input type="text" class="form-control form-control-premium" id="emergencyVal" value="Michael Jenkins (Husband) - +1 (555) 019-2835" readonly required>
+                        </div>
+                        <div class="col-md-12">
+                          <label class="form-label text-muted small fw-600 mb-1">Residential Address</label>
+                          <textarea class="form-control form-control-premium" id="addressVal" rows="2" readonly required style="resize: none;">742 Evergreen Terrace, Springfield, OR 97477</textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+
+                <!-- Job Information Card -->
+                <div class="glass-card">
+                  <div class="mb-4 pb-2 border-bottom" style="border-color: var(--border-color) !important;">
+                    <h4 class="h6 fw-800 text-primary mb-0"><i class="fa-solid fa-briefcase me-2 text-primary"></i>Job & Organizational Profile</h4>
+                  </div>
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Employee ID</span>
+                        <span class="fw-700 text-primary">EMP-2026-0042</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Designation / Title</span>
+                        <span class="fw-700 text-primary">HR Director</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Department</span>
+                        <span class="fw-700 text-primary">Human Resources</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Date of Joining</span>
+                        <span class="fw-700 text-primary">March 15, 2021</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Reporting Officer / Manager</span>
+                        <span class="fw-700 text-primary">David Vance (Chief Executive Officer)</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="p-3 border rounded" style="background: rgba(var(--primary-accent-rgb), 0.02);">
+                        <span class="d-block text-muted small fw-600 mb-1">Employment Status</span>
+                        <span class="fw-700 text-primary">Permanent &bull; Full-Time</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Security (Change Password) & Recent Timeline -->
+              <div class="col-lg-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                <!-- Change Password Form Card -->
+                <div class="glass-card mb-4">
+                  <div class="mb-4 pb-2 border-bottom" style="border-color: var(--border-color) !important;">
+                    <h4 class="h6 fw-800 text-primary mb-0"><i class="fa-solid fa-lock me-2 text-primary"></i>Change Workspace Password</h4>
+                  </div>
+                  <form id="changePasswordForm" class="needs-validation" novalidate>
+                    <!-- Current Password -->
+                    <div class="mb-3">
+                      <label for="currentPasswordInput" class="form-label text-secondary small fw-600 mb-1">Current Password</label>
+                      <input type="password" class="form-control form-control-premium" id="currentPasswordInput" placeholder="Enter current password" required>
+                      <div class="invalid-feedback small">Current password is required.</div>
+                    </div>
+                    <!-- New Password -->
+                    <div class="mb-3">
+                      <label for="newPasswordInput" class="form-label text-secondary small fw-600 mb-1">New Password</label>
+                      <input type="password" class="form-control form-control-premium" id="newPasswordInput" placeholder="Create new password" required minlength="8">
+                      <div class="invalid-feedback small">Must be at least 8 characters long.</div>
+                    </div>
+                    <!-- Confirm New Password -->
+                    <div class="mb-4">
+                      <label for="confirmNewPasswordInput" class="form-label text-secondary small fw-600 mb-1">Confirm New Password</label>
+                      <input type="password" class="form-control form-control-premium" id="confirmNewPasswordInput" placeholder="Confirm new password" required>
+                      <div class="invalid-feedback small" id="pwMismatchFeedback">Passwords must match.</div>
+                    </div>
+
+                    <button type="submit" class="gradient-btn w-full justify-content-center py-2">
+                      <span>Update Password</span>
+                      <i class="fa-solid fa-key"></i>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Activity Timeline Card -->
+                <div class="glass-card">
+                  <div class="mb-4 pb-2 border-bottom" style="border-color: var(--border-color) !important;">
+                    <h4 class="h6 fw-800 text-primary mb-0"><i class="fa-solid fa-business-time me-2 text-primary"></i>Activity Timeline</h4>
+                  </div>
+                  <div class="premium-timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item">
+                      <span class="timeline-badge"><i class="fa-solid fa-right-to-bracket fs-xs"></i></span>
+                      <div class="timeline-content">
+                        <span class="timeline-time">Today, 09:12 AM</span>
+                        <div class="fw-700 text-primary small">User Clocked In</div>
+                        <p class="text-secondary small mb-0">Sarah Jenkins successfully checked in via biometric gate 1.</p>
+                      </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item">
+                      <span class="timeline-badge"><i class="fa-solid fa-envelope-open-text fs-xs"></i></span>
+                      <div class="timeline-content">
+                        <span class="timeline-time">Yesterday, 04:30 PM</span>
+                        <div class="fw-700 text-primary small">Approved Leave Request</div>
+                        <p class="text-secondary small mb-0">Approved a 3-day sick leave request for John Davis.</p>
+                      </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item">
+                      <span class="timeline-badge"><i class="fa-solid fa-clipboard-check fs-xs"></i></span>
+                      <div class="timeline-content">
+                        <span class="timeline-time">June 30, 2026</span>
+                        <div class="fw-700 text-primary small">Completed Appraisal</div>
+                        <p class="text-secondary small mb-0">Completed Q2 departmental performance review for HR staff.</p>
+                      </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="timeline-item">
+                      <span class="timeline-badge"><i class="fa-solid fa-file-pen fs-xs"></i></span>
+                      <div class="timeline-content">
+                        <span class="timeline-time">June 28, 2026</span>
+                        <div class="fw-700 text-primary small">Safety Manual Updated</div>
+                        <p class="text-secondary small mb-0">Successfully updated workspace security manual to v2.4.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. Edit Profile Mode Interactivity ---
+        const detailsForm = document.getElementById('profileDetailsForm');
+        const detailsCard = document.getElementById('detailsCard');
+        const editToggleBtn = document.getElementById('editProfileToggleBtn');
+        const editBtnText = document.getElementById('editBtnText');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        
+        // Form field values
+        const inputs = detailsCard.querySelectorAll('input, select, textarea');
+        const originalValues = {};
+
+        // Backup original form values
+        function backupValues() {
+          inputs.forEach((input, index) => {
+            originalValues[index] = {
+              value: input.value,
+              disabled: input.disabled
+            };
+          });
+        }
+
+        // Restore original form values on cancel
+        function restoreValues() {
+          inputs.forEach((input, index) => {
+            input.value = originalValues[index].value;
+            input.disabled = originalValues[index].disabled;
+          });
+        }
+
+        // Toggle editable mode active state
+        function setEditMode(active) {
+          if (active) {
+            backupValues();
+            detailsCard.classList.add('editable-active');
+            inputs.forEach(input => {
+              input.removeAttribute('readonly');
+              if (input.tagName === 'SELECT') {
+                input.removeAttribute('disabled');
+              }
+            });
+            editToggleBtn.style.display = 'none'; // Hide main edit button when editing is active
+          } else {
+            detailsCard.classList.remove('editable-active');
+            inputs.forEach(input => {
+              input.setAttribute('readonly', 'true');
+              if (input.tagName === 'SELECT') {
+                input.setAttribute('disabled', 'true');
+              }
+            });
+            editToggleBtn.style.display = 'inline-flex'; // Show edit button again
+            detailsForm.classList.remove('was-validated');
+          }
+        }
+
+        // Listeners for editing profile details
+        if (editToggleBtn) {
+          editToggleBtn.addEventListener('click', () => setEditMode(true));
+        }
+
+        if (cancelEditBtn) {
+          cancelEditBtn.addEventListener('click', () => {
+            restoreValues();
+            setEditMode(false);
+            showLocalToast('Editing cancelled. Details restored.', 'info');
+          });
+        }
+
+        if (detailsForm) {
+          detailsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (detailsForm.checkValidity()) {
+              // Update headers dynamically with saved values
+              const fullNameInputVal = document.getElementById('fullNameVal').value;
+              const headerNameEl = document.getElementById('profileHeaderName');
+              if (headerNameEl && fullNameInputVal) {
+                headerNameEl.textContent = fullNameInputVal;
+                
+                // Try updating header bar too if present
+                const sidebarNameEl = document.querySelector('.sidebar-user-name');
+                const triggerNameEl = document.querySelector('.profile-trigger-name');
+                if (sidebarNameEl) sidebarNameEl.textContent = fullNameInputVal;
+                if (triggerNameEl) triggerNameEl.textContent = fullNameInputVal;
+              }
+
+              setEditMode(false);
+              showLocalToast('Profile details updated successfully!', 'success');
+            } else {
+              detailsForm.classList.add('was-validated');
+            }
+          });
+        }
+
+        // --- 2. Change Password Security Validation ---
+        const changePwForm = document.getElementById('changePasswordForm');
+        const currentPassword = document.getElementById('currentPasswordInput');
+        const newPassword = document.getElementById('newPasswordInput');
+        const confirmNewPassword = document.getElementById('confirmNewPasswordInput');
+        const pwMismatchFeedback = document.getElementById('pwMismatchFeedback');
+
+        if (changePwForm) {
+          changePwForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valid = true;
+
+            if (newPassword.value !== confirmNewPassword.value) {
+              valid = false;
+              confirmNewPassword.setCustomValidity('Passwords must match.');
+              pwMismatchFeedback.textContent = 'Passwords must match.';
+            } else {
+              confirmNewPassword.setCustomValidity('');
+            }
+
+            if (!changePwForm.checkValidity() || !valid) {
+              changePwForm.classList.add('was-validated');
+            } else {
+              // Success reset password feedback
+              currentPassword.value = '';
+              newPassword.value = '';
+              confirmNewPassword.value = '';
+              changePwForm.classList.remove('was-validated');
+              showLocalToast('Your workspace password has been updated securely!', 'success');
+            }
+          });
+
+          confirmNewPassword.addEventListener('input', () => {
+            if (newPassword.value !== confirmNewPassword.value) {
+              confirmNewPassword.setCustomValidity('Passwords must match.');
+            } else {
+              confirmNewPassword.setCustomValidity('');
+            }
+          });
+        }
+
+        // Localized dynamic Toast Notifier for profile pages
+        function showLocalToast(message, type = 'success') {
+          let container = document.getElementById('toastContainer');
+          if (!container) {
+            container = document.createElement('div');
+            container.id = 'toastContainer';
+            container.style.position = 'fixed';
+            container.style.bottom = '2rem';
+            container.style.right = '2rem';
+            container.style.zIndex = '9999';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '0.5rem';
+            document.body.appendChild(container);
+          }
+          
+          const toast = document.createElement('div');
+          toast.className = 'glass-card p-3 d-flex align-items-center gap-3';
+          toast.style.width = '320px';
+          toast.style.background = 'var(--card-bg-solid)';
+          toast.style.border = '1px solid var(--card-border)';
+          
+          let colorHex = '#10b881';
+          let icon = 'fa-circle-check';
+          if (type === 'danger') { colorHex = '#ef4444'; icon = 'fa-circle-xmark'; }
+          else if (type === 'warning') { colorHex = '#f59e0b'; icon = 'fa-triangle-exclamation'; }
+          else if (type === 'info') { colorHex = '#06b6d4'; icon = 'fa-circle-info'; }
+
+          toast.style.borderLeft = `4px solid ${colorHex}`;
+          toast.style.boxShadow = 'var(--shadow-soft-lg)';
+          toast.style.borderRadius = 'var(--radius-md)';
+          toast.style.transition = 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(20px)';
+
+          toast.innerHTML = `
+              <div class="brand-icon-wrapper" style="width: 28px; height: 28px; background: rgba(79, 70, 229, 0.05); color: ${colorHex}; box-shadow: none; flex-shrink: 0; border-radius: var(--radius-sm);">
+                  <i class="fa-solid ${icon} fs-xs"></i>
+              </div>
+              <div class="flex-grow-1">
+                  <div class="fw-700 fs-xs text-primary" style="text-transform: uppercase; letter-spacing: 0.5px;">${type}</div>
+                  <div class="text-secondary fs-xxs" style="line-height: 1.3;">${message}</div>
+              </div>
+              <button class="border-0 bg-transparent text-muted fs-xs p-1" style="cursor: pointer;" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+          `;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+          }, 10);
+          
+          setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(10px)';
+            setTimeout(() => toast.remove(), 350);
+          }, 4000);
+        }
+      });
+    </script>
+  </body>
+</html>

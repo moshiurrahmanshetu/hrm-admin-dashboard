@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Goals & OKRs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Header section -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Goals & OKRs</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="performance.html" class="text-decoration-none text-muted">Performance</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Goals & OKRs</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#newGoalModal">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <span>Add New Goal</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Performance Sub-Navigation Tabs -->
+            <div class="glass-card mb-4 p-2" data-aos="fade-down" data-aos-duration="500">
+              <div class="nav nav-pills d-flex flex-wrap gap-2 performance-tabs">
+                <a href="performance.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>KPIs & Ratings</span>
+                </a>
+                <a href="appraisal.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-file-signature"></i>
+                  <span>Appraisals</span>
+                </a>
+                <a href="goals.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2 active">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <span>Goals & OKRs</span>
+                </a>
+                <a href="training.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Training Programs</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Goals high level metrics -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4 text-center">
+                  <h3 class="h3 fw-800 text-primary mb-1" id="statActiveGoals">8</h3>
+                  <span class="text-secondary small fw-600">Total Goals Assigned</span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4 text-center">
+                  <h3 class="h3 fw-800 text-success mb-1" id="statCompletedGoals">3</h3>
+                  <span class="text-secondary small fw-600">Goals Completed</span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4 text-center">
+                  <h3 class="h3 fw-800 text-primary mb-1" id="statAvgProgress">73.5%</h3>
+                  <span class="text-secondary small fw-600">Average Progress</span>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4 text-center">
+                  <h3 class="h3 fw-800 text-warning mb-1" id="statBehindGoals">1</h3>
+                  <span class="text-secondary small fw-600">At Risk / Behind</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Goals filter controls -->
+            <div class="glass-card mb-4 p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row g-3">
+                <div class="col-12 col-md-4">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="goalSearch" placeholder="Search by Goal or Owner...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterPriority">
+                    <option value="">All Priorities</option>
+                    <option value="High">High Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="Low">Low Priority</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Completed">Completed (100%)</option>
+                    <option value="On Track">On Track (&ge; 50%)</option>
+                    <option value="At Risk">At Risk / Behind (&lt; 50%)</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-2">
+                  <button class="outline-btn w-100 justify-content-center" id="btnReset">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Goal Cards Grid -->
+            <div class="row g-4" id="goalsGrid" data-aos="fade-up" data-aos-duration="800">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+        </main>
+
+        <!-- New Goal Modal -->
+        <div class="modal fade" id="newGoalModal" tabindex="-1" aria-labelledby="newGoalModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title fw-700 text-primary" id="newGoalModalLabel">Assign New Goal / OKR</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <form id="newGoalForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Goal Title / Objective</label>
+                      <input type="text" class="form-control form-control-premium" id="formTitle" placeholder="e.g. Optimize API response times by 30%" required>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Goal Description / Key Results</label>
+                      <textarea class="form-control form-control-premium" rows="3" id="formDesc" placeholder="e.g. Configure server caching, optimize PostgreSQL queries, reduce payload size." required></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Assigned Owner</label>
+                      <select class="form-select form-control-premium" required id="formOwner">
+                        <option value="Sarah Jenkins">Sarah Jenkins (HR Director)</option>
+                        <option value="Marcus Vance">Marcus Vance (Engineering Lead)</option>
+                        <option value="Emily Rose">Emily Rose (Marketing Specialist)</option>
+                        <option value="Robert Chen">Robert Chen (System Architect)</option>
+                        <option value="Jessica Taylor">Jessica Taylor (Senior UI/UX Designer)</option>
+                        <option value="David Kross">David Kross (Account Executive)</option>
+                        <option value="Chloe Bennett">Chloe Bennett (Senior Accountant)</option>
+                        <option value="Alan Turing">Alan Turing (AI Research Engineer)</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Priority</label>
+                      <select class="form-select form-control-premium" id="formPriority">
+                        <option value="High" selected>High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Due Date</label>
+                      <input type="date" class="form-control form-control-premium" id="formDueDate" value="2026-09-30" required>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Initial Progress (%)</label>
+                      <input type="number" min="0" max="100" class="form-control form-control-premium" id="formProgress" value="10" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 py-3 border-top">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn">Assign Goal</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Update Progress Modal -->
+        <div class="modal fade" id="updateProgressModal" tabindex="-1" aria-labelledby="updateProgressModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title fw-700 text-primary" id="updateProgressModalLabel">Update Progress</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <form id="updateProgressForm">
+                <input type="hidden" id="updateGoalId">
+                <div class="modal-body p-4">
+                  <label class="form-label form-label-premium" id="updateGoalLabel">Objective Progress (%)</label>
+                  <input type="number" min="0" max="100" class="form-control form-control-premium mb-3" id="updateProgressValue" required>
+                  <div class="text-center small text-muted">Entering 100% will mark the goal as complete.</div>
+                </div>
+                <div class="modal-footer px-4 py-3 border-top">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn">Update</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Style Override Helper -->
+    <style>
+      .performance-tabs .nav-link {
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: var(--radius-md) !important;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+      }
+      .performance-tabs .nav-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+      .performance-tabs .nav-link.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow);
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+
+        // Seed goals data
+        let GOALS = [
+          {
+            id: "GOL-001",
+            title: "Overhaul Employer Branding",
+            desc: "Develop and coordinate the Summer global branding and hybrid work benefits system evaluation. Reduce churn rate by 3%.",
+            ownerName: "Sarah Jenkins",
+            ownerAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-08-31",
+            priority: "High",
+            progress: 80
+          },
+          {
+            id: "GOL-002",
+            title: "Reduce Cloud Infrastructure Costs",
+            desc: "Coordinate server architecture load shedding, auto-scaling parameters optimization, and regional routing policies to save 15% budget.",
+            ownerName: "Marcus Vance",
+            ownerAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-07-31",
+            priority: "High",
+            progress: 95
+          },
+          {
+            id: "GOL-003",
+            title: "Accelerate Summer Lead Campaigns",
+            desc: "Pioneer multi-channel SEM campaigns, optimize Google Ads spend profiles, and coordinate with technical writers on whitepapers.",
+            ownerName: "Emily Rose",
+            ownerAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-07-15",
+            priority: "Medium",
+            progress: 60
+          },
+          {
+            id: "GOL-004",
+            title: "Pioneer Database Clustering Support",
+            desc: "Upgrade the core database systems with multi-zone read replica routing to handle up to 25,000 requests per second.",
+            ownerName: "Robert Chen",
+            ownerAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-09-10",
+            priority: "High",
+            progress: 40
+          },
+          {
+            id: "GOL-005",
+            title: "Publish AuraHR Premium Design System",
+            desc: "Consolidate and release clean Figma workspace assets with modular atomic component styling. Establish fully accessible style keys.",
+            ownerName: "Jessica Taylor",
+            ownerAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-08-15",
+            priority: "High",
+            progress: 100
+          },
+          {
+            id: "GOL-006",
+            title: "Acquire 15 New Enterprise Accounts",
+            desc: "Build strategic pipeline interactions and complete 45 demo bookings with Fortune 1000 prospects. Finalize agreements.",
+            ownerName: "David Kross",
+            ownerAvatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-07-30",
+            priority: "Medium",
+            progress: 35
+          },
+          {
+            id: "GOL-007",
+            title: "Coordinate Internal Financial Audit",
+            desc: "Complete robust review and balance certification for all global accounts. Implement flawless ledger categorization standards.",
+            ownerName: "Chloe Bennett",
+            ownerAvatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-08-30",
+            priority: "Medium",
+            progress: 50
+          },
+          {
+            id: "GOL-008",
+            title: "Deploy LLM Intent Reasoning Model",
+            desc: "Build highly robust server-side natural reasoning models utilizing the @google/genai SDK. Achieve 98.4% validation threshold.",
+            ownerName: "Alan Turing",
+            ownerAvatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop",
+            dueDate: "2026-09-30",
+            priority: "High",
+            progress: 100
+          }
+        ];
+
+        const goalsGrid = document.getElementById("goalsGrid");
+        const goalSearch = document.getElementById("goalSearch");
+        const filterPriority = document.getElementById("filterPriority");
+        const filterStatus = document.getElementById("filterStatus");
+        const btnReset = document.getElementById("btnReset");
+
+        // Metrics elements
+        const statActiveGoals = document.getElementById("statActiveGoals");
+        const statCompletedGoals = document.getElementById("statCompletedGoals");
+        const statAvgProgress = document.getElementById("statAvgProgress");
+        const statBehindGoals = document.getElementById("statBehindGoals");
+
+        function getPriorityBadge(priority) {
+          switch (priority) {
+            case "High":
+              return "premium-badge-danger";
+            case "Medium":
+              return "premium-badge-warning";
+            case "Low":
+              return "premium-badge-info";
+            default:
+              return "premium-badge-info";
+          }
+        }
+
+        function getProgressBarColor(progress) {
+          if (progress === 100) return "bg-success";
+          if (progress < 50) return "bg-danger";
+          return "bg-primary";
+        }
+
+        function calculateMetrics(data) {
+          if (data.length === 0) {
+            statActiveGoals.textContent = "0";
+            statCompletedGoals.textContent = "0";
+            statAvgProgress.textContent = "0%";
+            statBehindGoals.textContent = "0";
+            return;
+          }
+
+          const activeCount = data.length;
+          const completedCount = data.filter(g => g.progress === 100).length;
+          const behindCount = data.filter(g => g.progress < 50).length;
+
+          const totalProgress = data.reduce((acc, g) => acc + g.progress, 0);
+          const avgProgress = Math.round(totalProgress / data.length);
+
+          statActiveGoals.textContent = activeCount;
+          statCompletedGoals.textContent = completedCount;
+          statAvgProgress.textContent = `${avgProgress}%`;
+          statBehindGoals.textContent = behindCount;
+        }
+
+        function renderGoals(data) {
+          goalsGrid.innerHTML = "";
+          if (data.length === 0) {
+            goalsGrid.innerHTML = `
+              <div class="col-12 text-center py-5">
+                <div class="glass-card p-5">
+                  <i class="fa-solid fa-folder-open fs-1 text-muted mb-3"></i>
+                  <h4 class="h5 fw-700 text-primary">No Objectives Found</h4>
+                  <p class="text-secondary mb-0">No corporate goals matches the current filter settings.</p>
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          data.forEach(g => {
+            const col = document.createElement("div");
+            col.className = "col-12 col-md-6 col-xl-4";
+            col.innerHTML = `
+              <div class="glass-card h-100 p-4 d-flex flex-column justify-content-between">
+                <div>
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="premium-badge ${getPriorityBadge(g.priority)}">${g.priority} Priority</span>
+                    <span class="premium-badge ${g.progress === 100 ? 'premium-badge-success' : g.progress < 50 ? 'premium-badge-danger' : 'premium-badge-info'}">
+                      ${g.progress === 100 ? 'Completed' : g.progress < 50 ? 'At Risk / Behind' : 'On Track'}
+                    </span>
+                  </div>
+                  <h4 class="h5 fw-800 text-primary mb-2 text-truncate-2" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; line-height: 1.4;">${g.title}</h4>
+                  <p class="text-secondary small mb-4 text-truncate-3" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: 54px; line-height: 1.5;" title="${g.desc}">${g.desc}</p>
+                </div>
+
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-3">
+                    <img src="${g.ownerAvatar}" alt="${g.ownerName}" class="sidebar-user-avatar" style="width: 28px; height: 28px;">
+                    <span class="small fw-700 text-primary">${g.ownerName}</span>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="d-flex justify-content-between small mb-1 fw-600">
+                      <span class="text-secondary">Milestone Progress</span>
+                      <span class="text-primary">${g.progress}%</span>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                      <div class="progress-bar ${getProgressBarColor(g.progress)}" style="width: ${g.progress}%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                    <span class="small text-muted d-flex align-items-center gap-1">
+                      <i class="fa-regular fa-calendar-check"></i>
+                      <span>Due: ${g.dueDate}</span>
+                    </span>
+                    <div class="d-flex gap-2">
+                      <button class="outline-btn py-1 px-2 btn-update-progress" data-id="${g.id}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span class="small">Update</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            goalsGrid.appendChild(col);
+          });
+
+          // Bind updates click
+          document.querySelectorAll(".btn-update-progress").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const goalId = this.getAttribute("data-id");
+              const currentGoal = GOALS.find(g => g.id === goalId);
+              if (currentGoal) {
+                document.getElementById("updateGoalId").value = currentGoal.id;
+                document.getElementById("updateGoalLabel").textContent = `Update "${currentGoal.title}" Progress (%)`;
+                document.getElementById("updateProgressValue").value = currentGoal.progress;
+                const modal = new bootstrap.Modal(document.getElementById("updateProgressModal"));
+                modal.show();
+              }
+            });
+          });
+        }
+
+        function filterAndRender() {
+          const query = goalSearch.value.toLowerCase().trim();
+          const priority = filterPriority.value;
+          const status = filterStatus.value;
+
+          const filtered = GOALS.filter(g => {
+            const matchesSearch = g.title.toLowerCase().includes(query) || g.ownerName.toLowerCase().includes(query);
+            const matchesPriority = !priority || g.priority === priority;
+            let matchesStatus = true;
+            if (status === "Completed") {
+              matchesStatus = g.progress === 100;
+            } else if (status === "On Track") {
+              matchesStatus = g.progress >= 50 && g.progress < 100;
+            } else if (status === "At Risk") {
+              matchesStatus = g.progress < 50;
+            }
+            return matchesSearch && matchesPriority && matchesStatus;
+          });
+
+          renderGoals(filtered);
+          calculateMetrics(filtered);
+        }
+
+        goalSearch.addEventListener("input", filterAndRender);
+        filterPriority.addEventListener("change", filterAndRender);
+        filterStatus.addEventListener("change", filterAndRender);
+
+        btnReset.addEventListener("click", function() {
+          goalSearch.value = "";
+          filterPriority.value = "";
+          filterStatus.value = "";
+          renderGoals(GOALS);
+          calculateMetrics(GOALS);
+        });
+
+        // Add goal submit
+        document.getElementById("newGoalForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const title = document.getElementById("formTitle").value;
+          const desc = document.getElementById("formDesc").value;
+          const owner = document.getElementById("formOwner").value;
+          const priority = document.getElementById("formPriority").value;
+          const dueDate = document.getElementById("formDueDate").value;
+          const progress = parseInt(document.getElementById("formProgress").value);
+
+          const avatarMap = {
+            "Sarah Jenkins": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            "Marcus Vance": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+            "Emily Rose": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+            "Robert Chen": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+            "Jessica Taylor": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+            "David Kross": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+            "Chloe Bennett": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+            "Alan Turing": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
+          };
+
+          const newGoal = {
+            id: `GOL-${Math.floor(100 + Math.random() * 900)}`,
+            title: title,
+            desc: desc,
+            ownerName: owner,
+            ownerAvatar: avatarMap[owner] || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+            dueDate: dueDate,
+            priority: priority,
+            progress: progress
+          };
+
+          GOALS.unshift(newGoal);
+          renderGoals(GOALS);
+          calculateMetrics(GOALS);
+
+          const modalEl = document.getElementById("newGoalModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          modalInstance.hide();
+          document.getElementById("newGoalForm").reset();
+        });
+
+        // Update progress submit
+        document.getElementById("updateProgressForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const goalId = document.getElementById("updateGoalId").value;
+          const newProgress = parseInt(document.getElementById("updateProgressValue").value);
+
+          const targetGoal = GOALS.find(g => g.id === goalId);
+          if (targetGoal) {
+            targetGoal.progress = newProgress;
+            renderGoals(GOALS);
+            calculateMetrics(GOALS);
+          }
+
+          const modalEl = document.getElementById("updateProgressModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          modalInstance.hide();
+        });
+
+        // Initial load
+        renderGoals(GOALS);
+        calculateMetrics(GOALS);
+      });
+    </script>
+  </body>
+</html>

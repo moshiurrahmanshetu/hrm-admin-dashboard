@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">AuraHR - Add Designation</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <!-- Sidebar Drawer Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="designations.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>Designations</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <!-- Sticky Header / Navbar -->
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-none d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+
+          <div class="header-nav-right">
+            <!-- Theme Trigger -->
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Message Dropdown -->
+            <div class="dropdown">
+              <button class="header-action-btn" type="button" id="msgDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-envelope"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="msgDropdown">
+                <div class="dropdown-header-premium">
+                  <h6>Recent Messages</h6>
+                </div>
+                <a href="#" class="dropdown-item-premium">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=128&auto=format&fit=crop" alt="Avatar" class="dropdown-item-avatar">
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">Marcus Vance</div>
+                    <div class="dropdown-item-desc">Could you review the updated payroll calculations for June?</div>
+                    <div class="dropdown-item-time">10 mins ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-footer-premium">View All Messages</a>
+              </div>
+            </div>
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Workspace Body -->
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Navigation Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1" id="formHeaderTitle">Add New Designation</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="designations.html" class="text-decoration-none text-muted">Designations</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page" id="breadcrumbActive">Add Designation</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="designations.html" class="outline-btn text-decoration-none">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span>Back to List</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Form Wrapper -->
+            <form id="addDesigForm" class="needs-validation" novalidate data-aos="fade-up" data-aos-duration="800">
+              <div class="glass-card p-4 mb-4">
+                <div class="row g-4">
+                  <!-- visual decorative left column -->
+                  <div class="col-12 col-md-3 text-center border-end border-dashed pe-md-4">
+                    <div class="brand-icon-wrapper mx-auto mb-3 text-white" style="width: 80px; height: 80px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--primary-accent), var(--success)); shadow: none;">
+                      <i class="fa-solid fa-id-card fs-2"></i>
+                    </div>
+                    <h5 class="h6 fw-700 text-primary mb-1">Corporate Hierarchy</h5>
+                    <p class="text-secondary fs-xxs" style="line-height: 1.4;">Establish detailed corporate roles, map reporting relationships, categorize standard job grades, and specify benchmark salary bands.</p>
+                    
+                    <div class="alert alert-info py-2 px-3 text-start mt-4 border-0 rounded fs-xxs" style="background: rgba(var(--primary-accent-rgb), 0.04); color: var(--primary-accent);">
+                      <i class="fa-solid fa-circle-info me-1"></i> Linking roles properly ensures a clear and automated departmental roster mapping!
+                    </div>
+                  </div>
+
+                  <!-- Form fields area -->
+                  <div class="col-12 col-md-9 ps-md-4">
+                    <!-- Core Info -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-briefcase fs-xs text-primary"></i>
+                        <span>Core Role Identity</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="desigName" class="form-label form-label-premium">Designation Name <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium w-100" id="desigName" placeholder="e.g. Senior Frontend Developer" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter a unique designation name.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="desigDept" class="form-label form-label-premium">Department <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="desigDept" required>
+                            <option value="">Select Department</option>
+                            <!-- Will be filled dynamically -->
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select a department segment.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Grading & Structural pathways -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-network-wired fs-xs text-primary"></i>
+                        <span>Grade & Reporting pathway</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-4">
+                          <label for="desigGrade" class="form-label form-label-premium">Job Grade / Level <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="desigGrade" required>
+                            <option value="G1 (Executive)">G1 (Executive)</option>
+                            <option value="G2 (Associate)">G2 (Associate)</option>
+                            <option value="G3 (Senior)">G3 (Senior)</option>
+                            <option value="G4 (Lead / Principal)">G4 (Lead / Principal)</option>
+                            <option value="G5 (Manager / Director)">G5 (Manager / Director)</option>
+                            <option value="G6 (C-Suite)">G6 (C-Suite)</option>
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select a job grade.</div>
+                        </div>
+                        <div class="col-12 col-sm-8">
+                          <label for="desigReport" class="form-label form-label-premium">Reporting To / Supervisor Role <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium" id="desigReport" placeholder="e.g. Engineering Director" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please specify who this role reports to.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Financial compensation ranges & status -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-money-bill-wave fs-xs text-primary"></i>
+                        <span>Benchmark Compensations & Status</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="desigSalary" class="form-label form-label-premium">Base Salary Benchmark Range <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium" id="desigSalary" placeholder="e.g. $90,000 - $130,000" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter standard annual salary range.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="desigStatus" class="form-label form-label-premium">Status <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="desigStatus" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Role Description -->
+                    <div class="mb-4">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-file-invoice fs-xs text-primary"></i>
+                        <span>Narrative Description & Deliverables</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="desigDesc" class="form-label form-label-premium">Key Deliverables & Core Focus</label>
+                          <textarea class="form-control form-control-premium" id="desigDesc" rows="4" placeholder="Briefly specify key deliverables, daily focus, and target objectives..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="d-flex justify-content-end gap-3 pt-4 border-top border-dashed">
+                      <a href="designations.html" class="outline-btn text-decoration-none">
+                        <span>Cancel</span>
+                      </a>
+                      <button type="submit" class="gradient-btn border-0" id="submitBtn">
+                        <i class="fa-solid fa-floppy-disk me-2"></i> <span id="submitBtnText">Save Designation</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Page Specific Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({ duration: 800, once: true });
+        }
+
+        const form = document.getElementById("addDesigForm");
+        const desigDeptSelect = document.getElementById("desigDept");
+        const desigNameInput = document.getElementById("desigName");
+        const desigGradeSelect = document.getElementById("desigGrade");
+        const desigReportInput = document.getElementById("desigReport");
+        const desigSalaryInput = document.getElementById("desigSalary");
+        const desigStatusSelect = document.getElementById("desigStatus");
+        const desigDescInput = document.getElementById("desigDesc");
+
+        const formHeaderTitle = document.getElementById("formHeaderTitle");
+        const breadcrumbActive = document.getElementById("breadcrumbActive");
+        const submitBtnText = document.getElementById("submitBtnText");
+        const pageTitle = document.getElementById("pageTitle");
+
+        // 1. Populate Department Dropdown
+        const depts = window.AuraDB.getDepartments();
+        depts.sort((a,b) => a.name.localeCompare(b.name));
+        depts.forEach(dept => {
+          const opt = document.createElement("option");
+          opt.value = dept.name;
+          opt.textContent = dept.name;
+          desigDeptSelect.appendChild(opt);
+        });
+
+        // 2. Detect Edit mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const desigId = urlParams.get("id");
+        let isEditMode = false;
+        let existingDesig = null;
+
+        if (desigId) {
+          existingDesig = window.AuraDB.getDesignationById(desigId);
+          if (existingDesig) {
+            isEditMode = true;
+            
+            // Adjust visual labels
+            pageTitle.textContent = "AuraHR - Edit Designation";
+            formHeaderTitle.textContent = `Edit Designation: ${existingDesig.name}`;
+            breadcrumbActive.textContent = "Edit Designation";
+            submitBtnText.textContent = "Update Designation";
+
+            // Populate form fields
+            desigNameInput.value = existingDesig.name;
+            desigDeptSelect.value = existingDesig.department;
+            desigGradeSelect.value = existingDesig.jobGrade;
+            desigReportInput.value = existingDesig.reportingTo || "";
+            desigSalaryInput.value = existingDesig.basicSalaryRange || "";
+            desigStatusSelect.value = existingDesig.status || "Active";
+            desigDescInput.value = existingDesig.description || "";
+          }
+        }
+
+        // 3. Handle Submit
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          form.classList.add("was-validated");
+
+          if (!form.checkValidity()) {
+            return;
+          }
+
+          const name = desigNameInput.value.trim();
+          const department = desigDeptSelect.value;
+          const jobGrade = desigGradeSelect.value;
+          const reportingTo = desigReportInput.value.trim();
+          const basicSalaryRange = desigSalaryInput.value.trim();
+          const status = desigStatusSelect.value;
+          const description = desigDescInput.value.trim();
+
+          const allDesigs = window.AuraDB.getDesignations();
+          
+          if (!isEditMode) {
+            // Prevent duplicate designations in the same department
+            const desigDup = allDesigs.find(d => d.name.toLowerCase() === name.toLowerCase() && d.department.toLowerCase() === department.toLowerCase());
+            if (desigDup) {
+              alert(`The designation "${name}" is already registered in the "${department}" department.`);
+              desigNameInput.classList.add("is-invalid");
+              return;
+            }
+
+            // Create new record
+            const newDesig = {
+              id: window.AuraDB.generateNextDesigId(),
+              name,
+              department,
+              jobGrade,
+              reportingTo,
+              basicSalaryRange,
+              description,
+              status
+            };
+
+            window.AuraDB.addDesignation(newDesig);
+            
+            localStorage.setItem("aurahr_toast_success", `Designation "${name}" successfully created.`);
+            window.location.href = "designations.html";
+
+          } else {
+            // Update existing record
+            const updatedData = {
+              name,
+              department,
+              jobGrade,
+              reportingTo,
+              basicSalaryRange,
+              description,
+              status
+            };
+
+            window.AuraDB.updateDesignation(desigId, updatedData);
+
+            localStorage.setItem("aurahr_toast_success", `Designation "${name}" successfully updated.`);
+            window.location.href = "designations.html";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Projects & OKRs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Header section -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Projects Directory</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Projects</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>New Project</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Projects & Tasks Sub-Navigation Tabs -->
+            <div class="glass-card mb-4 p-2" data-aos="fade-down" data-aos-duration="500">
+              <div class="nav nav-pills d-flex flex-wrap gap-2 performance-tabs">
+                <a href="projects.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2 active">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects List</span>
+                </a>
+                <a href="tasks.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-tasks"></i>
+                  <span>Tasks Kanban</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Projects summary metrics -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-primary" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(59, 130, 246, 0.1); color: var(--primary-accent) !important;">
+                      <i class="fa-solid fa-folder fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Total Projects</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statTotal">7</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-warning" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(251, 191, 36, 0.1); color: var(--warning) !important;">
+                      <i class="fa-solid fa-clock fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Active Projects</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statActive">4</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-success" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.1); color: var(--success) !important;">
+                      <i class="fa-solid fa-circle-check fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Completed Projects</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statCompleted">2</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="glass-card p-4">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="brand-icon-wrapper text-danger" style="width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(239, 68, 68, 0.1); color: var(--danger) !important;">
+                      <i class="fa-solid fa-circle-exclamation fs-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-secondary small fw-600 d-block">Overdue Projects</span>
+                      <h4 class="h4 fw-800 text-primary mb-0" id="statOverdue">1</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search and Filter panel -->
+            <div class="glass-card mb-4 p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row g-3">
+                <div class="col-12 col-md-5">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="projectSearch" placeholder="Search projects, clients or teams...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Overdue">Overdue</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <select class="form-select form-control-premium" id="filterPriority">
+                    <option value="">All Priorities</option>
+                    <option value="High">High Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="Low">Low Priority</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-1">
+                  <button class="outline-btn w-100 justify-content-center" id="btnReset" title="Reset Filters">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Projects Table Card -->
+            <div class="glass-card p-0 mb-4" id="projectsCard" data-aos="fade-up" data-aos-duration="800">
+              <div class="p-4 border-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <h4 class="h5 fw-700 text-primary mb-0">Corporate Projects Portfolio</h4>
+                <span class="badge bg-light text-primary border px-3 py-2 rounded-pill small" id="recordCounter">7 Projects loaded</span>
+              </div>
+              <div class="table-premium-wrapper">
+                <table class="table-premium" id="projectsTable">
+                  <thead>
+                    <tr>
+                      <th>Project Name</th>
+                      <th>Client</th>
+                      <th>Team Members</th>
+                      <th>Progress</th>
+                      <th>Deadline</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="projectsTableBody">
+                    <!-- Dynamically rendered -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination control bar -->
+              <div class="p-4 d-flex justify-content-between align-items-center border-top flex-wrap gap-3">
+                <span class="small text-secondary" id="paginationInfo">Showing 1 to 5 of 7 entries</span>
+                <nav aria-label="Projects table pagination">
+                  <ul class="pagination pagination-premium mb-0" id="paginationList">
+                    <!-- Dynamically rendered pages -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- New Project Modal -->
+        <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="newProjectModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title fw-700 text-primary" id="newProjectModalLabel">Initiate Corporate Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <form id="newProjectForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Project Name</label>
+                      <input type="text" class="form-control form-control-premium" id="formName" placeholder="e.g. AuraHR Mobile App Development" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Client / Department</label>
+                      <input type="text" class="form-control form-control-premium" id="formClient" placeholder="e.g. Apex Corp or Internal AuraHR" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Deadline</label>
+                      <input type="date" class="form-control form-control-premium" id="formDeadline" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Priority Level</label>
+                      <select class="form-select form-control-premium" id="formPriority" required>
+                        <option value="High">High Priority</option>
+                        <option value="Medium" selected>Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                      </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Current Completion (%)</label>
+                      <input type="number" min="0" max="100" class="form-control form-control-premium" id="formProgress" value="0" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Operational Status</label>
+                      <select class="form-select form-control-premium" id="formStatus" required>
+                        <option value="Active" selected>Active</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Overdue">Overdue</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Operational Description / Scope</label>
+                      <textarea class="form-control form-control-premium" rows="3" id="formDesc" placeholder="Describe project business targets, scope boundaries, and core milestones..." required></textarea>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Assign Project Team</label>
+                      <div class="row g-2 px-1" id="formTeamCheckboxes">
+                        <!-- Filled dynamically -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 py-3 border-top">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn">Initiate Project</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Page Specific Styling Elements -->
+    <style>
+      .performance-tabs .nav-link {
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: var(--radius-md) !important;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+      }
+      .performance-tabs .nav-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+      .performance-tabs .nav-link.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow);
+      }
+      .avatar-group {
+        display: inline-flex;
+        align-items: center;
+      }
+      .avatar-group-item {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid var(--card-bg-solid);
+        object-fit: cover;
+        margin-left: -10px;
+        transition: all var(--transition-fast);
+      }
+      .avatar-group-item:first-child {
+        margin-left: 0;
+      }
+      .avatar-group-item:hover {
+        transform: translateY(-4px) scale(1.15);
+        z-index: 10;
+        border-color: var(--primary-accent);
+      }
+      .avatar-group-more {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 2px solid var(--card-bg-solid);
+        background: var(--sidebar-item-hover);
+        color: var(--text-secondary);
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -10px;
+      }
+      .project-progress-bar-container {
+        min-width: 120px;
+      }
+      .project-progress-track {
+        height: 6px;
+        background-color: var(--table-border);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+      }
+      .project-progress-fill {
+        height: 100%;
+        transition: width 0.8s ease-in-out;
+      }
+      .pagination-premium .page-link {
+        color: var(--text-secondary);
+        background-color: transparent;
+        border: 1px solid var(--table-border);
+        border-radius: var(--radius-md);
+        margin: 0 2px;
+        transition: all var(--transition-fast);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      .pagination-premium .page-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+        border-color: var(--primary-accent);
+      }
+      .pagination-premium .page-item.active .page-link {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        border-color: transparent;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+      .pagination-premium .page-item.disabled .page-link {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+
+        // Seed Employees / Team Pool
+        const TEAM_POOL = [
+          { name: "Sarah Jenkins", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop", role: "HR Director" },
+          { name: "Marcus Vance", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop", role: "Engineering Lead" },
+          { name: "Emily Rose", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop", role: "Marketing Lead" },
+          { name: "Robert Chen", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop", role: "Sys Architect" },
+          { name: "Jessica Taylor", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop", role: "Senior UX Designer" },
+          { name: "David Kross", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop", role: "Account Executive" },
+          { name: "Chloe Bennett", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop", role: "Senior Accountant" },
+          { name: "Alan Turing", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop", role: "AI Specialist" }
+        ];
+
+        // Seed Corporate Projects Database
+        let PROJECTS = [
+          {
+            id: "PRJ-101",
+            name: "AuraHR Mobile App Core",
+            client: "Internal AuraHR",
+            team: ["Sarah Jenkins", "Marcus Vance", "Jessica Taylor"],
+            progress: 68,
+            deadline: "2026-09-15",
+            status: "Active",
+            priority: "High",
+            desc: "Pioneering the advanced iOS & Android core portal, including native push triggers, secure biometric credential integration, and biometric punch-in."
+          },
+          {
+            id: "PRJ-102",
+            name: "Enterprise Payroll Integration",
+            client: "Apex Corp",
+            team: ["Marcus Vance", "Robert Chen", "Chloe Bennett"],
+            progress: 45,
+            deadline: "2026-10-30",
+            status: "Active",
+            priority: "High",
+            desc: "Constructing custom multi-entity fiscal ledgers, automated banking sweep networks, and local compliance certification for Apex."
+          },
+          {
+            id: "PRJ-103",
+            name: "Cloud Migration Phase 2",
+            client: "Skyline Ventures",
+            team: ["Robert Chen", "Marcus Vance"],
+            progress: 100,
+            deadline: "2026-06-01",
+            status: "Completed",
+            priority: "Medium",
+            desc: "Executing physical database cluster lift-and-shift to regional instances, establishing real-time failover replica routers."
+          },
+          {
+            id: "PRJ-104",
+            name: "Summer Lead Marketing Campaign",
+            client: "Solstice Goods",
+            team: ["Emily Rose", "Jessica Taylor"],
+            progress: 90,
+            deadline: "2026-07-20",
+            status: "Active",
+            priority: "Medium",
+            desc: "Broadcasting advanced multi-channel SEM workflows, targeted brand positioning, and customer retention analytics dashboard setups."
+          },
+          {
+            id: "PRJ-105",
+            name: "AI-Powered Resume Screener",
+            client: "Internal AuraHR",
+            team: ["Alan Turing", "Marcus Vance", "Emily Rose"],
+            progress: 20,
+            deadline: "2026-11-15",
+            status: "Active",
+            priority: "High",
+            desc: "Utilizing modern LLMs with local weights in container deployments to categorize resumes and rank candidates automatically with high accuracy."
+          },
+          {
+            id: "PRJ-106",
+            name: "Global Expansion Compliance",
+            client: "Tundra Group",
+            team: ["Chloe Bennett", "Sarah Jenkins"],
+            progress: 85,
+            deadline: "2026-06-15",
+            status: "Overdue",
+            priority: "High",
+            desc: "Auditing multi-currency fiscal ledgers and standardizing employee records matching state rules for global compliance operations."
+          },
+          {
+            id: "PRJ-107",
+            name: "UI/UX Brand Guidelines Booklet",
+            client: "Ethereal Design",
+            team: ["Jessica Taylor"],
+            progress: 100,
+            deadline: "2026-05-10",
+            status: "Completed",
+            priority: "Low",
+            desc: "Assembling structural design parameters, logo safe-zones, atomic design configurations, and spacing specifications in standard Figma booklets."
+          }
+        ];
+
+        // Persistence in localStorage to allow cross-linking with project-details
+        if (!localStorage.getItem("aura_projects")) {
+          localStorage.setItem("aura_projects", JSON.stringify(PROJECTS));
+        } else {
+          PROJECTS = JSON.parse(localStorage.getItem("aura_projects"));
+        }
+
+        // Pagination and Filtering State
+        let currentPage = 1;
+        const itemsPerPage = 5;
+        let filteredProjects = [...PROJECTS];
+
+        // DOM elements
+        const projectsTableBody = document.getElementById("projectsTableBody");
+        const projectSearch = document.getElementById("projectSearch");
+        const filterStatus = document.getElementById("filterStatus");
+        const filterPriority = document.getElementById("filterPriority");
+        const btnReset = document.getElementById("btnReset");
+        const recordCounter = document.getElementById("recordCounter");
+        const paginationInfo = document.getElementById("paginationInfo");
+        const paginationList = document.getElementById("paginationList");
+
+        // Metrics elements
+        const statTotal = document.getElementById("statTotal");
+        const statActive = document.getElementById("statActive");
+        const statCompleted = document.getElementById("statCompleted");
+        const statOverdue = document.getElementById("statOverdue");
+
+        // Populate New Project Modal check options
+        const formTeamCheckboxes = document.getElementById("formTeamCheckboxes");
+        TEAM_POOL.forEach((member, idx) => {
+          const div = document.createElement("div");
+          div.className = "col-6 col-sm-4";
+          div.innerHTML = `
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="${member.name}" id="memberCheck_${idx}">
+              <label class="form-check-label small" for="memberCheck_${idx}" style="cursor: pointer;">
+                ${member.name}
+              </label>
+            </div>
+          `;
+          formTeamCheckboxes.appendChild(div);
+        });
+
+        // Set default date in modal to 2 months from today
+        const defaultDate = new Date();
+        defaultDate.setMonth(defaultDate.getMonth() + 2);
+        document.getElementById("formDeadline").value = defaultDate.toISOString().split("T")[0];
+
+        // Functions
+        function getStatusBadge(status) {
+          switch (status) {
+            case "Completed": return "premium-badge-success";
+            case "Active": return "premium-badge-warning";
+            case "Overdue": return "premium-badge-danger";
+            default: return "premium-badge-info";
+          }
+        }
+
+        function getPriorityBadge(priority) {
+          switch (priority) {
+            case "High": return "premium-badge-danger";
+            case "Medium": return "premium-badge-warning";
+            case "Low": return "premium-badge-secondary";
+            default: return "premium-badge-info";
+          }
+        }
+
+        function getProgressColor(progress) {
+          if (progress === 100) return "var(--success)";
+          if (progress < 50) return "var(--danger)";
+          return "var(--primary-accent)";
+        }
+
+        function updateMetrics() {
+          const total = PROJECTS.length;
+          const active = PROJECTS.filter(p => p.status === "Active").length;
+          const completed = PROJECTS.filter(p => p.status === "Completed").length;
+          const overdue = PROJECTS.filter(p => p.status === "Overdue").length;
+
+          statTotal.textContent = total;
+          statActive.textContent = active;
+          statCompleted.textContent = completed;
+          statOverdue.textContent = overdue;
+        }
+
+        function filterProjects() {
+          const query = projectSearch.value.toLowerCase().trim();
+          const status = filterStatus.value;
+          const priority = filterPriority.value;
+
+          filteredProjects = PROJECTS.filter(p => {
+            const matchesSearch = p.name.toLowerCase().includes(query) || p.client.toLowerCase().includes(query) || p.team.some(member => member.toLowerCase().includes(query));
+            const matchesStatus = !status || p.status === status;
+            const matchesPriority = !priority || p.priority === priority;
+            return matchesSearch && matchesStatus && matchesPriority;
+          });
+
+          currentPage = 1; // reset page to 1
+          renderTable();
+        }
+
+        function renderTable() {
+          projectsTableBody.innerHTML = "";
+          
+          const totalItems = filteredProjects.length;
+          recordCounter.textContent = `${totalItems} Project${totalItems !== 1 ? "s" : ""} loaded`;
+
+          if (totalItems === 0) {
+            projectsTableBody.innerHTML = `
+              <tr>
+                <td colspan="7" class="text-center py-5 text-secondary">
+                  <i class="fa-solid fa-folder-open fs-2 mb-3 text-muted"></i>
+                  <p class="mb-0">No project records match the current filters.</p>
+                </td>
+              </tr>
+            `;
+            paginationInfo.textContent = "Showing 0 to 0 of 0 entries";
+            paginationList.innerHTML = "";
+            return;
+          }
+
+          // Calculate pagination bounds
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+          const paginatedItems = filteredProjects.slice(startIndex, endIndex);
+
+          paginationInfo.textContent = `Showing ${startIndex + 1} to ${endIndex} of ${totalItems} entries`;
+
+          paginatedItems.forEach(p => {
+            // Team avatars
+            let teamHTML = '<div class="avatar-group">';
+            p.team.forEach(name => {
+              const matchedMember = TEAM_POOL.find(m => m.name === name);
+              const avatarUrl = matchedMember ? matchedMember.avatar : "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop";
+              teamHTML += `<img src="${avatarUrl}" class="avatar-group-item" data-bs-toggle="tooltip" data-bs-placement="top" title="${name}">`;
+            });
+            teamHTML += "</div>";
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>
+                <div class="fw-700 text-primary mb-1">${p.name}</div>
+                <div class="small text-muted d-flex align-items-center gap-1">
+                  <span class="premium-badge ${getPriorityBadge(p.priority)} fs-8 py-0 px-2">${p.priority}</span>
+                </div>
+              </td>
+              <td>
+                <span class="text-secondary fw-600">${p.client}</span>
+              </td>
+              <td>
+                ${teamHTML}
+              </td>
+              <td>
+                <div class="project-progress-bar-container">
+                  <div class="d-flex justify-content-between small fw-600 mb-1">
+                    <span class="text-secondary">${p.progress}%</span>
+                  </div>
+                  <div class="project-progress-track">
+                    <div class="project-progress-fill" style="width: ${p.progress}%; background: ${getProgressColor(p.progress)};"></div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="text-secondary small fw-500">
+                  <i class="fa-regular fa-calendar-check me-1"></i> ${p.deadline}
+                </span>
+              </td>
+              <td>
+                <span class="premium-badge ${getStatusBadge(p.status)}">${p.status}</span>
+              </td>
+              <td class="text-end">
+                <a href="project-details.html?id=${p.id}" class="outline-btn py-1 px-3 text-decoration-none">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <span>Details</span>
+                </a>
+              </td>
+            `;
+            projectsTableBody.appendChild(tr);
+          });
+
+          // Enable tooltips
+          const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+          tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+          });
+
+          renderPagination(totalItems);
+        }
+
+        function renderPagination(totalItems) {
+          paginationList.innerHTML = "";
+          const totalPages = Math.ceil(totalItems / itemsPerPage);
+          if (totalPages <= 1) return;
+
+          // Previous button
+          const prevLi = document.createElement("li");
+          prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+          prevLi.innerHTML = `<a class="page-link" href="#" aria-label="Previous"><i class="fa-solid fa-angle-left"></i></a>`;
+          if (currentPage !== 1) {
+            prevLi.querySelector("a").addEventListener("click", function(e) {
+              e.preventDefault();
+              currentPage--;
+              renderTable();
+            });
+          }
+          paginationList.appendChild(prevLi);
+
+          // Page indicators
+          for (let i = 1; i <= totalPages; i++) {
+            const pageLi = document.createElement("li");
+            pageLi.className = `page-item ${currentPage === i ? 'active' : ''}`;
+            pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            pageLi.querySelector("a").addEventListener("click", function(e) {
+              e.preventDefault();
+              currentPage = i;
+              renderTable();
+            });
+            paginationList.appendChild(pageLi);
+          }
+
+          // Next button
+          const nextLi = document.createElement("li");
+          nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+          nextLi.innerHTML = `<a class="page-link" href="#" aria-label="Next"><i class="fa-solid fa-angle-right"></i></a>`;
+          if (currentPage !== totalPages) {
+            nextLi.querySelector("a").addEventListener("click", function(e) {
+              e.preventDefault();
+              currentPage++;
+              renderTable();
+            });
+          }
+          paginationList.appendChild(nextLi);
+        }
+
+        // Listeners
+        projectSearch.addEventListener("input", filterProjects);
+        filterStatus.addEventListener("change", filterProjects);
+        filterPriority.addEventListener("change", filterProjects);
+
+        btnReset.addEventListener("click", function() {
+          projectSearch.value = "";
+          filterStatus.value = "";
+          filterPriority.value = "";
+          filterProjects();
+        });
+
+        // Form Submission
+        document.getElementById("newProjectForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+
+          const name = document.getElementById("formName").value;
+          const client = document.getElementById("formClient").value;
+          const deadline = document.getElementById("formDeadline").value;
+          const priority = document.getElementById("formPriority").value;
+          const progress = parseInt(document.getElementById("formProgress").value);
+          const status = document.getElementById("formStatus").value;
+          const desc = document.getElementById("formDesc").value;
+
+          // Capture selected team
+          const selectedTeam = [];
+          TEAM_POOL.forEach((member, idx) => {
+            const chk = document.getElementById(`memberCheck_${idx}`);
+            if (chk && chk.checked) {
+              selectedTeam.push(member.name);
+            }
+          });
+
+          // Fallback if no team member is selected (default to Sarah Jenkins)
+          if (selectedTeam.length === 0) {
+            selectedTeam.push("Sarah Jenkins");
+          }
+
+          const newPrj = {
+            id: `PRJ-${Math.floor(108 + Math.random() * 890)}`,
+            name: name,
+            client: client,
+            team: selectedTeam,
+            progress: progress,
+            deadline: deadline,
+            status: status,
+            priority: priority,
+            desc: desc
+          };
+
+          // Save and Update
+          PROJECTS.unshift(newPrj);
+          localStorage.setItem("aura_projects", JSON.stringify(PROJECTS));
+
+          updateMetrics();
+          filterProjects();
+
+          // Close modal
+          const modalEl = document.getElementById("newProjectModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          modalInstance.hide();
+
+          // Reset Form
+          document.getElementById("newProjectForm").reset();
+          document.getElementById("formDeadline").value = defaultDate.toISOString().split("T")[0];
+        });
+
+        // Initial setup
+        updateMetrics();
+        filterProjects();
+      });
+    </script>
+  </body>
+</html>

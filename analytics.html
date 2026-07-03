@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Executive Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Premium visual charts container card */
+      .chart-container-wrapper {
+        position: relative;
+        height: 280px;
+        width: 100%;
+      }
+
+      /* Hover highlight */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+
+      /* Star rating system badge */
+      .rating-star-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: var(--radius-sm);
+        background: rgba(245, 158, 11, 0.06);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.15);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search analytics, trends, goals...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Executive Analytics</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Executive Dashboard</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" id="refreshDashboardBtn" onclick="handleDashboardRefresh()">
+                  <i class="fa-solid fa-rotate"></i>
+                  <span>Sync Analytics</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills">
+                <a href="reports.html" class="submodule-pill">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports Module</span>
+                </a>
+                <a href="analytics.html" class="submodule-pill active">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Executive Analytics</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- KPI Cards Row -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <h3 class="fs-8 text-secondary uppercase-spacing mb-1">Total Workforce</h3>
+                      <div class="h3 fw-800 text-primary mb-0">48 Employees</div>
+                    </div>
+                    <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(79, 70, 229, 0.1); color: var(--primary-accent);">
+                      <i class="fa-solid fa-user-group"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white py-1 px-2 fs-9"><i class="fa-solid fa-arrow-up me-1"></i>4.2%</span>
+                    <span class="small text-muted">vs trailing quarter</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <h3 class="fs-8 text-secondary uppercase-spacing mb-1">Attendance Rate</h3>
+                      <div class="h3 fw-800 text-primary mb-0">96.2%</div>
+                    </div>
+                    <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                      <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white py-1 px-2 fs-9">Optimal</span>
+                    <span class="small text-muted">average attendance index</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <h3 class="fs-8 text-secondary uppercase-spacing mb-1">Monthly Payroll</h3>
+                      <div class="h3 fw-800 text-primary mb-0">$184,500</div>
+                    </div>
+                    <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                      <i class="fa-solid fa-money-check-dollar"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-light text-secondary border py-1 px-2 fs-9">98.1% Capacity</span>
+                    <span class="small text-muted">utilizing payroll budgets</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-sm-6">
+                <div class="glass-card highlight-hover-card p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                      <h3 class="fs-8 text-secondary uppercase-spacing mb-1">Average Performance</h3>
+                      <div class="h3 fw-800 text-primary mb-0">4.4 / 5.0</div>
+                    </div>
+                    <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary text-white py-1 px-2 fs-9">Excellent</span>
+                    <span class="small text-muted">Q2 appraisal reviews</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Charts Grid (Line & Bar) -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="col-lg-8">
+                <div class="glass-card p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Monthly Hiring & Employee Growth Trend</h4>
+                      <p class="text-secondary small mb-0">Staffing growth rate and active recruitment metrics over 12 months</p>
+                    </div>
+                  </div>
+                  <div class="chart-container-wrapper">
+                    <canvas id="growthChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="glass-card p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Leave Distribution Ratio</h4>
+                      <p class="text-secondary small mb-0">Current composition of leave types</p>
+                    </div>
+                  </div>
+                  <div class="chart-container-wrapper d-flex align-items-center justify-content-center">
+                    <canvas id="leaveChart" style="max-height: 250px;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary Charts Grid (Area & Horizontal Bar) -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="col-md-6">
+                <div class="glass-card p-4">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Attendance Trend & Present Ratio</h4>
+                      <p class="text-secondary small mb-0">Tracking active team presence rates weekly</p>
+                    </div>
+                  </div>
+                  <div class="chart-container-wrapper">
+                    <canvas id="attendanceChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="glass-card p-4">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Financial Payroll Expense Curve</h4>
+                      <p class="text-secondary small mb-0">Monthly overhead salary trend curve</p>
+                    </div>
+                  </div>
+                  <div class="chart-container-wrapper">
+                    <canvas id="payrollChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Third Grid (Department Appraisal Score Bar Chart & Department Table) -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="col-lg-5">
+                <div class="glass-card p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Performance Index by Department</h4>
+                      <p class="text-secondary small mb-0">Average appraisal ratings for Q2 reviews</p>
+                    </div>
+                  </div>
+                  <div class="chart-container-wrapper">
+                    <canvas id="performanceChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="glass-card p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                      <h4 class="h6 fw-800 text-primary mb-1">Department-wise Analytics & Expenses</h4>
+                      <p class="text-secondary small mb-0">Workforce budgets, realize-rates, and personnel capacity status</p>
+                    </div>
+                  </div>
+                  <div class="table-premium-wrapper">
+                    <table class="table-premium m-0">
+                      <thead>
+                        <tr>
+                          <th>Department Name</th>
+                          <th class="text-center">Staff Count</th>
+                          <th class="text-end">Budget Cap</th>
+                          <th class="text-end">Expenses</th>
+                          <th class="text-center">Performance Rating</th>
+                          <th>Efficiency Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><div class="fw-700 text-primary">HR</div></td>
+                          <td class="text-center"><span class="badge bg-light text-secondary border">3 Employees</span></td>
+                          <td class="text-end fw-600">$18,000</td>
+                          <td class="text-end text-secondary">$16,500</td>
+                          <td class="text-center">
+                            <span class="rating-star-badge"><i class="fa-solid fa-star me-1"></i>4.6</span>
+                          </td>
+                          <td><span class="badge bg-success text-white py-1 px-2 fs-9">Highly Efficient</span></td>
+                        </tr>
+                        <tr>
+                          <td><div class="fw-700 text-primary">Engineering</div></td>
+                          <td class="text-center"><span class="badge bg-light text-secondary border">15 Employees</span></td>
+                          <td class="text-end fw-600">$125,000</td>
+                          <td class="text-end text-secondary">$118,000</td>
+                          <td class="text-center">
+                            <span class="rating-star-badge"><i class="fa-solid fa-star me-1"></i>4.4</span>
+                          </td>
+                          <td><span class="badge bg-success text-white py-1 px-2 fs-9">Highly Efficient</span></td>
+                        </tr>
+                        <tr>
+                          <td><div class="fw-700 text-primary">Product & Design</div></td>
+                          <td class="text-center"><span class="badge bg-light text-secondary border">8 Employees</span></td>
+                          <td class="text-end fw-600">$68,000</td>
+                          <td class="text-end text-secondary">$62,000</td>
+                          <td class="text-center">
+                            <span class="rating-star-badge"><i class="fa-solid fa-star me-1"></i>4.3</span>
+                          </td>
+                          <td><span class="badge bg-primary text-white py-1 px-2 fs-9">Optimal</span></td>
+                        </tr>
+                        <tr>
+                          <td><div class="fw-700 text-primary">Marketing</div></td>
+                          <td class="text-center"><span class="badge bg-light text-secondary border">5 Employees</span></td>
+                          <td class="text-end fw-600">$45,000</td>
+                          <td class="text-end text-secondary">$43,200</td>
+                          <td class="text-center">
+                            <span class="rating-star-badge"><i class="fa-solid fa-star me-1"></i>4.1</span>
+                          </td>
+                          <td><span class="badge bg-warning text-white py-1 px-2 fs-9">Developing</span></td>
+                        </tr>
+                        <tr>
+                          <td><div class="fw-700 text-primary">Executive Board</div></td>
+                          <td class="text-center"><span class="badge bg-light text-secondary border">2 Employees</span></td>
+                          <td class="text-end fw-600">$85,000</td>
+                          <td class="text-end text-secondary">$78,000</td>
+                          <td class="text-center">
+                            <span class="rating-star-badge"><i class="fa-solid fa-star me-1"></i>4.8</span>
+                          </td>
+                          <td><span class="badge bg-success text-white py-1 px-2 fs-9">Highly Efficient</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast Alert notifications -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="analyticsToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Analytics synchronizing...
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Interactive Charts Controller -->
+    <script>
+      let activeCharts = {};
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Render initial graphs
+        renderAllCharts();
+
+        // Listen for system theme toggled to trigger a color-aware redrawing
+        window.addEventListener('themeChanged', (e) => {
+          renderAllCharts();
+        });
+
+        AOS.init({ once: true });
+      });
+
+      // Retrieve dynamic colors based on the current active UI Theme (Light/Dark)
+      function getThemeColors() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        
+        return {
+          gridColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.8)',
+          textColor: isDark ? '#cbd5e1' : '#475569',
+          mutedColor: isDark ? '#64748b' : '#94a3b8',
+          primary: isDark ? '#6366f1' : '#4f46e5',
+          primaryLight: isDark ? 'rgba(99, 102, 241, 0.12)' : 'rgba(79, 70, 229, 0.06)',
+          secondary: isDark ? '#22d3ee' : '#06b6d4',
+          secondaryLight: isDark ? 'rgba(34, 211, 238, 0.12)' : 'rgba(6, 182, 212, 0.06)',
+          success: isDark ? '#34d399' : '#10b981',
+          successLight: isDark ? 'rgba(52, 211, 153, 0.12)' : 'rgba(16, 185, 129, 0.06)',
+          danger: isDark ? '#f87171' : '#ef4444',
+          warning: isDark ? '#fbbf24' : '#f59e0b',
+          surface: isDark ? '#151e34' : '#ffffff'
+        };
+      }
+
+      function renderAllCharts() {
+        const colors = getThemeColors();
+
+        // Destroy any active charts if already existing to avoid duplication
+        Object.keys(activeCharts).forEach(key => {
+          if (activeCharts[key]) {
+            activeCharts[key].destroy();
+          }
+        });
+
+        const commonOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: colors.textColor,
+                font: { family: 'inherit', weight: '600', size: 11 }
+              }
+            },
+            tooltip: {
+              backgroundColor: colors.surface,
+              titleColor: colors.primary,
+              bodyColor: colors.textColor,
+              borderColor: colors.gridColor,
+              borderWidth: 1,
+              padding: 10,
+              boxPadding: 5,
+              usePointStyle: true,
+              callbacks: {
+                labelColor: function(context) {
+                  return {
+                    borderColor: context.dataset.borderColor || colors.primary,
+                    backgroundColor: context.dataset.backgroundColor || colors.primary
+                  };
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: colors.gridColor },
+              ticks: { color: colors.textColor, font: { size: 10 } }
+            },
+            y: {
+              grid: { color: colors.gridColor },
+              ticks: { color: colors.textColor, font: { size: 10 } }
+            }
+          }
+        };
+
+        // 1. Line & Bar Chart Combo: Employee Growth & Monthly Hiring Trends
+        const ctxGrowth = document.getElementById('growthChart').getContext('2d');
+        activeCharts.growth = new Chart(ctxGrowth, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+              {
+                label: 'Total Workforce Capacity (Staff count)',
+                data: [32, 34, 35, 37, 39, 41, 45, 46, 48, 50, 52, 55],
+                borderColor: colors.primary,
+                backgroundColor: colors.primaryLight,
+                fill: true,
+                tension: 0.35,
+                yAxisID: 'yGrowth',
+                type: 'line'
+              },
+              {
+                label: 'Monthly New Hires',
+                data: [2, 2, 1, 2, 2, 2, 4, 1, 2, 2, 2, 3],
+                backgroundColor: colors.secondary,
+                borderColor: colors.secondary,
+                borderRadius: 4,
+                barThickness: 12,
+                yAxisID: 'yHires',
+                type: 'bar'
+              }
+            ]
+          },
+          options: {
+            ...commonOptions,
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { color: colors.textColor }
+              },
+              yGrowth: {
+                position: 'left',
+                grid: { color: colors.gridColor },
+                ticks: { color: colors.textColor }
+              },
+              yHires: {
+                position: 'right',
+                grid: { display: false },
+                ticks: { color: colors.textColor },
+                max: 8
+              }
+            }
+          }
+        });
+
+        // 2. Leave Distribution Doughnut Chart
+        const ctxLeave = document.getElementById('leaveChart').getContext('2d');
+        activeCharts.leave = new Chart(ctxLeave, {
+          type: 'doughnut',
+          data: {
+            labels: ['Annual Leave', 'Sick Leave', 'Casual Leave', 'Maternity/Paternity'],
+            datasets: [{
+              data: [45, 18, 22, 15],
+              backgroundColor: [colors.primary, colors.secondary, colors.warning, colors.success],
+              borderColor: colors.surface,
+              borderWidth: 2,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: colors.textColor,
+                  font: { size: 10, weight: '600' }
+                }
+              },
+              tooltip: {
+                backgroundColor: colors.surface,
+                titleColor: colors.primary,
+                bodyColor: colors.textColor,
+                borderColor: colors.gridColor,
+                borderWidth: 1
+              }
+            },
+            cutout: '65%'
+          }
+        });
+
+        // 3. Area Chart: Attendance Presence Rates
+        const ctxAttendance = document.getElementById('attendanceChart').getContext('2d');
+        activeCharts.attendance = new Chart(ctxAttendance, {
+          type: 'line',
+          data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+            datasets: [{
+              label: 'Attendance Rate (%)',
+              data: [94.2, 95.8, 93.5, 96.2, 95.0, 97.4, 96.8, 98.2],
+              borderColor: colors.success,
+              backgroundColor: colors.successLight,
+              fill: true,
+              tension: 0.3,
+              pointBackgroundColor: colors.success,
+              pointHoverRadius: 6
+            }]
+          },
+          options: {
+            ...commonOptions,
+            scales: {
+              x: { grid: { display: false }, ticks: { color: colors.textColor } },
+              y: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor }, min: 80, max: 100 }
+            }
+          }
+        });
+
+        // 4. Line Chart: Financial Payroll Overhead Trends
+        const ctxPayroll = document.getElementById('payrollChart').getContext('2d');
+        activeCharts.payroll = new Chart(ctxPayroll, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+              label: 'Payroll Expense ($)',
+              data: [165000, 168000, 172000, 178000, 181000, 184500],
+              borderColor: colors.secondary,
+              backgroundColor: colors.secondaryLight,
+              fill: true,
+              tension: 0.4,
+              pointBackgroundColor: colors.secondary,
+              pointHoverRadius: 6
+            }]
+          },
+          options: {
+            ...commonOptions,
+            scales: {
+              x: { grid: { display: false }, ticks: { color: colors.textColor } },
+              y: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor }, min: 150000, max: 200000 }
+            }
+          }
+        });
+
+        // 5. Bar Chart: Performance Index by Department
+        const ctxPerformance = document.getElementById('performanceChart').getContext('2d');
+        activeCharts.performance = new Chart(ctxPerformance, {
+          type: 'bar',
+          data: {
+            labels: ['Executive', 'HR', 'Engineering', 'Product & Design', 'Marketing'],
+            datasets: [{
+              label: 'Average Performance Score',
+              data: [4.8, 4.6, 4.4, 4.3, 4.1],
+              backgroundColor: [colors.primary, colors.secondary, colors.success, colors.warning, colors.danger],
+              borderRadius: 6,
+              borderWidth: 0,
+              barThickness: 24
+            }]
+          },
+          options: {
+            ...commonOptions,
+            indexAxis: 'y', // Set to horizontal bar chart
+            scales: {
+              x: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor }, min: 0, max: 5 },
+              y: { grid: { display: false }, ticks: { color: colors.textColor } }
+            }
+          }
+        });
+      }
+
+      function handleDashboardRefresh() {
+        const refreshBtn = document.getElementById('refreshDashboardBtn');
+        const icon = refreshBtn.querySelector('i');
+        
+        // Spinning animation feedback
+        icon.classList.add('fa-spin');
+        showToast("Synchronizing metrics & compiling local reports...", "success");
+
+        // Simulate network latency before refreshing
+        setTimeout(() => {
+          renderAllCharts();
+          icon.classList.remove('fa-spin');
+          showToast("Analytics synchronized with Live Workforce ledger successfully!", "success");
+        }, 1200);
+      }
+
+      function showToast(message, type) {
+        const toastEl = document.getElementById('analyticsToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        
+        toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+        
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Roles & Permissions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Hover highlight */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+
+      /* Checkbox permission block */
+      .permission-category-card {
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        background: rgba(var(--primary-accent-rgb), 0.01);
+        transition: all var(--transition-fast);
+      }
+      .permission-category-card:hover {
+        border-color: rgba(var(--primary-accent-rgb), 0.25);
+        background: rgba(var(--primary-accent-rgb), 0.02);
+      }
+
+      /* Hover animation for table action triggers */
+      .table-action-trigger {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-md);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(var(--primary-accent-rgb), 0.04);
+        color: var(--text-secondary);
+        border: 1px solid var(--card-border);
+        transition: all var(--transition-fast);
+        text-decoration: none;
+      }
+      .table-action-trigger:hover {
+        background: var(--primary-accent);
+        color: white;
+        transform: scale(1.08);
+        box-shadow: 0 2px 6px var(--shadow-accent-glow);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" id="globalSearchInput" placeholder="Search roles, parameters..." oninput="handleGlobalSearch(this.value)">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Administration Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Roles & Permissions</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#roleModal">
+                  <i class="fa-solid fa-plus-circle"></i>
+                  <span>Define New Role</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills flex-wrap">
+                <a href="settings.html" class="submodule-pill">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>General Settings</span>
+                </a>
+                <a href="company.html" class="submodule-pill">
+                  <i class="fa-solid fa-building"></i>
+                  <span>Company Profile</span>
+                </a>
+                <a href="branches.html" class="submodule-pill">
+                  <i class="fa-solid fa-code-branch"></i>
+                  <span>Branches</span>
+                </a>
+                <a href="roles.html" class="submodule-pill active">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span>Roles & Permissions</span>
+                </a>
+                <a href="users.html" class="submodule-pill">
+                  <i class="fa-solid fa-users"></i>
+                  <span>User Accounts</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Roles Info & Table Area -->
+            <div class="glass-card p-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center filters-row mb-4">
+                <div class="d-flex flex-wrap gap-2 w-100 w-md-auto">
+                  <div class="search-input-group m-0" style="width: 280px;">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="roleSearchBox" placeholder="Filter roles/permissions..." onkeyup="filterRolesTable()">
+                  </div>
+                </div>
+                <div class="text-secondary small">
+                  Showing <strong id="visibleRolesCount">5</strong> roles in active directories
+                </div>
+              </div>
+
+              <!-- Roles Table -->
+              <div class="table-premium-wrapper">
+                <table class="table-premium m-0" id="rolesTable">
+                  <thead>
+                    <tr>
+                      <th>Role Name</th>
+                      <th>Users Assigned</th>
+                      <th class="text-center">Authorized Modules</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rolesTableBody">
+                    <tr>
+                      <td>
+                        <div class="fw-700 text-primary">Administrator</div>
+                        <span class="text-muted fs-9">Full system override, legal audit and setup control access</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">2 Users</span>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">32 Permissions</span></td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editRole('Administrator', 'active', 32)" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteRole(this, 'Administrator')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="fw-700 text-primary">HR Manager</div>
+                        <span class="text-muted fs-9">Workforce files, payroll processing, leave and recruitment management</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">5 Users</span>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">24 Permissions</span></td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editRole('HR Manager', 'active', 24)" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteRole(this, 'HR Manager')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="fw-700 text-primary">Department Manager</div>
+                        <span class="text-muted fs-9">Approve branch attendance, review direct report leaves and performance appraisal</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">8 Users</span>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">14 Permissions</span></td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editRole('Department Manager', 'active', 14)" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteRole(this, 'Department Manager')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="fw-700 text-primary">General Employee</div>
+                        <span class="text-muted fs-9">Access employee self service (ESS), log attendance, apply leaves and check payslips</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">33 Users</span>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">6 Permissions</span></td>
+                      <td><span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editRole('General Employee', 'active', 6)" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteRole(this, 'General Employee')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="fw-700 text-primary">External Recruiter</div>
+                        <span class="text-muted fs-9">Publish job vacancy announcements and log candidate recruitment stages</span>
+                      </td>
+                      <td>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">0 Users</span>
+                      </td>
+                      <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">8 Permissions</span></td>
+                      <td><span class="premium-badge premium-badge-danger"><i class="fa-solid fa-circle-xmark"></i> Inactive</span></td>
+                      <td class="text-end">
+                        <div class="d-flex justify-content-end gap-1">
+                          <button class="table-action-trigger" onclick="editRole('External Recruiter', 'inactive', 8)" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+                          <button class="table-action-trigger text-danger" onclick="deleteRole(this, 'External Recruiter')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <!-- Role & Permissions Customizer Modal -->
+        <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content glass-card p-0" style="border: 1px solid var(--card-border-focus); overflow: hidden; background: var(--bg-primary);">
+              <div class="modal-header border-bottom py-3 px-4" style="border-color: var(--card-border) !important;">
+                <h5 class="modal-title fw-800 text-primary" id="roleModalLabel"><i class="fa-solid fa-user-shield me-2 text-primary"></i>Define System Role & Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--theme-close-btn);"></button>
+              </div>
+              <form id="rolePolicyForm" class="needs-validation" onsubmit="handleRoleSubmit(event)" novalidate>
+                <div class="modal-body p-4" style="max-height: 70vh; overflow-y: auto;">
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-8">
+                      <label for="role_name" class="form-label-premium">Custom Role Title</label>
+                      <input type="text" class="form-control form-control-premium w-100" id="role_name" placeholder="e.g. Audit Compliance Officer" required>
+                      <div class="invalid-feedback">Role title is required.</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="role_status" class="form-label-premium">Policy State</label>
+                      <select class="form-control form-control-premium w-100" id="role_status">
+                        <option value="active" selected>Active / Authorized</option>
+                        <option value="inactive">Suspended / Inactive</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Permission checkboxes grids -->
+                  <h6 class="h6 fw-800 text-primary mb-3">Policy Permission Tree Override</h6>
+                  <div class="row g-3">
+                    
+                    <!-- Employee block -->
+                    <div class="col-md-6">
+                      <div class="permission-category-card">
+                        <h6 class="fs-9 uppercase-spacing text-secondary fw-700 mb-2"><i class="fa-solid fa-user-group me-1"></i> Employees Module</h6>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_emp_view" checked>
+                          <label class="form-check-label small text-muted" for="p_emp_view">View employee directory files</label>
+                        </div>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_emp_edit">
+                          <label class="form-check-label small text-muted" for="p_emp_edit">Write/modify personnel logs</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="p_emp_del">
+                          <label class="form-check-label small text-muted" for="p_emp_del">Purge/decommission accounts</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Finance/Payroll block -->
+                    <div class="col-md-6">
+                      <div class="permission-category-card">
+                        <h6 class="fs-9 uppercase-spacing text-secondary fw-700 mb-2"><i class="fa-solid fa-sack-dollar me-1"></i> Finance & Payroll</h6>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_pay_view">
+                          <label class="form-check-label small text-muted" for="p_pay_view">View salary and compensation structures</label>
+                        </div>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_pay_process">
+                          <label class="form-check-label small text-muted" for="p_pay_process">Issue and disburse monthly ledger slips</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="p_pay_rules">
+                          <label class="form-check-label small text-muted" for="p_pay_rules">Alter financial bonus metrics</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Recruitment block -->
+                    <div class="col-md-6">
+                      <div class="permission-category-card">
+                        <h6 class="fs-9 uppercase-spacing text-secondary fw-700 mb-2"><i class="fa-solid fa-user-tie me-1"></i> Talent Recruitment</h6>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_rec_publish" checked>
+                          <label class="form-check-label small text-muted" for="p_rec_publish">Publish/alter job opening briefs</label>
+                        </div>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_rec_view" checked>
+                          <label class="form-check-label small text-muted" for="p_rec_view">View candidate profile sheets</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="p_rec_hire">
+                          <label class="form-check-label small text-muted" for="p_rec_hire">Issue job offers and contracts</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- System admin block -->
+                    <div class="col-md-6">
+                      <div class="permission-category-card">
+                        <h6 class="fs-9 uppercase-spacing text-secondary fw-700 mb-2"><i class="fa-solid fa-sliders me-1"></i> System Parameters</h6>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_sys_config">
+                          <label class="form-check-label small text-muted" for="p_sys_config">Modify system settings variables</label>
+                        </div>
+                        <div class="form-check mb-1">
+                          <input class="form-check-input" type="checkbox" id="p_sys_audit">
+                          <label class="form-check-label small text-muted" for="p_sys_audit">View compliance tracking access logs</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="p_sys_sync">
+                          <label class="form-check-label small text-muted" for="p_sys_sync">Synchronize offline database servers</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="modal-footer border-top p-3 px-4 d-flex justify-content-end gap-2" style="border-color: var(--card-border) !important;">
+                  <button type="button" class="outline-btn py-2" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn py-2">Commit Policy Role</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast alert message -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="roleToast" class="toast align-items-center text-white border-0 bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Role updated successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      let rolesCount = 5;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ once: true });
+      });
+
+      // Simple keyword searching logic
+      function filterRolesTable() {
+        const query = document.getElementById('roleSearchBox').value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#rolesTableBody tr');
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          if (text.includes(query)) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        document.getElementById('visibleRolesCount').textContent = visibleCount;
+      }
+
+      function handleGlobalSearch(val) {
+        document.getElementById('roleSearchBox').value = val;
+        filterRolesTable();
+      }
+
+      function handleRoleSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          form.classList.add('was-validated');
+          showToast('Validation failed! Please specify the Title of the new policy.', 'danger');
+          return;
+        }
+
+        form.classList.remove('was-validated');
+
+        const rName = document.getElementById('role_name').value;
+        const rStatus = document.getElementById('role_status').value;
+
+        // Calculate checked permissions count
+        const checkboxes = form.querySelectorAll('.form-check-input:checked');
+        const count = checkboxes.length;
+
+        // Add newly configured role row dynamically
+        const tbody = document.getElementById('rolesTableBody');
+        const tr = document.createElement('tr');
+
+        const badgeHTML = rStatus === 'active'
+          ? '<span class="premium-badge premium-badge-success"><i class="fa-solid fa-circle-check"></i> Active</span>'
+          : '<span class="premium-badge premium-badge-danger"><i class="fa-solid fa-circle-xmark"></i> Inactive</span>';
+
+        tr.innerHTML = `
+          <td>
+            <div class="fw-700 text-primary">${rName}</div>
+            <span class="text-muted fs-9">Custom user defined policy rule matrix</span>
+          </td>
+          <td>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">0 Users</span>
+          </td>
+          <td class="text-center"><span class="badge bg-light text-secondary border px-2 py-1">${count} Permissions</span></td>
+          <td>${badgeHTML}</td>
+          <td class="text-end">
+            <div class="d-flex justify-content-end gap-1">
+              <button class="table-action-trigger" onclick="editRole('${rName.replace(/'/g, "\\'")}', '${rStatus}', ${count})" title="Edit Permissions"><i class="fa-solid fa-user-lock"></i></button>
+              <button class="table-action-trigger text-danger" onclick="deleteRole(this, '${rName.replace(/'/g, "\\'")}')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+        rolesCount++;
+
+        document.getElementById('visibleRolesCount').textContent = rolesCount;
+
+        // Dismiss Modal and notify
+        const modalEl = document.getElementById('roleModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+        modalInstance.hide();
+        form.reset();
+
+        showToast(`Policy system role '${rName}' logged & distributed.`, 'success');
+        filterRolesTable();
+      }
+
+      function deleteRole(buttonElement, roleName) {
+        if (confirm(`Warning! Are you sure you want to permanently delete the '${roleName}' system policy role? All assigned users will lose their access permissions.`)) {
+          const row = buttonElement.closest('tr');
+          row.style.opacity = '0';
+          setTimeout(() => {
+            row.remove();
+            rolesCount--;
+            document.getElementById('visibleRolesCount').textContent = rolesCount;
+            filterRolesTable();
+            showToast(`Policy role '${roleName}' has been removed from directories.`, 'success');
+          }, 350);
+        }
+      }
+
+      function editRole(name, status, count) {
+        document.getElementById('role_name').value = name;
+        document.getElementById('role_status').value = status;
+        
+        // Mock randomized permission triggers for edit mode
+        const checkboxes = document.querySelectorAll('#rolePolicyForm .form-check-input');
+        checkboxes.forEach((cb, index) => {
+          cb.checked = (index % 2 === 0 || index < count / 2);
+        });
+
+        document.getElementById('roleModalLabel').innerHTML = `<i class="fa-solid fa-file-shield me-2 text-primary"></i>Modify Policy Rules`;
+
+        const modalEl = document.getElementById('roleModal');
+        const modalInstance = new bootstrap.Modal(modalEl);
+        modalInstance.show();
+      }
+
+      // Reset modal on close
+      document.getElementById('roleModal').addEventListener('hidden.bs.modal', function () {
+        document.getElementById('roleModalLabel').innerHTML = `<i class="fa-solid fa-user-shield me-2 text-primary"></i>Define System Role & Policy`;
+        document.getElementById('rolePolicyForm').reset();
+      });
+
+      function showToast(message, type) {
+        const toastEl = document.getElementById('roleToast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        
+        toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+        
+        const toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      }
+    </script>
+  </body>
+</html>

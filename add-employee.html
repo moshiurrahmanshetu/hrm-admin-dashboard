@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Add Employee</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <!-- Sidebar Drawer Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="designations.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>Designations</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <!-- Sticky Header / Navbar -->
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search Workspace...">
+            </div>
+          </form>
+
+          <div class="header-nav-right">
+            <!-- Theme Trigger -->
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Alert Dropdown -->
+            <div class="dropdown">
+              <button class="header-action-btn" type="button" id="alertDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-bell"></i>
+                <span class="btn-badge"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="alertDropdown">
+                <div class="dropdown-header-premium">
+                  <h6>System Alerts</h6>
+                </div>
+                <a href="#" class="dropdown-item-premium">
+                  <div class="dropdown-item-content">
+                    <div class="dropdown-item-title">System Online</div>
+                    <div class="dropdown-item-desc">AuraHR database state initialized successfully.</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="profile-trigger-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Workspace Body -->
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Navigation Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Add New Employee</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="employees.html" class="text-decoration-none text-muted">Employees</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Add Employee</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <a href="employees.html" class="outline-btn text-decoration-none">
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span>Back to List</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Form Wrapper -->
+            <form id="addEmployeeForm" class="needs-validation" novalidate data-aos="fade-up" data-aos-duration="800">
+              <div class="glass-card p-4 mb-4">
+                <div class="row g-4">
+                  <!-- Profile Image Upload Section -->
+                  <div class="col-12 col-md-3 text-center border-end border-dashed pe-md-4">
+                    <h5 class="h6 fw-700 text-primary mb-3 text-start">Profile Photo</h5>
+                    <div class="mb-3 position-relative d-inline-block">
+                      <img id="avatarPreview" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=256&auto=format&fit=crop" class="rounded-circle border p-1 bg-white" style="width: 140px; height: 140px; object-fit: cover; box-shadow: var(--shadow-soft-md);">
+                      <label for="avatarUpload" class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; cursor: pointer; background: var(--primary-accent); border: none;">
+                        <i class="fa-solid fa-camera text-white fs-xs"></i>
+                      </label>
+                      <input type="file" id="avatarUpload" accept="image/*" class="d-none">
+                    </div>
+                    <p class="text-muted fs-xxs mt-2" style="line-height: 1.4;">Drag or upload a high-resolution professional portrait. Max size: 2MB.</p>
+                  </div>
+
+                  <!-- Form Fields Area -->
+                  <div class="col-12 col-md-9 ps-md-4">
+                    <!-- Section 1: Personal Details -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-user fs-xs text-primary"></i>
+                        <span>Personal Information</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="empName" class="form-label form-label-premium">Full Name <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium w-100" id="empName" placeholder="e.g. Marcus Vance" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide employee's full name.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empGender" class="form-label form-label-premium">Gender <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="empGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-Binary">Non-Binary</option>
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select gender.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empDOB" class="form-label form-label-premium">Date of Birth <span class="text-danger">*</span></label>
+                          <input type="date" class="form-control form-control-premium" id="empDOB" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter a valid date of birth.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empBio" class="form-label form-label-premium">Professional Bio</label>
+                          <input type="text" class="form-control form-control-premium" id="empBio" placeholder="Brief tagline or description">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Section 2: Contact Details -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-address-book fs-xs text-primary"></i>
+                        <span>Contact & Address</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="empEmail" class="form-label form-label-premium">Work Email <span class="text-danger">*</span></label>
+                          <input type="email" class="form-control form-control-premium" id="empEmail" placeholder="e.g. employee@aurahr.com" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter a valid work email.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empPhone" class="form-label form-label-premium">Phone Number <span class="text-danger">*</span></label>
+                          <input type="tel" class="form-control form-control-premium" id="empPhone" placeholder="e.g. +1 (555) 012-3456" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide a valid phone number.</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="empAddress" class="form-label form-label-premium">Residential Address <span class="text-danger">*</span></label>
+                          <textarea class="form-control form-control-premium" id="empAddress" rows="2" placeholder="Street Address, City, State, Zip" required></textarea>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide a complete residential address.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Section 3: Job & Allocation -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-briefcase fs-xs text-primary"></i>
+                        <span>Job Assignment & Allocation</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="empDept" class="form-label form-label-premium">Department <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="empDept" required>
+                            <option value="">Select Department</option>
+                            <option value="HR">HR</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Design">Design</option>
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select a department.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empDesignation" class="form-label form-label-premium">Designation <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium" id="empDesignation" placeholder="e.g. Senior Backend Developer" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please enter professional designation.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empJoiningDate" class="form-label form-label-premium">Joining Date <span class="text-danger">*</span></label>
+                          <input type="date" class="form-control form-control-premium" id="empJoiningDate" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Please provide a valid joining date.</div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empType" class="form-label form-label-premium">Employment Type <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="empType" required>
+                            <option value="">Select Employment Type</option>
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Intern">Intern</option>
+                          </select>
+                          <div class="invalid-feedback fs-xxs text-danger">Please select employment type.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Section 4: Compensation -->
+                    <div class="mb-4 pb-4 border-bottom">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-money-bill-wave fs-xs text-primary"></i>
+                        <span>Compensation & Salary Details</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-6">
+                          <label for="empSalary" class="form-label form-label-premium">Annual Base Salary (USD) <span class="text-danger">*</span></label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0 border" style="border-radius: var(--radius-sm) 0 0 var(--radius-sm);">$</span>
+                            <input type="number" class="form-control form-control-premium rounded-start-0" id="empSalary" placeholder="e.g. 95000" min="1000" required>
+                            <div class="invalid-feedback fs-xxs text-danger">Please provide a valid salary amount (min $1,000).</div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                          <label for="empStatus" class="form-label form-label-premium">Employment Status <span class="text-danger">*</span></label>
+                          <select class="form-select form-control-premium" id="empStatus" required>
+                            <option value="Active">Active</option>
+                            <option value="On Leave">On Leave</option>
+                            <option value="Suspended">Suspended</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Section 5: Emergency Contact -->
+                    <div class="mb-4 pb-4">
+                      <h5 class="h6 fw-700 text-primary mb-3 d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-truck-medical fs-xs text-primary"></i>
+                        <span>Emergency Contact Details</span>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-12 col-sm-4">
+                          <label for="emergName" class="form-label form-label-premium">Contact Name <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium" id="emergName" placeholder="e.g. Jane Vance" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Provide contact person name.</div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                          <label for="emergPhone" class="form-label form-label-premium">Emergency Phone <span class="text-danger">*</span></label>
+                          <input type="tel" class="form-control form-control-premium" id="emergPhone" placeholder="e.g. +1 (555) 014-9983" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Provide contact phone number.</div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                          <label for="emergRelation" class="form-label form-label-premium">Relationship <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control form-control-premium" id="emergRelation" placeholder="e.g. Spouse / Sibling" required>
+                          <div class="invalid-feedback fs-xxs text-danger">Provide relationship type.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Submit Controls -->
+                    <div class="d-flex justify-content-end gap-3 mt-4 pt-3 border-top border-dashed">
+                      <a href="employees.html" class="outline-btn text-decoration-none">Cancel</a>
+                      <button type="submit" class="gradient-btn" id="btnSubmit">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Register Employee</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <!-- Professional Footer -->
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/employee-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <!-- Form Handler Code -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let base64Avatar = "";
+        const avatarUpload = document.getElementById("avatarUpload");
+        const avatarPreview = document.getElementById("avatarPreview");
+        const form = document.getElementById("addEmployeeForm");
+
+        // Today date presets for joining date
+        const todayStr = new Date().toISOString().split('T')[0];
+        document.getElementById("empJoiningDate").value = todayStr;
+
+        // Base64 file uploader logic
+        avatarUpload.addEventListener("change", function() {
+          const file = this.files[0];
+          if (file) {
+            if (file.size > 2 * 1024 * 1024) {
+              alert("File is too large. Maximum size allowed is 2MB.");
+              this.value = "";
+              return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              base64Avatar = e.target.result;
+              avatarPreview.src = base64Avatar;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // Form Submit Handler
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (!form.checkValidity()) {
+            form.classList.add("was-validated");
+            showFormToast("Please complete all required fields correctly.", "warning");
+            return;
+          }
+
+          // Gather form values
+          const name = document.getElementById("empName").value.trim();
+          const gender = document.getElementById("empGender").value;
+          const dob = document.getElementById("empDOB").value;
+          const bio = document.getElementById("empBio").value.trim() || "New member of AuraHR staff.";
+          const email = document.getElementById("empEmail").value.trim();
+          const phone = document.getElementById("empPhone").value.trim();
+          const address = document.getElementById("empAddress").value.trim();
+          const department = document.getElementById("empDept").value;
+          const designation = document.getElementById("empDesignation").value.trim();
+          const joiningDate = document.getElementById("empJoiningDate").value;
+          const employmentType = document.getElementById("empType").value;
+          const salary = parseFloat(document.getElementById("empSalary").value);
+          const status = document.getElementById("empStatus").value;
+          const emergencyContactName = document.getElementById("emergName").value.trim();
+          const emergencyContactPhone = document.getElementById("emergPhone").value.trim();
+          const emergencyContactRelation = document.getElementById("emergRelation").value.trim();
+
+          // Generate sequential next ID
+          const newId = window.AuraDB.generateNextId();
+
+          // Create complete record object
+          const newEmployee = {
+            id: newId,
+            name: name,
+            email: email,
+            phone: phone,
+            department: department,
+            designation: designation,
+            joiningDate: joiningDate,
+            status: status,
+            employmentType: employmentType,
+            avatar: base64Avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=128&auto=format&fit=crop",
+            salary: salary,
+            gender: gender,
+            dob: dob,
+            address: address,
+            emergencyContactName: emergencyContactName,
+            emergencyContactPhone: emergencyContactPhone,
+            emergencyContactRelation: emergencyContactRelation,
+            bio: bio,
+            documents: [
+              { name: "Offer Letter.pdf", size: "1.0 MB", date: todayStr }
+            ],
+            performance: { rating: 5.0, review: "Newly hired. Review pending." },
+            attendance: { rate: 100.0, onTime: 0, late: 0, absent: 0 },
+            leaves: { total: 20, taken: 0, pending: 0 }
+          };
+
+          // Save to local database
+          window.AuraDB.addEmployee(newEmployee);
+
+          showFormToast(`Employee ${name} registered successfully with ID ${newId}!`, "success");
+
+          // Disable submit button and redirect
+          const submitBtn = document.getElementById("btnSubmit");
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`;
+
+          setTimeout(() => {
+            window.location.href = "employees.html";
+          }, 1500);
+        });
+
+        // Helper Toast Engine
+        function showFormToast(message, type = 'success') {
+          let container = document.getElementById('toastContainer');
+          if (!container) {
+            container = document.createElement('div');
+            container.id = 'toastContainer';
+            container.style.position = 'fixed';
+            container.style.bottom = '2rem';
+            container.style.right = '2rem';
+            container.style.zIndex = '9999';
+            container.style.display = 'flex';
+            container.style.flexDirection = 'column';
+            container.style.gap = '0.5rem';
+            document.body.appendChild(container);
+          }
+          
+          const toast = document.createElement('div');
+          toast.className = 'glass-card p-3 d-flex align-items-center gap-3';
+          toast.style.width = '320px';
+          toast.style.background = 'var(--card-bg-solid)';
+          toast.style.border = '1px solid var(--card-border)';
+          
+          let colorHex = '#10b881';
+          let icon = 'fa-circle-check';
+          if (type === 'danger') { colorHex = '#ef4444'; icon = 'fa-circle-xmark'; }
+          else if (type === 'warning') { colorHex = '#f59e0b'; icon = 'fa-triangle-exclamation'; }
+          else if (type === 'info') { colorHex = '#06b6d4'; icon = 'fa-circle-info'; }
+
+          toast.style.borderLeft = `4px solid ${colorHex}`;
+          toast.style.boxShadow = 'var(--shadow-soft-lg)';
+          toast.style.borderRadius = 'var(--radius-md)';
+          toast.style.transition = 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(20px)';
+
+          toast.innerHTML = `
+              <div class="brand-icon-wrapper" style="width: 28px; height: 28px; background: rgba(79, 70, 229, 0.05); color: ${colorHex}; box-shadow: none; flex-shrink: 0; border-radius: var(--radius-sm);">
+                  <i class="fa-solid ${icon} fs-xs"></i>
+              </div>
+              <div class="flex-grow-1">
+                  <div class="fw-700 fs-xs text-primary" style="text-transform: uppercase; letter-spacing: 0.5px;">${type === 'danger' ? 'error' : type}</div>
+                  <div class="text-secondary fs-xxs" style="line-height: 1.3;">${message}</div>
+              </div>
+              <button class="border-0 bg-transparent text-muted fs-xs p-1" style="cursor: pointer;" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+          `;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+              toast.style.opacity = '1';
+              toast.style.transform = 'translateY(0)';
+          }, 10);
+          
+          setTimeout(() => {
+              toast.style.opacity = '0';
+              toast.style.transform = 'translateY(10px)';
+              setTimeout(() => toast.remove(), 350);
+          }, 4000);
+        }
+      });
+    </script>
+  </body>
+</html>

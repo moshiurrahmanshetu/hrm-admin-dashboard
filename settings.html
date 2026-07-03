@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - System Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      /* Submodule Navigation Pills */
+      .submodule-pills {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(var(--primary-accent-rgb), 0.02);
+        border: 1px solid var(--card-border);
+        padding: 0.35rem;
+        border-radius: var(--radius-lg);
+        width: fit-content;
+      }
+      .submodule-pill {
+        padding: 0.5rem 1.1rem;
+        border-radius: var(--radius-md);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .submodule-pill:hover {
+        color: var(--text-primary);
+        background: var(--sidebar-item-hover);
+      }
+      .submodule-pill.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover));
+        color: white !important;
+        box-shadow: 0 4px 10px var(--shadow-accent-glow);
+      }
+
+      /* Hover Highlight Cards */
+      .highlight-hover-card {
+        transition: all var(--transition-fast);
+      }
+      .highlight-hover-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--card-border-focus);
+        box-shadow: var(--shadow-soft-lg);
+      }
+
+      /* Color accent circle selector */
+      .accent-dot {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+      }
+      .accent-dot:hover {
+        transform: scale(1.1);
+      }
+      .accent-dot.active {
+        border-color: var(--text-primary);
+        box-shadow: 0 0 0 2px rgba(var(--primary-accent-rgb), 0.2);
+      }
+
+      /* Settings navigation pill tabs */
+      .settings-tabs .nav-link {
+        color: var(--text-secondary);
+        font-weight: 600;
+        border: 1px solid transparent;
+        border-radius: var(--radius-md);
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0.5rem;
+        transition: all var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: left;
+      }
+      .settings-tabs .nav-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+      .settings-tabs .nav-link.active {
+        background: linear-gradient(135deg, rgba(var(--primary-accent-rgb), 0.08), rgba(var(--primary-accent-rgb), 0.02));
+        color: var(--primary-accent);
+        border: 1px solid rgba(var(--primary-accent-rgb), 0.15);
+      }
+
+      /* Form check switch custom style */
+      .form-check-input:checked {
+        background-color: var(--primary-accent);
+        border-color: var(--primary-accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item has-submenu">
+              <a href="#" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar & Events</span>
+                </span>
+                <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+              </a>
+              <ul class="sidebar-submenu" style="display: none;">
+                <li class="sidebar-submenu-item">
+                  <a href="calendar.html" class="sidebar-submenu-link">
+                    <span>Monthly Calendar</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="events.html" class="sidebar-submenu-link">
+                    <span>Company Events</span>
+                  </a>
+                </li>
+                <li class="sidebar-submenu-item">
+                  <a href="meetings.html" class="sidebar-submenu-link">
+                    <span>Meetings Schedule</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Analytics</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item active">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block" onsubmit="event.preventDefault();">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search settings, rules, parameters...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Title Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Administration Module</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Portal Configuration</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Submodule Navigation -->
+            <div class="mb-4" data-aos="fade-right" data-aos-duration="600">
+              <div class="submodule-pills flex-wrap">
+                <a href="settings.html" class="submodule-pill active">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>General Settings</span>
+                </a>
+                <a href="company.html" class="submodule-pill">
+                  <i class="fa-solid fa-building"></i>
+                  <span>Company Profile</span>
+                </a>
+                <a href="branches.html" class="submodule-pill">
+                  <i class="fa-solid fa-code-branch"></i>
+                  <span>Branches</span>
+                </a>
+                <a href="roles.html" class="submodule-pill">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <span>Roles & Permissions</span>
+                </a>
+                <a href="users.html" class="submodule-pill">
+                  <i class="fa-solid fa-users"></i>
+                  <span>User Accounts</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Settings Workspace Layout -->
+            <div class="row g-4" data-aos="fade-up" data-aos-duration="700">
+              <!-- Left settings navigation menu card -->
+              <div class="col-lg-3 col-md-4">
+                <div class="glass-card p-3 sticky-lg-top" style="top: 90px; z-index: 10;">
+                  <h5 class="fs-8 text-secondary uppercase-spacing mb-3 px-2">Configuration categories</h5>
+                  <div class="nav flex-column nav-pills settings-tabs" id="settings-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="pill-general-tab" data-bs-toggle="pill" data-bs-target="#pill-general" type="button" role="tab" aria-controls="pill-general" aria-selected="true">
+                      <i class="fa-solid fa-circle-nodes"></i>
+                      <span>General & Localization</span>
+                    </button>
+                    <button class="nav-link" id="pill-theme-tab" data-bs-toggle="pill" data-bs-target="#pill-theme" type="button" role="tab" aria-controls="pill-theme" aria-selected="false">
+                      <i class="fa-solid fa-palette"></i>
+                      <span>Theme Settings</span>
+                    </button>
+                    <button class="nav-link" id="pill-email-tab" data-bs-toggle="pill" data-bs-target="#pill-email" type="button" role="tab" aria-controls="pill-email" aria-selected="false">
+                      <i class="fa-solid fa-envelope"></i>
+                      <span>Email & SMTP Setup</span>
+                    </button>
+                    <button class="nav-link" id="pill-notifications-tab" data-bs-toggle="pill" data-bs-target="#pill-notifications" type="button" role="tab" aria-controls="pill-notifications" aria-selected="false">
+                      <i class="fa-solid fa-bell"></i>
+                      <span>Alert Notifications</span>
+                    </button>
+                  </div>
+                  <hr class="my-3" style="opacity: 0.1;">
+                  <div class="px-2">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2">Cloud Synced</span>
+                    </div>
+                    <span class="small text-muted d-block" style="font-size: 0.75rem;">Last update: Just now<br> Sarah Jenkins (SAR-304)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right settings categories workspace -->
+              <div class="col-lg-9 col-md-8">
+                <form id="settingsConfigurationForm" class="needs-validation" onsubmit="handleSettingsSave(event)" novalidate>
+                  <div class="tab-content" id="settings-pills-tabContent">
+                    
+                    <!-- 1. General & Localization Settings Tab -->
+                    <div class="tab-pane fade show active" id="pill-general" role="tabpanel" aria-labelledby="pill-general-tab">
+                      <div class="glass-card p-4 mb-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                          <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(79, 70, 229, 0.1); color: var(--primary-accent);">
+                            <i class="fa-solid fa-circle-nodes fs-5"></i>
+                          </div>
+                          <div>
+                            <h4 class="h5 fw-800 text-primary mb-1">General Portal Parameters</h4>
+                            <p class="text-secondary small mb-0">Identity properties and primary controls of your AuraHR enterprise instance.</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-4">
+                          <div class="col-md-6">
+                            <label for="system_name" class="form-label-premium">Enterprise Portal Title</label>
+                            <input type="text" class="form-control form-control-premium w-100" id="system_name" value="AuraHR Enterprise" required>
+                            <div class="invalid-feedback">Please provide a portal title.</div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="default_login_role" class="form-label-premium">Default Login Landing Persona</label>
+                            <select class="form-control form-control-premium w-100" id="default_login_role">
+                              <option value="hr">HR Professional Portal</option>
+                              <option value="employee">Employee Self-Service (ESS)</option>
+                              <option value="manager">Departmental Manager Dashboard</option>
+                              <option value="admin" selected>System Administrator Console</option>
+                            </select>
+                          </div>
+                          
+                          <div class="col-12">
+                            <hr class="my-2" style="opacity: 0.1;">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="sys_language" class="form-label-premium"><i class="fa-solid fa-language me-1 text-muted"></i> Primary Language</label>
+                            <select class="form-control form-control-premium w-100" id="sys_language">
+                              <option value="en" selected>English (US & International)</option>
+                              <option value="es">Español (Castellano/Latinoamérica)</option>
+                              <option value="fr">Français (France/Mondial)</option>
+                              <option value="de">Deutsch (Deutschland)</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="sys_timezone" class="form-label-premium"><i class="fa-solid fa-earth-americas me-1 text-muted"></i> Localization Timezone</label>
+                            <select class="form-control form-control-premium w-100" id="sys_timezone">
+                              <option value="utc">UTC / Greenwich Mean Time (GMT)</option>
+                              <option value="est">EST - Eastern Standard Time (US/Canada)</option>
+                              <option value="pst" selected>PST - Pacific Standard Time (US/Canada) (UTC-8)</option>
+                              <option value="gmt">GMT+1 - Central European Time</option>
+                              <option value="ist">IST - Indian Standard Time (UTC+5:30)</option>
+                              <option value="sgt">SGT - Singapore Standard Time (UTC+8)</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="date_format" class="form-label-premium"><i class="fa-regular fa-calendar-days me-1 text-muted"></i> Date Display Notation</label>
+                            <select class="form-control form-control-premium w-100" id="date_format">
+                              <option value="YYYY-MM-DD" selected>YYYY-MM-DD (Standard ISO - 2026-07-02)</option>
+                              <option value="DD/MM/YYYY">DD/MM/YYYY (European Format - 02/07/2026)</option>
+                              <option value="MM/DD/YYYY">MM/DD/YYYY (US Notation - 07/02/2026)</option>
+                              <option value="DD-MMM-YYYY">DD-MMM-YYYY (Word Format - 02-Jul-2026)</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="currency_format" class="form-label-premium"><i class="fa-solid fa-coins me-1 text-muted"></i> Base Currency Symbol</label>
+                            <select class="form-control form-control-premium w-100" id="currency_format">
+                              <option value="USD" selected>USD ($) - United States Dollar</option>
+                              <option value="EUR">EUR (€) - European Euro</option>
+                              <option value="GBP">GBP (£) - Great British Pound</option>
+                              <option value="SGD">SGD (S$) - Singapore Dollar</option>
+                              <option value="INR">INR (₹) - Indian Rupee</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 2. Theme Settings Tab -->
+                    <div class="tab-pane fade" id="pill-theme" role="tabpanel" aria-labelledby="pill-theme-tab">
+                      <div class="glass-card p-4 mb-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                          <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                            <i class="fa-solid fa-palette fs-5"></i>
+                          </div>
+                          <div>
+                            <h4 class="h5 fw-800 text-primary mb-1">Visual Styling & Theme Preferences</h4>
+                            <p class="text-secondary small mb-0">Personalize corporate workspace branding and layout features.</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-4">
+                          <div class="col-md-6">
+                            <label class="form-label-premium d-block mb-3">Workspace Base Palette Mode</label>
+                            <div class="d-flex gap-3">
+                              <div class="p-3 border rounded text-center flex-fill cursor-pointer highlight-hover-card" onclick="setAppThemeMode('light')" style="background: white; border-color: var(--input-border);">
+                                <i class="fa-regular fa-sun fs-4 text-warning mb-2"></i>
+                                <span class="d-block small fw-700 text-dark">Pristine Light Mode</span>
+                              </div>
+                              <div class="p-3 border rounded text-center flex-fill cursor-pointer highlight-hover-card" onclick="setAppThemeMode('dark')" style="background: #111827; border-color: #374151;">
+                                <i class="fa-regular fa-moon fs-4 text-info mb-2"></i>
+                                <span class="d-block small fw-700 text-light">Deep Cosmic Dark</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label class="form-label-premium d-block mb-3">Primary Color Accent Preset</label>
+                            <div class="d-flex gap-3 flex-wrap pt-1">
+                              <span class="accent-dot active" style="background-color: #4f46e5;" onclick="selectAccentColor(this, 'indigo')" data-bs-toggle="tooltip" title="Indigo Prestige">
+                                <i class="fa-solid fa-check text-white fs-9"></i>
+                              </span>
+                              <span class="accent-dot" style="background-color: #06b6d4;" onclick="selectAccentColor(this, 'cyan')" data-bs-toggle="tooltip" title="Cyber Cyan"></span>
+                              <span class="accent-dot" style="background-color: #10b981;" onclick="selectAccentColor(this, 'emerald')" data-bs-toggle="tooltip" title="Emerald Growth"></span>
+                              <span class="accent-dot" style="background-color: #f59e0b;" onclick="selectAccentColor(this, 'amber')" data-bs-toggle="tooltip" title="Sunrise Amber"></span>
+                              <span class="accent-dot" style="background-color: #ef4444;" onclick="selectAccentColor(this, 'crimson')" data-bs-toggle="tooltip" title="Royal Crimson"></span>
+                            </div>
+                            <span class="text-muted d-block mt-3" style="font-size: 0.75rem;">Your selection overrides the active brand element colors.</span>
+                          </div>
+
+                          <div class="col-12">
+                            <hr class="my-2" style="opacity: 0.1;">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="theme_radius" class="form-label-premium">Corner Border Radius</label>
+                            <select class="form-control form-control-premium w-100" id="theme_radius">
+                              <option value="4px">Sharp Modern (4px)</option>
+                              <option value="8px">Standard Geometric (8px)</option>
+                              <option value="12px" selected>Premium Curved (12px / Default)</option>
+                              <option value="20px">Fluid Rounded (20px)</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="sidebar_style" class="form-label-premium">Navigation Drawer Display</label>
+                            <select class="form-control form-control-premium w-100" id="sidebar_style">
+                              <option value="glass" selected>Frosted Glass Panel Blur</option>
+                              <option value="flat">Standard Flat Color</option>
+                              <option value="gradient">Deep Hue Gradient Backdrop</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 3. Email Settings Tab -->
+                    <div class="tab-pane fade" id="pill-email" role="tabpanel" aria-labelledby="pill-email-tab">
+                      <div class="glass-card p-4 mb-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                          <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(6, 182, 212, 0.1); color: #06b6d4;">
+                            <i class="fa-solid fa-envelope fs-5"></i>
+                          </div>
+                          <div>
+                            <h4 class="h5 fw-800 text-primary mb-1">Email Alerts & SMTP Gateway Server</h4>
+                            <p class="text-secondary small mb-0">Configure automated outbound mail gateways for notifications.</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-4">
+                          <div class="col-md-8">
+                            <label for="smtp_host" class="form-label-premium">SMTP Server Hostname</label>
+                            <input type="text" class="form-control form-control-premium w-100" id="smtp_host" value="smtp.aurahr-cloud.net" required>
+                            <div class="invalid-feedback">Please enter SMTP hostname.</div>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="smtp_port" class="form-label-premium">Port Number</label>
+                            <input type="number" class="form-control form-control-premium w-100" id="smtp_port" value="587" required>
+                            <div class="invalid-feedback">Required.</div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="smtp_user" class="form-label-premium">Gateway Authentication Email</label>
+                            <input type="email" class="form-control form-control-premium w-100" id="smtp_user" value="notifications@aurahr.com" required>
+                            <div class="invalid-feedback">Enter a valid notification email.</div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="smtp_password" class="form-label-premium">Gateway secret token/password</label>
+                            <input type="password" class="form-control form-control-premium w-100" id="smtp_password" value="••••••••••••••••••••" required>
+                            <div class="invalid-feedback">Please configure password token.</div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="smtp_security" class="form-label-premium">Transport Encryption Standard</label>
+                            <select class="form-control form-control-premium w-100" id="smtp_security">
+                              <option value="none">No Encryption (Insecure)</option>
+                              <option value="ssl">SSL (Implicit Port 465)</option>
+                              <option value="tls" selected>TLS / STARTTLS (Opportunistic Port 587)</option>
+                            </select>
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="smtp_sender" class="form-label-premium">Global Outbound Sender Display Name</label>
+                            <input type="text" class="form-control form-control-premium w-100" id="smtp_sender" value="AuraHR Enterprise Messenger" required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 4. Notification Settings Tab -->
+                    <div class="tab-pane fade" id="pill-notifications" role="tabpanel" aria-labelledby="pill-notifications-tab">
+                      <div class="glass-card p-4 mb-4">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                          <div class="brand-icon-wrapper" style="width: 42px; height: 42px; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                            <i class="fa-solid fa-bell fs-5"></i>
+                          </div>
+                          <div>
+                            <h4 class="h5 fw-800 text-primary mb-1">Outbound Alerts & Threshold Triggers</h4>
+                            <p class="text-secondary small mb-0">Select what automated events trigger notifications to staff.</p>
+                          </div>
+                        </div>
+
+                        <div class="row g-4">
+                          <div class="col-lg-6">
+                            <div class="p-3 border rounded highlight-hover-card h-100" style="border-color: var(--card-border);">
+                              <h5 class="h6 fw-700 text-primary mb-3">Enterprise Channels</h5>
+                              
+                              <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_email" checked>
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_email">Send standard outbound email alerts</label>
+                              </div>
+                              <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_push" checked>
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_push">Send browser push notification toasts</label>
+                              </div>
+                              <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_slack">
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_slack">Push alerts to corporate Slack Webhook</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div class="p-3 border rounded highlight-hover-card h-100" style="border-color: var(--card-border);">
+                              <h5 class="h6 fw-700 text-primary mb-3">HR Specific Alerts</h5>
+                              
+                              <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_attendance" checked>
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_attendance">Alert managers of attendance threshold breaches</label>
+                              </div>
+                              <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_leave" checked>
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_leave">Instant email notification on new leave requests</label>
+                              </div>
+                              <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="notify_payroll" checked>
+                                <label class="form-check-label fw-600 text-secondary small ms-2" for="notify_payroll">Notify employee on slip approval & disbursement</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Bottom CTA sticky save bar -->
+                  <div class="glass-card p-3 d-flex justify-content-between align-items-center mt-4">
+                    <span class="small text-muted d-none d-sm-inline-block"><i class="fa-solid fa-shield-halved me-1 text-success"></i> Changes apply immediately to all active branches.</span>
+                    <div class="d-flex gap-2 ms-auto">
+                      <button type="reset" class="outline-btn py-2">Discard Changes</button>
+                      <button type="submit" class="gradient-btn py-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Save Settings</span>
+                      </button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Toast Alerts -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+      <div id="settingsToast" class="toast align-items-center text-white border-0 bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Portal config updated.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ once: true });
+      });
+
+      function selectAccentColor(element, colorName) {
+        // Deactivate other dots
+        document.querySelectorAll('.accent-dot').forEach(el => {
+          el.classList.remove('active');
+          el.innerHTML = '';
+        });
+        
+        // Activate current dot
+        element.classList.add('active');
+        element.innerHTML = '<i class="fa-solid fa-check text-white fs-9"></i>';
+        
+        // Notify visual system update (realistic simulation)
+        showToast(`Workspace color scheme configured to custom '${colorName}' preset successfully!`, 'success');
+      }
+
+      function setAppThemeMode(theme) {
+        if (window.HRM_Theme) {
+          window.HRM_Theme.setTheme(theme);
+        } else {
+          const root = document.documentElement;
+          root.setAttribute('data-theme', theme);
+          const event = new CustomEvent('themeChanged', { detail: { theme: theme } });
+          window.dispatchEvent(event);
+        }
+        
+        showToast(`Workspace base theme swapped to ${theme.toUpperCase()} mode.`, 'success');
+      }
+
+      function handleSettingsSave(event) {
+        event.preventDefault();
+        const form = event.target;
+        
+        if (!form.checkValidity()) {
+          event.stopPropagation();
+          form.classList.add('was-validated');
+          showToast('Validation failed! Please fill all required fields correctly.', 'danger');
+          return;
+        }
+
+        form.classList.remove('was-validated');
+        showToast('Saving configurations to the cloud workspace ledger...', 'success');
+
+        // Simulate network latency before confirming
+        setTimeout(() => {
+          showToast('AuraHR System settings updated and distributed successfully!', 'success');
+        }, 1000);
+      }
+
+      function showToast(message, type) {
+        if (window.showToast) {
+          window.showToast(message, type);
+        } else {
+          const toastEl = document.getElementById('settingsToast');
+          const toastMsg = document.getElementById('toastMessage');
+          toastMsg.textContent = message;
+          toastEl.className = `toast align-items-center text-white border-0 bg-${type === 'success' ? 'success' : 'danger'}`;
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+        }
+      }
+    </script>
+  </body>
+</html>

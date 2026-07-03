@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Training & Professional Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-wrapper" id="appWrapper">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- Collapsible Multi-level Sidebar -->
+      <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-icon-wrapper">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <span class="brand-text">AuraHR</span>
+          </a>
+          <button class="sidebar-toggle-btn d-none d-lg-flex" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </button>
+        </div>
+        <div class="sidebar-menu-wrapper">
+          <div class="sidebar-label">Core Modules</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="index.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Dashboard</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="employees.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-group"></i>
+                  <span>Employees</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="departments.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sitemap"></i>
+                  <span>Departments</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="attendance.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Attendance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="leave.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-envelope-open-text"></i>
+                  <span>Leave Requests</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">Finance & Talent</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="payroll.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <span>Payroll</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="recruitment.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Recruitment</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="performance.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>Performance</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="projects.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-diagram-project"></i>
+                  <span>Projects</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="sidebar-label">System & Admin</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a href="calendar.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-calendar-days"></i>
+                  <span>Calendar</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="reports.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Reports</span>
+                </span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-link-content">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Settings</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar-footer-profile">
+          <a href="profile.html" class="sidebar-user-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name">Sarah Jenkins</div>
+              <div class="sidebar-user-role">HR Director</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="main-content-wrapper" id="mainContentWrapper">
+        <header class="header-container">
+          <button class="sidebar-toggle-btn d-flex d-lg-none mobile-sidebar-toggle-btn me-3" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h1 class="h5 mb-0 fw-700 text-primary d-none d-sm-block">AuraHR Workspace</h1>
+          <form class="header-search-form d-none d-md-block">
+            <div class="search-input-group">
+              <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="search-input" placeholder="Search employees, departments, files...">
+            </div>
+          </form>
+          <div class="header-nav-right">
+            <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+            <div class="vr mx-1" style="opacity: 0.15; height: 24px;"></div>
+            <div class="dropdown">
+              <a href="#" class="profile-dropdown-trigger" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop" alt="User Profile" class="sidebar-user-avatar">
+                <div class="profile-trigger-info">
+                  <div class="profile-trigger-name">Sarah Jenkins</div>
+                  <div class="profile-trigger-role">HR Director</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-premium" aria-labelledby="profileDropdown" style="width: 220px;">
+                <li><a class="dropdown-item-premium py-2" href="profile.html"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                <li><a class="dropdown-item-premium py-2" href="settings.html"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" style="opacity: 0.1;"></li>
+                <li><a class="dropdown-item-premium py-2 text-danger" href="login.html"><i class="fa-solid fa-sign-out me-2"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+
+        <main class="content-body">
+          <div class="container-fluid p-0">
+            <!-- Header section -->
+            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-down" data-aos-duration="600">
+              <div>
+                <h2 class="h4 fw-800 text-primary mb-1">Training & Development</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">AuraHR</a></li>
+                    <li class="breadcrumb-item"><a href="performance.html" class="text-decoration-none text-muted">Performance</a></li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Training & Programs</li>
+                  </ol>
+                </nav>
+              </div>
+              <div>
+                <button class="gradient-btn" data-bs-toggle="modal" data-bs-target="#newCourseModal">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Schedule Course</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Performance Sub-Navigation Tabs -->
+            <div class="glass-card mb-4 p-2" data-aos="fade-down" data-aos-duration="500">
+              <div class="nav nav-pills d-flex flex-wrap gap-2 performance-tabs">
+                <a href="performance.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>KPIs & Ratings</span>
+                </a>
+                <a href="appraisal.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-file-signature"></i>
+                  <span>Appraisals</span>
+                </a>
+                <a href="goals.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-bullseye"></i>
+                  <span>Goals & OKRs</span>
+                </a>
+                <a href="training.html" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-2 active">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <span>Training Programs</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Indicators stats -->
+            <div class="row g-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4">
+                  <span class="text-secondary small fw-600 d-block">Enrolled Employees</span>
+                  <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="statEnrolled">38 Enrolled</h3>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4">
+                  <span class="text-secondary small fw-600 d-block">Active Courses</span>
+                  <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="statActive">3 Courses</h3>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4">
+                  <span class="text-secondary small fw-600 d-block">Completed Trainings</span>
+                  <h3 class="h3 fw-800 text-success mt-1 mb-0" id="statCompleted">4 Programs</h3>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="glass-card p-4">
+                  <span class="text-secondary small fw-600 d-block">Certifications Awarded</span>
+                  <h3 class="h3 fw-800 text-primary mt-1 mb-0" id="statCertificates">18 Issued</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Search and Filters -->
+            <div class="glass-card mb-4 p-4" data-aos="fade-up" data-aos-duration="700">
+              <div class="row g-3">
+                <div class="col-12 col-md-5">
+                  <div class="search-input-group">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="search-input" id="courseSearch" placeholder="Search course title or trainer...">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <select class="form-select form-control-premium" id="filterStatus">
+                    <option value="">All Statuses</option>
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Upcoming">Upcoming</option>
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <button class="outline-btn w-100 justify-content-center" id="btnReset">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Training list card table -->
+            <div class="glass-card p-0 mb-4" data-aos="fade-up" data-aos-duration="800">
+              <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+                <h4 class="h5 fw-700 text-primary mb-0">Professional Learning Track</h4>
+                <span class="badge bg-light text-primary border px-3 py-2 rounded-pill small" id="recordCounter">8 Courses loaded</span>
+              </div>
+              <div class="table-premium-wrapper">
+                <table class="table-premium" id="trainingTable">
+                  <thead>
+                    <tr>
+                      <th>Course</th>
+                      <th>Trainer</th>
+                      <th>Duration</th>
+                      <th>Participants</th>
+                      <th>Status</th>
+                      <th>Certificate Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="trainingTableBody">
+                    <!-- Dynamic rendering -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- New Course Modal -->
+        <div class="modal fade" id="newCourseModal" tabindex="-1" aria-labelledby="newCourseModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-card p-0 border-0">
+              <div class="modal-header px-4 py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="modal-title fw-700 text-primary" id="newCourseModalLabel">Schedule New Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--text-primary);"></button>
+              </div>
+              <form id="newCourseForm">
+                <div class="modal-body p-4">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Course Title</label>
+                      <input type="text" class="form-control form-control-premium" id="formTitle" placeholder="e.g. NextJS Full-Stack Masterclass" required>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Lead Trainer</label>
+                      <input type="text" class="form-control form-control-premium" id="formTrainer" placeholder="e.g. Dr. Ada Lovelace" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Duration</label>
+                      <input type="text" class="form-control form-control-premium" id="formDuration" placeholder="e.g. 12 Hours or 4 Weeks" required>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="form-label form-label-premium">Enrolled Counts</label>
+                      <input type="number" min="1" class="form-control form-control-premium" id="formParticipants" value="8" required>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label form-label-premium">Status</label>
+                      <select class="form-select form-control-premium" id="formStatus">
+                        <option value="Upcoming">Upcoming</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer px-4 py-3 border-top">
+                  <button type="button" class="outline-btn" data-bs-dismiss="modal">Cancel</button>
+                  <button type="submit" class="gradient-btn">Schedule Course</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate Modal -->
+        <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card p-0 border-0 overflow-hidden bg-white">
+              <div class="modal-header border-0 px-4 pt-4 pb-0 d-flex justify-content-between">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: brightness(0);"></button>
+              </div>
+              <div class="modal-body p-5">
+                <!-- Gorgeous High-Resolution Digital Certificate Block -->
+                <div class="certificate-border p-4 text-center text-dark" style="border: 6px double var(--primary-accent); border-radius: var(--radius-sm); position: relative; background: #fafbfc; color: #1e293b !important;">
+                  <div class="certificate-logo mb-3">
+                    <i class="fa-solid fa-award text-primary fs-1" style="color: var(--primary-accent) !important;"></i>
+                    <h5 class="fw-800 tracking-wider text-uppercase mt-2 mb-0" style="font-family: monospace; letter-spacing: 2px;">AURAHR ACADEMY</h5>
+                  </div>
+                  
+                  <span class="text-muted d-block small mb-2 text-uppercase font-serif" style="letter-spacing: 1px;">CERTIFICATE OF LEARNING ACHIEVEMENT</span>
+                  <h3 class="fw-400 my-3 font-serif" style="font-family: 'Georgia', serif; font-style: italic;">This is proudly presented to</h3>
+                  
+                  <h2 class="fw-800 text-primary border-bottom border-2 d-inline-block px-5 pb-2 font-serif" id="certUser" style="color: var(--primary-accent) !important; font-family: 'Georgia', serif; font-style: italic;">Sarah Jenkins</h2>
+                  
+                  <p class="max-w-lg mx-auto my-4 text-secondary leading-relaxed" style="max-width: 500px; font-size: 0.95rem;">
+                    for successfully coordinating, attending, and completing the advanced curriculum requirements for:
+                    <strong class="d-block text-dark mt-2" id="certCourse" style="font-size: 1.15rem; font-weight: 700;">Agile Product Management Mastery</strong>
+                  </p>
+
+                  <div class="d-flex justify-content-around align-items-center mt-5 pt-4 border-top">
+                    <div class="text-center">
+                      <div class="small fw-700 font-serif" id="certDate">July 02, 2026</div>
+                      <span class="small text-muted d-block border-top pt-1 mt-1 px-3">Date Completed</span>
+                    </div>
+                    <div class="text-center">
+                      <div class="small fw-800 font-serif" style="letter-spacing: 0.5px; font-style: italic;" id="certTrainer">Dr. Brenda Watson</div>
+                      <span class="small text-muted d-block border-top pt-1 mt-1 px-3">Authorized Trainer</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer bg-light px-4 py-3 border-top">
+                <button class="outline-btn" id="btnPrintCert">
+                  <i class="fa-solid fa-print"></i>
+                  <span>Print Certificate</span>
+                </button>
+                <button class="gradient-btn" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer-container">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div class="mb-2 mb-sm-0">
+              &copy; 2026 <strong>AuraHR</strong> Premium HRM Admin Portal. All rights reserved.
+            </div>
+            <div class="d-flex gap-3">
+              <a href="settings.html" class="text-decoration-none text-secondary">Privacy Policy</a>
+              <span class="text-muted">|</span>
+              <a href="settings.html" class="text-decoration-none text-secondary">Terms of Service</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Style Override Helpers -->
+    <style>
+      .performance-tabs .nav-link {
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border-radius: var(--radius-md) !important;
+        transition: all var(--transition-fast);
+        border: 1px solid transparent;
+      }
+      .performance-tabs .nav-link:hover {
+        background-color: var(--sidebar-item-hover);
+        color: var(--text-primary);
+      }
+      .performance-tabs .nav-link.active {
+        background: linear-gradient(135deg, var(--primary-accent), var(--primary-accent-hover)) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px var(--shadow-accent-glow);
+      }
+      /* Overlapping avatars style */
+      .avatar-group {
+        display: inline-flex;
+        align-items: center;
+      }
+      .avatar-group-item {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid var(--card-bg-solid);
+        object-fit: cover;
+        margin-left: -8px;
+        transition: all var(--transition-fast);
+      }
+      .avatar-group-item:first-child {
+        margin-left: 0;
+      }
+      .avatar-group-item:hover {
+        transform: translateY(-4px) scale(1.1);
+        z-index: 10;
+        border-color: var(--primary-accent);
+      }
+      .avatar-group-more {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid var(--card-bg-solid);
+        background: var(--sidebar-item-hover);
+        color: var(--text-secondary);
+        font-size: 0.72rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: -8px;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animation.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true
+        });
+
+        // Seed courses registry
+        let COURSES = [
+          {
+            id: "TRN-101",
+            title: "Agile Leadership & Scaling Mastery",
+            trainer: "Dr. Brenda Watson",
+            duration: "16 Hours",
+            enrolledCount: 12,
+            status: "Completed",
+            certificate: "Issued",
+            dateCompleted: "June 15, 2026",
+            avatars: [
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop"
+            ]
+          },
+          {
+            id: "TRN-102",
+            title: "Secure High-Availability Cloud Setup",
+            trainer: "Marcus Vance",
+            duration: "24 Hours",
+            enrolledCount: 8,
+            status: "In Progress",
+            certificate: "Pending",
+            dateCompleted: "August 10, 2026",
+            avatars: [
+              "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
+            ]
+          },
+          {
+            id: "TRN-103",
+            title: "Advanced AI-Powered Agent Workflows",
+            trainer: "Alan Turing",
+            duration: "12 Hours",
+            enrolledCount: 15,
+            status: "In Progress",
+            certificate: "Pending",
+            dateCompleted: "July 25, 2026",
+            avatars: [
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop"
+            ]
+          },
+          {
+            id: "TRN-104",
+            title: "Inclusive Accessibility Standards (WCAG 2.2)",
+            trainer: "Jessica Taylor",
+            duration: "6 Hours",
+            enrolledCount: 6,
+            status: "Completed",
+            certificate: "Issued",
+            dateCompleted: "May 20, 2026",
+            avatars: [
+              "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop"
+            ]
+          },
+          {
+            id: "TRN-105",
+            title: "Fiscal Compliance & Audit Readiness",
+            trainer: "Chloe Bennett",
+            duration: "10 Hours",
+            enrolledCount: 3,
+            status: "Upcoming",
+            certificate: "N/A",
+            dateCompleted: "October 05, 2026",
+            avatars: [
+              "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop"
+            ]
+          }
+        ];
+
+        const trainingTableBody = document.getElementById("trainingTableBody");
+        const courseSearch = document.getElementById("courseSearch");
+        const filterStatus = document.getElementById("filterStatus");
+        const btnReset = document.getElementById("btnReset");
+        const recordCounter = document.getElementById("recordCounter");
+
+        // Metrics elements
+        const statEnrolled = document.getElementById("statEnrolled");
+        const statActive = document.getElementById("statActive");
+        const statCompleted = document.getElementById("statCompleted");
+        const statCertificates = document.getElementById("statCertificates");
+
+        function getStatusBadge(status) {
+          switch (status) {
+            case "Completed":
+              return "premium-badge-success";
+            case "In Progress":
+              return "premium-badge-info";
+            case "Upcoming":
+              return "premium-badge-warning";
+            default:
+              return "premium-badge-info";
+          }
+        }
+
+        function calculateMetrics(data) {
+          if (data.length === 0) {
+            statEnrolled.textContent = "0 Enrolled";
+            statActive.textContent = "0 Courses";
+            statCompleted.textContent = "0 Programs";
+            statCertificates.textContent = "0 Issued";
+            return;
+          }
+
+          const enrolled = data.reduce((acc, c) => acc + c.enrolledCount, 0);
+          const active = data.filter(c => c.status === "In Progress").length;
+          const completed = data.filter(c => c.status === "Completed").length;
+          const certs = data.filter(c => c.certificate === "Issued").length;
+
+          statEnrolled.textContent = `${enrolled} Enrolled`;
+          statActive.textContent = `${active} Course${active > 1 ? "s" : ""}`;
+          statCompleted.textContent = `${completed} Program${completed > 1 ? "s" : ""}`;
+          statCertificates.textContent = `${certs * 3} Issued`; // Accredited ratio
+        }
+
+        function renderCourses(data) {
+          trainingTableBody.innerHTML = "";
+          if (data.length === 0) {
+            trainingTableBody.innerHTML = `
+              <tr>
+                <td colspan="7" class="text-center py-5 text-secondary">
+                  <i class="fa-solid fa-graduation-cap fs-2 mb-3 text-muted"></i>
+                  <p class="mb-0">No training programs matches the query.</p>
+                </td>
+              </tr>
+            `;
+            recordCounter.textContent = "0 Courses loaded";
+            return;
+          }
+
+          recordCounter.textContent = `${data.length} Course${data.length > 1 ? "s" : ""} loaded`;
+
+          data.forEach(c => {
+            const tr = document.createElement("tr");
+            
+            // Build avatars overlapping list
+            let avatarHTML = '<div class="avatar-group">';
+            c.avatars.forEach(av => {
+              avatarHTML += `<img src="${av}" class="avatar-group-item">`;
+            });
+            if (c.enrolledCount > c.avatars.length) {
+              avatarHTML += `<span class="avatar-group-more">+${c.enrolledCount - c.avatars.length}</span>`;
+            }
+            avatarHTML += '</div>';
+
+            // Certificate action UI
+            let certActionHTML = "";
+            if (c.status === "Completed") {
+              certActionHTML = `
+                <button class="outline-btn py-1 px-2 text-success btn-view-cert" data-id="${c.id}" style="border-color: rgba(16, 185, 129, 0.2); background: rgba(16, 185, 129, 0.05);">
+                  <i class="fa-solid fa-medal text-success"></i>
+                  <span class="small fw-700">View Certificate</span>
+                </button>
+              `;
+            } else if (c.status === "In Progress") {
+              certActionHTML = `
+                <span class="text-muted small">
+                  <i class="fa-solid fa-spinner fa-spin me-1"></i> Running
+                </span>
+              `;
+            } else {
+              certActionHTML = `<span class="text-secondary small">Not Started</span>`;
+            }
+
+            tr.innerHTML = `
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="brand-icon-wrapper" style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: rgba(var(--primary-accent-rgb), 0.08); color: var(--primary-accent);">
+                    <i class="fa-solid fa-book-open small"></i>
+                  </div>
+                  <div>
+                    <span class="fw-700 text-primary d-block">${c.title}</span>
+                    <span class="small text-muted">${c.id}</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="fw-600 text-secondary">${c.trainer}</span>
+              </td>
+              <td>
+                <span class="badge bg-light text-secondary border px-2 py-1 small">${c.duration}</span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  ${avatarHTML}
+                  <span class="small text-muted fw-600">(${c.enrolledCount})</span>
+                </div>
+              </td>
+              <td>
+                <span class="premium-badge ${getStatusBadge(c.status)}">${c.status}</span>
+              </td>
+              <td>
+                ${certActionHTML}
+              </td>
+              <td class="text-end">
+                <button class="outline-btn py-1 px-2 btn-enroll" data-id="${c.id}" ${c.status === "Completed" ? 'disabled' : ''}>
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span class="small">Enroll</span>
+                </button>
+              </td>
+            `;
+            trainingTableBody.appendChild(tr);
+          });
+
+          // Bind certificate views click
+          document.querySelectorAll(".btn-view-cert").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const courseId = this.getAttribute("data-id");
+              const targetCourse = COURSES.find(c => c.id === courseId);
+              if (targetCourse) {
+                // Populate certificate modal with random candidate name or Sarah Jenkins
+                document.getElementById("certUser").textContent = "Sarah Jenkins";
+                document.getElementById("certCourse").textContent = targetCourse.title;
+                document.getElementById("certDate").textContent = targetCourse.dateCompleted;
+                document.getElementById("certTrainer").textContent = targetCourse.trainer;
+                
+                const modal = new bootstrap.Modal(document.getElementById("certificateModal"));
+                modal.show();
+              }
+            });
+          });
+
+          // Bind Enroll actions click
+          document.querySelectorAll(".btn-enroll").forEach(btn => {
+            btn.addEventListener("click", function() {
+              const courseId = this.getAttribute("data-id");
+              const targetCourse = COURSES.find(c => c.id === courseId);
+              if (targetCourse) {
+                targetCourse.enrolledCount++;
+                // Add a sample avatar if under limits
+                if (targetCourse.avatars.length < 5) {
+                  const randomAvatars = [
+                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=256&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop"
+                  ];
+                  targetCourse.avatars.push(randomAvatars[Math.floor(Math.random() * randomAvatars.length)]);
+                }
+                renderCourses(COURSES);
+                calculateMetrics(COURSES);
+              }
+            });
+          });
+        }
+
+        function filterAndRender() {
+          const query = courseSearch.value.toLowerCase().trim();
+          const status = filterStatus.value;
+
+          const filtered = COURSES.filter(c => {
+            const matchesSearch = c.title.toLowerCase().includes(query) || c.trainer.toLowerCase().includes(query);
+            const matchesStatus = !status || c.status === status;
+            return matchesSearch && matchesStatus;
+          });
+
+          renderCourses(filtered);
+          calculateMetrics(filtered);
+        }
+
+        courseSearch.addEventListener("input", filterAndRender);
+        filterStatus.addEventListener("change", filterAndRender);
+
+        btnReset.addEventListener("click", function() {
+          courseSearch.value = "";
+          filterStatus.value = "";
+          renderCourses(COURSES);
+          calculateMetrics(COURSES);
+        });
+
+        // Add course submit
+        document.getElementById("newCourseForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const title = document.getElementById("formTitle").value;
+          const trainer = document.getElementById("formTrainer").value;
+          const duration = document.getElementById("formDuration").value;
+          const participants = parseInt(document.getElementById("formParticipants").value);
+          const status = document.getElementById("formStatus").value;
+
+          const newCourse = {
+            id: `TRN-${Math.floor(100 + Math.random() * 900)}`,
+            title: title,
+            trainer: trainer,
+            duration: duration,
+            enrolledCount: participants,
+            status: status,
+            certificate: status === "Completed" ? "Issued" : "Pending",
+            dateCompleted: "Pending Review",
+            avatars: [
+              "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop",
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop"
+            ]
+          };
+
+          COURSES.unshift(newCourse);
+          renderCourses(COURSES);
+          calculateMetrics(COURSES);
+
+          const modalEl = document.getElementById("newCourseModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          modalInstance.hide();
+          document.getElementById("newCourseForm").reset();
+        });
+
+        // Certificate printing simulation
+        document.getElementById("btnPrintCert").addEventListener("click", function() {
+          window.print();
+        });
+
+        // Initial load
+        renderCourses(COURSES);
+        calculateMetrics(COURSES);
+      });
+    </script>
+  </body>
+</html>

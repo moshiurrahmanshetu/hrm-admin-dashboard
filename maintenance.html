@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraHR - Scheduled Maintenance</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Theme & Style CSS -->
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 80%),
+                    var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+      }
+      .maintenance-container {
+        width: 100%;
+        max-width: 520px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+      .maintenance-card {
+        border-radius: var(--radius-xl);
+        background: var(--card-bg-solid);
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-xl);
+        padding: 3.5rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .maintenance-badge-glow {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(6, 182, 212, 0.08);
+        color: var(--info);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.15);
+        animation: rotate-and-pulse 4s infinite linear;
+      }
+      @keyframes rotate-and-pulse {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(1.05);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+      .floating-theme-toggle {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 1000;
+      }
+      .progress-bar-glow {
+        height: 6px;
+        background: rgba(var(--primary-accent-rgb), 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+      }
+      .progress-bar-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 65%;
+        background: linear-gradient(90deg, var(--primary-accent), var(--info));
+        border-radius: 3px;
+        animation: loading-bar-progress 2s infinite ease-in-out;
+      }
+      @keyframes loading-bar-progress {
+        0% { left: -30%; width: 30%; }
+        50% { left: 30%; width: 50%; }
+        100% { left: 100%; width: 30%; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating Theme Switcher -->
+    <div class="floating-theme-toggle">
+      <button class="header-action-btn theme-toggle-trigger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Switch Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+
+    <div class="maintenance-container" data-aos="zoom-in" data-aos-duration="800">
+      <div class="maintenance-card">
+        <div class="maintenance-badge-glow">
+          <i class="fa-solid fa-gears"></i>
+        </div>
+        <h1 class="h3 fw-800 text-primary mb-2">Scheduled Maintenance</h1>
+        <h2 class="h6 fw-600 text-muted mb-4">AuraHR Portal is scaling up</h2>
+        <p class="text-secondary small mb-4" style="line-height: 1.6;">
+          Our servers are undergoing routine database structural updates and security certificate renewals. We will return shortly with enhanced speed and features. Thank you for your patience!
+        </p>
+
+        <!-- Simulated progress indicator -->
+        <div class="mb-4">
+          <div class="d-flex justify-content-between text-muted fs-xxs fw-700 mb-1">
+            <span>UPGRADE IN PROGRESS</span>
+            <span>65% COMPLETE</span>
+          </div>
+          <div class="progress-bar-glow">
+            <div class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- Back to login link -->
+        <a href="login.html" class="outline-btn justify-content-center py-2 w-100" style="display: inline-flex;">
+          <i class="fa-solid fa-arrow-left me-2"></i>
+          <span>Back to Secure Login Gateway</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/animation.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof AOS !== 'undefined') {
+          AOS.init();
+        }
+      });
+    </script>
+  </body>
+</html>
